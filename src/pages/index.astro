@@ -6,7 +6,15 @@ import Layout from '../layouts/Layout.astro';
   <!-- NAV -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 px-8">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <a href="#" class="font-display font-bold text-white text-xl tracking-tight" style="font-family: var(--font-display)">AG</a>
+      <a href="#" class="flex items-center" aria-label="Arseniy Goldberg">
+        <svg width="52" height="30" viewBox="0 0 52 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- A -->
+          <path d="M2 28L11 2L20 28" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5.5 18.5H16.5" stroke="#F4621F" stroke-width="2.2" stroke-linecap="round"/>
+          <!-- G -->
+          <path d="M50 9C47 4 42 2 38 3.5C33 5.5 31 10 31 15C31 20 33.5 24.5 38 26.5C42 28 47 26 49.5 22.5V15.5H43" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="#work"        class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Work</a>
         <a href="#clients"     class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Clients</a>
