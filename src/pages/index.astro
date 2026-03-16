@@ -756,7 +756,7 @@ import Layout from '../layouts/Layout.astro';
           Consulting, teaching collaboration, speaking, or building together — I'm interested.
         </p>
       </div>
-      <form action="https://formspree.io/f/mgonnqob" method="POST" class="reveal reveal-delay-1 space-y-4">
+      <form id="contact-form" class="reveal reveal-delay-1 space-y-4">
         <div class="grid sm:grid-cols-2 gap-4">
           <input type="text" name="name" placeholder="Your Name" required
             class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
@@ -771,11 +771,15 @@ import Layout from '../layouts/Layout.astro';
         <textarea rows="4" name="message" placeholder="Tell me more..."
           class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors resize-none"
           style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)"></textarea>
-        <button type="submit"
+        <button id="submit-btn" type="submit"
           class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl transition-colors text-sm tracking-wide"
           style="font-family: var(--font-display)">
           Send Message →
         </button>
+        <div id="form-success" class="hidden text-center py-6">
+          <p class="text-white font-semibold mb-1" style="font-family: var(--font-display)">Got it.</p>
+          <p class="text-sm" style="color: rgba(255,255,255,0.45)">I'll be in touch soon.</p>
+        </div>
       </form>
     </div>
   </section>
@@ -890,4 +894,30 @@ import Layout from '../layouts/Layout.astro';
     autoTimer = setInterval((window as any).carouselNext, 5000);
   })();
 
+  // Contact form — AJAX, stays on page
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const formSuccess = document.getElementById('form-success');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/mgonnqob', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        form.querySelectorAll('input, textarea, button').forEach(el => (el as HTMLElement).style.display = 'none');
+        formSuccess?.classList.remove('hidden');
+      } else {
+        submitBtn.textContent = 'Send Message →';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      submitBtn.textContent = 'Send Message →';
+      submitBtn.disabled = false;
+    }
+  });
 </script>
