@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Message Sent — Arseniy Goldberg" description="Your message has been received.">
+
+  <div class="min-h-screen flex flex-col items-center justify-center px-8 text-center" style="background: #0D1B2A">
+
+    <!-- Subtle grid background -->
+    <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <div class="relative z-10 max-w-lg">
+
+      <!-- Check mark -->
+      <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8" style="background: rgba(244,98,31,0.12); border: 1px solid rgba(244,98,31,0.25)">
+        <svg class="w-9 h-9 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+
+      <!-- Message -->
+      <p class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="font-family: var(--font-display)">Message Received</p>
+      <h1 class="font-bold text-white mb-4 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,5vw,3rem)">
+        Got it.
+      </h1>
+      <p class="text-base leading-relaxed mb-10" style="color: rgba(255,255,255,0.45)">
+        I'll read your message and get back to you soon. In the meantime — explore the work.
+      </p>
+
+      <!-- Actions -->
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/#work" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-7 py-3.5 rounded-full transition-colors text-sm tracking-wide" style="font-family: var(--font-display)">
+          Explore Work
+        </a>
+        <a href="/" class="text-sm px-7 py-3.5 rounded-full transition-colors" style="font-family: var(--font-display); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.5)">
+          Back to Home
+        </a>
+      </div>
+
+      <!-- Footer links -->
+      <div class="flex items-center justify-center gap-6 mt-16">
+        <a href="https://www.linkedin.com/in/arseniygoldberg/" target="_blank" class="text-xs uppercase tracking-wide hover:text-white/60 transition-colors" style="font-family: var(--font-display); color: rgba(255,255,255,0.25)">LinkedIn</a>
+        <a href="https://findyournorth.net/" target="_blank" class="text-xs uppercase tracking-wide hover:text-white/60 transition-colors" style="font-family: var(--font-display); color: rgba(255,255,255,0.25)">North</a>
+        <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="text-xs uppercase tracking-wide hover:text-white/60 transition-colors" style="font-family: var(--font-display); color: rgba(255,255,255,0.25)">Flow</a>
+      </div>
+
+    </div>
+  </div>
+
+</Layout>
