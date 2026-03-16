@@ -1,0 +1,920 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+
+  <!-- NAV -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 px-8">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="#" class="font-display font-bold text-white text-xl tracking-tight" style="font-family: var(--font-display)">AG</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#work"        class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Work</a>
+        <a href="#clients"     class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Clients</a>
+        <a href="#brands"      class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Brands</a>
+        <a href="#recognition" class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Recognition</a>
+        <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors" style="font-family: var(--font-display)">
+          Let's Talk
+        </a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden text-white/60 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-navy-950/95 backdrop-blur-lg border-t border-white/10 px-8 py-6 flex flex-col gap-5">
+      <a href="#work"        class="text-white/70 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Work</a>
+      <a href="#clients"     class="text-white/70 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Clients</a>
+      <a href="#brands"      class="text-white/70 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Brands</a>
+      <a href="#recognition" class="text-white/70 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Recognition</a>
+      <a href="#contact" class="bg-orange-500 text-white text-sm font-semibold px-5 py-3 rounded-full text-center transition-colors" style="font-family: var(--font-display)">Let's Talk</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-bg min-h-screen flex items-center overflow-hidden">
+    <div class="absolute left-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-orange-500/15 to-transparent hidden lg:block"></div>
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-8 pt-28 pb-24 grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <h1 class="text-white leading-[1.0] mb-7" style="font-family: var(--font-display)">
+          <span class="block font-bold tracking-tight" style="font-size: clamp(2.8rem,6vw,4.5rem)">12 Years.</span>
+          <span class="block font-bold tracking-tight" style="font-size: clamp(2.8rem,6vw,4.5rem)">5 Continents.</span>
+          <span class="block font-light mt-3" style="font-size: clamp(1.8rem,4vw,2.8rem); color: rgba(255,255,255,0.45)">One Obsession.</span>
+        </h1>
+        <p class="text-base leading-relaxed max-w-[400px] mb-4" style="color: rgba(255,255,255,0.5)">
+          How humans grow — through <em class="not-italic" style="color: rgba(255,255,255,0.85)">Finance</em>,
+          <em class="not-italic" style="color: rgba(255,255,255,0.85)">Entrepreneurship</em>, and
+          <em class="not-italic" style="color: rgba(255,255,255,0.85)">Artificial Intelligence</em>.
+        </p>
+        <p class="text-sm mb-10 tracking-widest uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">
+          I study it &nbsp;·&nbsp; I teach it &nbsp;·&nbsp; I build with it
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-colors text-sm tracking-wide" style="font-family: var(--font-display)">
+            Let's Work Together
+          </a>
+          <a href="#work" class="text-sm px-8 py-4 rounded-full transition-colors" style="font-family: var(--font-display); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6)">
+            Explore Work ↓
+          </a>
+        </div>
+      </div>
+      <div class="relative hidden lg:flex justify-end">
+        <div class="relative rounded-2xl overflow-hidden" style="width: 380px; aspect-ratio: 3/4; background: #162236">
+          <img src="/hero.jpg" alt="Arseniy Goldberg" class="w-full h-full object-cover object-center" />
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(13,27,42,0.5) 0%, transparent 60%)"></div>
+        </div>
+        <div class="absolute -bottom-3 -left-8 bg-white rounded-2xl px-5 py-4 shadow-2xl flex items-center gap-4">
+          <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-bold text-sm leading-tight text-navy-900" style="font-family: var(--font-display)">5× Teaching Excellence</p>
+            <p class="text-xs mt-0.5 text-navy-400" style="font-family: var(--font-display)">IE University · 2024 & 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-28 pointer-events-none" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="bg-warm-50 py-16 border-b border-warm-200">
+    <div class="max-w-5xl mx-auto px-8">
+      <div class="flex flex-wrap justify-center divide-x divide-warm-200">
+        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="12">0</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Years Experience</p>
+        </div>
+        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal reveal-delay-1">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Continents</p>
+        </div>
+        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal reveal-delay-2">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="30">0</span><span class="text-orange-500">+</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Institutions</p>
+        </div>
+        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal reveal-delay-3">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="15">0</span><span class="text-orange-500">+</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Courses Built</p>
+        </div>
+        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal reveal-delay-4">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="4">0</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Startups</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="py-24 bg-warm-100">
+    <div class="max-w-6xl mx-auto px-8">
+
+      <div class="mb-16 reveal">
+        <div class="section-label">
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">What I Deliver</span>
+        </div>
+        <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
+          Not just education.<br>
+          <span class="text-navy-400 font-light">A full transformation journey.</span>
+        </h2>
+        <p class="text-navy-400 text-base mt-4 max-w-2xl leading-relaxed">
+          Whether you're a company looking to upskill your teams, an L&D leader building executive programs, or an academic institution designing curriculum — the engagement is built around your specific challenge, not a generic syllabus.
+        </p>
+      </div>
+
+      <!-- Who this is for -->
+      <div class="grid md:grid-cols-3 gap-5 mb-16 reveal">
+        <div class="bg-white rounded-2xl p-7 border-t-2 border-orange-500">
+          <p class="text-orange-500 text-xs font-semibold tracking-widest uppercase mb-3" style="font-family: var(--font-display)">For Organizations</p>
+          <h3 class="font-bold text-lg text-navy-900 mb-3" style="font-family: var(--font-display)">Strategic Learning & Implementation</h3>
+          <p class="text-navy-400 text-sm leading-relaxed mb-4">You need to change how your teams think, work, or serve clients — and you need it to stick. I design and deliver the full journey from awareness to implementation.</p>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0 mt-1.5"></span>Finance, AI, and innovation programs</li>
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0 mt-1.5"></span>From diagnosis to post-program execution</li>
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0 mt-1.5"></span>Measurable behavioral and operational change</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-7 border-t-2 border-navy-300">
+          <p class="text-navy-400 text-xs font-semibold tracking-widest uppercase mb-3" style="font-family: var(--font-display)">For L&D Leaders</p>
+          <h3 class="font-bold text-lg text-navy-900 mb-3" style="font-family: var(--font-display)">Executive & Professional Training</h3>
+          <p class="text-navy-400 text-sm leading-relaxed mb-4">You're building programs for senior professionals who need more than slides. I deliver engaging, high-stakes content with real-world simulations and AI-powered tools.</p>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>Customized to your sector & audience</li>
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>NPS 70 across delivered programs</li>
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>Blended: online foundation + live delivery</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-7 border-t-2 border-navy-300">
+          <p class="text-navy-400 text-xs font-semibold tracking-widest uppercase mb-3" style="font-family: var(--font-display)">For Academic Institutions</p>
+          <h3 class="font-bold text-lg text-navy-900 mb-3" style="font-family: var(--font-display)">Guest Faculty & Curriculum Design</h3>
+          <p class="text-navy-400 text-sm leading-relaxed mb-4">You need practitioners who can engage MBA and executive students at the intersection of theory and real-world application — and keep a room alive.</p>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>5× IE University Teaching Excellence Award</li>
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>4.9/5 average participant rating</li>
+            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>Delivered across 30+ global institutions</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Results bar -->
+      <div class="bg-navy-900 rounded-2xl p-8 mb-16 reveal">
+        <p class="text-xs font-semibold tracking-widest uppercase mb-6" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Measured Results Across Programs</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <p class="font-bold text-3xl text-white mb-1" style="font-family: var(--font-display)">4.9<span class="text-orange-500">/5</span></p>
+            <p class="text-xs" style="color: rgba(255,255,255,0.4)">Average participant rating</p>
+          </div>
+          <div class="text-center">
+            <p class="font-bold text-3xl text-white mb-1" style="font-family: var(--font-display)">NPS <span class="text-orange-500">70</span></p>
+            <p class="text-xs" style="color: rgba(255,255,255,0.4)">Across delivered programs</p>
+          </div>
+          <div class="text-center">
+            <p class="font-bold text-3xl text-white mb-1" style="font-family: var(--font-display)">5<span class="text-orange-500">hrs</span></p>
+            <p class="text-xs" style="color: rgba(255,255,255,0.4)">Saved per week with GenAI</p>
+          </div>
+          <div class="text-center">
+            <p class="font-bold text-3xl text-white mb-1" style="font-family: var(--font-display)">30<span class="text-orange-500">+</span></p>
+            <p class="text-xs" style="color: rgba(255,255,255,0.4)">Institutions across 5 continents</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curriculum label -->
+      <div class="mb-8 reveal">
+        <div class="section-label">
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">The Curriculum</span>
+        </div>
+        <p class="text-navy-400 text-sm">The subject areas I bring to every engagement — customized to your context, not delivered off the shelf.</p>
+      </div>
+
+      <!-- Tab bar -->
+      <div class="border-b border-warm-200 mb-10 reveal flex overflow-x-auto" id="work-tabs">
+        <button class="tab-btn active" data-tab="finance"          onclick="switchTab('finance')">Financial Thinking</button>
+        <button class="tab-btn"        data-tab="entrepreneurship" onclick="switchTab('entrepreneurship')">Innovation & Ventures</button>
+        <button class="tab-btn"        data-tab="ai"               onclick="switchTab('ai')">AI & Digital Productivity</button>
+        <button class="tab-btn"        data-tab="behavioral"       onclick="switchTab('behavioral')">Human Behavior & Decisions</button>
+      </div>
+
+      <!-- FINANCE TAB -->
+      <div id="tab-finance" class="tab-panel">
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
+            <div class="h-40 bg-navy-900 relative flex items-end p-6">
+              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.12) 0%, transparent 60%)"></div>
+              <span class="relative z-10 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">25 Sessions</span>
+            </div>
+            <div class="p-7">
+              <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Capital Markets</h3>
+              <p class="text-navy-400 text-sm mb-3">How institutional money moves through global systems — and how to raise, deploy, and protect it.</p>
+              <p class="text-orange-500 text-xs font-semibold uppercase tracking-wide mb-3" style="font-family: var(--font-display)">Outcome — Participants leave able to read, navigate, and engage with global capital markets with confidence.</p>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Equity & debt market structure</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Institutional investors & capital raising</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>IPOs, bonds, and alternative financing</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Valuation methods & market dynamics</li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-col gap-5">
+            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Corporate Finance</h3>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Capital structure & WACC</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Investment decisions & NPV</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Financial strategy & planning</li>
+              </ul>
+            </div>
+            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Financial Consulting</h3>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Advisory skills & client management</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Strategic financial solutions</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>CFO-as-a-service frameworks</li>
+              </ul>
+            </div>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">9 Sessions</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Business Case Modeling</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Financial model construction</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Scenario & sensitivity analysis</li>
+            </ul>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Fintech</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Digital payments & blockchain</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>AI in financial services</li>
+            </ul>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Advanced Financial Management</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Risk management & hedging</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Advanced analytics & reporting</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8">
+          <p class="text-xs text-navy-400 font-semibold tracking-widest uppercase mb-4" style="font-family: var(--font-display)">Session Samples</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="https://drive.google.com/file/d/1jQdcKAY7RqyHw2dZz9NbM4CE9NrpsxK-/view" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://drive.google.com/thumbnail?id=1jQdcKAY7RqyHw2dZz9NbM4CE9NrpsxK-&sz=w500" alt="Time Value of Money" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
+                  <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
+                <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Time Value of Money</p>
+              </div>
+            </a>
+            <a href="https://drive.google.com/file/d/1nlPC432wBF2a6VbhSZFOA9rzzcS3KltO/view" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://drive.google.com/thumbnail?id=1nlPC432wBF2a6VbhSZFOA9rzzcS3KltO&sz=w500" alt="Working Capital" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
+                  <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
+                <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Working Capital</p>
+              </div>
+            </a>
+            <a href="https://drive.google.com/file/d/1aRBPr1TkaNRA6MD55ohBAoJGQEpLFi8B/view" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://drive.google.com/thumbnail?id=1aRBPr1TkaNRA6MD55ohBAoJGQEpLFi8B&sz=w500" alt="Dynamic Valuation" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
+                  <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
+                <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Dynamic Valuation</p>
+              </div>
+            </a>
+            <a href="https://drive.google.com/file/d/1bDXW82jglG_2ezWas2ezpwa3h-yllMI_/view" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://drive.google.com/thumbnail?id=1bDXW82jglG_2ezWas2ezpwa3h-yllMI_&sz=w500" alt="Sources of Corporate Financing" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
+                  <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
+                <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Sources of Corporate Financing</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- INNOVATION TAB -->
+      <div id="tab-entrepreneurship" class="tab-panel hidden">
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
+            <div class="h-40 bg-navy-900 relative flex items-end p-6">
+              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.12) 0%, transparent 60%)"></div>
+              <span class="relative z-10 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">15 Sessions</span>
+            </div>
+            <div class="p-7">
+              <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Entrepreneurial Journey</h3>
+              <p class="text-navy-400 text-sm mb-3">From idea to scale — built from 4 startups, 3 accelerators, and 1 venture builder. Real-world, not theoretical.</p>
+              <p class="text-orange-500 text-xs font-semibold uppercase tracking-wide mb-3" style="font-family: var(--font-display)">Outcome — Participants leave with a validated framework for building, testing, and scaling a venture from scratch.</p>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Ideation, validation & lean startup</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Business model design & iteration</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Fundraising & investor relations</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Scaling operations & team building</li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-col gap-5">
+            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">8 Sessions</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Design Thinking</h3>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Empathy mapping & user research</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Ideation & rapid prototyping</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Testing & iteration cycles</li>
+              </ul>
+            </div>
+            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">10 Sessions</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Customer Experience</h3>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Service design & journey mapping</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Loyalty & retention strategies</li>
+              </ul>
+            </div>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Founder · 4 Startups</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Built & Advised Ventures</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Led product, finance & go-to-market</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Finance, edtech & innovation sectors</li>
+            </ul>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Mentor · 3 Global Accelerators</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Accelerator Mentorship</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Helped founders validate ideas & build teams</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Coached on fundraising & investor pitch</li>
+            </ul>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Consulting</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Innovation Consulting</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Built intrapreneurship programs for corporates</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>0-to-1 product & go-to-market strategy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8">
+          <p class="text-xs text-navy-400 font-semibold tracking-widest uppercase mb-4" style="font-family: var(--font-display)">Session Samples</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="https://www.youtube.com/watch?v=875yLE_STdY" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://img.youtube.com/vi/875yLE_STdY/hqdefault.jpg" alt="Entrepreneurial Spirit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full bg-white/90 group-hover:scale-110 transition-transform flex items-center justify-center">
+                  <svg class="w-4 h-4 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
+                <p class="text-white font-semibold text-xs leading-tight" style="font-family: var(--font-display)">Entrepreneurial Spirit</p>
+                <p class="text-xs mt-0.5" style="color: rgba(255,255,255,0.55)">Azerbaijan State Economics University</p>
+              </div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=smqP8HdQq64" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://img.youtube.com/vi/smqP8HdQq64/hqdefault.jpg" alt="Startup Culture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full bg-white/90 group-hover:scale-110 transition-transform flex items-center justify-center">
+                  <svg class="w-4 h-4 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
+                <p class="text-white font-semibold text-xs leading-tight" style="font-family: var(--font-display)">Startup Culture</p>
+                <p class="text-xs mt-0.5" style="color: rgba(255,255,255,0.55)">Baku State University</p>
+              </div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=2PJCryHUZCE" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://img.youtube.com/vi/2PJCryHUZCE/hqdefault.jpg" alt="Lean Startup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full bg-white/90 group-hover:scale-110 transition-transform flex items-center justify-center">
+                  <svg class="w-4 h-4 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
+                <p class="text-white font-semibold text-xs leading-tight" style="font-family: var(--font-display)">Lean Startup</p>
+                <p class="text-xs mt-0.5" style="color: rgba(255,255,255,0.55)">Academy of Public Administration</p>
+              </div>
+            </a>
+            <a href="https://youtu.be/HRlfl38_LPQ" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://img.youtube.com/vi/HRlfl38_LPQ/hqdefault.jpg" alt="Product Prototyping" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full bg-white/90 group-hover:scale-110 transition-transform flex items-center justify-center">
+                  <svg class="w-4 h-4 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
+                <p class="text-white font-semibold text-xs leading-tight" style="font-family: var(--font-display)">Product Prototyping</p>
+                <p class="text-xs mt-0.5" style="color: rgba(255,255,255,0.55)">Azerbaijan State Economic University</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI TAB -->
+      <div id="tab-ai" class="tab-panel hidden">
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
+            <div class="h-40 bg-navy-950 relative flex items-end p-6">
+              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.15) 0%, transparent 60%)"></div>
+              <span class="relative z-10 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">24 Walkthroughs</span>
+            </div>
+            <div class="p-7">
+              <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">GenAI Workflow Library</h3>
+              <p class="text-navy-400 text-sm mb-3">Step-by-step AI workflow demonstrations built for real professional contexts — not theory, but tools you can use today.</p>
+              <p class="text-orange-500 text-xs font-semibold uppercase tracking-wide mb-3" style="font-family: var(--font-display)">Outcome — Participants leave with a personalized AI workflow that saves hours per week, immediately applicable to their role.</p>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Research, reports & presentations with AI</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Excel & data analysis with Copilot</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Meeting productivity & team collaboration</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Custom GPT design for education & business</li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-col gap-5">
+            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+              <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT Series</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Stock Options Tutor 1–3</h3>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Progressive 3-level simulation</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Call & put options through scenarios</li>
+              </ul>
+            </div>
+            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+              <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Futures Trader Pro</h3>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>5-round live market simulation</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Real prices, contracts & headlines</li>
+              </ul>
+            </div>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Macro Finance World</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Macroeconomic decision-making</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Industry & market event responses</li>
+            </ul>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Claude Artifact</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Valuation Tutor</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Socratic DCF valuation coaching</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>No answers — only deeper questions</li>
+            </ul>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">WhatsApp Course</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">GenAI for Business</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>AI fundamentals via mobile</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Accessible to any professional, anywhere</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEHAVIORAL TAB -->
+      <div id="tab-behavioral" class="tab-panel hidden">
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
+            <div class="h-40 bg-navy-900 relative flex items-end p-6">
+              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.12) 0%, transparent 60%)"></div>
+              <span class="relative z-10 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">15 Sessions</span>
+            </div>
+            <div class="p-7">
+              <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Critical Skills for the Modern World</h3>
+              <p class="text-navy-400 text-sm mb-3">Behavioral science applied to professional life — the decisions you make, the biases you carry, and the habits that hold you back or push you forward.</p>
+              <p class="text-orange-500 text-xs font-semibold uppercase tracking-wide mb-3" style="font-family: var(--font-display)">Outcome — Participants leave with self-awareness of their decision patterns and concrete tools to think, choose, and adapt more effectively.</p>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Cognitive bias & decision traps</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Habit formation & behavior change</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Navigating uncertainty & complexity</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Human performance in digital environments</li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-col gap-5">
+            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">8 Sessions</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Critical Thinking</h3>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Information evaluation frameworks</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Bias identification & reasoning</li>
+              </ul>
+            </div>
+            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">8 Sessions</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Decision Making</h3>
+              <ul class="space-y-1.5">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Structured decision frameworks</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Risk, uncertainty & trade-offs</li>
+              </ul>
+            </div>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">8 Sessions</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Financial Behavior</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Psychology of money & loss aversion</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Behavioral economics in practice</li>
+            </ul>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Research</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Human & Machine Intelligence</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Where humans outperform machines</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Where machines close the gap</li>
+            </ul>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6">
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Content Series</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Flow Financial Behavior Series</h3>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>8 financial behaviors that drive us</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Myth-busting & habit building</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CINEMATIC BREAK -->
+  <div class="relative overflow-hidden" style="height: 70vh; min-height: 480px">
+    <img src="/speaking.jpg" alt="Arseniy Goldberg — Ministry of Finance, Saudi Arabia" class="w-full h-full object-cover" style="object-position: center 30%" />
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.35) 40%, rgba(13,27,42,0.55) 100%)"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
+    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #F4F1EC, transparent)"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-6xl mx-auto px-8 pb-12 w-full">
+        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Ministry of Finance · Saudi Arabia &nbsp;·&nbsp; Financial Leaders Program</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENTS -->
+  <section id="clients" class="py-24 bg-warm-50">
+    <div class="max-w-6xl mx-auto px-8">
+      <div class="mb-14 reveal">
+        <div class="section-label">
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Trusted By</span>
+        </div>
+        <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
+          From classrooms to boardrooms.<br>
+          <span class="text-navy-400 font-light">Across 5 continents.</span>
+        </h2>
+      </div>
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-8 gap-y-6 reveal">
+        {["IE University","Oregon State","Virginia Tech","Franklin University Switzerland","PIF Saudi Investment Fund","Ministry of Finance KSA","Nissan","STC","Alturki Group","SABAH Hub","CST Commission","CIEE","Wyss Academy","FLIR Systems","Blount International","Khazar University","Baku State University","ThePower Business School"].map(name => (
+          <div class="logo-item flex items-center justify-center h-10">
+            <span class="font-bold text-navy-600 text-xs text-center uppercase tracking-wide leading-tight" style="font-family: var(--font-display)">{name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS -->
+  <section id="brands" class="py-24 bg-warm-100">
+    <div class="max-w-6xl mx-auto px-8">
+      <div class="mb-16 reveal">
+        <div class="section-label">
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">What I'm Building</span>
+        </div>
+        <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
+          Three platforms.<br>
+          <span class="text-navy-400 font-light">One vision.</span>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="brand-card bg-white rounded-2xl p-8 reveal">
+          <div class="w-11 h-11 bg-navy-900 rounded-xl flex items-center justify-center mb-7">
+            <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-2xl text-navy-900 mb-3" style="font-family: var(--font-display)">Flow</h3>
+          <p class="text-navy-400 text-sm leading-relaxed mb-6">AI-powered consulting for organizations navigating change. Strategy, operations, and AI implementation — for corporates, institutions, and startups.</p>
+          <div class="flex flex-wrap gap-2 mb-7">
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Strategy</span>
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Operations</span>
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">AI</span>
+          </div>
+          <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="flex items-center gap-2 text-orange-500 text-sm font-semibold" style="font-family: var(--font-display)">
+            <span>Visit Flow</span><span class="brand-arrow">→</span>
+          </a>
+        </div>
+        <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-1">
+          <div class="w-11 h-11 bg-navy-900 rounded-xl flex items-center justify-center mb-7">
+            <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-2xl text-navy-900 mb-3" style="font-family: var(--font-display)">North</h3>
+          <p class="text-navy-400 text-sm leading-relaxed mb-6">Personalized financial education that adapts to your situation. Built for people who want to truly master their money — not just understand it.</p>
+          <div class="flex flex-wrap gap-2 mb-7">
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Finance</span>
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Education</span>
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">AI-Adaptive</span>
+          </div>
+          <a href="https://findyournorth.net/" target="_blank" class="flex items-center gap-2 text-orange-500 text-sm font-semibold" style="font-family: var(--font-display)">
+            <span>Visit North</span><span class="brand-arrow">→</span>
+          </a>
+        </div>
+        <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-2">
+          <div class="w-11 h-11 bg-navy-900 rounded-xl flex items-center justify-center mb-7">
+            <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-2xl text-navy-900 mb-3" style="font-family: var(--font-display)">Stride</h3>
+          <p class="text-navy-400 text-sm leading-relaxed mb-6">The AI Academy for professionals. Learn workflows, prompting strategies, and automation tools that transform the way you work — regardless of your field.</p>
+          <div class="flex flex-wrap gap-2 mb-7">
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">AI Workflows</span>
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Prompting</span>
+            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Academy</span>
+          </div>
+          <span class="flex items-center gap-2 text-navy-400 text-sm" style="font-family: var(--font-display)">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section id="recognition" class="py-24 bg-warm-50">
+    <div class="max-w-6xl mx-auto px-8">
+      <div class="mb-14 reveal">
+        <div class="section-label">
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Recognition</span>
+        </div>
+        <h2 class="font-bold text-navy-900" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">What people say.</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5 mb-10">
+        <div class="reveal bg-navy-900 rounded-2xl p-8 flex items-center gap-6">
+          <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
+            <span class="text-white font-bold text-xl" style="font-family: var(--font-display)">2</span>
+          </div>
+          <div>
+            <p class="text-white font-bold text-base" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
+            <p class="text-sm mt-1" style="color: rgba(255,255,255,0.5)">IE University · Academic Year 2023–24</p>
+            <p class="text-xs mt-1" style="color: rgba(255,255,255,0.3)">Recognized by students across 2 courses</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1 bg-navy-900 rounded-2xl p-8 flex items-center gap-6">
+          <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
+            <span class="text-white font-bold text-xl" style="font-family: var(--font-display)">3</span>
+          </div>
+          <div>
+            <p class="text-white font-bold text-base" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
+            <p class="text-sm mt-1" style="color: rgba(255,255,255,0.5)">IE University · Academic Year 2024–25</p>
+            <p class="text-xs mt-1" style="color: rgba(255,255,255,0.3)">Recognized by students across 3 courses</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial carousel -->
+      <div class="reveal relative">
+        <div class="overflow-hidden" id="carousel-viewport">
+          <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
+            {[
+              { quote: `"Arseniy Goldberg takes the win for best professor — I didn't think I would enjoy Accounting so much! My favorite modules were Business Model Innovation, Testing Business Ideas & Lean Startup."`, name: "Astrid Thornberry", role: "Amazon · ThePowerMBA · Rolls-Royce" },
+              { quote: `"Thanks for making Finance & Accounting so easy. You made a dry subject really engaging and interactive — I even enjoyed the Excel challenges. Thank you so much!"`, name: "Anuja Bhatnagar Tapkir", role: "VP · J.P. Morgan" },
+              { quote: `"While I was a bit worried about finance, Arseniy's teaching was amazing. He made even complex concepts easy to understand — budgeting, company financing, taxation and valuation."`, name: "Dmytro Strelchyn", role: "Chief Digital Officer · E-commerce & AI" },
+              { quote: `"The financial modules in particular were a huge eye-opener for me. Thank you Arseniy Goldberg for making money, accountancy and taxes fun."`, name: "Claudio Fray", role: "B2B Sales · High-Ticket Closer" },
+              { quote: `"Professor Arseniy was one of the most memorable speakers I've ever met. His knowledge and experience were excellent. He provided me with valuable time to discuss my decisions in my personal and professional life."`, name: "IE Business School Student", role: "IE University" },
+              { quote: `"I'm in the final month of my MBA journey. The wonderfully crafted Accounting module really engaged me — from taxation and financial statements to investment and company valuations. Fantastically delivered."`, name: "Frans J. van Aardt", role: "MBA · Business Strategy & Marketing" },
+              { quote: `"And mainly thanks to my other half who did a lot of the chores — speaking volumes to Arseniy's ability to simplify and hone in on commercial management concepts that MBAs will actually use!"`, name: "Andrew Woodhouse", role: "Business Transformation Strategist" },
+              { quote: `"Special thanks to Arseniy Goldberg for introducing us to Mundi Game Experiences — gamification made the course even more exciting. Finance and Accounting was challenging at first, but the concepts were easy to pick up thanks to his relatable analogies."`, name: "Andrew Ho", role: "Territory Manager · Revizto · CPSP MBA" },
+            ].map(t => (
+              <div class="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-3">
+                <div class="testimonial-card bg-white rounded-2xl p-7 h-full">
+                  <p class="text-navy-500 text-sm leading-relaxed italic mb-5">{t.quote}</p>
+                  <div>
+                    <p class="font-semibold text-navy-900 text-sm" style="font-family: var(--font-display)">{t.name}</p>
+                    <p class="text-navy-400 text-xs mt-0.5">{t.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="flex items-center justify-between mt-8">
+          <div class="flex gap-2" id="carousel-dots"></div>
+          <div class="flex gap-3">
+            <button onclick="carouselPrev()" class="w-10 h-10 rounded-full border border-warm-200 hover:border-orange-500 flex items-center justify-center text-navy-400 hover:text-orange-500 transition-colors text-lg">‹</button>
+            <button onclick="carouselNext()" class="w-10 h-10 rounded-full border border-warm-200 hover:border-orange-500 flex items-center justify-center text-navy-400 hover:text-orange-500 transition-colors text-lg">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-28" style="background: #0D1B2A">
+    <div class="max-w-2xl mx-auto px-8">
+      <div class="text-center mb-14 reveal">
+        <div class="flex items-center justify-center gap-3 mb-5">
+          <div class="w-8 h-px bg-orange-500"></div>
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Get In Touch</span>
+          <div class="w-8 h-px bg-orange-500"></div>
+        </div>
+        <h2 class="font-bold text-white leading-tight mb-5" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
+          Have something<br>in mind?
+        </h2>
+        <p class="text-base max-w-sm mx-auto leading-relaxed" style="color: rgba(255,255,255,0.4)">
+          Consulting, teaching collaboration, speaking, or building together — I'm interested.
+        </p>
+      </div>
+      <form id="contact-form" class="reveal reveal-delay-1 space-y-4">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <input type="text" name="name" placeholder="Your Name" required
+            class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
+            style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)" />
+          <input type="email" name="email" placeholder="Your Email" required
+            class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
+            style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)" />
+        </div>
+        <input type="text" name="subject" placeholder="What are you working on?"
+          class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
+          style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)" />
+        <textarea rows="4" name="message" placeholder="Tell me more..."
+          class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors resize-none"
+          style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)"></textarea>
+        <button id="submit-btn" type="submit"
+          class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl transition-colors text-sm tracking-wide"
+          style="font-family: var(--font-display)">
+          Send Message →
+        </button>
+        <p id="form-msg" class="text-center text-sm hidden"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t py-8" style="background: #0D1B2A; border-color: rgba(255,255,255,0.05)">
+    <div class="max-w-6xl mx-auto px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-sm" style="font-family: var(--font-display); color: rgba(255,255,255,0.25)">© 2025 Arseniy Goldberg</span>
+      <div class="flex items-center gap-6">
+        <a href="https://www.linkedin.com/in/arseniygoldberg/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">LinkedIn</a>
+        <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">Flow</a>
+        <a href="https://findyournorth.net/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">North</a>
+        <a href="#" class="text-xs uppercase tracking-wide" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">Stride</a>
+      </div>
+    </div>
+  </footer>
+
+</Layout>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Counter animation
+  const counters = document.querySelectorAll('.counter');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      const target = parseInt(el.dataset.target || '0');
+      const steps = 40;
+      const increment = target / steps;
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) { el.textContent = String(target); clearInterval(timer); }
+        else { el.textContent = String(Math.floor(current)); }
+      }, 1000 / steps);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // Tab switching
+  function switchTab(tab: string) {
+    document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    const panel = document.getElementById('tab-' + tab);
+    if (panel) { panel.classList.remove('hidden'); panel.classList.add('tab-panel'); }
+    document.querySelector(`[data-tab="${tab}"]`)?.classList.add('active');
+  }
+  (window as any).switchTab = switchTab;
+
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar?.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+
+  // Mobile menu
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
+  mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // Testimonial carousel
+  (function() {
+    const track = document.getElementById('carousel-track');
+    const dotsContainer = document.getElementById('carousel-dots');
+    if (!track || !dotsContainer) return;
+    const slides = track.children;
+    const total = slides.length;
+    let current = 0;
+    let perView = 3;
+    let autoTimer: ReturnType<typeof setInterval>;
+
+    function getPerView() {
+      if (window.innerWidth < 768) return 1;
+      if (window.innerWidth < 1024) return 2;
+      return 3;
+    }
+    function buildDots() {
+      dotsContainer.innerHTML = '';
+      const pages = Math.ceil(total / perView);
+      for (let i = 0; i < pages; i++) {
+        const d = document.createElement('button');
+        d.className = 'w-2 h-2 rounded-full transition-colors ' + (i === 0 ? 'bg-orange-500' : 'bg-warm-200');
+        d.onclick = () => goTo(i * perView);
+        dotsContainer.appendChild(d);
+      }
+    }
+    function updateDots() {
+      const dots = dotsContainer.querySelectorAll('button');
+      const page = Math.floor(current / perView);
+      dots.forEach((d, i) => { d.className = 'w-2 h-2 rounded-full transition-colors ' + (i === page ? 'bg-orange-500' : 'bg-warm-200'); });
+    }
+    function goTo(index: number) {
+      perView = getPerView();
+      const max = total - perView;
+      current = Math.max(0, Math.min(index, max));
+      const pct = (100 / perView) * current;
+      (track as HTMLElement).style.transform = `translateX(-${pct}%)`;
+      Array.from(slides).forEach(s => { (s as HTMLElement).style.minWidth = (100 / perView) + '%'; });
+      updateDots();
+    }
+    (window as any).carouselNext = () => { clearInterval(autoTimer); goTo(current + 1 < total - perView + 1 ? current + 1 : 0); autoTimer = setInterval((window as any).carouselNext, 5000); };
+    (window as any).carouselPrev = () => { clearInterval(autoTimer); goTo(current > 0 ? current - 1 : total - perView); autoTimer = setInterval((window as any).carouselNext, 5000); };
+    window.addEventListener('resize', () => { perView = getPerView(); buildDots(); goTo(0); });
+    perView = getPerView(); buildDots(); goTo(0);
+    autoTimer = setInterval((window as any).carouselNext, 5000);
+  })();
+
+  // Contact form
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const formMsg = document.getElementById('form-msg');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    const data = Object.fromEntries(new FormData(form));
+    try {
+      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      if (res.ok) {
+        submitBtn.textContent = 'Sent ✓';
+        submitBtn.style.background = '#16a34a';
+        form.reset();
+        if (formMsg) { formMsg.textContent = "Got it — I'll be in touch soon."; formMsg.className = 'text-center text-sm text-green-400'; }
+        setTimeout(() => { submitBtn.textContent = 'Send Message →'; submitBtn.style.background = ''; submitBtn.disabled = false; if (formMsg) formMsg.className = 'text-center text-sm hidden'; }, 4000);
+      } else {
+        throw new Error('Failed');
+      }
+    } catch {
+      submitBtn.textContent = 'Send Message →';
+      submitBtn.disabled = false;
+      if (formMsg) { formMsg.textContent = 'Something went wrong — try emailing directly.'; formMsg.className = 'text-center text-sm text-red-400'; }
+    }
+  });
+</script>
