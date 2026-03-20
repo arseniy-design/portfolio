@@ -20,6 +20,7 @@ import Layout from '../layouts/Layout.astro';
         <a href="#clients"     class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Clients</a>
         <a href="#brands"      class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Brands</a>
         <a href="#recognition" class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Recognition</a>
+        <a href="#linkedin"    class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Writing</a>
         <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors" style="font-family: var(--font-display)">
           Let's Talk
         </a>
@@ -48,40 +49,35 @@ import Layout from '../layouts/Layout.astro';
         <h1 class="text-white leading-[1.0] mb-7" style="font-family: var(--font-display)">
           <span class="block font-bold tracking-tight" style="font-size: clamp(2.8rem,6vw,4.5rem)">12 Years.</span>
           <span class="block font-bold tracking-tight" style="font-size: clamp(2.8rem,6vw,4.5rem)">5 Continents.</span>
-          <span class="block font-light mt-3" style="font-size: clamp(1.8rem,4vw,2.8rem); color: rgba(255,255,255,0.45)">One Obsession.</span>
+          <span class="block font-light mt-3" style="font-size: clamp(1.8rem,4vw,2.8rem); color: rgba(255,255,255,0.75)">One Obsession.</span>
         </h1>
-        <p class="text-base leading-relaxed max-w-[400px] mb-4" style="color: rgba(255,255,255,0.5)">
-          How humans grow — through <em class="not-italic" style="color: rgba(255,255,255,0.85)">Finance</em>,
-          <em class="not-italic" style="color: rgba(255,255,255,0.85)">Entrepreneurship</em>, and
-          <em class="not-italic" style="color: rgba(255,255,255,0.85)">Artificial Intelligence</em>.
+        <p class="text-base leading-relaxed max-w-[400px] mb-5 font-medium" style="color: rgba(255,255,255,0.85)">
+          How humans grow — through <span style="color:#F4621F;font-weight:700">Finance</span>,
+          <span style="color:#F4621F;font-weight:700">Entrepreneurship</span>, and
+          <span style="color:#F4621F;font-weight:700">Artificial Intelligence</span>.
         </p>
-        <p class="text-sm mb-10 tracking-widest uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">
+        <p class="text-sm mb-10 tracking-widest uppercase font-semibold" style="font-family: var(--font-display); color: rgba(255,255,255,0.75)">
           I study it &nbsp;·&nbsp; I teach it &nbsp;·&nbsp; I build with it
         </p>
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3 mb-5">
           <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-colors text-sm tracking-wide" style="font-family: var(--font-display)">
             Let's Work Together
           </a>
-          <a href="#work" class="text-sm px-8 py-4 rounded-full transition-colors" style="font-family: var(--font-display); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6)">
+          <a href="#work" class="text-sm px-8 py-4 rounded-full transition-colors font-semibold" style="font-family: var(--font-display); border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.85)">
             Explore Work ↓
           </a>
         </div>
+        <button onclick="openIntroVideo()" class="flex items-center gap-3 text-sm font-medium" style="font-family: var(--font-display); color: rgba(255,255,255,0.75); background:none; border:none; cursor:pointer; padding:0">
+          <span style="width:36px;height:36px;background:rgba(244,98,31,0.2);border:1px solid rgba(244,98,31,0.5);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#F4621F"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          Watch a 55-second intro
+        </button>
       </div>
       <div class="relative hidden lg:flex justify-end">
         <div class="relative rounded-2xl overflow-hidden" style="width: 380px; aspect-ratio: 3/4; background: #162236">
           <img src="/hero.jpg" alt="Arseniy Goldberg" class="w-full h-full object-cover object-center" />
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(13,27,42,0.5) 0%, transparent 60%)"></div>
-        </div>
-        <div class="absolute -bottom-3 -left-8 bg-white rounded-2xl px-5 py-4 shadow-2xl flex items-center gap-4">
-          <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-            </svg>
-          </div>
-          <div>
-            <p class="font-bold text-sm leading-tight text-navy-900" style="font-family: var(--font-display)">5× Teaching Excellence</p>
-            <p class="text-xs mt-0.5 text-navy-400" style="font-family: var(--font-display)">IE University · 2024 & 2025</p>
-          </div>
         </div>
       </div>
     </div>
@@ -120,90 +116,91 @@ import Layout from '../layouts/Layout.astro';
   <section id="work" class="py-24 bg-warm-100">
     <div class="max-w-6xl mx-auto px-8">
 
-      <div class="mb-16 reveal">
-        <div class="section-label">
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">What I Deliver</span>
-        </div>
-        <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
-          Not just education.<br>
-          <span class="text-navy-400 font-light">A full transformation journey.</span>
+      <!-- Manifesto heading -->
+      <div class="mb-12 reveal">
+        <h2 class="font-bold text-navy-900 leading-none mb-2" style="font-family: var(--font-display); font-size: clamp(2.8rem,5.5vw,4.5rem)">
+          Finance. Startups. AI.
         </h2>
-        <p class="text-navy-400 text-base mt-4 max-w-2xl leading-relaxed">
-          Whether you're a company looking to upskill your teams, an L&D leader building executive programs, or an academic institution designing curriculum — the engagement is built around your specific challenge, not a generic syllabus.
+        <p class="font-light text-navy-400 mb-5" style="font-family: var(--font-display); font-size: clamp(1.2rem,2.5vw,1.75rem)">
+          Built, advised, and taught — all three, at the same time.
+        </p>
+        <p class="text-navy-400 text-base max-w-xl leading-relaxed">
+          12 years working at the intersection of all three. Each discipline makes the others more honest.
         </p>
       </div>
 
-      <!-- Who this is for -->
-      <div class="grid md:grid-cols-3 gap-5 mb-16 reveal">
-        <div class="bg-white rounded-2xl p-7 border-t-2 border-orange-500">
-          <p class="text-orange-500 text-xs font-semibold tracking-widest uppercase mb-3" style="font-family: var(--font-display)">For Organizations</p>
-          <h3 class="font-bold text-lg text-navy-900 mb-3" style="font-family: var(--font-display)">Strategic Learning & Implementation</h3>
-          <p class="text-navy-400 text-sm leading-relaxed mb-4">You need to change how your teams think, work, or serve clients — and you need it to stick. I design and deliver the full journey from awareness to implementation.</p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0 mt-1.5"></span>Finance, AI, and innovation programs</li>
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0 mt-1.5"></span>From diagnosis to post-program execution</li>
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0 mt-1.5"></span>Measurable behavioral and operational change</li>
-          </ul>
-        </div>
-        <div class="bg-white rounded-2xl p-7 border-t-2 border-navy-300">
-          <p class="text-navy-400 text-xs font-semibold tracking-widest uppercase mb-3" style="font-family: var(--font-display)">For L&D Leaders</p>
-          <h3 class="font-bold text-lg text-navy-900 mb-3" style="font-family: var(--font-display)">Executive & Professional Training</h3>
-          <p class="text-navy-400 text-sm leading-relaxed mb-4">You're building programs for senior professionals who need more than slides. I deliver engaging, high-stakes content with real-world simulations and AI-powered tools.</p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>Customized to your sector & audience</li>
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>NPS 70 across delivered programs</li>
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>Blended: online foundation + live delivery</li>
-          </ul>
-        </div>
-        <div class="bg-white rounded-2xl p-7 border-t-2 border-navy-300">
-          <p class="text-navy-400 text-xs font-semibold tracking-widest uppercase mb-3" style="font-family: var(--font-display)">For Academic Institutions</p>
-          <h3 class="font-bold text-lg text-navy-900 mb-3" style="font-family: var(--font-display)">Guest Faculty & Curriculum Design</h3>
-          <p class="text-navy-400 text-sm leading-relaxed mb-4">You need practitioners who can engage MBA and executive students at the intersection of theory and real-world application — and keep a room alive.</p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>5× IE University Teaching Excellence Award</li>
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>4.9/5 average participant rating</li>
-            <li class="flex items-start gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-navy-300 flex-shrink-0 mt-1.5"></span>Delivered across 30+ global institutions</li>
-          </ul>
-        </div>
+      <!-- Three-strip manifesto -->
+      <div class="rounded-2xl overflow-hidden mb-16 reveal">
+        {[
+          {
+            num: "01",
+            mode: "BUILD",
+            tagline: "Ventures built from scratch — in Azerbaijan, Spain, and the US.",
+            chips: ["SABAH Hub", "North", "Flow Strategy"],
+            stats: ["3 Ventures", "Finance · EdTech · AI", "3 Countries"],
+          },
+          {
+            num: "02",
+            mode: "ADVISE",
+            tagline: "Program design and strategy where the content has to match the context.",
+            chips: ["Kyowa Kirin", "IE Business School", "TEC de Monterrey", "Royal Commission for AlUla"],
+            stats: ["Curriculum Design", "AI Implementation", "Corporate + Academic"],
+          },
+          {
+            num: "03",
+            mode: "TEACH",
+            tagline: "Classrooms, boardrooms, and briefing rooms — same standard, different accent.",
+            chips: ["STC", "PIF Saudi Arabia", "Qatari Police", "ThePower", "Oregon State"],
+            stats: ["4.9 / 5 Rating", "NPS 70", "5× Teaching Excellence", "30+ Institutions"],
+          },
+        ].map((s, i) => (
+          <div
+            class="relative overflow-hidden"
+            style={`background:${i === 1 ? '#0f2236' : '#0D1B2A'};${i > 0 ? 'border-top:1px solid rgba(255,255,255,0.05)' : ''}`}
+          >
+            <span style="position:absolute;right:-0.5rem;top:50%;transform:translateY(-50%);font-size:9rem;font-weight:900;font-family:var(--font-display);color:rgba(255,255,255,0.025);line-height:1;pointer-events:none;user-select:none;letter-spacing:-0.05em">{s.num}</span>
+
+            <div class="flex flex-col md:flex-row md:items-center gap-6 md:gap-10 px-8 md:px-12 py-10 relative z-10">
+              <div class="flex-shrink-0 md:w-72">
+                <p class="font-bold tracking-tight leading-none mb-2" style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);color:#fff">{s.mode}</p>
+                <p class="text-sm leading-snug" style="color:rgba(255,255,255,0.4);max-width:240px">{s.tagline}</p>
+              </div>
+
+              <div class="hidden md:block flex-shrink-0" style="width:1px;height:56px;background:linear-gradient(to bottom,transparent,rgba(244,98,31,0.5),transparent)"></div>
+
+              <div class="flex-1">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {s.chips.map(c => (
+                    <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.1);font-family:var(--font-display);white-space:nowrap">{c}</span>
+                  ))}
+                </div>
+                <div class="flex flex-wrap gap-x-5 gap-y-1">
+                  {s.stats.map(st => (
+                    <span class="text-xs font-bold" style="color:#F4621F;font-family:var(--font-display)">{st}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <!-- Results bar -->
-      <div class="bg-navy-900 rounded-2xl p-8 mb-16 reveal">
-        <p class="text-xs font-semibold tracking-widest uppercase mb-6" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Measured Results Across Programs</p>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div class="text-center">
-            <p class="font-bold text-3xl text-white mb-1" style="font-family: var(--font-display)">4.9<span class="text-orange-500">/5</span></p>
-            <p class="text-xs" style="color: rgba(255,255,255,0.4)">Average participant rating</p>
-          </div>
-          <div class="text-center">
-            <p class="font-bold text-3xl text-white mb-1" style="font-family: var(--font-display)">NPS <span class="text-orange-500">70</span></p>
-            <p class="text-xs" style="color: rgba(255,255,255,0.4)">Across delivered programs</p>
-          </div>
-          <div class="text-center">
-            <p class="font-bold text-3xl text-white mb-1" style="font-family: var(--font-display)">5<span class="text-orange-500">hrs</span></p>
-            <p class="text-xs" style="color: rgba(255,255,255,0.4)">Saved per week with GenAI</p>
-          </div>
-          <div class="text-center">
-            <p class="font-bold text-3xl text-white mb-1" style="font-family: var(--font-display)">30<span class="text-orange-500">+</span></p>
-            <p class="text-xs" style="color: rgba(255,255,255,0.4)">Institutions across 5 continents</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Curriculum label -->
+      <!-- Outcomes label -->
       <div class="mb-8 reveal">
         <div class="section-label">
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">The Curriculum</span>
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Work & Outcomes</span>
         </div>
-        <p class="text-navy-400 text-sm">The subject areas I bring to every engagement — customized to your context, not delivered off the shelf.</p>
+        <p class="text-navy-400 text-sm">Programs built, tools deployed, and results delivered — across finance, AI, entrepreneurship, and human behavior.</p>
       </div>
 
       <!-- Tab bar -->
-      <div class="border-b border-warm-200 mb-10 reveal flex overflow-x-auto" id="work-tabs">
-        <button class="tab-btn active" data-tab="finance"          onclick="switchTab('finance')">Financial Thinking</button>
-        <button class="tab-btn"        data-tab="entrepreneurship" onclick="switchTab('entrepreneurship')">Innovation & Ventures</button>
-        <button class="tab-btn"        data-tab="ai"               onclick="switchTab('ai')">AI & Digital Productivity</button>
-        <button class="tab-btn"        data-tab="behavioral"       onclick="switchTab('behavioral')">Human Behavior & Decisions</button>
+      <div class="border-b border-warm-200 mb-10 reveal flex justify-between" id="work-tabs">
+        <button class="tab-btn active" data-tab="finance"          onclick="switchTab('finance')">Finance</button>
+        <button class="tab-btn"        data-tab="entrepreneurship" onclick="switchTab('entrepreneurship')">Startups</button>
+        <button class="tab-btn"        data-tab="innovation"       onclick="switchTab('innovation')">Innovation Programs</button>
+        <button class="tab-btn"        data-tab="ai"               onclick="switchTab('ai')">AI Productivity</button>
+        <button class="tab-btn"        data-tab="courses"          onclick="switchTab('courses')">Digital Courses</button>
+        <button class="tab-btn"        data-tab="behavioral"       onclick="switchTab('behavioral')">Human Behavior</button>
       </div>
 
       <!-- FINANCE TAB -->
@@ -224,6 +221,24 @@ import Layout from '../layouts/Layout.astro';
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>IPOs, bonds, and alternative financing</li>
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Valuation methods & market dynamics</li>
               </ul>
+              <div class="mt-5 pt-5 border-t border-warm-100">
+                <p class="text-xs font-semibold uppercase tracking-widest text-navy-300 mb-3" style="font-family:var(--font-display)">Valuation Tutors</p>
+                <div class="flex flex-wrap gap-2">
+                  {[
+                    { name: "DCF Valuation", href: "https://claude.ai/public/artifacts/98996521-1957-4911-b45a-b67fe336f5d0" },
+                    { name: "PVGO Model", href: "https://claude.ai/public/artifacts/fbfb82ab-e4cf-4cd4-b843-82b5775112a2" },
+                    { name: "Dividend Discount", href: "https://claude.ai/public/artifacts/38df1612-3558-4f98-a4e3-8e40fce514fa" },
+                    { name: "Book Value", href: "https://claude.ai/public/artifacts/2cceef54-0d52-4ae2-a4bb-33f0638739b8" },
+                  ].map(t => (
+                    <a href={t.href} target="_blank" rel="noopener"
+                      class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors"
+                      style="background:#FFF3EE;color:#F4621F;border:1px solid rgba(244,98,31,0.2);font-family:var(--font-display)">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                      {t.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex flex-col gap-5">
@@ -320,6 +335,7 @@ import Layout from '../layouts/Layout.astro';
             </a>
           </div>
         </div>
+
       </div>
 
       <!-- INNOVATION TAB -->
@@ -445,6 +461,109 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
+      <!-- INNOVATION PROGRAMS TAB -->
+      <div id="tab-innovation" class="tab-panel hidden">
+        <div class="py-2">
+
+          <!-- Featured: RCU Scale-up Hub -->
+          <div class="work-card bg-navy-950 rounded-2xl overflow-hidden mb-5 relative">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.12) 0%, transparent 60%)"></div>
+            <div class="relative z-10 p-7 md:p-8">
+              <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full" style="font-family:var(--font-display)">Saudi Arabia · 2024</span>
+                    <span class="text-xs font-medium px-3 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);font-family:var(--font-display)">Scale-up Program</span>
+                  </div>
+                  <h3 class="font-bold text-2xl text-white mb-2" style="font-family:var(--font-display)">RCU Scale-up Hub</h3>
+                  <p class="text-sm mb-4 max-w-xl" style="color:rgba(255,255,255,0.6);line-height:1.6">Co-designed and launched a structured innovation program for the Royal Commission for AlUla — matching global scale-ups with RCU business units to run funded pilot projects across the entire tourism value chain. IE & KAUST professors delivered training; network included UNWTO, MIT, NASA, and Amadeus Ventures.</p>
+                  <div class="flex flex-wrap gap-6 mb-5">
+                    <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">100</p><p class="text-xs" style="color:rgba(255,255,255,0.4)">Applications received</p></div>
+                    <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">10</p><p class="text-xs" style="color:rgba(255,255,255,0.4)">Scale-ups validated</p></div>
+                    <div><p class="font-bold text-orange-400 text-xl" style="font-family:var(--font-display)">€250k</p><p class="text-xs" style="color:rgba(255,255,255,0.4)">Pilot funding per startup</p></div>
+                    <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5</p><p class="text-xs" style="color:rgba(255,255,255,0.4)">Startups piloting</p></div>
+                  </div>
+                  <div class="flex flex-wrap gap-3">
+                    <a href="https://www.zawya.com/en/business/travel-and-tourism/rcu-launches-scale-up-hub-program-to-enhance-tourism-in-alula-ptpmy2hr" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full transition-all" style="background:rgba(244,98,31,0.2);color:#F4621F;border:1px solid rgba(244,98,31,0.35);font-family:var(--font-display)">
+                      Read Article →
+                    </a>
+                    <a href="/rcu-scale-up-hub.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full transition-all" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.12);font-family:var(--font-display)">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17H8v-2h4v2zm4-4H8v-2h8v2z"/></svg>
+                      View Deck
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 programs grid -->
+          <div class="grid md:grid-cols-3 gap-5 mb-5">
+
+            <!-- SABAH Hub -->
+            <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-orange-500 text-xs font-bold tracking-widest uppercase" style="font-family:var(--font-display)">Gulf Region</span>
+                  <span class="text-navy-300 text-xs" style="font-family:var(--font-display)">Startup Hub</span>
+                </div>
+                <h3 class="font-bold text-lg text-navy-900 mb-2" style="font-family:var(--font-display)">SABAH Hub</h3>
+                <p class="text-navy-400 text-sm leading-relaxed mb-3">First innovation hub in Azerbaijan — scaled from one program to a full ecosystem of accelerator, incubator, academy, fund, and studio. Led curriculum, partnerships, and operations from launch through year 3.</p>
+                <div class="flex gap-4 mb-4">
+                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">6</p><p class="text-xs text-navy-400">Cohorts</p></div>
+                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">$3M+</p><p class="text-xs text-navy-400">Raised</p></div>
+                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">1,000+</p><p class="text-xs text-navy-400">Applications</p></div>
+                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">5</p><p class="text-xs text-navy-400">Programs</p></div>
+                </div>
+              </div>
+              <a href="https://sabahhub.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-500" style="font-family:var(--font-display)">
+                Visit Program →
+              </a>
+            </div>
+
+            <!-- Wyss Academy Changemakers -->
+            <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-orange-500 text-xs font-bold tracking-widest uppercase" style="font-family:var(--font-display)">Switzerland</span>
+                  <span class="text-navy-300 text-xs" style="font-family:var(--font-display)">Sustainability</span>
+                </div>
+                <h3 class="font-bold text-lg text-navy-900 mb-2" style="font-family:var(--font-display)">Changemakers Program</h3>
+                <p class="text-navy-400 text-sm leading-relaxed mb-4">Wyss Academy for Nature program developing entrepreneurs and innovators tackling sustainability and biodiversity challenges at the intersection of science, society, and business.</p>
+              </div>
+              <a href="https://www.wyssacademy.org/en/changemakers-program" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-500" style="font-family:var(--font-display)">
+                Visit Program →
+              </a>
+            </div>
+
+            <!-- Science Connexion Reto + TEC Venture Builder -->
+            <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-orange-500 text-xs font-bold tracking-widest uppercase" style="font-family:var(--font-display)">Mexico · TEC de Monterrey</span>
+                  <span class="text-navy-300 text-xs" style="font-family:var(--font-display)">Venture Builder</span>
+                </div>
+                <h3 class="font-bold text-lg text-navy-900 mb-2" style="font-family:var(--font-display)">Science Connexion & Blue Lab</h3>
+                <p class="text-navy-400 text-sm leading-relaxed mb-3">University-backed venture builder at Tecnológico de Monterrey developing startups from institutional IP. Two ventures — SITTAROB (biotech waste processing) and Arquitectura de Horizontes (AI decision intelligence) — taken through Discovery and market validation.</p>
+                <div class="flex gap-4 mb-4">
+                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">2</p><p class="text-xs text-navy-400">Ventures built</p></div>
+                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">21+</p><p class="text-xs text-navy-400">Experts interviewed</p></div>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <a href="https://scienceconnexion.com/Convocatorias/SobreReto/6" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-500" style="font-family:var(--font-display)">View Program →</a>
+                <a href="/tec-venture-builder.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-navy-400" style="font-family:var(--font-display)">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17H8v-2h4v2zm4-4H8v-2h8v2z"/></svg>
+                  View Deck
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
       <!-- AI TAB -->
       <div id="tab-ai" class="tab-panel hidden">
         <div class="grid md:grid-cols-3 gap-5">
@@ -466,38 +585,54 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
           <div class="flex flex-col gap-5">
-            <div class="work-card bg-white rounded-2xl p-6 flex-1">
-              <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT Series</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Stock Options Tutor 1–3</h3>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Progressive 3-level simulation</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Call & put options through scenarios</li>
-              </ul>
+            <div class="work-card bg-white rounded-2xl p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT Series</p>
+                <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Stock Options Tutor 1–3</h3>
+                <ul class="space-y-1.5 mb-4">
+                  <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Progressive 3-level simulation</li>
+                  <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Call & put options through scenarios</li>
+                </ul>
+              </div>
+              <div class="flex gap-3">
+                <a href="https://chatgpt.com/g/g-67e66b83b1288191afef1bfa8c2fb089-stock-option-tutor-1" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">L1 →</a>
+                <a href="https://chatgpt.com/g/g-67e665aa53dc81918763a71569557dcc-stock-option-tutor-2" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">L2 →</a>
+                <a href="https://chatgpt.com/g/g-67ed6f19e8d08191ac2f4fdacb34adbe-stock-option-tutor-3" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">L3 →</a>
+              </div>
             </div>
-            <div class="work-card bg-white rounded-2xl p-6 flex-1">
+            <div class="work-card bg-white rounded-2xl p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT</p>
+                <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Futures Trader Pro</h3>
+                <ul class="space-y-1.5 mb-4">
+                  <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>5-round live market simulation</li>
+                  <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Real prices, contracts & headlines</li>
+                </ul>
+              </div>
+              <a href="https://chatgpt.com/g/g-67f17440919481918ec80d0593f8f218-futures-trader-pro" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
+            </div>
+          </div>
+          <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
+            <div>
               <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Futures Trader Pro</h3>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>5-round live market simulation</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Real prices, contracts & headlines</li>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Macro Finance World</h3>
+              <ul class="space-y-1.5 mb-4">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Macroeconomic decision-making</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Industry & market event responses</li>
               </ul>
             </div>
+            <a href="https://chatgpt.com/g/g-67ab3edec99881918e280a7f42de0e27-macro-finance-world" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
           </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Macro Finance World</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Macroeconomic decision-making</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Industry & market event responses</li>
-            </ul>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Claude Artifact</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Valuation Tutor</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Socratic DCF valuation coaching</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>No answers — only deeper questions</li>
-            </ul>
+          <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Claude Artifact</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Valuation Tutor</h3>
+              <ul class="space-y-1.5 mb-4">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Socratic DCF valuation coaching</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>No answers — only deeper questions</li>
+              </ul>
+            </div>
+            <a href="https://claude.ai/public/artifacts/3a156b7f-e05b-4e72-b6f0-788f28870b41" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
           </div>
           <div class="work-card bg-white rounded-2xl p-6">
             <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">WhatsApp Course</p>
@@ -506,6 +641,37 @@ import Layout from '../layouts/Layout.astro';
               <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>AI fundamentals via mobile</li>
               <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Accessible to any professional, anywhere</li>
             </ul>
+          </div>
+        </div>
+
+        <!-- AI Videos -->
+        <div class="mt-8">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-5" style="font-family: var(--font-display)">See It In Practice</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { vid: "1175529346", key: "aivid1", title: "Leveraging AI for Financial Analysis and Valuation with Excel", label: "AI + Excel" },
+              { vid: "1175529293", key: "aivid2", title: "Advanced Features of Claude and Excel for Financial Modeling", label: "Claude + Excel" },
+              { vid: "1175530353", key: "aivid3", title: "Creating Interactive Financial Dashboards with Perplexity", label: "Perplexity + Finance" },
+              { vid: "1175532671", key: "aivid4", title: "Exploring the Features and Benefits of NotebookLM", label: "NotebookLM" },
+            ].map(v => (
+              <div id={`aivid-frame-${v.key}`} class="rounded-2xl overflow-hidden" style="position:relative;aspect-ratio:16/9;cursor:pointer" onclick={`playAiVideo('${v.key}','${v.vid}')`}>
+                <!-- Thumbnail -->
+                <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+                <!-- Gradient overlay -->
+                <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 100%)"></div>
+                <!-- Play button -->
+                <div id={`aivid-overlay-${v.key}`} style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+                  <div style="width:56px;height:56px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.3)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0D1B2A"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+                <!-- Title -->
+                <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px">
+                  <p style="color:#fff;font-size:13px;font-weight:700;line-height:1.3;font-family:var(--font-display);margin-bottom:3px">{v.title}</p>
+                  <p style="color:rgba(255,255,255,0.55);font-size:11px;font-family:var(--font-display)">{v.label}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -573,6 +739,145 @@ import Layout from '../layouts/Layout.astro';
             </ul>
           </div>
         </div>
+
+        <!-- Simulations -->
+        <div class="mt-8">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-5" style="font-family: var(--font-display)">Live Simulations</p>
+          <div class="grid md:grid-cols-3 gap-4">
+            {[
+              {
+                tag: "Custom GPT",
+                name: "Telecomm AI Quick Case",
+                desc: "A rapid-fire case study simulation where participants analyse an AI-driven disruption in the telecom sector and make real business decisions under pressure.",
+                href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case",
+                icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(244,98,31,0.9)" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`
+              },
+              {
+                tag: "Custom GPT",
+                name: "Telecomm Decision-Making Simulator",
+                desc: "Multi-round simulation placing participants in the C-suite of a telecoms company navigating competitive, regulatory, and technological disruption.",
+                href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator",
+                icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(244,98,31,0.9)" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`
+              },
+              {
+                tag: "Claude Artifact",
+                name: "The War Room",
+                desc: "An immersive negotiation and crisis-management simulation. Teams face high-stakes scenarios where cognitive biases, group dynamics, and pressure are the real exam.",
+                href: "https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5",
+                icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(244,98,31,0.9)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
+              },
+            ].map(s => (
+              <div class="rounded-2xl overflow-hidden flex flex-col" style="background:#0D1B2A;box-shadow:0 4px 24px rgba(0,0,0,0.15)">
+                <!-- dark header strip -->
+                <div class="relative flex items-center justify-center" style="height:90px;background:linear-gradient(135deg,#0D1B2A 0%,#162840 60%,#1a2e42 100%)">
+                  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(244,98,31,0.12) 0%,transparent 70%)"></div>
+                  <div style="position:relative;z-index:1;width:52px;height:52px;border-radius:16px;background:rgba(244,98,31,0.1);border:1px solid rgba(244,98,31,0.2);display:flex;align-items:center;justify-content:center" set:html={s.icon}></div>
+                </div>
+                <!-- content -->
+                <div class="p-5 flex flex-col flex-1 justify-between">
+                  <div>
+                    <p class="text-xs font-semibold mb-2" style="font-family:var(--font-display);color:rgba(244,98,31,0.85)">{s.tag}</p>
+                    <h3 class="font-semibold text-sm mb-2.5" style="font-family:var(--font-display);color:#fff">{s.name}</h3>
+                    <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,0.45)">{s.desc}</p>
+                  </div>
+                  <a href={s.href} target="_blank" rel="noopener"
+                    class="mt-5 inline-flex items-center justify-center gap-2 text-xs font-bold rounded-xl py-2.5 transition-all"
+                    style="font-family:var(--font-display);background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3)">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    Launch Simulation
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- DIGITAL COURSES TAB -->
+      <div id="tab-courses" class="tab-panel hidden">
+        <div class="py-6">
+          <p class="text-navy-400 text-sm leading-relaxed mb-12 max-w-xl">Three fully-produced digital courses built for Rebundle's WhatsApp platform — delivered as conversational micro-lessons directly on mobile.</p>
+          <div class="flex flex-col sm:flex-row items-start justify-center gap-10 lg:gap-20">
+            {[
+              { vid: "1175515603", key: "maia",  tag: "AI",        name: "Generative AI for Business Professionals",     desc: "Start with AI basics and learn from the best." },
+              { vid: "1175515477", key: "diana", tag: "Analytics", name: "Digital Analytics for Business Professionals", desc: "Conquer the fundamentals of Google Analytics." },
+              { vid: "1175515542", key: "eliza", tag: "Wellbeing", name: "Mental Health in the Digital Era",             desc: "Battle social dynamics in disorder development." },
+            ].map(c => (
+              <div class="flex flex-col items-center gap-5 flex-1 max-w-[220px] mx-auto">
+                <!-- iPhone wrapper (provides room for side buttons) -->
+                <div style="position:relative;width:200px;padding:0 8px">
+                  <!-- Left side buttons -->
+                  <div style="position:absolute;left:0;top:72px;width:3px;height:28px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
+                  <div style="position:absolute;left:0;top:112px;width:3px;height:44px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
+                  <div style="position:absolute;left:0;top:164px;width:3px;height:44px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
+                  <!-- Right side button (power) -->
+                  <div style="position:absolute;right:0;top:110px;width:3px;height:56px;background:#3A3A3C;border-radius:0 2px 2px 0"></div>
+
+                  <!-- iPhone frame -->
+                  <div style="width:184px;aspect-ratio:9/19.5;background:#1C1C1E;border-radius:44px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15),0 0 0 1.5px #000,0 0 0 2.5px #2C2C2E,0 32px 64px rgba(0,0,0,0.5);position:relative;overflow:hidden">
+                    <!-- Screen (edge-to-edge) -->
+                    <div style="position:absolute;inset:0;border-radius:42px;overflow:hidden;background:#000">
+                      <!-- Status bar -->
+                      <div style="position:absolute;top:0;left:0;right:0;height:44px;z-index:30;display:flex;align-items:flex-end;justify-content:space-between;padding:0 18px 6px">
+                        <span style="font-size:11px;font-weight:600;color:#fff;letter-spacing:-0.3px">9:41</span>
+                        <div style="display:flex;align-items:center;gap:5px">
+                          <!-- Signal -->
+                          <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><rect x="0" y="6" width="3" height="5" rx="0.5"/><rect x="4" y="4" width="3" height="7" rx="0.5"/><rect x="8" y="2" width="3" height="9" rx="0.5"/><rect x="12" y="0" width="3" height="11" rx="0.5"/></svg>
+                          <!-- WiFi -->
+                          <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><path d="M7.5 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3.5a4.5 4.5 0 0 1 3.18 1.32l1.06-1.06A6 6 0 0 0 7.5 4a6 6 0 0 0-4.24 1.76l1.06 1.06A4.5 4.5 0 0 1 7.5 5.5zm0-3.5a7.5 7.5 0 0 1 5.3 2.2L13.86 3.14A9 9 0 0 0 7.5 1a9 9 0 0 0-6.36 2.64L2.2 4.7A7.5 7.5 0 0 1 7.5 2.5z" opacity="0.9"/></svg>
+                          <!-- Battery -->
+                          <svg width="24" height="12" viewBox="0 0 24 12" fill="white"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="white" stroke-width="1.2" fill="none"/><rect x="21.5" y="4" width="2" height="4" rx="1" fill="white" opacity="0.4"/><rect x="1.5" y="2.5" width="16" height="7" rx="1.5" fill="white"/></svg>
+                        </div>
+                      </div>
+                      <!-- Dynamic Island -->
+                      <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:28px;background:#000;border-radius:20px;z-index:40;box-shadow:0 0 0 1px #1C1C1E"></div>
+                      <!-- Video iframe -->
+                      <iframe
+                        id={`vimeo-${c.key}`}
+                        src={`https://player.vimeo.com/video/${c.vid}?controls=0&title=0&byline=0&portrait=0&playsinline=1&dnt=1`}
+                        style="position:absolute;inset:0;width:100%;height:100%;display:block;border:none"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                      />
+                      <!-- Custom controls bar (hidden until play) -->
+                      <div id={`controls-${c.key}`} style="display:none;position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:35;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);border-radius:24px;padding:6px 12px;display:none;align-items:center;gap:12px">
+                        <!-- Skip back -->
+                        <button onclick={`seekVimeo('${c.key}',-15)`} style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;color:#fff;opacity:0.85" title="-15s">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="7.5" y="15.5" font-size="6" font-weight="bold" fill="white" text-anchor="middle">15</text></svg>
+                        </button>
+                        <!-- Pause/Play toggle -->
+                        <button id={`playpause-${c.key}`} onclick={`toggleVimeo('${c.key}')`} style="background:rgba(255,255,255,0.15);border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+                        <!-- Skip forward -->
+                        <button onclick={`seekVimeo('${c.key}',15)`} style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;color:#fff;opacity:0.85" title="+15s">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 13c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6v4l5-5-5-5v4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8h-2z"/><text x="16.5" y="15.5" font-size="6" font-weight="bold" fill="white" text-anchor="middle">15</text></svg>
+                        </button>
+                      </div>
+                      <!-- Home indicator -->
+                      <div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:100px;height:4px;background:rgba(255,255,255,0.35);border-radius:3px;z-index:30"></div>
+                    </div>
+                  </div>
+
+                  <!-- Play overlay -->
+                  <div id={`overlay-${c.key}`}
+                    style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;border-radius:44px"
+                    onclick={`playVimeoPhone('${c.key}')`}>
+                    <div style="width:56px;height:56px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.4);backdrop-filter:blur(8px)">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="#0D1B2A"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <span class="text-orange-500 text-xs font-bold tracking-[0.15em] uppercase" style="font-family:var(--font-display)">{c.tag}</span>
+                  <h3 class="font-bold text-navy-900 text-sm mt-1.5 leading-snug" style="font-family:var(--font-display)">{c.name}</h3>
+                  <p class="text-navy-400 text-xs mt-1 leading-relaxed">{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
     </div>
@@ -603,10 +908,56 @@ import Layout from '../layouts/Layout.astro';
           <span class="text-navy-400 font-light">Across 5 continents.</span>
         </h2>
       </div>
-      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-8 gap-y-6 reveal">
-        {["IE University","Oregon State","Virginia Tech","Franklin University Switzerland","PIF Saudi Investment Fund","Ministry of Finance KSA","Nissan","STC","Alturki Group","SABAH Hub","CST Commission","CIEE","Wyss Academy","FLIR Systems","Blount International","Khazar University","Baku State University","ThePower Business School"].map(name => (
-          <div class="logo-item flex items-center justify-center h-10">
-            <span class="font-bold text-navy-600 text-xs text-center uppercase tracking-wide leading-tight" style="font-family: var(--font-display)">{name}</span>
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-4 reveal">
+        {[
+          { name: "FLIR",                                local: "/logos/flir.png" },
+          { name: "Blount International",               local: "/logos/blount.png" },
+          { name: "Confederated Tribes of Grand Ronde", local: "/logos/confederated-tribes.webp" },
+          { name: "SABAH Hub",                          local: "/logos/sabah-hub.png" },
+          { name: "Khazar University",                  local: "/logos/khazar.png" },
+          { name: "IE University",                      local: "/logos/ie-law-school.png" },
+          { name: "Franklin University Switzerland",    local: "/logos/franklin.png" },
+          { name: "CIEE",                               local: "/logos/ciee.png" },
+          { name: "ZATCA",                              local: "/logos/zatca.png" },
+          { name: "Badael",                             local: "/logos/badael.jpg" },
+          { name: "CST Commission",                     local: "/logos/cst.png" },
+          { name: "Baku Higher Oil School",             local: "/logos/baku-higher-oil-school.svg" },
+          { name: "Wyss Academy",                       local: "/logos/wyss-academy.png" },
+          { name: "The Global College",                 local: "/logos/the-global-college.webp" },
+          { name: "Oregon State University",            local: "/logos/oregon-state.png" },
+          { name: "Alturki Group",                      local: "/logos/alturki.png" },
+          { name: "Heritage Commission",                local: "/logos/heritage-commission.png" },
+          { name: "Nissan",                             local: "/logos/nissan.png" },
+          { name: "ThePower Business School",           local: "/logos/thepower.png" },
+          { name: "Elm",                                local: "/logos/elm.png" },
+          { name: "Altamayyuz",                         local: "/logos/altamayyuz.webp" },
+          { name: "PIF",                                local: "/logos/pif.png" },
+          { name: "Western University Azerbaijan",      local: "/logos/western.png" },
+          { name: "UNEC",                               local: "/logos/unec.png" },
+          { name: "Virginia Tech",                      local: "/logos/virginia-tech.png" },
+          { name: "Qatar Police Academy",               local: "/logos/police-academy.jpg" },
+          { name: "Ministry of Finance Saudi",          local: "/logos/ministry-of-finance.png" },
+          { name: "STC",                                local: "/logos/stc.png" },
+          { name: "ADNSU",                              local: "/logos/adnsu.png" },
+          { name: "Azerbaijan Technical University",    local: "/logos/aztu.png" },
+          { name: "Baku State University",              local: "/logos/baku-state-university.png" },
+          { name: "Kyowa Kirin",                        local: "/logos/kyowa-kirin.png" },
+          { name: "IE Law School",                      local: "/logos/ie-law-school.png" },
+          { name: "Westview High School",               local: "/logos/westview.png" },
+          { name: "Public Administration Academy",      local: "/logos/azerbaijan-pa.png" },
+          { name: "Tec de Monterrey",                   local: "/logos/tec-de-monterrey.webp" },
+          { name: "Opinno",                             local: "/logos/opinno.png" },
+          { name: "BMU",                                local: "/logos/bmu.png" },
+          { name: "Pasha Holding",                      local: "/logos/pasha-holding.png" },
+          { name: "Emzingo",                            local: "/logos/emzingo.webp" },
+          { name: "Texas Medical Center",               local: "/logos/texas-medical-center.png" },
+          { name: "RCU",                                local: "/logos/rcu.png" },
+        ].map(({ name, local }) => (
+          <div class="logo-item flex items-center justify-center p-3 rounded-xl bg-white shadow-sm h-16">
+            {local
+              ? <img src={local} alt={name} class="max-h-8 max-w-full object-contain" />
+              : <span class="font-semibold text-navy-500 text-xs text-center leading-tight" style="font-family: var(--font-display)">{name}</span>
+            }
           </div>
         ))}
       </div>
@@ -724,6 +1075,10 @@ import Layout from '../layouts/Layout.astro';
               { quote: `"I'm in the final month of my MBA journey. The wonderfully crafted Accounting module really engaged me — from taxation and financial statements to investment and company valuations. Fantastically delivered."`, name: "Frans J. van Aardt", role: "MBA · Business Strategy & Marketing" },
               { quote: `"And mainly thanks to my other half who did a lot of the chores — speaking volumes to Arseniy's ability to simplify and hone in on commercial management concepts that MBAs will actually use!"`, name: "Andrew Woodhouse", role: "Business Transformation Strategist" },
               { quote: `"Special thanks to Arseniy Goldberg for introducing us to Mundi Game Experiences — gamification made the course even more exciting. Finance and Accounting was challenging at first, but the concepts were easy to pick up thanks to his relatable analogies."`, name: "Andrew Ho", role: "Territory Manager · Revizto · CPSP MBA" },
+              { quote: `"Among all the people I've met, Arseniy shines due to his remarkable ability to communicate with compassion, conviction, and elegance. His way of communication has left a lasting impression on me. I find myself consistently inspired and gaining fresh insights from our interactions."`, name: "Agil Zakariya", role: "Brand Management · Procter & Gamble" },
+              { quote: `"Arseniy Goldberg, your Finance and Accounting modules were the highlight of this course! You made a dry subject really engaging and interactive. I even enjoyed all your Excel challenges. Thank you so much!"`, name: "Shirlayne Dunwoodie", role: "Director, Specialist Sales & Contract Management" },
+              { quote: `"Thanks to Arseniy Goldberg for my all time favorite business case and for the Finance & Accounting module — love the way you did it."`, name: "Svetlana Bekker-Thamm", role: "Advisory Board · Investor · Mentor" },
+              { quote: `"And special thanks to Arseniy Goldberg for making accounting more fun than I thought it would be!"`, name: "Megan Mulholland", role: "Board Member · Product & Education Executive" },
             ].map(t => (
               <div class="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-3">
                 <div class="testimonial-card bg-white rounded-2xl p-7 h-full">
@@ -747,6 +1102,222 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
+
+  <!-- LINKEDIN -->
+  <section id="linkedin" class="py-24 bg-warm-100">
+    <div class="max-w-6xl mx-auto px-8">
+      <div class="mb-14 reveal">
+        <div class="section-label">
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">On LinkedIn</span>
+        </div>
+        <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
+          Thoughts worth sharing.<br>
+          <span class="text-navy-400 font-light">Written for people, not algorithms.</span>
+        </h2>
+      </div>
+      <style>
+        .li-tag { display:inline-block; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:3px 10px; border-radius:999px; margin-bottom:12px; }
+        .li-card { border-left: 3px solid transparent; }
+        .li-card-hb  { border-left-color: #F4621F; }
+        .li-card-fin { border-left-color: #0D9488; }
+        .li-card-ent { border-left-color: #2563EB; }
+        .li-card-ai  { border-left-color: #7C3AED; }
+        .tag-hb  { background:#FEF3EC; color:#F4621F; }
+        .tag-fin { background:#ECFDF5; color:#0D9488; }
+        .tag-ent { background:#EFF6FF; color:#2563EB; }
+        .tag-ai  { background:#F5F3FF; color:#7C3AED; }
+        .tab-active-hb  { background:#F4621F !important; color:#fff !important; }
+        .tab-active-fin { background:#0D9488 !important; color:#fff !important; }
+        .tab-active-ent { background:#2563EB !important; color:#fff !important; }
+        .tab-active-ai  { background:#7C3AED !important; color:#fff !important; }
+      </style>
+
+      <!-- Tab buttons -->
+      <div class="flex flex-wrap gap-2 mb-10 reveal">
+        <button onclick="switchLiTab('top')" id="li-tab-top" class="li-tab-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all" style="font-family:var(--font-display);background:#0D1B2A;color:#fff">⭐ Top Posts</button>
+        <button onclick="switchLiTab('hb')"  id="li-tab-hb"  class="li-tab-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all" style="font-family:var(--font-display);background:#F4F1EC;color:#0D1B2A">Human Behavior</button>
+        <button onclick="switchLiTab('fin')" id="li-tab-fin" class="li-tab-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all" style="font-family:var(--font-display);background:#F4F1EC;color:#0D1B2A">Finance</button>
+        <button onclick="switchLiTab('ent')" id="li-tab-ent" class="li-tab-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all" style="font-family:var(--font-display);background:#F4F1EC;color:#0D1B2A">Entrepreneurship</button>
+        <button onclick="switchLiTab('ai')"  id="li-tab-ai"  class="li-tab-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all" style="font-family:var(--font-display);background:#F4F1EC;color:#0D1B2A">AI</button>
+      </div>
+
+      {(() => {
+        const likeIcon = `<svg class="w-3.5 h-3.5 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M7.493 18.75c-.425 0-.82-.236-.975-.632A7.48 7.48 0 016 15.375c0-1.75.599-3.358 1.602-4.634.151-.192.373-.309.6-.397.473-.183.89-.514 1.212-.924a9.042 9.042 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75 2.25 2.25 0 012.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H14.23c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23h-.777zM2.331 10.977a11.969 11.969 0 00-.831 4.398 12 12 0 00.52 3.507c.26.85 1.084 1.368 1.973 1.368H4.9c.445 0 .72-.498.523-.898a8.963 8.963 0 01-.924-3.977c0-1.708.476-3.305 1.302-4.666.245-.403-.028-.959-.5-.959H4.25c-.832 0-1.612.453-1.918 1.227z"/></svg>`;
+        const commentIcon = `<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>`;
+
+        const tabs = {
+          top: {
+            label: "Top Posts", tagClass: "tag-hb", cardClass: "",
+            posts: [
+              { headline: "First year at IE Business School", topic: "Reflecting on a transformative first year of full-time teaching — gratitude, growth, and community.", likes: 231, comments: 38, url: "https://www.linkedin.com/posts/arseniygoldberg_first-year-teaching-full-time-at-ie-business-activity-7270416237820567552-F44d" },
+              { headline: "Are we in an AI Bubble?", topic: "Examining whether AI enthusiasm mirrors past financial bubbles — or represents a lasting industrial shift.", likes: 204, comments: 16, url: "https://www.linkedin.com/posts/arseniygoldberg_aiinfinance-generativeai-financeleadership-activity-7381208885535137792-AVgk" },
+              { headline: "Ever thought about starting a business?", topic: "Alberto Levy's entrepreneurship book as a framework for founders who don't know where to start.", likes: 133, comments: 9, url: "https://www.linkedin.com/posts/arseniygoldberg_ever-thought-about-starting-a-business-but-activity-7424005512490471424-6SN_" },
+              { headline: "AI Week at IE Business School", topic: "Kicking off a full week of AI education across marketing, legal, HR, and finance at IE.", likes: 115, comments: 3, url: "https://www.linkedin.com/posts/arseniygoldberg_the-day-has-come-we-are-finally-kicking-activity-7398642043352289281-4VNi" },
+              { headline: "What do you look for in education?", topic: "Running workshops across Texas schools: teaching students to find problems and pitch AI-driven solutions.", likes: 96, comments: 6, url: "https://www.linkedin.com/posts/arseniygoldberg_what-do-you-look-for-in-an-educational-experience-activity-7407328885970739201-LhGW" },
+              { headline: "\"What do you want to do after university?\"", topic: "Most students had no idea — and that's a systemic problem, not a personal failure.", likes: 83, comments: 15, url: "https://www.linkedin.com/posts/arseniygoldberg_personaldevelopment-financialliteracy-highereducation-activity-7434553202827661313-HH4q" },
+              { headline: "\"What comes to mind when you hear 'finance'?\"", topic: "Young adults feel excluded from money conversations — not because of ability, but permission.", likes: 78, comments: 8, url: "https://www.linkedin.com/posts/arseniygoldberg_personalfinance-financialliteracy-highereducation-activity-7432012296886915073-SDrp" },
+              { headline: "When people strongly oppose your decisions", topic: "Resistance from others often signals you're on a meaningful path — not a reason to stop.", likes: 63, comments: 4, url: "https://www.linkedin.com/posts/arseniygoldberg_personaldevelopment-careeradvice-moneymindset-activity-7435308161995227136-CzR-" },
+              { headline: "We live in a world where AI agents...", topic: "New AI protocols from major tech companies are transforming finance — but hallucinations remain real.", likes: 46, comments: 2, url: "https://www.linkedin.com/posts/arseniygoldberg_we-live-in-a-world-where-googles-agent-activity-7383836035509567489-SN_B" },
+            ]
+          },
+          hb: {
+            label: "Human Behavior", tagClass: "tag-hb", cardClass: "li-card-hb",
+            posts: [
+              { headline: "When people strongly oppose your decisions", topic: "Resistance from others often signals you're on a meaningful path — not a reason to stop.", likes: 63, comments: 4, url: "https://www.linkedin.com/posts/arseniygoldberg_personaldevelopment-careeradvice-moneymindset-activity-7435308161995227136-CzR-" },
+              { headline: "\"What do you want to do after university?\"", topic: "Most students had no idea — and that's a systemic problem, not a personal failure.", likes: 83, comments: 15, url: "https://www.linkedin.com/posts/arseniygoldberg_personaldevelopment-financialliteracy-highereducation-activity-7434553202827661313-HH4q" },
+              { headline: "The FOMO Premium", topic: "Fear of missing out causes investors to overpay ~21% — a lesson I learned the hard way with Bitcoin.", likes: 22, comments: 25, url: "https://www.linkedin.com/posts/arseniygoldberg_the-fomo-premium-why-the-market-pays-you-activity-7439607276585459712-bij8" },
+              { headline: "First year at IE Business School", topic: "Reflecting on a transformative first year of full-time teaching — gratitude, growth, and community.", likes: 231, comments: 38, url: "https://www.linkedin.com/posts/arseniygoldberg_first-year-teaching-full-time-at-ie-business-activity-7270416237820567552-F44d" },
+              { headline: "Finance, behavior, decisions", topic: "How our behavioral patterns shape financial outcomes more than any spreadsheet could.", url: "https://www.linkedin.com/posts/arseniygoldberg_finance-behavior-decisions-activity-7273286165464571904-YctW" },
+              { headline: "Isn't it liberating to say 'I'm sorry'?", topic: "The power of accountability and intellectual humility in professional and personal life.", url: "https://www.linkedin.com/posts/arseniygoldberg_isnt-it-so-liberating-to-say-%F0%9D%90%88%F0%9D%90%A6-%F0%9D%90%AC%F0%9D%90%A8%F0%9D%90%AB%F0%9D%90%AB%F0%9D%90%B2-activity-7271825842735906816-w7aP" },
+              { headline: "Life's currencies", topic: "Time, energy, attention, and money — how we allocate what truly matters.", url: "https://www.linkedin.com/posts/arseniygoldberg_lifes-currencies-activity-7266028720124010496-nV64" },
+              { headline: "Decisions, finance, career", topic: "The hidden connections between how we make decisions and how we build careers.", url: "https://www.linkedin.com/posts/arseniygoldberg_decisions-finance-career-activity-7259492843419799553-mKv-" },
+              { headline: "Simon Sinek on capitalism", topic: "Simon Sinek's perspective on capitalism and what it means for how we lead and work.", url: "https://www.linkedin.com/posts/arseniygoldberg_simon-sinek-on-capitalism-activity-7257053590383480832-yscY" },
+              { headline: "Started an audiobook on Spotify", topic: "A recommendation and reflection on learning through audio in a distracted world.", url: "https://www.linkedin.com/posts/arseniygoldberg_today-i-started-an-audiobook-on-spotify-activity-7256266179227357184-5Mu6" },
+              { headline: "Morgan Housel on financial behaviors", topic: "Morgan Housel breaks down the psychological patterns that drive our financial decisions.", url: "https://www.linkedin.com/posts/arseniygoldberg_morgan-housel-explains-financial-behaviors-activity-7072476311557935105-oytD" },
+              { headline: "Human challenges in finance", topic: "The human side of investing — why emotion consistently beats logic at the worst times.", url: "https://www.linkedin.com/posts/arseniygoldberg_human-challenges-in-finance-and-investments-activity-7070335736285175808-wZ6C" },
+              { headline: "When a mentor/mentee relationship evolves", topic: "On the evolution of mentorship and what those shifts reveal about growth.", url: "https://www.linkedin.com/posts/arseniygoldberg_have-you-ever-had-a-mentormentee-become-activity-7069999462705696768-BOaq" },
+              { headline: "8 financial behaviors that drive us", topic: "The eight behavioral patterns that explain most financial mistakes people make.", url: "https://www.linkedin.com/posts/arseniygoldberg_8-financial-behaviors-that-drive-us-activity-7067797947270184960-JAt6" },
+              { headline: "When is the right time to start teaching?", topic: "The surprising answer to when you're truly ready to share your knowledge with others.", url: "https://www.linkedin.com/posts/arseniygoldberg_when-is-the-right-time-to-start-teaching-activity-7091024618416746496-kD0L" },
+              { headline: "The problem with setting goals", topic: "Why most goal-setting frameworks fail — and what NFL teams can teach us about objectives.", url: "https://www.linkedin.com/posts/arseniygoldberg_the-problem-with-setting-goals-with-nfl-activity-7001864597552926720-DNnM" },
+              { headline: "Do schools kill creativity?", topic: "Revisiting Ken Robinson's legendary TED talk and its implications for how we educate today.", url: "https://www.linkedin.com/posts/arseniygoldberg_do-schools-kill-creativity-sir-ken-robinson-activity-6981598648870580224-_P4T" },
+              { headline: "Leadership, South Africa, Mandela", topic: "What Nelson Mandela's approach to leadership teaches us about resilience and vision.", url: "https://www.linkedin.com/posts/arseniygoldberg_leadership-southafrica-mandela-activity-6972491782156619776-ZFMn" },
+              { headline: "The Power of Regret", topic: "Why Daniel Pink's book on regret is one of the most forward-looking reads available.", url: "https://www.linkedin.com/posts/arseniygoldberg_i-highly-recommend-the-power-of-regret-by-activity-6942833438357897216-3Vp7" },
+            ]
+          },
+          fin: {
+            label: "Finance", tagClass: "tag-fin", cardClass: "li-card-fin",
+            posts: [
+              { headline: "Overwhelmed by information overload?", topic: "Why 120 students didn't read the 754-page textbook — and what that says about financial education.", likes: 28, comments: 1, url: "https://www.linkedin.com/posts/arseniygoldberg_personalfinance-financialliteracy-moneymindset-activity-7437069205902102528-Gg2H" },
+              { headline: "Kahneman's two systems & your money", topic: "A classroom experiment revealed students who said they were risk-tolerant invested very conservatively.", likes: 13, comments: 6, url: "https://www.linkedin.com/posts/arseniygoldberg_personalfinance-financialliteracy-behavioralfinance-activity-7432717686180270080-nGVL" },
+              { headline: "\"What comes to mind when you hear 'finance'?\"", topic: "Young adults feel excluded from money conversations — not because of ability, but permission.", likes: 78, comments: 8, url: "https://www.linkedin.com/posts/arseniygoldberg_personalfinance-financialliteracy-highereducation-activity-7432012296886915073-SDrp" },
+              { headline: "Compounding interest", topic: "The most powerful force in personal finance — explained simply and applied practically.", url: "https://www.linkedin.com/posts/arseniygoldberg_compounding-interest-activity-7268237566305333248-FKqZ" },
+              { headline: "Education, finance, career", topic: "The intersection of financial literacy, career planning, and lifelong learning.", url: "https://www.linkedin.com/posts/arseniygoldberg_education-finance-career-activity-7263496020267782144-eIob" },
+              { headline: "Intentional financial literacy", topic: "What it means to be truly intentional about your relationship with money.", url: "https://www.linkedin.com/posts/arseniygoldberg_finance-financialliteracy-intentional-activity-7262414208862969857-1ap3" },
+              { headline: "ROE — Return on Everything", topic: "Applying the Return on Equity framework beyond investing — to your own life and decisions.", url: "https://www.linkedin.com/posts/arseniygoldberg_roe-e-activity-7260622270870474752-ztbo" },
+              { headline: "What is your net worth?", topic: "Net worth is more than a calculation — it's a mindset shift about what you're truly building.", url: "https://www.linkedin.com/posts/arseniygoldberg_what-is-your-net-worth-is-it-a-calculation-activity-7257701482651664384-_70n" },
+              { headline: "Easy financial strategies to implement today", topic: "Practical financial moves anyone can start regardless of income level.", url: "https://www.linkedin.com/posts/arseniygoldberg_easy-to-implement-financial-strategies-for-activity-7075436551446368258-QI0M" },
+              { headline: "Financial decisions made easier", topic: "Simple frameworks for making better financial choices under uncertainty.", url: "https://www.linkedin.com/posts/arseniygoldberg_financial-decisions-made-easier-by-way-of-activity-7072909490752241664-aKKU" },
+              { headline: "Lifelong investment advice", topic: "The one piece of investment wisdom that holds true across every market cycle.", url: "https://www.linkedin.com/posts/arseniygoldberg_lifelong-investment-advice-activity-7062806383229902848-2MbI" },
+              { headline: "Financial model canvas", topic: "A visual tool for mapping your personal financial model — inspired by the Business Model Canvas.", url: "https://www.linkedin.com/posts/arseniygoldberg_financial-model-canvas-activity-7062387377658302464-siIk" },
+              { headline: "Finance terms made easier", topic: "Breaking down confusing financial jargon that sounds similar but means very different things.", url: "https://www.linkedin.com/posts/arseniygoldberg_lookalike-finance-terms-made-easier-activity-7060276978372796416-AA7Q" },
+              { headline: "What does IPO mean?", topic: "Demystifying the IPO — what it is, how it works, and whether it's relevant to you.", url: "https://www.linkedin.com/posts/arseniygoldberg_what-does-ipo-mean-is-it-for-everybody-activity-7055230061272064000-Ortx" },
+              { headline: "Complicated financial concepts, made simple", topic: "The most complex finance concepts explained in plain language for everyday people.", url: "https://www.linkedin.com/posts/arseniygoldberg_complicated-financial-concepts-made-simple-activity-7052624032659046400-oKJN" },
+              { headline: "Financial myths debunked", topic: "The most persistent myths about money that hold people back from financial growth.", url: "https://www.linkedin.com/posts/arseniygoldberg_financial-myths-debunking-the-world-of-activity-7049742897440526336-5fwA" },
+              { headline: "Rich Dad Poor Dad", topic: "Kiyosaki's framework for distinguishing assets from liabilities — a foundational financial read.", url: "https://www.linkedin.com/feed/update/urn:li:activity:7045087243744468993" },
+              { headline: "Inside Job & the financial crisis", topic: "What the 2008 crisis documentary teaches us about systemic risk and accountability.", url: "https://www.linkedin.com/posts/arseniygoldberg_insidejob-financialcrisis-globalimpact-activity-7042504354481750017-5cAN" },
+              { headline: "Business, financial planning, personal finance", topic: "Why personal and business financial planning are more connected than most people think.", url: "https://www.linkedin.com/posts/arseniygoldberg_business-financialplanning-personalfinance-activity-7041811160395853824-jBYg" },
+              { headline: "Financial literacy and wellness", topic: "The link between financial literacy and overall wellbeing — deeper than you'd expect.", url: "https://www.linkedin.com/posts/arseniygoldberg_financialliteracy-financialwellness-personalfinance-activity-7026594060538687488-H5TB" },
+              { headline: "Finance, business, education", topic: "How financial education bridges the gap between academic theory and real-world business.", url: "https://www.linkedin.com/posts/arseniygoldberg_finance-business-education-activity-7024073801093001216-_vqW" },
+            ]
+          },
+          ent: {
+            label: "Entrepreneurship", tagClass: "tag-ent", cardClass: "li-card-ent",
+            posts: [
+              { headline: "Ever thought about starting a business?", topic: "Alberto Levy's entrepreneurship book as a framework for founders who don't know where to start.", likes: 133, comments: 9, url: "https://www.linkedin.com/posts/arseniygoldberg_ever-thought-about-starting-a-business-but-activity-7424005512490471424-6SN_" },
+              { headline: "Two incredible weeks of entrepreneurship", topic: "Reflections after an intensive program — what changed, what surprised, what stayed.", url: "https://www.linkedin.com/posts/arseniygoldberg_just-wrapped-up-two-incredible-weeks-of-entrepreneurship-activity-7249047343713374208-KXGh" },
+              { headline: "Group coaching and pitching", topic: "Behind the scenes of a coaching and pitch session — the energy, nerves, and breakthroughs.", url: "https://www.linkedin.com/posts/arseniygoldberg_arseniy-goldberg-group-coaching-and-pitching-activity-7179791257857056768-Fb1w" },
+              { headline: "AlUla", topic: "Entrepreneurship and innovation in one of the world's most extraordinary places.", url: "https://www.linkedin.com/posts/arseniygoldberg_alula-activity-7134804173832765442-7HXu" },
+              { headline: "Johannesburg", topic: "Lessons from teaching entrepreneurship in Johannesburg — about risk, ambition, and context.", url: "https://www.linkedin.com/posts/arseniygoldberg_johannesburg-activity-7092393626470690816-5GTV" },
+              { headline: "Baku, Azerbaijan", topic: "Innovation and entrepreneurship in Baku — a city building its post-oil future.", url: "https://www.linkedin.com/posts/arseniygoldberg_baku-azerbaijan-activity-7084797807353638912-Jvsb" },
+              { headline: "Financing your startup", topic: "Methods to bootstrap from idea to first revenue — without giving away equity too early.", url: "https://www.linkedin.com/posts/arseniygoldberg_financing-your-startup-and-methods-to-bootstrap-activity-7082303868021219329-y8nH" },
+              { headline: "Building community in Baku", topic: "Why entrepreneurial community building in Azerbaijan matters and what it looks like.", url: "https://www.linkedin.com/posts/arseniygoldberg_azerbaijan-baku-community-activity-7043917993780600832-ciZo" },
+              { headline: "Business, startup, investment", topic: "The key questions every startup founder needs to answer before seeking investment.", url: "https://www.linkedin.com/posts/arseniygoldberg_business-startup-investment-activity-7038902605887979521-yOnP" },
+              { headline: "Watch Silicon Valley this weekend", topic: "The TV show Silicon Valley as an entertaining — and surprisingly accurate — window into startup culture.", url: "https://www.linkedin.com/feed/update/urn:li:activity:7037398315432329216" },
+              { headline: "Wealth vs. control: a founder's dilemma", topic: "The fundamental tradeoff every founder faces — and why getting it wrong costs more than money.", url: "https://www.linkedin.com/feed/update/urn:li:activity:7036662868464799744" },
+              { headline: "Azerbaijan, Baku", topic: "Reflections on entrepreneurship education in Azerbaijan and the opportunities ahead.", url: "https://www.linkedin.com/posts/arseniygoldberg_azerbaijan-baku-activity-7016047715578974208-C8Ak" },
+              { headline: "BakuID", topic: "Notes from BakuID — Azerbaijan's startup and innovation community gathering.", url: "https://www.linkedin.com/posts/arseniygoldberg_bakuid-activity-6967899414136827904-Kjxa" },
+              { headline: "Baku Investment Day", topic: "Insights from Baku Investment Day — where capital meets ambition in the Caucasus.", url: "https://www.linkedin.com/posts/arseniygoldberg_baku-investment-day-baku-id-activity-6952965989906935808-znOO" },
+              { headline: "Johannesburg II", topic: "More reflections from South Africa — on entrepreneurship, culture, and possibility.", url: "https://www.linkedin.com/posts/arseniygoldberg_johannesburg-activity-6950860271863132160-RXZC" },
+            ]
+          },
+          ai: {
+            label: "AI", tagClass: "tag-ai", cardClass: "li-card-ai",
+            posts: [
+              { headline: "We learn by doing", topic: "Hands-on AI projects teach faster and deeper than any passive online course.", likes: 33, comments: 7, url: "https://www.linkedin.com/posts/arseniygoldberg_day-in-and-day-out-i-confirm-this-idea-%F0%9D%90%B0%F0%9D%90%9E-activity-7438911607184797696-3t7l" },
+              { headline: "What do you look for in education?", topic: "Running workshops across Texas schools: teaching students to find problems and pitch AI-driven solutions.", likes: 96, comments: 6, url: "https://www.linkedin.com/posts/arseniygoldberg_what-do-you-look-for-in-an-educational-experience-activity-7407328885970739201-LhGW" },
+              { headline: "GenAI & Entrepreneurship in Texas", topic: "IE University masterclass tour across Texas — building AI startup pitches from real problems.", likes: 29, comments: 5, url: "https://www.linkedin.com/posts/arseniygoldberg_texas-ie-genai-activity-7404153006151331840-MaLo" },
+              { headline: "AI Week at IE Business School", topic: "Kicking off a full week of AI education across marketing, legal, HR, and finance at IE.", likes: 115, comments: 3, url: "https://www.linkedin.com/posts/arseniygoldberg_the-day-has-come-we-are-finally-kicking-activity-7398642043352289281-4VNi" },
+              { headline: "We live in a world where AI agents...", topic: "New AI protocols from major tech companies are transforming finance — but hallucinations remain real.", likes: 46, comments: 2, url: "https://www.linkedin.com/posts/arseniygoldberg_we-live-in-a-world-where-googles-agent-activity-7383836035509567489-SN_B" },
+              { headline: "Are we in an AI Bubble?", topic: "Examining whether AI enthusiasm mirrors past financial bubbles — or a lasting industrial shift.", likes: 204, comments: 16, url: "https://www.linkedin.com/posts/arseniygoldberg_aiinfinance-generativeai-financeleadership-activity-7381208885535137792-AVgk" },
+              { headline: "AI in finance and education", topic: "Exploring how artificial intelligence is reshaping finance, education, and professional life.", url: "https://www.linkedin.com/posts/arseniygoldberg_ai-activity-7030589973225443328-pchy" },
+              { headline: "First day teaching at IE University", topic: "First day in the classroom at IE University — what it felt like and what it meant.", url: "https://www.linkedin.com/posts/arseniygoldberg_first-day-teaching-at-ie-university-as-part-activity-7003700081820360705-3TOW" },
+              { headline: "Partnership with IE Business School", topic: "Announcing a new chapter in AI and finance education at IE Business School.", url: "https://www.linkedin.com/posts/arseniygoldberg_partnership-with-ie-business-school-activity-6932672557770805248-yBvh" },
+            ]
+          }
+        };
+
+        return Object.entries(tabs).map(([key, tab]) => (
+          <div id={`li-panel-${key}`} class={key === 'top' ? 'li-panel' : 'li-panel hidden'}>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {tab.posts.map((post, i) => (
+                <a href={post.url} target="_blank" rel="noopener noreferrer"
+                  class={`li-card ${tab.cardClass} ${i >= 6 ? 'li-extra hidden' : ''} group bg-white rounded-2xl p-6 flex flex-col gap-4 hover:shadow-md transition-all reveal`}
+                  data-panel={key}>
+                  <div class="flex-1">
+                    <span class={`li-tag ${tab.tagClass}`} style="font-family:var(--font-display)">{tab.label}</span>
+                    <h3 class="font-bold text-navy-900 text-base mb-2 group-hover:text-orange-500 transition-colors leading-snug" style="font-family:var(--font-display)">{post.headline}</h3>
+                    <p class="text-navy-400 text-sm leading-relaxed">{post.topic}</p>
+                  </div>
+                  <div class="flex items-center justify-between pt-3 border-t border-warm-100">
+                    <div class="flex items-center gap-3 text-xs text-navy-400" style="font-family:var(--font-display)">
+                      {post.likes && <span class="flex items-center gap-1"><Fragment set:html={likeIcon} /> {post.likes}</span>}
+                      {post.comments && <span class="flex items-center gap-1"><Fragment set:html={commentIcon} /> {post.comments}</span>}
+                    </div>
+                    <span class="text-orange-500 text-xs font-semibold group-hover:translate-x-1 transition-transform inline-block" style="font-family:var(--font-display)">Read →</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+            {tab.posts.length > 6 && (
+              <div class="mt-8 text-center">
+                <button onclick={`toggleMore('${key}')`} id={`li-more-${key}`}
+                  class="px-6 py-2.5 rounded-full border-2 border-navy-200 text-navy-500 text-sm font-semibold hover:border-navy-400 transition-all"
+                  style="font-family:var(--font-display)">
+                  Show {tab.posts.length - 6} more
+                </button>
+              </div>
+            )}
+          </div>
+        ));
+      })()}
+
+      <!-- Follow CTA -->
+      <div class="mt-12 reveal">
+        <a href="https://www.linkedin.com/in/arseniygoldberg" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-navy-500 hover:text-orange-500 transition-colors"
+          style="font-family: var(--font-display)">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Follow on LinkedIn for more
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const liTabColors = { top: '#0D1B2A', hb: '#F4621F', fin: '#0D9488', ent: '#2563EB', ai: '#7C3AED' };
+    function switchLiTab(tab) {
+      ['top','hb','fin','ent','ai'].forEach(p => {
+        const panel = document.getElementById('li-panel-' + p);
+        const btn   = document.getElementById('li-tab-' + p);
+        if (p === tab) {
+          panel.classList.remove('hidden');
+          btn.style.background = liTabColors[p];
+          btn.style.color = '#fff';
+        } else {
+          panel.classList.add('hidden');
+          btn.style.background = '#F4F1EC';
+          btn.style.color = '#0D1B2A';
+        }
+      });
+    }
+    function toggleMore(key) {
+      const extras = document.querySelectorAll(`.li-extra[data-panel="${key}"]`);
+      const btn    = document.getElementById('li-more-' + key);
+      const hidden = extras[0]?.classList.contains('hidden');
+      extras.forEach(el => el.classList.toggle('hidden', !hidden));
+      btn.textContent = hidden ? 'Show less' : `Show ${extras.length} more`;
+    }
+  </script>
 
   <!-- CONTACT -->
   <section id="contact" class="py-28" style="background: #0D1B2A">
@@ -791,6 +1362,19 @@ import Layout from '../layouts/Layout.astro';
       </form>
     </div>
   </section>
+
+  <!-- INTRO VIDEO LIGHTBOX -->
+  <div id="intro-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.92);backdrop-filter:blur(8px);align-items:center;justify-content:center" onclick="closeIntroVideo(event)">
+    <div style="position:relative;width:min(900px,92vw);aspect-ratio:16/9;border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.6)">
+      <iframe id="intro-iframe"
+        src=""
+        style="width:100%;height:100%;display:block;border:none"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <button onclick="closeIntroVideo()" style="position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:1.4rem;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">✕</button>
+  </div>
 
   <!-- FOOTER -->
   <footer class="border-t py-8" style="background: #0D1B2A; border-color: rgba(255,255,255,0.05)">
@@ -844,6 +1428,98 @@ import Layout from '../layouts/Layout.astro';
     document.querySelector(`[data-tab="${tab}"]`)?.classList.add('active');
   }
   (window as any).switchTab = switchTab;
+
+  // Capital Markets Journey accordion
+  (window as any).toggleJourney = function(id: string) {
+    const panel = document.getElementById(id);
+    const idx = id.replace('cm-', '');
+    const arrow = document.getElementById('cm-arrow-' + idx);
+    if (!panel) return;
+    const isOpen = panel.style.display !== 'none';
+    panel.style.display = isOpen ? 'none' : 'block';
+    if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  };
+
+  // Vimeo phone player
+  const vimeoScript = document.createElement('script');
+  vimeoScript.src = 'https://player.vimeo.com/api/player.js';
+  document.head.appendChild(vimeoScript);
+
+  const vimeoPlayers: Record<string, any> = {};
+
+  (window as any).playVimeoPhone = function(key: string) {
+    const iframe = document.getElementById('vimeo-' + key) as HTMLIFrameElement;
+    const overlay = document.getElementById('overlay-' + key) as HTMLElement;
+    const controls = document.getElementById('controls-' + key) as HTMLElement;
+    if (!iframe || !overlay) return;
+    overlay.style.display = 'none';
+    const tryPlay = () => {
+      if ((window as any).Vimeo) {
+        const player = new (window as any).Vimeo.Player(iframe);
+        vimeoPlayers[key] = player;
+        player.play();
+        if (controls) controls.style.display = 'flex';
+      } else {
+        setTimeout(tryPlay, 100);
+      }
+    };
+    tryPlay();
+  };
+
+  (window as any).seekVimeo = function(key: string, seconds: number) {
+    const player = vimeoPlayers[key];
+    if (!player) return;
+    player.getCurrentTime().then((t: number) => {
+      player.setCurrentTime(Math.max(0, t + seconds));
+    });
+  };
+
+  (window as any).toggleVimeo = function(key: string) {
+    const player = vimeoPlayers[key];
+    const btn = document.getElementById('playpause-' + key);
+    if (!player || !btn) return;
+    player.getPaused().then((paused: boolean) => {
+      if (paused) {
+        player.play();
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+      } else {
+        player.pause();
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+      }
+    });
+  };
+
+  // AI walkthrough videos (inline, native controls)
+  (window as any).playAiVideo = function(key: string, vid: string) {
+    const frame = document.getElementById('aivid-frame-' + key) as HTMLElement;
+    if (!frame) return;
+    // Replace entire card contents with iframe
+    frame.onclick = null;
+    frame.style.cursor = 'default';
+    frame.innerHTML = `<iframe src="https://player.vimeo.com/video/${vid}?autoplay=1&title=0&byline=0&portrait=0&dnt=1" style="position:absolute;inset:0;width:100%;height:100%;border:none" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+  };
+
+  // Intro video lightbox
+  (window as any).openIntroVideo = function() {
+    const modal = document.getElementById('intro-modal') as HTMLElement;
+    const iframe = document.getElementById('intro-iframe') as HTMLIFrameElement;
+    if (!modal || !iframe) return;
+    iframe.src = 'https://player.vimeo.com/video/1138054609?autoplay=1&title=0&byline=0&portrait=0&dnt=1';
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+  (window as any).closeIntroVideo = function(e?: MouseEvent) {
+    if (e && (e.target as HTMLElement).closest('iframe')) return;
+    const modal = document.getElementById('intro-modal') as HTMLElement;
+    const iframe = document.getElementById('intro-iframe') as HTMLIFrameElement;
+    if (!modal) return;
+    modal.style.display = 'none';
+    if (iframe) iframe.src = '';
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') (window as any).closeIntroVideo();
+  });
 
   // Nav scroll effect
   const navbar = document.getElementById('navbar');
