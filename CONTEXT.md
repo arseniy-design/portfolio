@@ -33,24 +33,25 @@ git push        # Vercel deploys in ~30s
 ## Brand identity
 - **Site tagline:** How humans grow — through Finance, Artificial Intelligence, and Education.
 - **LinkedIn tagline:** Discussing Human Behavior in Finance, AI, and Education
-- **Three-word descriptor:** Professor · Consultant · Entrepreneur (maps to TEACH / ADVISE / BUILD)
+- **Hero descriptor (small caps):** Professor · Consultant · Entrepreneur (maps to TEACH / ADVISE / BUILD)
 
 ---
 
 ## Page structure (in order)
 1. **Nav** — sticky, scroll effect, mobile menu, AG. logo
-2. **Hero** — `/public/hero.jpg`, headline, tagline, two CTAs, 55-second intro video button
+2. **Hero** — `/public/hero.jpg`, headline, tagline, "Professor · Consultant · Entrepreneur", two CTAs, 55-second intro video button
 3. **Stats bar** — 25+ Independent Projects · 4 Innovation Programs Launched · 5th Venture in Progress · 5 Teaching Excellence Awards · 35+ Institutions Reached
 4. **Credibility strip** — single Agil Zakariya / P&G quote (lightweight, no awards mention)
-5. **Work section** — BUILD/ADVISE/TEACH manifesto + 6 tabs:
-   Finance · Startups · Innovation Programs · AI Productivity · Digital Courses · Human Behavior
-6. **Cinematic break** — `/public/speaking.jpg` (Saudi Ministry of Finance)
+5. **Work section** — BUILD/ADVISE/TEACH manifesto + 6 tabs: Finance · Startups · Innovation Programs · AI Productivity · Digital Courses · Human Behavior
+6. **Cinematic break 1** — `/public/speaking.jpg` — Ministry of Finance · Saudi Arabia · Financial Leaders Program
 7. **Clients** — 18 logo grid
 8. **Brands** — Flow · North · Stride (three projects, no status badges)
-9. **Recognition** — 2 award cards (expandable PDFs) + 12-testimonial carousel
-10. **LinkedIn** — featured posts section
-11. **Contact** — intentional form with engagement-type selector
-12. **Footer**
+9. **Cinematic break 2** — `/public/baku-stage.jpg` — Baku Innovation Days · Startups of Tomorrow
+10. **Recognition** — 2 award cards (expandable PDFs) + 12-testimonial carousel
+11. **Cinematic break 3** — `/public/lecture-hall.jpg` — Academy of Public Administration · Baku · Entrepreneurship Program
+12. **LinkedIn** — featured posts section
+13. **Contact** — intentional form with engagement-type selector
+14. **Footer**
 
 ---
 
@@ -81,14 +82,32 @@ git push        # Vercel deploys in ~30s
 ---
 
 ## Videos
-- **Finance Session Samples** (Vimeo, vumbnail.com thumbnails):
+- **Finance Session Samples** (Vimeo, `/public/thumbnails/finance-thumb.jpg` for all 4):
   - Time Value of Money: `vimeo.com/1175592384`
   - Working Capital: `vimeo.com/1175592202`
-  - Dynamic Valuation: `vimeo.com/1175592624?v=2` (cache-busted)
-  - Sources of Corporate Financing: `vimeo.com/1175592738?v=2` (cache-busted)
+  - Dynamic Valuation: `vimeo.com/1175592624`
+  - Sources of Corporate Financing: `vimeo.com/1175592738`
+- **Startups Session Samples** (Vimeo, vumbnail thumbnails):
+  - Intro to Entrepreneurship: `vimeo.com/1175612851`
+  - Startup Culture: `vimeo.com/1175612955`
+  - Lean Startup: `vimeo.com/1175612878`
+  - Product Prototyping: `vimeo.com/1175612914`
 - **Intro video:** YouTube lightbox (`openIntroVideo()`)
 - **AI tab:** Vimeo embeds via `playAiVideo()`
 - **Videos folder excluded from git** (`videos/` in .gitignore — MP4s exceed GitHub 100MB limit)
+
+---
+
+## Stage photos
+All originals in `/Users/arsen1/portfolio-astro/stage photos/`. Key ones used:
+- `/public/speaking.jpg` — Ministry of Finance, Saudi Arabia (cinematic break 1, high-stakes room)
+- `/public/baku-stage.jpg` — Baku Innovation Days stage, "startups of tomorrow" backdrop (cinematic break 2)
+- `/public/lecture-hall.jpg` — University lecture hall, Azerbaijan, students in seats (cinematic break 3)
+
+Other strong photos available in the folder:
+- `WhatsApp Image 2024-07-23 at 12.17.23.jpeg` — microphone, pointing, "Financial Leaders Program" banner — strongest single photo
+- `WhatsApp Image 2024-07-23 at 12.17.30.jpeg` — wide room, Saudi officials around table
+- `pif photo.jpeg` — IE-PIF In-House Training, "AI in Practice by Arseniy Goldberg" on screen
 
 ---
 
@@ -100,25 +119,20 @@ git push        # Vercel deploys in ~30s
 | `playAiVideo(key, vid)` | AI tab video player |
 | `toggleJourney(id)` | Capital Markets accordion |
 | `toggleAward(year)` | Recognition award panel expand/collapse |
-| `selectEngagement(val, btn)` | Contact form engagement type pill selector |
+| `selectEngagement(val, btn)` | Contact form engagement type selector |
 | `carouselPrev/Next()` | Testimonial carousel navigation |
 
 ---
 
-## Contact form engagement types
-- Teaching / Course Design
-- Strategy & Consulting
-- AI Implementation
-- Something else
-
-Fields: engagement type (pill selector) → Name → Email → Organization → Message ("What's the challenge you're trying to solve?")
+## Contact form
+Engagement types (2×2 grid): Teaching & Course Design · Strategy & Consulting · AI Implementation · Something else
+Fields: engagement type → Name → Email → Organization → "What's the challenge you're trying to solve?"
 
 ---
 
 ## Next session priorities
-- [ ] **Stage photos** — Arseniy to send best on-stage photos → incorporate into page (speaking section or replace cinematic break)
-- [ ] **LinkedIn redesign** — screenshot-style cards (avatar, name, snippet, engagement count, click to open)
-- [ ] **Hero headline** — reconcile "Three Disciplines" with Finance / AI / Education framing
-- [ ] **"Professor · Consultant · Entrepreneur"** — consider adding to hero as descriptor
-- [ ] **Headshot** — current hero.jpg is pre-beard; update when a powerful photo is available
-- [ ] **Vimeo thumbnails** — verify ?v=2 cache-bust worked for videos 3 & 4
+- [ ] **LinkedIn redesign** — screenshot-style cards (avatar, name, snippet, engagement count, click to open post)
+- [ ] **Hero headline** — "Three Disciplines. One Obsession." still says Finance/Startups/AI implicitly but subtitle now says Finance/AI/Education — worth reconciling
+- [ ] **WhatsApp 12.17.23 photo** — strongest stage photo not yet used on the page; consider replacing cinematic break 1 or adding to hero
+- [ ] **Startup tab thumbnails** — currently using vumbnail auto-thumbnails; if they show wrong frames, replace with local files like Finance tab
+- [ ] **Headshot** — hero.jpg is pre-beard; update when a strong photo with beard is available
