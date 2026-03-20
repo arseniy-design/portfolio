@@ -9,10 +9,10 @@ import Layout from '../layouts/Layout.astro';
       <a href="#" class="flex items-center" aria-label="Arseniy Goldberg">
         <svg width="52" height="30" viewBox="0 0 52 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- A -->
-          <path d="M2 28L11 2L20 28" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M5.5 18.5H16.5" stroke="#F4621F" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M2 28L11 2L20 28" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5.5 18.5H16.5" stroke="#F4621F" stroke-width="3" stroke-linecap="round"/>
           <!-- G -->
-          <path d="M50 9C47 4 42 2 38 3.5C33 5.5 31 10 31 15C31 20 33.5 24.5 38 26.5C42 28 47 26 49.5 22.5V15.5H43" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 9C47 4 42 2 38 3.5C33 5.5 31 10 31 15C31 20 33.5 24.5 38 26.5C42 28 47 26 49.5 22.5V15.5H43" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
       <div class="hidden md:flex items-center gap-8">
@@ -124,7 +124,7 @@ import Layout from '../layouts/Layout.astro';
         <p class="font-light text-navy-400 mb-5" style="font-family: var(--font-display); font-size: clamp(1.2rem,2.5vw,1.75rem)">
           Built, advised, and taught — all three, at the same time.
         </p>
-        <p class="text-navy-400 text-base max-w-xl leading-relaxed">
+        <p class="text-navy-400 text-base max-w-2xl leading-relaxed">
           12 years working at the intersection of all three. Each discipline makes the others more honest.
         </p>
       </div>
@@ -136,21 +136,21 @@ import Layout from '../layouts/Layout.astro';
             num: "01",
             mode: "BUILD",
             tagline: "Ventures built from scratch — in Azerbaijan, Spain, and the US.",
-            chips: ["SABAH Hub", "North", "Flow Strategy"],
-            stats: ["3 Ventures", "Finance · EdTech · AI", "3 Countries"],
+            chips: ["SABAH Hub", "Flow Strategy", "North", "Stride"],
+            stats: ["4 Innovation Programs", "Finance · EdTech · AI", "Azerbaijan · Spain · US"],
           },
           {
             num: "02",
             mode: "ADVISE",
-            tagline: "Program design and strategy where the content has to match the context.",
-            chips: ["Kyowa Kirin", "IE Business School", "TEC de Monterrey", "Royal Commission for AlUla"],
-            stats: ["Curriculum Design", "AI Implementation", "Corporate + Academic"],
+            tagline: "From AI implementation to financial strategy — built around the challenge, not a template.",
+            chips: ["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla", "Leonardo"],
+            stats: ["AI Workshops · Sales Enablement", "Financial Modeling · GTM", "Scale-up Programs"],
           },
           {
             num: "03",
             mode: "TEACH",
-            tagline: "Classrooms, boardrooms, and briefing rooms — same standard, different accent.",
-            chips: ["STC", "PIF Saudi Arabia", "Qatari Police", "ThePower", "Oregon State"],
+            tagline: "Classrooms, boardrooms, briefing rooms. The standard doesn't change.",
+            chips: ["STC", "PIF Saudi Arabia", "Qatari Police", "IE Business School", "Oregon State"],
             stats: ["4.9 / 5 Rating", "NPS 70", "5× Teaching Excellence", "30+ Institutions"],
           },
         ].map((s, i) => (
@@ -214,7 +214,6 @@ import Layout from '../layouts/Layout.astro';
             <div class="p-7">
               <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Capital Markets</h3>
               <p class="text-navy-400 text-sm mb-3">How institutional money moves through global systems — and how to raise, deploy, and protect it.</p>
-              <p class="text-orange-500 text-xs font-semibold uppercase tracking-wide mb-3" style="font-family: var(--font-display)">Outcome — Participants leave able to read, navigate, and engage with global capital markets with confidence.</p>
               <ul class="space-y-1.5">
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Equity & debt market structure</li>
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Institutional investors & capital raising</li>
@@ -262,19 +261,19 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
           <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">9 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Business Case Modeling</h3>
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">AI-Powered Finance</h3>
             <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Financial model construction</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Scenario & sensitivity analysis</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>GenAI for financial analysis & modeling</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>AI use cases across the finance function</li>
             </ul>
           </div>
           <div class="work-card bg-white rounded-2xl p-6">
             <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Fintech</h3>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Financial Markets & Fintech</h3>
             <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Digital payments & blockchain</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>AI in financial services</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Market structure, instruments & trading</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Digital payments, blockchain & AI in finance</li>
             </ul>
           </div>
           <div class="work-card bg-white rounded-2xl p-6">
@@ -289,8 +288,8 @@ import Layout from '../layouts/Layout.astro';
         <div class="mt-8">
           <p class="text-xs text-navy-400 font-semibold tracking-widest uppercase mb-4" style="font-family: var(--font-display)">Session Samples</p>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="https://drive.google.com/file/d/1jQdcKAY7RqyHw2dZz9NbM4CE9NrpsxK-/view" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="https://drive.google.com/thumbnail?id=1jQdcKAY7RqyHw2dZz9NbM4CE9NrpsxK-&sz=w500" alt="Time Value of Money" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+            <a href="https://vimeo.com/1175592384" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://vumbnail.com/1175592384.jpg" alt="Time Value of Money" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
                   <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -300,8 +299,8 @@ import Layout from '../layouts/Layout.astro';
                 <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Time Value of Money</p>
               </div>
             </a>
-            <a href="https://drive.google.com/file/d/1nlPC432wBF2a6VbhSZFOA9rzzcS3KltO/view" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="https://drive.google.com/thumbnail?id=1nlPC432wBF2a6VbhSZFOA9rzzcS3KltO&sz=w500" alt="Working Capital" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+            <a href="https://vimeo.com/1175592202" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://vumbnail.com/1175592202.jpg" alt="Working Capital" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
                   <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -311,8 +310,8 @@ import Layout from '../layouts/Layout.astro';
                 <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Working Capital</p>
               </div>
             </a>
-            <a href="https://drive.google.com/file/d/1aRBPr1TkaNRA6MD55ohBAoJGQEpLFi8B/view" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="https://drive.google.com/thumbnail?id=1aRBPr1TkaNRA6MD55ohBAoJGQEpLFi8B&sz=w500" alt="Dynamic Valuation" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+            <a href="https://vimeo.com/1175592624" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://vumbnail.com/1175592624.jpg" alt="Dynamic Valuation" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
                   <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -322,8 +321,8 @@ import Layout from '../layouts/Layout.astro';
                 <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Dynamic Valuation</p>
               </div>
             </a>
-            <a href="https://drive.google.com/file/d/1bDXW82jglG_2ezWas2ezpwa3h-yllMI_/view" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="https://drive.google.com/thumbnail?id=1bDXW82jglG_2ezWas2ezpwa3h-yllMI_&sz=w500" alt="Sources of Corporate Financing" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+            <a href="https://vimeo.com/1175592738" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+              <img src="https://vumbnail.com/1175592738.jpg" alt="Sources of Corporate Financing" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
                   <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -348,8 +347,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
             <div class="p-7">
               <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Entrepreneurial Journey</h3>
-              <p class="text-navy-400 text-sm mb-3">From idea to scale — built from 4 startups, 3 accelerators, and 1 venture builder. Real-world, not theoretical.</p>
-              <p class="text-orange-500 text-xs font-semibold uppercase tracking-wide mb-3" style="font-family: var(--font-display)">Outcome — Participants leave with a validated framework for building, testing, and scaling a venture from scratch.</p>
+              <p class="text-navy-400 text-sm mb-3">From idea to scale — drawn from real ventures, 4 innovation programs, and work with accelerators across three continents. Real-world, not theoretical.</p>
               <ul class="space-y-1.5">
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Ideation, validation & lean startup</li>
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Business model design & iteration</li>
@@ -378,27 +376,27 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
           <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Founder · 4 Startups</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Built & Advised Ventures</h3>
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">3 Sessions</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Ideation & Validation</h3>
             <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Led product, finance & go-to-market</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Finance, edtech & innovation sectors</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Problem discovery & opportunity framing</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Rapid testing & assumption mapping</li>
             </ul>
           </div>
           <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Mentor · 3 Global Accelerators</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Accelerator Mentorship</h3>
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">3 Sessions</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">AI as a Cofounder</h3>
             <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Helped founders validate ideas & build teams</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Coached on fundraising & investor pitch</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Using AI to research, build & decide faster</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Prompt strategies for founders</li>
             </ul>
           </div>
           <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Consulting</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Innovation Consulting</h3>
+            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">6 Sessions</p>
+            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Business & Financial Model Design</h3>
             <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Built intrapreneurship programs for corporates</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>0-to-1 product & go-to-market strategy</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Business model canvas & revenue design</li>
+              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Unit economics & financial projections</li>
             </ul>
           </div>
         </div>
@@ -575,7 +573,6 @@ import Layout from '../layouts/Layout.astro';
             <div class="p-7">
               <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">GenAI Workflow Library</h3>
               <p class="text-navy-400 text-sm mb-3">Step-by-step AI workflow demonstrations built for real professional contexts — not theory, but tools you can use today.</p>
-              <p class="text-orange-500 text-xs font-semibold uppercase tracking-wide mb-3" style="font-family: var(--font-display)">Outcome — Participants leave with a personalized AI workflow that saves hours per week, immediately applicable to their role.</p>
               <ul class="space-y-1.5">
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Research, reports & presentations with AI</li>
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Excel & data analysis with Copilot</li>
@@ -634,13 +631,16 @@ import Layout from '../layouts/Layout.astro';
             </div>
             <a href="https://claude.ai/public/artifacts/3a156b7f-e05b-4e72-b6f0-788f28870b41" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
           </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">WhatsApp Course</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">GenAI for Business</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>AI fundamentals via mobile</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Accessible to any professional, anywhere</li>
-            </ul>
+          <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Perplexity Computer</p>
+              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Global Macro Risk Dashboard</h3>
+              <ul class="space-y-1.5 mb-4">
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Deep research & scenario analysis</li>
+                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Global economy risk report</li>
+              </ul>
+            </div>
+            <a href="https://www.perplexity.ai/computer/tasks/global-macro-risk-dashboard-re-1AHm8gjISKuHhrH6tN.ORA?view=thread" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
           </div>
         </div>
 
@@ -687,7 +687,6 @@ import Layout from '../layouts/Layout.astro';
             <div class="p-7">
               <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Critical Skills for the Modern World</h3>
               <p class="text-navy-400 text-sm mb-3">Behavioral science applied to professional life — the decisions you make, the biases you carry, and the habits that hold you back or push you forward.</p>
-              <p class="text-orange-500 text-xs font-semibold uppercase tracking-wide mb-3" style="font-family: var(--font-display)">Outcome — Participants leave with self-awareness of their decision patterns and concrete tools to think, choose, and adapt more effectively.</p>
               <ul class="space-y-1.5">
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Cognitive bias & decision traps</li>
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Habit formation & behavior change</li>
@@ -796,7 +795,7 @@ import Layout from '../layouts/Layout.astro';
       <!-- DIGITAL COURSES TAB -->
       <div id="tab-courses" class="tab-panel hidden">
         <div class="py-6">
-          <p class="text-navy-400 text-sm leading-relaxed mb-12 max-w-xl">Three fully-produced digital courses built for Rebundle's WhatsApp platform — delivered as conversational micro-lessons directly on mobile.</p>
+          <p class="text-navy-400 text-sm leading-relaxed mb-12">Three fully-produced digital courses built for Rebundle's WhatsApp platform — delivered as conversational micro-lessons directly on mobile.</p>
           <div class="flex flex-col sm:flex-row items-start justify-center gap-10 lg:gap-20">
             {[
               { vid: "1175515603", key: "maia",  tag: "AI",        name: "Generative AI for Business Professionals",     desc: "Start with AI basics and learn from the best." },
@@ -977,54 +976,36 @@ import Layout from '../layouts/Layout.astro';
         </h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="brand-card bg-white rounded-2xl p-8 reveal">
-          <div class="w-11 h-11 bg-navy-900 rounded-xl flex items-center justify-center mb-7">
-            <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
+        <div class="brand-card bg-white rounded-2xl p-8 reveal flex flex-col">
+          <div class="flex items-start justify-between mb-5">
+            <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">Flow</h3>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="font-family:var(--font-display);background:#F0FDF4;color:#16a34a">Active</span>
           </div>
-          <h3 class="font-bold text-2xl text-navy-900 mb-3" style="font-family: var(--font-display)">Flow</h3>
-          <p class="text-navy-400 text-sm leading-relaxed mb-6">AI-powered consulting for organizations navigating change. Strategy, operations, and AI implementation — for corporates, institutions, and startups.</p>
-          <div class="flex flex-wrap gap-2 mb-7">
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Strategy</span>
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Operations</span>
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">AI</span>
-          </div>
+          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">Strategy consulting and program design for organizations that need to change how they operate — not just what they know. Clients span sovereign wealth, education, and tech sectors.</p>
+          <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">Strategy · Operations · Program Design</p>
           <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="flex items-center gap-2 text-orange-500 text-sm font-semibold" style="font-family: var(--font-display)">
             <span>Visit Flow</span><span class="brand-arrow">→</span>
           </a>
         </div>
-        <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-1">
-          <div class="w-11 h-11 bg-navy-900 rounded-xl flex items-center justify-center mb-7">
-            <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
-            </svg>
+        <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-1 flex flex-col">
+          <div class="flex items-start justify-between mb-5">
+            <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">North</h3>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="font-family:var(--font-display);background:#FFF7ED;color:#ea580c">Launching</span>
           </div>
-          <h3 class="font-bold text-2xl text-navy-900 mb-3" style="font-family: var(--font-display)">North</h3>
-          <p class="text-navy-400 text-sm leading-relaxed mb-6">Personalized financial education that adapts to your situation. Built for people who want to truly master their money — not just understand it.</p>
-          <div class="flex flex-wrap gap-2 mb-7">
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Finance</span>
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Education</span>
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">AI-Adaptive</span>
-          </div>
+          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">A financial education platform built around behavioral change, not just financial knowledge. For people who want to actually do something different with their money.</p>
+          <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">Personal Finance · Behavioral Change</p>
           <a href="https://findyournorth.net/" target="_blank" class="flex items-center gap-2 text-orange-500 text-sm font-semibold" style="font-family: var(--font-display)">
             <span>Visit North</span><span class="brand-arrow">→</span>
           </a>
         </div>
-        <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-2">
-          <div class="w-11 h-11 bg-navy-900 rounded-xl flex items-center justify-center mb-7">
-            <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-            </svg>
+        <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-2 flex flex-col">
+          <div class="flex items-start justify-between mb-5">
+            <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">Stride</h3>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="font-family:var(--font-display);background:#F5F3FF;color:#7c3aed">Building</span>
           </div>
-          <h3 class="font-bold text-2xl text-navy-900 mb-3" style="font-family: var(--font-display)">Stride</h3>
-          <p class="text-navy-400 text-sm leading-relaxed mb-6">The AI Academy for professionals. Learn workflows, prompting strategies, and automation tools that transform the way you work — regardless of your field.</p>
-          <div class="flex flex-wrap gap-2 mb-7">
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">AI Workflows</span>
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Prompting</span>
-            <span class="text-xs bg-warm-100 text-navy-500 px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">Academy</span>
-          </div>
-          <span class="flex items-center gap-2 text-navy-400 text-sm" style="font-family: var(--font-display)">Coming Soon</span>
+          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">An AI workflow academy built from 150+ real-world use cases — not a theory course, but a library of things you can apply in your actual work today.</p>
+          <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">AI Workflows · Prompting · Productivity</p>
+          <span class="flex items-center gap-2 text-navy-300 text-sm" style="font-family: var(--font-display)">Coming Soon</span>
         </div>
       </div>
     </div>
@@ -1040,24 +1021,62 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="font-bold text-navy-900" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">What people say.</h2>
       </div>
       <div class="grid md:grid-cols-2 gap-5 mb-10">
-        <div class="reveal bg-navy-900 rounded-2xl p-8 flex items-center gap-6">
-          <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
-            <span class="text-white font-bold text-xl" style="font-family: var(--font-display)">2</span>
+        <div class="reveal bg-navy-900 rounded-2xl overflow-hidden">
+          <div class="p-8 flex items-center justify-between gap-6">
+            <div class="flex items-center gap-6">
+              <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
+                <span class="text-white font-bold text-xl" style="font-family: var(--font-display)">2</span>
+              </div>
+              <div>
+                <p class="text-white font-bold text-base" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
+                <p class="text-sm mt-1" style="color: rgba(255,255,255,0.5)">IE University · Academic Year 2023–24</p>
+                <p class="text-xs mt-1" style="color: rgba(255,255,255,0.3)">Recognized by students across 2 courses</p>
+              </div>
+            </div>
+            <button onclick="toggleAward('2024')" class="flex-shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors" style="font-family:var(--font-display);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)" id="award-btn-2024">
+              View Awards
+            </button>
           </div>
-          <div>
-            <p class="text-white font-bold text-base" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
-            <p class="text-sm mt-1" style="color: rgba(255,255,255,0.5)">IE University · Academic Year 2023–24</p>
-            <p class="text-xs mt-1" style="color: rgba(255,255,255,0.3)">Recognized by students across 2 courses</p>
+          <div id="award-panel-2024" style="display:none;border-top:1px solid rgba(255,255,255,0.08)">
+            <div class="px-8 py-5 flex flex-wrap gap-3">
+              <a href="/recognition/award-2024.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3);font-family:var(--font-display)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
+                Premio Excelencia Docente 2024
+              </a>
+              <a href="/recognition/diploma-2024.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3);font-family:var(--font-display)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
+                Diploma Lifelong Learning 2024
+              </a>
+            </div>
           </div>
         </div>
-        <div class="reveal reveal-delay-1 bg-navy-900 rounded-2xl p-8 flex items-center gap-6">
-          <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
-            <span class="text-white font-bold text-xl" style="font-family: var(--font-display)">3</span>
+        <div class="reveal reveal-delay-1 bg-navy-900 rounded-2xl overflow-hidden">
+          <div class="p-8 flex items-center justify-between gap-6">
+            <div class="flex items-center gap-6">
+              <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
+                <span class="text-white font-bold text-xl" style="font-family: var(--font-display)">3</span>
+              </div>
+              <div>
+                <p class="text-white font-bold text-base" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
+                <p class="text-sm mt-1" style="color: rgba(255,255,255,0.5)">IE University · Academic Year 2024–25</p>
+                <p class="text-xs mt-1" style="color: rgba(255,255,255,0.3)">Recognized by students across 3 courses</p>
+              </div>
+            </div>
+            <button onclick="toggleAward('2025')" class="flex-shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors" style="font-family:var(--font-display);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)" id="award-btn-2025">
+              View Awards
+            </button>
           </div>
-          <div>
-            <p class="text-white font-bold text-base" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
-            <p class="text-sm mt-1" style="color: rgba(255,255,255,0.5)">IE University · Academic Year 2024–25</p>
-            <p class="text-xs mt-1" style="color: rgba(255,255,255,0.3)">Recognized by students across 3 courses</p>
+          <div id="award-panel-2025" style="display:none;border-top:1px solid rgba(255,255,255,0.08)">
+            <div class="px-8 py-5 flex flex-wrap gap-3">
+              <a href="/recognition/award-2025.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3);font-family:var(--font-display)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
+                Premio Excelencia Docente 2025
+              </a>
+              <a href="/recognition/diploma-2025.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3);font-family:var(--font-display)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
+                Diploma Lifelong Learning 2025
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1428,6 +1447,16 @@ import Layout from '../layouts/Layout.astro';
     document.querySelector(`[data-tab="${tab}"]`)?.classList.add('active');
   }
   (window as any).switchTab = switchTab;
+
+  // Award panel toggle
+  (window as any).toggleAward = function(year: string) {
+    const panel = document.getElementById('award-panel-' + year);
+    const btn = document.getElementById('award-btn-' + year);
+    if (!panel || !btn) return;
+    const isOpen = panel.style.display !== 'none';
+    panel.style.display = isOpen ? 'none' : 'block';
+    btn.textContent = isOpen ? 'View Awards' : 'Hide Awards';
+  };
 
   // Capital Markets Journey accordion
   (window as any).toggleJourney = function(id: string) {
