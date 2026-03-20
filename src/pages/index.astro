@@ -7,12 +7,9 @@ import Layout from '../layouts/Layout.astro';
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 px-8">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <a href="#" class="flex items-center" aria-label="Arseniy Goldberg">
-        <svg width="52" height="30" viewBox="0 0 52 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- A -->
-          <path d="M2 28L11 2L20 28" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M5.5 18.5H16.5" stroke="#F4621F" stroke-width="3" stroke-linecap="round"/>
-          <!-- G -->
-          <path d="M50 9C47 4 42 2 38 3.5C33 5.5 31 10 31 15C31 20 33.5 24.5 38 26.5C42 28 47 26 49.5 22.5V15.5H43" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg width="68" height="30" viewBox="0 0 68 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="1" y="24" style="font-family: var(--font-display); font-weight: 700; font-size: 25px; fill: white; letter-spacing: 4px;">AG</text>
+          <text x="53" y="24" style="font-family: var(--font-display); font-weight: 700; font-size: 25px; fill: #F4621F;">.</text>
         </svg>
       </a>
       <div class="hidden md:flex items-center gap-8">
@@ -52,9 +49,9 @@ import Layout from '../layouts/Layout.astro';
           <span class="block font-light mt-3" style="font-size: clamp(1.8rem,4vw,2.8rem); color: rgba(255,255,255,0.75)">One Obsession.</span>
         </h1>
         <p class="text-base leading-relaxed max-w-[400px] mb-5 font-medium" style="color: rgba(255,255,255,0.85)">
-          How humans grow — through <span style="color:#F4621F;font-weight:700">Finance</span>,
-          <span style="color:#F4621F;font-weight:700">Entrepreneurship</span>, and
-          <span style="color:#F4621F;font-weight:700">Artificial Intelligence</span>.
+          How humans grow — through <span style="color:#F4621F;font-weight:700">Finance</span>,<br>
+          <span style="color:#F4621F;font-weight:700">Artificial Intelligence</span>, and
+          <span style="color:#F4621F;font-weight:700">Education</span>.
         </p>
         <p class="text-sm mb-10 tracking-widest uppercase font-semibold" style="font-family: var(--font-display); color: rgba(255,255,255,0.75)">
           I study it &nbsp;·&nbsp; I teach it &nbsp;·&nbsp; I build with it
@@ -88,27 +85,37 @@ import Layout from '../layouts/Layout.astro';
   <section class="bg-warm-50 py-16 border-b border-warm-200">
     <div class="max-w-5xl mx-auto px-8">
       <div class="flex flex-wrap justify-center divide-x divide-warm-200">
-        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="12">0</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Years Experience</p>
+        <div class="stat-item flex-1 min-w-[140px] text-center px-8 py-4 reveal">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="25">0</span><span class="text-orange-500">+</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Independent Projects</p>
         </div>
-        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal reveal-delay-1">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Continents</p>
-        </div>
-        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal reveal-delay-2">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="30">0</span><span class="text-orange-500">+</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Institutions</p>
-        </div>
-        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal reveal-delay-3">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="15">0</span><span class="text-orange-500">+</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Courses Built</p>
-        </div>
-        <div class="stat-item flex-1 min-w-[120px] text-center px-8 py-4 reveal reveal-delay-4">
+        <div class="stat-item flex-1 min-w-[140px] text-center px-8 py-4 reveal reveal-delay-1">
           <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="4">0</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Startups</p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Innovation Programs Launched</p>
+        </div>
+        <div class="stat-item flex-1 min-w-[140px] text-center px-8 py-4 reveal reveal-delay-2">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)">5<span class="text-orange-500" style="font-size:1.5rem">th</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Venture in Progress</p>
+        </div>
+        <div class="stat-item flex-1 min-w-[140px] text-center px-8 py-4 reveal reveal-delay-3">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
+        </div>
+        <div class="stat-item flex-1 min-w-[140px] text-center px-8 py-4 reveal reveal-delay-4">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="35">0</span><span class="text-orange-500">+</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Institutions Reached</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- CREDIBILITY STRIP -->
+  <section class="py-10 bg-warm-100 border-y border-warm-200">
+    <div class="max-w-4xl mx-auto px-8 reveal">
+      <p class="text-center text-navy-500 text-base leading-relaxed italic" style="font-size: clamp(1rem, 1.8vw, 1.2rem)">
+        "Professor Arseniy was one of the most memorable speakers I've ever met — his knowledge, experience, and ability to communicate with compassion and conviction left a lasting impression."
+      </p>
+      <p class="text-center text-sm mt-4 font-semibold text-navy-400" style="font-family: var(--font-display)">Agil Zakariya &nbsp;·&nbsp; Brand Management, Procter & Gamble</p>
     </div>
   </section>
 
@@ -142,16 +149,16 @@ import Layout from '../layouts/Layout.astro';
           {
             num: "02",
             mode: "ADVISE",
-            tagline: "From AI implementation to financial strategy — built around the challenge, not a template.",
-            chips: ["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla", "Leonardo"],
-            stats: ["AI Workshops · Sales Enablement", "Financial Modeling · GTM", "Scale-up Programs"],
+            tagline: "Strategy to implementation. Built around real company challenges.",
+            chips: ["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla"],
+            stats: ["AI Implementation", "Digital Strategy", "Financial Modeling · GTM"],
           },
           {
             num: "03",
             mode: "TEACH",
             tagline: "Classrooms, boardrooms, briefing rooms. The standard doesn't change.",
-            chips: ["STC", "PIF Saudi Arabia", "Qatari Police", "IE Business School", "Oregon State"],
-            stats: ["4.9 / 5 Rating", "NPS 70", "5× Teaching Excellence", "30+ Institutions"],
+            chips: ["STC", "PIF Saudi Arabia", "Qatari Police", "IE Business School", "Oregon State", "Leonardo"],
+            stats: ["4.9 / 5 Rating", "NPS 70", "5× Teaching Excellence"],
           },
         ].map((s, i) => (
           <div
@@ -311,7 +318,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </a>
             <a href="https://vimeo.com/1175592624" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="https://vumbnail.com/1175592624.jpg" alt="Dynamic Valuation" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+              <img src="https://vumbnail.com/1175592624.jpg?v=2" alt="Dynamic Valuation" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
                   <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -322,7 +329,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </a>
             <a href="https://vimeo.com/1175592738" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="https://vumbnail.com/1175592738.jpg" alt="Sources of Corporate Financing" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+              <img src="https://vumbnail.com/1175592738.jpg?v=2" alt="Sources of Corporate Financing" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
                   <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -971,26 +978,24 @@ import Layout from '../layouts/Layout.astro';
           <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">What I'm Building</span>
         </div>
         <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
-          Three platforms.<br>
+          Three projects.<br>
           <span class="text-navy-400 font-light">One vision.</span>
         </h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="brand-card bg-white rounded-2xl p-8 reveal flex flex-col">
-          <div class="flex items-start justify-between mb-5">
+          <div class="mb-5">
             <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">Flow</h3>
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="font-family:var(--font-display);background:#F0FDF4;color:#16a34a">Active</span>
           </div>
-          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">Strategy consulting and program design for organizations that need to change how they operate — not just what they know. Clients span sovereign wealth, education, and tech sectors.</p>
-          <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">Strategy · Operations · Program Design</p>
+          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">Strategy and operations consulting for organizations unlocking AI — sovereign wealth funds, financial institutions, and tech companies navigating what comes next.</p>
+          <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">Strategy · Operations · AI Implementation</p>
           <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="flex items-center gap-2 text-orange-500 text-sm font-semibold" style="font-family: var(--font-display)">
             <span>Visit Flow</span><span class="brand-arrow">→</span>
           </a>
         </div>
         <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-1 flex flex-col">
-          <div class="flex items-start justify-between mb-5">
+          <div class="mb-5">
             <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">North</h3>
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="font-family:var(--font-display);background:#FFF7ED;color:#ea580c">Launching</span>
           </div>
           <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">A financial education platform built around behavioral change, not just financial knowledge. For people who want to actually do something different with their money.</p>
           <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">Personal Finance · Behavioral Change</p>
@@ -999,9 +1004,8 @@ import Layout from '../layouts/Layout.astro';
           </a>
         </div>
         <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-2 flex flex-col">
-          <div class="flex items-start justify-between mb-5">
+          <div class="mb-5">
             <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">Stride</h3>
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="font-family:var(--font-display);background:#F5F3FF;color:#7c3aed">Building</span>
           </div>
           <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">An AI workflow academy built from 150+ real-world use cases — not a theory course, but a library of things you can apply in your actual work today.</p>
           <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">AI Workflows · Prompting · Productivity</p>
@@ -1348,13 +1352,32 @@ import Layout from '../layouts/Layout.astro';
           <div class="w-8 h-px bg-orange-500"></div>
         </div>
         <h2 class="font-bold text-white leading-tight mb-5" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
-          Have something<br>in mind?
+          Let's work<br>together.
         </h2>
         <p class="text-base max-w-sm mx-auto leading-relaxed" style="color: rgba(255,255,255,0.4)">
-          Consulting, teaching collaboration, speaking, or building together — I'm interested.
+          Tell me what you're building. I'll tell you if I can help.
         </p>
       </div>
       <form id="contact-form" class="reveal reveal-delay-1 space-y-4">
+        <!-- Engagement type -->
+        <div class="mb-2">
+          <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35);font-family:var(--font-display)">I'm looking for</p>
+          <div class="flex flex-wrap gap-2">
+            {[
+              { val: "Teaching & Course Design", label: "Teaching / Course Design" },
+              { val: "Strategy & Consulting",    label: "Strategy & Consulting" },
+              { val: "AI Implementation",        label: "AI Implementation" },
+              { val: "Something else",           label: "Something else" },
+            ].map(opt => (
+              <button type="button" onclick={`selectEngagement('${opt.val}', this)`}
+                class="engagement-btn text-xs font-semibold px-4 py-2 rounded-full transition-all"
+                style="font-family:var(--font-display);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">
+                {opt.label}
+              </button>
+            ))}
+          </div>
+          <input type="hidden" name="engagement" id="engagement-input" />
+        </div>
         <div class="grid sm:grid-cols-2 gap-4">
           <input type="text" name="name" placeholder="Your Name" required
             class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
@@ -1363,16 +1386,16 @@ import Layout from '../layouts/Layout.astro';
             class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
             style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)" />
         </div>
-        <input type="text" name="subject" placeholder="What are you working on?"
+        <input type="text" name="organization" placeholder="Your organization or company"
           class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
           style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)" />
-        <textarea rows="4" name="message" placeholder="Tell me more..."
+        <textarea rows="4" name="message" id="contact-message" placeholder="What's the challenge you're trying to solve?"
           class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors resize-none"
           style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)"></textarea>
         <button id="submit-btn" type="submit"
           class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl transition-colors text-sm tracking-wide"
           style="font-family: var(--font-display)">
-          Send Message →
+          Send →
         </button>
         <div id="form-success" class="hidden text-center py-6">
           <p class="text-white font-semibold mb-1" style="font-family: var(--font-display)">Got it.</p>
@@ -1449,6 +1472,18 @@ import Layout from '../layouts/Layout.astro';
   (window as any).switchTab = switchTab;
 
   // Award panel toggle
+  (window as any).selectEngagement = function(val: string, btn: HTMLElement) {
+    (document.getElementById('engagement-input') as HTMLInputElement).value = val;
+    document.querySelectorAll('.engagement-btn').forEach((b: Element) => {
+      (b as HTMLElement).style.background = 'rgba(255,255,255,0.06)';
+      (b as HTMLElement).style.color = 'rgba(255,255,255,0.5)';
+      (b as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)';
+    });
+    btn.style.background = 'rgba(244,98,31,0.15)';
+    btn.style.color = '#F4621F';
+    btn.style.borderColor = 'rgba(244,98,31,0.4)';
+  };
+
   (window as any).toggleAward = function(year: string) {
     const panel = document.getElementById('award-panel-' + year);
     const btn = document.getElementById('award-btn-' + year);
