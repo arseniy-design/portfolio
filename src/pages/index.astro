@@ -41,7 +41,13 @@ import Layout from '../layouts/Layout.astro';
   <!-- HERO -->
   <section class="hero-bg min-h-screen flex items-center overflow-hidden">
     <div class="absolute left-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-orange-500/15 to-transparent hidden lg:block"></div>
-    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-24 sm:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <!-- Mobile-only hero photo -->
+    <div class="lg:hidden relative z-10 w-full mt-20" style="aspect-ratio: 4/3; max-height: 55vw">
+      <img src="/hero.jpg" alt="Arseniy Goldberg" class="w-full h-full object-cover" style="object-position: 35% top" />
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(13,27,42,0.35) 0%, rgba(13,27,42,0.0) 40%, rgba(13,27,42,0.75) 100%)"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-8 lg:pt-24 sm:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
       <div>
         <h1 class="text-white leading-[1.0] mb-7" style="font-family: var(--font-display)">
           <span class="block font-bold tracking-tight" style="font-size: clamp(2.8rem,6vw,4.5rem)">12 Years.</span>
