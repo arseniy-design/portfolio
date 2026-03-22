@@ -27,7 +27,8 @@
   --color-warm-300: #DDD6CC;
 }
 
-* { -webkit-font-smoothing: antialiased; }
+* { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+html, body { overflow-x: hidden; max-width: 100%; }
 body { font-family: var(--font-body); }
 
 .hero-bg {
@@ -141,4 +142,15 @@ body { font-family: var(--font-body); }
   background: #F4621F;
 }
 
-.stat-item + .stat-item { border-left: 1px solid #EDE8DF; }
+@media (min-width: 768px) {
+  .stat-item + .stat-item { border-left: 1px solid #EDE8DF; }
+}
+
+/* Scrollable tab bar on mobile */
+#work-tabs { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+#work-tabs::-webkit-scrollbar { display: none; }
+
+/* Tab button smaller padding on mobile */
+@media (max-width: 639px) {
+  .tab-btn { padding: 10px 14px; font-size: 0.8125rem; }
+}
