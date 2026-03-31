@@ -214,13 +214,30 @@ import Layout from '../layouts/Layout.astro';
       <div id="tab-finance" class="tab-panel">
         <div class="grid md:grid-cols-3 gap-5">
           <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
-            <div class="h-40 bg-navy-900 relative flex items-end p-6">
-              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.12) 0%, transparent 60%)"></div>
-              <span class="relative z-10 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">25 Sessions</span>
-            </div>
+            <a href="/capital-markets" target="_blank" rel="noopener" class="block h-48 bg-navy-900 relative p-7 overflow-hidden group">
+              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.10) 0%, transparent 55%)"></div>
+              <div class="absolute bottom-0 right-0 w-64 h-64 rounded-full opacity-5" style="background:radial-gradient(circle, #F4621F, transparent);transform:translate(30%,30%)"></div>
+              <div class="relative z-10">
+                <p class="text-xs font-semibold tracking-widest uppercase mb-4" style="color:rgba(255,255,255,0.3);font-family:var(--font-display)">IE University · BBA · Capital Markets</p>
+                <p class="font-black leading-none tracking-tight text-white" style="font-size:clamp(28px,4vw,40px);font-family:var(--font-display)">22 Activities.</p>
+                <p class="font-black leading-none tracking-tight" style="font-size:clamp(28px,4vw,40px);font-family:var(--font-display);color:#F4621F;font-style:italic">0 Lectures.</p>
+              </div>
+              <div class="absolute bottom-5 right-6 flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style="color:#F4621F;font-family:var(--font-display)">
+                Explore the Hub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
+            </a>
             <div class="p-7">
-              <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Capital Markets</h3>
-              <p class="text-navy-400 text-sm mb-3">How institutional money moves through global systems — and how to raise, deploy, and protect it.</p>
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <div>
+                  <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Capital Markets</h3>
+                  <p class="text-navy-400 text-sm">How institutional money moves through global systems — and how to raise, deploy, and protect it.</p>
+                </div>
+                <a href="/capital-markets" target="_blank" rel="noopener"
+                  class="flex-shrink-0 text-xs font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap"
+                  style="background:#FFF3EE;color:#F4621F;border:1px solid rgba(244,98,31,0.2);font-family:var(--font-display)">
+                  Explore Hub ↗
+                </a>
+              </div>
               <ul class="space-y-1.5">
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Equity & debt market structure</li>
                 <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Institutional investors & capital raising</li>
