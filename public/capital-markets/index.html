@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Markets Interactive Hub — Arseniy Goldberg</title>
+<meta name="description" content="22 activities across 7 modules. From first instinct to derivatives. Every concept learned by doing.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0D1B22;--bgS:#11222B;--bgC:#142A34;--bgH:#193540;
+  --accent:#E8613A;--text:#fff;--muted:#7A909A;--dim:#4A5E68;
+  --border:rgba(255,255,255,0.06);--font:'Inter',system-ui,sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+.glow{position:fixed;top:0;left:0;right:0;height:500px;background:radial-gradient(ellipse 70% 40% at 50% -5%,rgba(232,97,58,0.06),transparent);pointer-events:none;z-index:0}
+
+/* ── Nav ── */
+nav{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(13,27,34,0.87);backdrop-filter:blur(20px);z-index:100}
+.logo{font-size:18px;font-weight:900;letter-spacing:2px}
+.logo span{font-size:22px;font-weight:900;color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-label{font-size:12px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.nav-back{font-size:12px;color:var(--dim);letter-spacing:1px;font-weight:600;opacity:0.5;transition:opacity 0.2s}
+.nav-back:hover{opacity:1;color:#fff}
+
+/* ── Hero ── */
+.hero{padding:100px 32px 60px;max-width:800px;margin:0 auto;position:relative;z-index:1}
+.hero h1{font-size:60px;font-weight:900;line-height:1.0;letter-spacing:-2.5px}
+.hero h1+h1{color:var(--accent);font-style:italic;margin-top:8px}
+.hero p{font-size:18px;color:var(--muted);line-height:1.8;max-width:440px;margin-top:28px}
+.stats{display:flex;gap:48px;margin-top:48px}
+.stat-num{font-size:34px;font-weight:900}
+.stat-label{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:3px;font-weight:600;margin-top:2px}
+
+/* ── Progress ── */
+.progress-wrap{max-width:800px;margin:0 auto;padding:0 32px 32px;position:relative;z-index:1}
+.progress-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:8px}
+.progress-track{height:3px;background:var(--border);border-radius:2px}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width 0.4s ease}
+
+/* ── Modules ── */
+.modules{max-width:800px;margin:0 auto;padding:0 32px 120px;position:relative;z-index:1}
+.module{margin-bottom:64px}
+.mod-header{display:flex;align-items:center;gap:18px;margin-bottom:24px}
+.mod-num{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0}
+.mod-title{font-weight:900;letter-spacing:-0.5px;margin:0}
+.mod-sub{color:var(--muted);font-size:14px;font-style:italic;margin:2px 0 0}
+.acts{display:flex;flex-direction:column;gap:8px}
+
+/* ── Cards ── */
+.card{display:block;padding:18px 20px;border-radius:14px;background:var(--bgC);border:1px solid var(--border);transition:background 0.2s,border-color 0.2s}
+.card:hover{background:var(--bgH);border-color:rgba(232,97,58,0.2)}
+.card.feat{padding:22px 24px;border-radius:18px}
+.card-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.card-body{flex:1;min-width:0}
+.card-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:40px;text-transform:uppercase;letter-spacing:1.5px}
+.card-dur{font-size:12px;color:var(--dim)}
+.card h3{font-size:17px;font-weight:700;margin:0 0 4px}
+.card.feat h3{font-size:19px;font-weight:800}
+.card p{color:var(--muted);font-size:13px;margin:0;line-height:1.6}
+.card.feat p{font-size:14px}
+
+.card-actions{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0}
+.open-btn{padding:9px 20px;border-radius:40px;background:rgba(232,97,58,0.10);color:var(--accent);font-size:13px;font-weight:700;white-space:nowrap;transition:background 0.2s,color 0.2s}
+.card:hover .open-btn{background:var(--accent);color:#fff}
+.check-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--dim);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:transparent;font-size:12px;font-family:var(--font)}
+.check-btn:hover{border-color:#fff}
+.check-btn.done{background:rgba(59,155,143,0.15);border-color:#3B9B8F;color:#3B9B8F}
+
+/* ── Soon ── */
+.card-soon{padding:16px 20px;border-radius:14px;background:var(--bgS);border:1px solid var(--border);opacity:0.35}
+.card-soon h3{font-size:16px;font-weight:700;color:var(--dim);margin:8px 0 4px}
+.card-soon p{color:var(--dim);font-size:13px;margin:0}
+.soon-tag{font-size:12px;color:var(--dim);font-style:italic}
+
+/* ── Footer ── */
+footer{padding:32px;border-top:1px solid var(--border);text-align:center;position:relative;z-index:1}
+.footer-logo{font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:1px;margin-bottom:8px}
+.footer-logo span{font-size:20px;font-weight:900;color:var(--accent)}
+
+/* ── Responsive ── */
+@media(max-width:600px){
+  nav{padding:16px 20px}
+  .nav-back{display:none}
+  .hero{padding:60px 20px 40px}
+  .hero h1{font-size:36px;letter-spacing:-1.5px}
+  .hero p{font-size:16px}
+  .stats{gap:28px}
+  .stat-num{font-size:26px}
+  .progress-wrap,.modules{padding-left:16px;padding-right:16px}
+  .mod-title{font-size:20px!important}
+  .card-inner{flex-direction:column;gap:12px}
+  .card-actions{flex-direction:row;align-items:center}
+  .acts{padding-left:12px!important}
+}
+@media(max-width:400px){
+  .hero h1{font-size:28px}
+  .stats{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+  <a href="/" class="logo">A G<span>.</span></a>
+  <div class="nav-right">
+    <span class="nav-label">Capital Markets</span>
+    <a href="/" class="nav-back">← arseniygoldberg.com</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>22 Activities.</h1>
+  <h1>0 Lectures.</h1>
+  <p>Seven modules from first instinct to derivatives. Every concept learned by doing.</p>
+  <div class="stats">
+    <div><div class="stat-num" data-count="7">0</div><div class="stat-label">Modules</div></div>
+    <div><div class="stat-num" data-count="22">0</div><div class="stat-label">Activities</div></div>
+    <div><div class="stat-num" data-count="25">0</div><div class="stat-label">Sessions</div></div>
+  </div>
+</section>
+
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span>Progress</span>
+    <span id="progress-text">0 / 22 done</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<section class="modules" id="modules-root"></section>
+
+<footer>
+  <div class="footer-logo">A G<span>.</span></div>
+  <p style="color:var(--dim);font-size:13px">Capital Markets BBA · IE University · 2026</p>
+</footer>
+
+<script>
+const MODULES = [
+  {
+    id:1, title:"Intro to Capital Markets", sub:"Where it all begins", color:"#E8613A", glow:18,
+    acts:[
+      {name:"Where Does Your Money Sleep?",     hook:"Discover the gap between what you think you'd invest and what you actually do.", type:"Warm-Up",       dur:"10 min", url:"https://claude.ai/public/artifacts/07c0d469-6fdf-4bbd-b525-a9ee43202b43"},
+      {name:"BeanBrew Options Game",            hook:"Two decisions. Three outcomes. A coffee shop stock. Zero formulas.",            type:"Simulation",     dur:"12 min", url:"https://claude.ai/public/artifacts/97ee0249-b49b-43b4-837e-a17608d58f36"},
+      {name:"IPO Journey Simulator",            hook:"Play CEO. Take your startup public or stay private.",                          type:"Simulation",     dur:"15 min", url:"https://claude.ai/public/artifacts/26721fd8-1612-4f31-8377-cecd4f98aa07"},
+    ]
+  },
+  {
+    id:2, title:"Asset Classes & Instruments", sub:"Learning the toolkit", color:"#3B9B8F", glow:20,
+    acts:[
+      {name:"What Would You Trade?",            hook:"Rank 7 instruments by risk. Match them to real goals. See where intuition breaks.", type:"Warm-Up",   dur:"10 min", url:"https://claude.ai/public/artifacts/f23241f6-d7b4-469c-a796-67fa90761736"},
+    ]
+  },
+  {
+    id:3, title:"Financial Markets & Order Types", sub:"How trading actually works", color:"#5B8CD9", glow:22,
+    acts:[
+      {name:"Order Types & Risk Tolerance",     hook:"Three trading scenarios. No right answers. Just instincts.",                   type:"Warm-Up",       dur:"12 min", url:"https://claude.ai/public/artifacts/dfafc863-d3e6-4638-a65c-1c01f0e07c09"},
+      {name:"Markets & Mechanics Quiz",         hook:"IPOs, short squeezes, margin calls, dark pools, insider trading.",             type:"Quiz",           dur:"8 min",  url:"https://claude.ai/public/artifacts/92364f72-a516-403e-af38-417cd5f8050b"},
+    ]
+  },
+  {
+    id:4, title:"Equity Valuation", sub:"What is anything actually worth?", color:"#E8613A", glow:26,
+    acts:[
+      {name:"Price is Right for Finance",       hook:"Guess first. Calculate second. See how far off your instincts are.",          type:"Warm-Up",        dur:"15 min", url:"https://claude.ai/public/artifacts/2a471164-6476-439a-ae99-58511c45f30"},
+      {name:"Book Value & Liquidation",         hook:"JNJ and Tesla. What are they worth on paper vs. in a fire sale?",            type:"Warm-Up",        dur:"10 min", url:"https://claude.ai/public/artifacts/2cceef54-0d52-4ae2-a4bb-33f0638739b8"},
+      {name:"The Dividend Lens",                hook:"No-growth, constant growth, implied growth. Same company, changing assumptions.", type:"Warm-Up",     dur:"12 min", url:"https://claude.ai/public/artifacts/42d17825-fa0d-4efe-bbbc-7599a8314b4b"},
+      {name:"Growth, Multiples & Stories",      hook:"What percentage of a stock's price is pure growth expectation?",             type:"Warm-Up",        dur:"12 min", url:"https://claude.ai/public/artifacts/fbfb82ab-e4cf-4cd4-b843-82b5775112a2"},
+      {name:"Cash Flow Truth",                  hook:"FCFF, DCF, WACC from scratch. Five scenarios, ascending difficulty.",         type:"Warm-Up",        dur:"15 min", url:"https://claude.ai/public/artifacts/98996521-1957-4911-b45a-b67fe336f5d0"},
+      {name:"DDM Analyst Challenge",            hook:"One retired client. One income need. Four teams. One recommendation.",        type:"Group Activity",  dur:"35 min", feat:true, url:"https://claude.ai/public/artifacts/38df1612-3558-4f98-a4e3-8e40fce514fa"},
+      {name:"Peer Group Battle",                hook:"PayPal or DoorDash. Find comps. Build multiples. Defend your number.",        type:"Group Activity",  dur:"40 min", feat:true, url:"https://claude.ai/public/artifacts/ce146730-af8a-4b06-864c-c2dfe6fe29ee"},
+      {name:"DCF Analyst Showdown",             hook:"Disney. Four scenarios. One hurdle rate. BUY or WALK AWAY?",                  type:"Group Activity",  dur:"40 min", feat:true, url:"https://claude.ai/public/artifacts/863fcf94-6db3-4a9c-994b-b3174bb7e4c3"},
+      {name:"Equation Practice Quiz",           hook:"68 questions. 5 chapters. New numbers every attempt.",                       type:"Tool",           dur:"Flex",    url:"https://claude.ai/public/artifacts/70663cfd-c7b5-4523-929f-826ec03b674d"},
+      {name:"AI Valuation Tutor",               hook:"Build a DCF with an AI coach. No answers. Only better questions.",           type:"Tool",           dur:"20+ min", url:"https://claude.ai/public/artifacts/3a156b7f-e05b-4e72-b6f0-788f28870b41"},
+    ]
+  },
+  {
+    id:5, title:"Macrofinance & Economics", sub:"When the world moves, markets follow", color:"#D4654A", glow:28,
+    acts:[
+      {name:"Macro Shock Simulation",           hook:"Oil crisis. Rate hike. Recession. 25 minutes. Present.",                      type:"Group Activity",  dur:"60 min", feat:true, url:"https://claude.ai/public/artifacts/0187dd45-1c06-41f6-b660-1e7c3a475113"},
+    ]
+  },
+  {
+    id:6, title:"Stock Options", sub:"The right, but not the obligation", color:"#8B6FC0", glow:32,
+    acts:[
+      {name:"The Insurance Game",               hook:"Bad Bunny tickets. Market swings. Would you pay for the right to choose?",    type:"Warm-Up",        dur:"10 min", url:"https://claude.ai/public/artifacts/31cbb25a-4c9d-4d1d-a402-68adfa1ee7f8"},
+      {name:"Stock Options Tutor Level 1",      hook:"Progressive simulation. Learn calls and puts through guided scenarios.",      type:"Tool",           dur:"15 min", url:"https://chatgpt.com/g/g-67e66b83b1288191afef1bfa8c2fb089-stock-option-tutor-1"},
+      {name:"Stock Options Tutor Level 2",      hook:"Deeper scenarios. Spreads, time decay, and when to exercise.",               type:"Tool",           dur:"15 min", url:"https://chatgpt.com/g/g-67e665aa53dc81918763a71569557dcc-stock-option-tutor-2"},
+      {name:"Stock Options Tutor Level 3",      hook:"Advanced strategies. Hedging, combinations, real portfolio decisions.",       type:"Tool",           dur:"15 min", url:"https://chatgpt.com/g/g-67ed6f19e8d08191ac2f4fdacb34adbe-stock-option-tutor-3"},
+      {name:"What's It Worth?",                 hook:"How time, volatility, and strike price change the premium.",                  type:"Warm-Up",        dur:"TBD",    soon:true},
+    ]
+  },
+  {
+    id:7, title:"Futures", sub:"Lock it in or lose it all", color:"#3B9B8F", glow:38,
+    acts:[
+      {name:"Lock It or Lose It",               hook:"A taco stand. Volatile prices. Lock in today's cost?",                       type:"Warm-Up",        dur:"TBD",    soon:true},
+      {name:"Margin Call Simulation",           hook:"Daily swings. Nightly margin updates. Survive the week.",                    type:"Warm-Up",        dur:"TBD",    soon:true},
+      {name:"Crisis Simulation",                hook:"Market shock. Options, futures, both, or neither?",                          type:"Group Activity",  dur:"TBD",   soon:true},
+    ]
+  },
+];
+
+const TYPE_STYLE = {
+  "Warm-Up":      {bg:"rgba(232,97,58,0.10)",  color:"#E8613A", border:"rgba(232,97,58,0.20)"},
+  "Quiz":         {bg:"rgba(91,140,217,0.10)", color:"#5B8CD9", border:"rgba(91,140,217,0.20)"},
+  "Group Activity":{bg:"rgba(59,155,143,0.10)",color:"#3B9B8F", border:"rgba(59,155,143,0.20)"},
+  "Simulation":   {bg:"rgba(139,111,192,0.10)",color:"#8B6FC0", border:"rgba(139,111,192,0.20)"},
+  "Tool":         {bg:"rgba(122,144,154,0.10)",color:"#7A909A", border:"rgba(122,144,154,0.20)"},
+};
+
+const STORAGE_KEY = 'cm-hub-progress';
+const TOTAL = MODULES.flatMap(m => m.acts).filter(a => !a.soon).length;
+
+function getProgress() {
+  try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveProgress(set) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+}
+function refreshProgress() {
+  const done = getProgress();
+  document.getElementById('progress-fill').style.width = (done.size / TOTAL * 100) + '%';
+  document.getElementById('progress-text').textContent = done.size + ' / ' + TOTAL + ' done';
+  document.querySelectorAll('.check-btn').forEach(btn => {
+    const isDone = done.has(btn.dataset.key);
+    btn.classList.toggle('done', isDone);
+    btn.textContent = isDone ? '✓' : '';
+  });
+}
+
+function toggleCheck(e, key) {
+  e.preventDefault();
+  e.stopPropagation();
+  const done = getProgress();
+  done.has(key) ? done.delete(key) : done.add(key);
+  saveProgress(done);
+  refreshProgress();
+}
+
+function renderModules() {
+  const root = document.getElementById('modules-root');
+  root.innerHTML = MODULES.map((mod, i) => {
+    const dotSize = 28 + i * 1.5;
+    const titleSize = 22 + i * 0.5;
+    const indent = dotSize / 2 + 18;
+
+    const cards = mod.acts.map(act => {
+      if (act.soon) {
+        const ts = TYPE_STYLE[act.type] || TYPE_STYLE["Warm-Up"];
+        return `<div class="card-soon">
+          <div class="card-meta">
+            <span class="badge" style="background:rgba(255,255,255,0.04);color:#4A5E68;border:1px solid rgba(255,255,255,0.06)">${act.type}</span>
+            <span class="soon-tag">Coming Soon</span>
+          </div>
+          <h3>${act.name}</h3>
+          <p>${act.hook}</p>
+        </div>`;
+      }
+
+      const ts = TYPE_STYLE[act.type] || TYPE_STYLE["Warm-Up"];
+      const key = act.name;
+      return `<a href="${act.url}" target="_blank" rel="noopener noreferrer" class="card${act.feat ? ' feat' : ''}">
+        <div class="card-inner">
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="badge" style="background:${ts.bg};color:${ts.color};border:1px solid ${ts.border}">${act.type}</span>
+              <span class="card-dur">${act.dur}</span>
+            </div>
+            <h3>${act.name}</h3>
+            <p>${act.hook}</p>
+          </div>
+          <div class="card-actions">
+            <span class="open-btn">Open ↗</span>
+            <button class="check-btn" data-key="${key}" onclick="toggleCheck(event,'${CSS.escape(key)}')" aria-label="Mark complete"></button>
+          </div>
+        </div>
+      </a>`;
+    }).join('');
+
+    return `<div class="module">
+      <div class="mod-header">
+        <div class="mod-num" style="width:${dotSize}px;height:${dotSize}px;font-size:${Math.max(12, dotSize * 0.4)}px;background:${mod.color};box-shadow:0 0 ${mod.glow}px ${mod.color}55">${mod.id}</div>
+        <div>
+          <h2 class="mod-title" style="font-size:${titleSize}px">${mod.title}</h2>
+          <p class="mod-sub">${mod.sub}</p>
+        </div>
+      </div>
+      <div class="acts" style="padding-left:${indent}px">${cards}</div>
+    </div>`;
+  }).join('');
+
+  refreshProgress();
+}
+
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = +el.dataset.count;
+    const start = performance.now();
+    const duration = 1400;
+    const tick = now => {
+      const t = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round((1 - Math.pow(1 - t, 4)) * target);
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+
+renderModules();
+
+new IntersectionObserver(([entry], obs) => {
+  if (entry.isIntersecting) { animateCounters(); obs.disconnect(); }
+}, { threshold: 0.5 }).observe(document.querySelector('.stats'));
+</script>
+</body>
+</html>
