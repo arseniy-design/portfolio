@@ -72,6 +72,17 @@ nav{padding:20px 32px;display:flex;align-items:center;justify-content:space-betw
 .check-btn:hover{border-color:#fff}
 .check-btn.done{background:rgba(59,155,143,0.15);border-color:#3B9B8F;color:#3B9B8F}
 
+/* ── Practice Lab ── */
+.lab-section{max-width:800px;margin:0 auto;padding:0 32px 40px;position:relative;z-index:1}
+.lab-label{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:3px;font-weight:700;margin-bottom:14px}
+.lab-card{display:block;padding:24px 28px;border-radius:18px;background:var(--bgC);border:1px solid rgba(232,97,58,0.18);transition:background 0.2s,border-color 0.2s;position:relative;overflow:hidden}
+.lab-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(232,97,58,0.06),transparent);pointer-events:none}
+.lab-card:hover{background:var(--bgH);border-color:rgba(232,97,58,0.35)}
+.lab-card .card-inner{align-items:center}
+.lab-card h3{font-size:20px;font-weight:800;margin:0 0 6px}
+.lab-card p{color:var(--muted);font-size:14px;margin:0;line-height:1.6}
+.lab-pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:40px;background:rgba(232,97,58,0.10);color:var(--accent);border:1px solid rgba(232,97,58,0.20);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;display:inline-block}
+
 /* ── Soon ── */
 .card-soon{padding:16px 20px;border-radius:14px;background:var(--bgS);border:1px solid var(--border);opacity:0.35}
 .card-soon h3{font-size:16px;font-weight:700;color:var(--dim);margin:8px 0 4px}
@@ -135,6 +146,8 @@ footer{padding:32px;border-top:1px solid var(--border);text-align:center;positio
   <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
 </div>
 
+<section class="lab-section" id="lab-root"></section>
+
 <section class="modules" id="modules-root"></section>
 
 <footer>
@@ -193,15 +206,15 @@ const MODULES = [
       {name:"Stock Options Tutor Level 1",      hook:"Progressive simulation. Learn calls and puts through guided scenarios.",      type:"Tool",           dur:"15 min", url:"https://chatgpt.com/g/g-67e66b83b1288191afef1bfa8c2fb089-stock-option-tutor-1"},
       {name:"Stock Options Tutor Level 2",      hook:"Deeper scenarios. Spreads, time decay, and when to exercise.",               type:"Tool",           dur:"15 min", url:"https://chatgpt.com/g/g-67e665aa53dc81918763a71569557dcc-stock-option-tutor-2"},
       {name:"Stock Options Tutor Level 3",      hook:"Advanced strategies. Hedging, combinations, real portfolio decisions.",       type:"Tool",           dur:"15 min", url:"https://chatgpt.com/g/g-67ed6f19e8d08191ac2f4fdacb34adbe-stock-option-tutor-3"},
-      {name:"What's It Worth?",                 hook:"How time, volatility, and strike price change the premium.",                  type:"Warm-Up",        dur:"TBD",    soon:true},
+      {name:"The Options Desk",                   hook:"5 clients. 5 market views. You choose the strategy.",                     type:"Simulation",     dur:"20 min", url:"https://claude.ai/public/artifacts/7a6a6932-5c38-40e3-8c19-591844abd84b"},
     ]
   },
   {
     id:7, title:"Futures", sub:"Lock it in or lose it all", color:"#3B9B8F", glow:38,
     acts:[
-      {name:"Lock It or Lose It",               hook:"A taco stand. Volatile prices. Lock in today's cost?",                       type:"Warm-Up",        dur:"TBD",    soon:true},
-      {name:"Margin Call Simulation",           hook:"Daily swings. Nightly margin updates. Survive the week.",                    type:"Warm-Up",        dur:"TBD",    soon:true},
-      {name:"Crisis Simulation",                hook:"Market shock. Options, futures, both, or neither?",                          type:"Group Activity",  dur:"TBD",   soon:true},
+      {name:"The Crude Reality",                 hook:"One crude oil market. Three players with completely different reasons to trade. Same data. Same price. Opposite strategies. Only one question matters at the end: did you achieve your goal?", type:"Simulation", dur:"25 min", url:"https://claude.ai/public/artifacts/4afed4d9-1ffe-4283-a455-5878dd61fdd2"},
+      {name:"Cost of Carry",                     hook:"Futures Pricing Practice — Chapter 17. Key equations applied to real scenarios.", type:"Tool",       dur:"15 min", url:"https://claude.ai/public/artifacts/f4f79cc1-72d2-4b31-b008-7ec2e77197d7"},
+      {name:"Hedging with Corn Futures",         hook:"How a farmer uses futures contracts to protect against a price crash, and why the number of contracts matters.", type:"Warm-Up", dur:"12 min", url:"https://claude.ai/public/artifacts/c95916b7-85b4-4b85-a577-726f48969c9b"},
     ]
   },
 ];
@@ -313,6 +326,24 @@ function animateCounters() {
   });
 }
 
+function renderLab() {
+  document.getElementById('lab-root').innerHTML = `
+    <p class="lab-label">Full Course Practice</p>
+    <a href="https://claude.ai/public/artifacts/05cc502b-46c7-4ef4-b849-9f2a2b943531" target="_blank" rel="noopener noreferrer" class="lab-card card">
+      <div class="card-inner">
+        <div class="card-body">
+          <span class="lab-pill">Practice Lab</span>
+          <h3>Equation Practice Lab</h3>
+          <p>All chapters in one place. Work through each module's key equations at your own pace — new numbers every attempt.</p>
+        </div>
+        <div class="card-actions">
+          <span class="open-btn">Open ↗</span>
+        </div>
+      </div>
+    </a>`;
+}
+
+renderLab();
 renderModules();
 
 new IntersectionObserver(([entry], obs) => {
