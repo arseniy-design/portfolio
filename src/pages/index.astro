@@ -161,10 +161,8 @@ import Layout from '../layouts/Layout.astro';
         </p>
       </div>
 
-      <!-- Work strips — redesigned -->
-      <div class="mb-16 space-y-4 reveal">
-
-        <!-- FINANCE — full-width feature card -->
+      <!-- FINANCE card -->
+      <div class="mb-0 reveal">
         <div class="bg-white rounded-2xl overflow-hidden border border-warm-200">
           <div class="p-8 md:p-10">
             <div class="flex items-center gap-3 mb-3">
@@ -197,14 +195,6 @@ import Layout from '../layouts/Layout.astro';
               ))}
             </div>
           </div>
-          <!-- Cinematic photo strip -->
-          <div class="relative overflow-hidden" style="height:220px">
-            <img src="/baird-team.jpg" alt="Arseniy Goldberg at Baird" class="w-full h-full object-cover object-center" />
-            <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(13,27,42,0.65) 0%, rgba(13,27,42,0.25) 50%, rgba(13,27,42,0.45) 100%)"></div>
-            <div class="absolute inset-0 flex items-end px-8 md:px-10 pb-6">
-              <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family:var(--font-display);color:rgba(255,255,255,0.5)">Robert W. Baird & Co. · Chicago &nbsp;·&nbsp; Capital Markets</p>
-            </div>
-          </div>
           <!-- Artifact row -->
           <div class="border-t border-warm-100 px-8 md:px-10 py-6">
             <p class="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-4" style="font-family:var(--font-display)">Client Deliverables · Built with AI</p>
@@ -228,8 +218,27 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- BUILD · ADVISE · TEACH — three cards -->
+    </div><!-- close max-w container -->
+
+    <!-- CINEMATIC BREAK — Baird team photo, full width -->
+    <div class="relative overflow-hidden" style="height:50vh;min-height:320px">
+      <img src="/baird-team.jpg" alt="Arseniy Goldberg at Robert W. Baird & Co." class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.3) 50%, rgba(13,27,42,0.5) 100%)"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-28" style="background:linear-gradient(to top, #F4F1EC, transparent)"></div>
+      <div class="absolute top-0 left-0 right-0 h-20" style="background:linear-gradient(to bottom, #F4F1EC, transparent)"></div>
+      <div class="absolute inset-0 flex items-end">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
+          <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family:var(--font-display);color:rgba(255,255,255,0.45)">Robert W. Baird & Co. · Chicago &nbsp;·&nbsp; Capital Markets Team</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-8"><!-- reopen max-w container -->
+
+      <!-- BUILD · ADVISE · TEACH — three cards -->
+      <div class="mb-16 space-y-4 reveal">
         <div class="grid md:grid-cols-3 gap-4">
           {[
             {
@@ -271,7 +280,6 @@ import Layout from '../layouts/Layout.astro';
             </div>
           ))}
         </div>
-
       </div>
 
       <!-- Outcomes label -->
