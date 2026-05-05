@@ -107,40 +107,26 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Courses Designed</p>
         </div>
       </div>
-      <!-- Row 2: 5 stats -->
-      <div class="grid grid-cols-2 md:grid-cols-5">
+      <!-- Row 2: 4 stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4">
         <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-5 border-r border-warm-200">
           <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span></p>
           <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Ventures Launched</p>
         </div>
         <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-6 border-r border-warm-200">
           <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="4">0</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Innovation Programs Launched</p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Innovation Programs</p>
         </div>
         <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-7 border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)">5<span class="text-orange-500" style="font-size:1.5rem"> Continents</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Global Footprint</p>
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span><span class="text-orange-500">+</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Continents</p>
         </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-8 border-r border-warm-200">
+        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-8">
           <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="3">0</span></p>
           <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Languages</p>
           <p class="text-navy-300 text-xs mt-1" style="font-family: var(--font-display)">EN · RU · ES</p>
         </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-9">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)">$1.6<span class="text-orange-500" style="font-size:1.5rem">B</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">AUM Managed</p>
-        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CREDIBILITY STRIP -->
-  <section class="py-10 bg-warm-100 border-y border-warm-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-8 reveal">
-      <p class="text-center text-navy-500 text-base leading-relaxed italic" style="font-size: clamp(1rem, 1.8vw, 1.2rem)">
-        "Professor Arseniy was one of the most memorable speakers I've ever met — his knowledge, experience, and ability to communicate with compassion and conviction left a lasting impression."
-      </p>
-      <p class="text-center text-sm mt-4 font-semibold text-navy-400" style="font-family: var(--font-display)">Agil Zakariya &nbsp;·&nbsp; Brand Management, Procter & Gamble</p>
     </div>
   </section>
 
@@ -148,16 +134,29 @@ import Layout from '../layouts/Layout.astro';
   <section id="work" class="py-24 bg-warm-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
 
+      <!-- Bio -->
+      <div class="mb-16 reveal">
+        <div class="max-w-2xl">
+          <p class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-4" style="font-family:var(--font-display)">About</p>
+          <p class="text-navy-700 leading-relaxed mb-4" style="font-size:clamp(1rem,1.6vw,1.15rem)">
+            I spent six years in capital markets at Robert W. Baird — managing $1.6B in assets, completing 100+ financial plans, and learning that the hardest part of finance is never the numbers.
+          </p>
+          <p class="text-navy-500 leading-relaxed mb-4" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">
+            That insight sent me into the classroom. Today I teach Finance and AI at IE Business School in Madrid, consult with organizations on strategy and AI implementation, and build products at the intersection of financial education and behavioral change.
+          </p>
+          <p class="text-navy-500 leading-relaxed" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">
+            Three languages. Five continents. The work looks different everywhere — the standard doesn't change.
+          </p>
+        </div>
+      </div>
+
       <!-- Manifesto heading -->
       <div class="mb-12 reveal">
         <h2 class="font-bold text-navy-900 leading-none mb-2" style="font-family: var(--font-display); font-size: clamp(2.8rem,5.5vw,4.5rem)">
           Finance. Startups. AI.
         </h2>
         <p class="font-light text-navy-400 mb-5" style="font-family: var(--font-display); font-size: clamp(1.2rem,2.5vw,1.75rem)">
-          Built, advised, and taught — all three, at the same time.
-        </p>
-        <p class="text-navy-400 text-base max-w-2xl leading-relaxed">
-          12 years working at the intersection of all three. Each discipline makes the others more honest.
+          The practitioner who also teaches. The professor who also builds.
         </p>
       </div>
 
@@ -166,8 +165,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="bg-white rounded-2xl overflow-hidden border border-warm-200">
           <div class="p-8 md:p-10">
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">00</span>
-              <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Robert W. Baird & Co. · 2014 – 2019</span>
+              <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Robert W. Baird & Co. · Chicago · 2014 – 2019</span>
             </div>
             <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem)">FINANCE</h3>
             <p class="text-navy-500 text-sm leading-relaxed mb-6 max-w-2xl">Capital Markets. Six years managing 100 private households and 30 corporate accounts — retirement funds, foundations, and investment portfolios — across three advisory models: aggressive, moderate, and conservative. Led 10 corporate accounts independently and completed 100+ financial plans with a 95% objectives-met rate.</p>
@@ -282,14 +280,6 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Outcomes label -->
-      <div class="mb-8 reveal">
-        <div class="section-label">
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Work & Outcomes</span>
-        </div>
-        <p class="text-navy-400 text-sm">Programs built, tools deployed, and results delivered — across finance, AI, entrepreneurship, and human behavior.</p>
-      </div>
-
       <!-- Tab bar -->
       <div class="border-b border-warm-200 mb-10 reveal flex overflow-x-auto" id="work-tabs">
         <button class="tab-btn active" data-tab="finance"          onclick="switchTab('finance')">Finance</button>
@@ -297,7 +287,7 @@ import Layout from '../layouts/Layout.astro';
         <button class="tab-btn"        data-tab="innovation"       onclick="switchTab('innovation')">Innovation Programs</button>
         <button class="tab-btn"        data-tab="ai"               onclick="switchTab('ai')">AI Productivity</button>
         <button class="tab-btn"        data-tab="courses"          onclick="switchTab('courses')">Digital Courses</button>
-        <button class="tab-btn"        data-tab="behavioral"       onclick="switchTab('behavioral')">Human Behavior</button>
+        <button class="tab-btn"        data-tab="behavioral"       onclick="switchTab('behavioral')">Behavioral</button>
       </div>
 
       <!-- FINANCE TAB -->
@@ -402,50 +392,24 @@ import Layout from '../layouts/Layout.astro';
         <div class="mt-8">
           <p class="text-xs text-navy-400 font-semibold tracking-widest uppercase mb-4" style="font-family: var(--font-display)">Session Samples</p>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="https://vimeo.com/1175592384" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="/thumbnails/finance-thumb.jpg" alt="Time Value of Money" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
-                  <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            {[
+              { href: "https://vimeo.com/1175592384", vid: "1175592384", title: "Time Value of Money" },
+              { href: "https://vimeo.com/1175592202", vid: "1175592202", title: "Working Capital" },
+              { href: "https://vimeo.com/1175592624", vid: "1175592624", title: "Dynamic Valuation" },
+              { href: "https://vimeo.com/1175592738", vid: "1175592738", title: "Sources of Corporate Financing" },
+            ].map(v => (
+              <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+                <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
+                    <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
                 </div>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
-                <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Time Value of Money</p>
-              </div>
-            </a>
-            <a href="https://vimeo.com/1175592202" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="/thumbnails/finance-thumb.jpg" alt="Working Capital" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
-                  <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
+                  <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">{v.title}</p>
                 </div>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
-                <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Working Capital</p>
-              </div>
-            </a>
-            <a href="https://vimeo.com/1175592624" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="/thumbnails/finance-thumb.jpg" alt="Dynamic Valuation" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
-                  <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
-                <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Dynamic Valuation</p>
-              </div>
-            </a>
-            <a href="https://vimeo.com/1175592738" target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-              <img src="/thumbnails/finance-thumb.jpg" alt="Sources of Corporate Financing" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
-                  <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
-                <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">Sources of Corporate Financing</p>
-              </div>
-            </a>
+              </a>
+            ))}
           </div>
         </div>
 
@@ -1054,7 +1018,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
           Three projects.<br>
-          <span class="text-navy-400 font-light">One vision.</span>
+          <span class="text-navy-400 font-light">Finance, education, and AI — made accessible.</span>
         </h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
@@ -1089,19 +1053,6 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
-
-  <!-- CINEMATIC BREAK 2 -->
-  <div class="relative overflow-hidden" style="height: 50vh; min-height: 320px">
-    <img src="/baku-stage.jpg" alt="Arseniy Goldberg — Baku Innovation Days" class="w-full h-full object-cover" style="object-position: center 25%" />
-    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.35) 40%, rgba(13,27,42,0.55) 100%)"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #F4F1EC, transparent)"></div>
-    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #FAFAF8, transparent)"></div>
-    <div class="absolute inset-0 flex items-end">
-      <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Baku Innovation Days · Azerbaijan &nbsp;·&nbsp; Startups of Tomorrow</p>
-      </div>
-    </div>
-  </div>
 
   <!-- RECOGNITION -->
   <section id="recognition" class="py-24 bg-warm-50">
@@ -1380,7 +1331,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {tab.posts.map((post, i) => (
                 <a href={post.url} target="_blank" rel="noopener noreferrer"
-                  class={`li-card ${tab.cardClass} ${i >= 6 ? 'li-extra hidden' : ''} group bg-white rounded-2xl p-6 flex flex-col gap-4 hover:shadow-md transition-all reveal`}
+                  class={`li-card ${tab.cardClass} ${i >= 3 ? 'li-extra hidden' : ''} group bg-white rounded-2xl p-6 flex flex-col gap-4 hover:shadow-md transition-all reveal`}
                   data-panel={key}>
                   <div class="flex-1">
                     <span class={`li-tag ${tab.tagClass}`} style="font-family:var(--font-display)">{tab.label}</span>
@@ -1397,7 +1348,7 @@ import Layout from '../layouts/Layout.astro';
                 </a>
               ))}
             </div>
-            {tab.posts.length > 6 && (
+            {tab.posts.length > 3 && (
               <div class="mt-8 text-center">
                 <button onclick={`toggleMore('${key}')`} id={`li-more-${key}`}
                   class="px-6 py-2.5 rounded-full border-2 border-navy-200 text-navy-500 text-sm font-semibold hover:border-navy-400 transition-all"
