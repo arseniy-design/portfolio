@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What the Headlines Are Missing: 5 Macro Risks No One Is Talking About</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+<style>
+:root {
+  --bg-primary: #0d1b2a;
+  --bg-card: #1a2f45;
+  --bg-card-hover: #213a54;
+  --amber: #f4a261;
+  --amber-dim: rgba(244, 162, 97, 0.15);
+  --red: #e63946;
+  --red-dim: rgba(230, 57, 70, 0.15);
+  --teal: #2a9d8f;
+  --teal-dim: rgba(42, 157, 143, 0.15);
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8899aa;
+  --border: rgba(255,255,255,0.08);
+  --border-light: rgba(255,255,255,0.12);
+}
+
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(13,27,42,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; gap: 8px;
+  height: 56px; overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-link {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  padding: 6px 14px; border-radius: 20px;
+  white-space: nowrap; transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--amber); background: var(--amber-dim);
+}
+
+/* LAYOUT */
+.container {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+section {
+  padding: 80px 0;
+}
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light) 20%, var(--border-light) 80%, transparent);
+  max-width: 1200px; margin: 0 auto;
+}
+
+/* HERO */
+.hero {
+  padding: 140px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(244,162,97,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 800; color: var(--text-primary);
+  line-height: 1.15; margin-bottom: 20px;
+  max-width: 900px; margin-left: auto; margin-right: auto;
+}
+.hero h1 span { color: var(--amber); }
+.hero-subtitle {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--text-muted); max-width: 680px;
+  margin: 0 auto 32px; line-height: 1.6;
+  font-weight: 400;
+}
+.hero-meta {
+  display: flex; align-items: center; justify-content: center;
+  gap: 20px; flex-wrap: wrap; font-size: 13px; color: var(--text-muted);
+}
+.hero-meta a {
+  color: var(--amber); text-decoration: none;
+}
+.hero-meta-sep {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--text-muted); opacity: 0.4;
+}
+
+/* SECTION HEADERS */
+.section-header {
+  text-align: center; margin-bottom: 48px;
+}
+.section-number {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700; color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.section-desc {
+  font-size: 15px; color: var(--text-muted);
+  max-width: 600px; margin: 0 auto;
+}
+
+/* RADAR */
+.radar-wrap {
+  max-width: 700px; margin: 0 auto;
+  background: var(--bg-card); border-radius: 16px;
+  border: 1px solid var(--border); padding: 24px 16px;
+}
+
+/* CARDS */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+}
+.risk-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px; position: relative;
+  transition: border-color 0.3s, transform 0.2s;
+}
+.risk-card:hover {
+  border-color: var(--amber); transform: translateY(-2px);
+}
+.card-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 16px; gap: 12px;
+}
+.card-number {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--amber); margin-bottom: 6px;
+}
+.card-title {
+  font-size: 18px; font-weight: 700; color: var(--text-primary);
+  line-height: 1.3;
+}
+.severity-badge {
+  flex-shrink: 0;
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; gap: 4px;
+}
+.severity-high { background: var(--red-dim); color: var(--red); }
+.severity-med { background: rgba(244,162,97,0.15); color: var(--amber); }
+.severity-low { background: var(--teal-dim); color: var(--teal); }
+
+.card-desc {
+  font-size: 14px; color: var(--text-secondary);
+  line-height: 1.65; margin-bottom: 20px;
+}
+.card-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+}
+.tag {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 12px; letter-spacing: 0.03em;
+}
+.tag-time { background: rgba(42,157,143,0.15); color: var(--teal); }
+.tag-market { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+
+.data-callouts {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-bottom: 16px;
+}
+.callout {
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px; padding: 14px;
+  border: 1px solid var(--border);
+}
+.callout-value {
+  font-size: 22px; font-weight: 800; color: var(--text-primary);
+  line-height: 1.2;
+}
+.callout-label {
+  font-size: 11px; color: var(--text-muted); margin-top: 4px;
+  line-height: 1.3;
+}
+
+.sparkline-wrap {
+  height: 48px; margin-top: 12px;
+  background: rgba(255,255,255,0.02); border-radius: 8px;
+  padding: 8px; overflow: hidden;
+}
+
+/* NETWORK */
+.network-wrap {
+  background: var(--bg-card); border-radius: 16px;
+  border: 1px solid var(--border); padding: 24px;
+  min-height: 500px; position: relative;
+}
+.network-legend {
+  display: flex; gap: 24px; justify-content: center;
+  margin-top: 16px; font-size: 12px; color: var(--text-muted);
+}
+.legend-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  display: inline-block; margin-right: 6px; vertical-align: middle;
+}
+
+/* SCENARIO */
+.scenario-panel {
+  background: var(--bg-card); border-radius: 16px;
+  border: 1px solid var(--border); padding: 32px;
+}
+.scenario-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+}
+@media (max-width: 768px) {
+  .scenario-grid { grid-template-columns: 1fr; }
+}
+.slider-group { margin-bottom: 20px; }
+.slider-label {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; font-weight: 500; color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.slider-value {
+  font-weight: 700; color: var(--amber);
+  min-width: 36px; text-align: right;
+}
+input[type="range"] {
+  -webkit-appearance: none; width: 100%;
+  height: 6px; border-radius: 3px;
+  background: rgba(255,255,255,0.1);
+  outline: none; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--amber);
+  border: 2px solid var(--bg-primary);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--amber); border: 2px solid var(--bg-primary);
+  cursor: pointer;
+}
+
+.scenario-output {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.impact-gauge {
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px; padding: 24px;
+  border: 1px solid var(--border); text-align: center;
+}
+.gauge-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+}
+.gauge-value {
+  font-size: 42px; font-weight: 900; line-height: 1;
+}
+.gauge-bar {
+  height: 8px; border-radius: 4px; margin-top: 12px;
+  background: rgba(255,255,255,0.08); overflow: hidden;
+}
+.gauge-fill {
+  height: 100%; border-radius: 4px; transition: width 0.4s, background 0.4s;
+}
+.contagion-indicator {
+  text-align: center;
+}
+.contagion-dots {
+  display: flex; justify-content: center; gap: 6px; margin-top: 8px;
+}
+.contagion-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  transition: background 0.3s;
+}
+.contagion-dot.active { background: var(--amber); }
+.contagion-dot.danger { background: var(--red); }
+
+.affected-markets {
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px; padding: 16px;
+  border: 1px solid var(--border);
+}
+.affected-markets h4 {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
+}
+.affected-list {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.affected-item {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+.affected-item:last-child { border-bottom: none; }
+.affected-name { color: var(--text-secondary); font-weight: 500; }
+.affected-impact { color: var(--red); font-weight: 700; }
+
+.preset-btns {
+  display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+}
+.preset-btn {
+  padding: 8px 18px; border-radius: 20px;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text-secondary); font-size: 13px;
+  font-weight: 600; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+.preset-btn:hover, .preset-btn.active {
+  border-color: var(--amber); color: var(--amber);
+  background: var(--amber-dim);
+}
+
+/* PORTFOLIO TABLE */
+.portfolio-table-wrap {
+  overflow-x: auto; border-radius: 12px;
+  border: 1px solid var(--border);
+}
+table.portfolio {
+  width: 100%; border-collapse: collapse;
+  font-size: 13px;
+}
+table.portfolio th {
+  background: rgba(255,255,255,0.04);
+  padding: 14px 16px; text-align: left;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.portfolio td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary); vertical-align: top;
+}
+table.portfolio tr:last-child td { border-bottom: none; }
+table.portfolio tr:hover td { background: rgba(255,255,255,0.02); }
+.risk-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  display: inline-block; margin-right: 6px;
+}
+.risk-dot-high { background: var(--red); }
+.risk-dot-med { background: var(--amber); }
+.risk-dot-low { background: var(--teal); }
+
+.disclaimer {
+  text-align: center; margin-top: 32px;
+  font-size: 12px; color: var(--text-muted);
+  padding: 16px; border: 1px solid var(--border);
+  border-radius: 10px; background: rgba(255,255,255,0.02);
+}
+
+/* FOOTER */
+footer {
+  padding: 48px 24px;
+  text-align: center; font-size: 13px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+footer a { color: var(--amber); text-decoration: none; }
+footer p { margin-bottom: 8px; }
+
+/* TOOLTIP */
+.tooltip {
+  position: absolute;
+  background: rgba(13,27,42,0.95);
+  border: 1px solid var(--amber);
+  border-radius: 8px; padding: 12px 16px;
+  font-size: 12px; color: var(--text-secondary);
+  pointer-events: none; z-index: 100;
+  max-width: 220px; line-height: 1.5;
+  backdrop-filter: blur(10px);
+}
+.tooltip-title {
+  font-weight: 700; color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+/* D3 network styles */
+.node-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  fill: var(--text-secondary);
+  pointer-events: none;
+  font-weight: 600;
+}
+.link { stroke-opacity: 0.5; }
+.link.highlighted { stroke-opacity: 1; }
+.node { cursor: pointer; }
+.node.dimmed { opacity: 0.2; }
+.link.dimmed { stroke-opacity: 0.05; }
+
+@media (max-width: 768px) {
+  .cards-grid { grid-template-columns: 1fr; }
+  .data-callouts { grid-template-columns: 1fr; }
+  section { padding: 60px 0; }
+  .hero { padding: 100px 0 60px; }
+  .scenario-panel { padding: 20px; }
+  .card-top { flex-wrap: wrap; }
+  .card-desc { font-size: 14px; }
+  .risk-card { padding: 20px; overflow: hidden; }
+  .card-tags { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-link active">Overview</a>
+    <a href="#radar" class="nav-link">Risk Radar</a>
+    <a href="#factors" class="nav-link">5 Factors</a>
+    <a href="#network" class="nav-link">Contagion Map</a>
+    <a href="#scenario" class="nav-link">Scenarios</a>
+    <a href="#portfolio" class="nav-link">Portfolio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Macro Risk Intelligence &middot; March 2026</div>
+    <h1>What the Headlines Are <span>Missing</span></h1>
+    <h1 style="font-size: clamp(18px, 3vw, 28px); font-weight: 500; color: var(--text-muted); margin-top: -8px;">5 Macro Risks No One Is Talking About</h1>
+    <p class="hero-subtitle">A data-driven analysis of the hidden forces that could move global markets by 15&ndash;20%. These risks are interconnected, under-reported, and accelerating.</p>
+    <div class="hero-meta">
+      <span>Arseniy Goldberg</span>
+      <span class="hero-meta-sep"></span>
+      <span>Discussing Human Behavior in Finance, AI &amp; Education</span>
+      <span class="hero-meta-sep"></span>
+      <span>March 2026</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RADAR -->
+<section id="radar">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">Section 01</div>
+      <h2 class="section-title">Risk Radar</h2>
+      <p class="section-desc">Five underweighted risks mapped across severity, media coverage, speed of contagion, global reach, and reversibility.</p>
+    </div>
+    <div class="radar-wrap">
+      <div id="radarChart"></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FACTOR CARDS -->
+<section id="factors">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">Section 02</div>
+      <h2 class="section-title">The 5 Hidden Factors</h2>
+      <p class="section-desc">Each factor carries real data, real sources, and a clear explanation of why it matters for your money.</p>
+    </div>
+    <div class="cards-grid" id="factorCards"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- NETWORK -->
+<section id="network">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">Section 03</div>
+      <h2 class="section-title">Contagion Map</h2>
+      <p class="section-desc">How these risks connect and amplify each other. Click any node to see its ripple effects.</p>
+    </div>
+    <div class="network-wrap">
+      <div id="networkGraph"></div>
+    </div>
+    <div class="network-legend">
+      <span><span class="legend-dot" style="background:var(--amber)"></span>Risk Factor</span>
+      <span><span class="legend-dot" style="background:var(--red)"></span>Market Outcome</span>
+      <span>Line thickness = connection strength</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SCENARIO -->
+<section id="scenario">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">Section 04</div>
+      <h2 class="section-title">Scenario Modeling</h2>
+      <p class="section-desc">Adjust each risk's activation level and see the estimated combined market impact in real time.</p>
+    </div>
+    <div class="scenario-panel">
+      <div class="preset-btns">
+        <button class="preset-btn active" onclick="setPreset('base')">Base Case</button>
+        <button class="preset-btn" onclick="setPreset('storm')">Storm Brewing</button>
+        <button class="preset-btn" onclick="setPreset('perfect')">Perfect Storm</button>
+      </div>
+      <div class="scenario-grid">
+        <div>
+          <div id="sliders"></div>
+        </div>
+        <div class="scenario-output">
+          <div class="impact-gauge">
+            <div class="gauge-label">Estimated Market Drawdown</div>
+            <div class="gauge-value" id="drawdownValue" style="color:var(--teal)">-5.2%</div>
+            <div class="gauge-bar">
+              <div class="gauge-fill" id="drawdownBar" style="width:20%;background:var(--teal)"></div>
+            </div>
+          </div>
+          <div class="impact-gauge contagion-indicator">
+            <div class="gauge-label">Contagion Speed</div>
+            <div class="contagion-dots" id="contagionDots">
+              <div class="contagion-dot active"></div>
+              <div class="contagion-dot"></div>
+              <div class="contagion-dot"></div>
+              <div class="contagion-dot"></div>
+              <div class="contagion-dot"></div>
+            </div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:8px" id="contagionLabel">Low</div>
+          </div>
+          <div class="affected-markets">
+            <h4>Top 3 Most Affected Markets</h4>
+            <div class="affected-list" id="affectedList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">Section 05</div>
+      <h2 class="section-title">What Does This Mean For Your Portfolio?</h2>
+      <p class="section-desc">Asset class vulnerability ratings across all five risk factors.</p>
+    </div>
+    <div class="portfolio-table-wrap">
+      <table class="portfolio" id="portfolioTable">
+        <thead>
+          <tr>
+            <th>Asset Class</th>
+            <th>Risk Rating</th>
+            <th>Exposed To</th>
+            <th>Action Note</th>
+          </tr>
+        </thead>
+        <tbody id="portfolioBody"></tbody>
+      </table>
+    </div>
+    <div class="disclaimer">
+      This is educational content, not financial advice. Past performance and risk assessments do not guarantee future outcomes. Consult a licensed financial advisor before making investment decisions.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Research compiled by <strong>Arseniy Goldberg</strong>, March 2026</p>
+    <p>Sources: IMF, BIS, FSB, World Bank, FRED, MBA, IEA, central bank publications</p>
+    <p style="margin-top:12px"><a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a></p>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA: 5 RISK FACTORS
+// ============================================================
+const factors = [
+  {
+    id: 'shadow',
+    num: '01',
+    title: 'The Shadow Bank Iceberg',
+    severity: 9,
+    media: 3,
+    contagion: 9,
+    reach: 9,
+    reversibility: 3,
+    timeHorizon: 'Near: 0\u201312 months',
+    color: '#f4a261',
+    desc: 'Non-bank financial institutions\u2014hedge funds, private credit, money market funds\u2014now hold 51% of global financial assets ($256.8 trillion). They grew at double the pace of banks in 2024, yet remain largely unregulated. Their hidden leverage, opacity, and deep entanglement with traditional banks mean a shock in this shadow system could cascade across the entire financial world in hours.',
+    dataPoints: [
+      { value: '$256.8T', label: 'NBFI assets, 51% of global total (FSB, Dec 2025)' },
+      { value: '9.4%', label: 'NBFI growth rate vs. 4.7% for banks (FSB, 2024 data)' },
+      { value: '18\u00d7', label: 'Leverage ratio of top 10 hedge funds (NY Fed, Oct 2025)' }
+    ],
+    sparkData: [38,40,42,44,46,47,48,49,49.1,51],
+    sparkLabel: 'NBFI share of global assets (%), 2015\u20132024',
+    markets: ['S&P 500','EM Bonds','EUR/USD','US Treasuries']
+  },
+  {
+    id: 'oil',
+    num: '02',
+    title: 'Oil Shock to Debt Spiral',
+    severity: 8,
+    media: 4,
+    contagion: 8,
+    reach: 8,
+    reversibility: 4,
+    timeHorizon: 'Near: 0\u201312 months',
+    color: '#e63946',
+    desc: 'The Iran-Strait of Hormuz crisis pushed oil past $100/barrel in March 2026, disrupting 20% of global oil supply. For energy-importing nations\u2014especially emerging markets with dollar-denominated debt\u2014this triggers a vicious chain: higher energy costs erode currencies, making dollar debt repayments more expensive, which raises default risk and chokes off investment.',
+    dataPoints: [
+      { value: '$100+', label: 'Brent crude per barrel, Mar 2026 (Al Jazeera, Reuters)' },
+      { value: '~5/day', label: 'Ship transits through Hormuz vs. 138 avg. (UKMTO, Mar 2026)' },
+      { value: '400M bbl', label: 'Largest-ever IEA emergency reserve release (IEA, Mar 2026)' }
+    ],
+    sparkData: [72,74,70,78,82,80,76,81,88,101],
+    sparkLabel: 'Brent Crude ($/barrel), mid-2025 to Mar 2026',
+    markets: ['EM Bonds','Oil & Commodities','Nikkei','EU Equities']
+  },
+  {
+    id: 'debt',
+    num: '03',
+    title: 'The Global Debt Trap',
+    severity: 8,
+    media: 3,
+    contagion: 7,
+    reach: 10,
+    reversibility: 2,
+    timeHorizon: 'Medium: 1\u20133 years',
+    color: '#e76f51',
+    desc: 'Global public debt exceeded $100 trillion in 2024 and keeps climbing. Six of seven G7 nations now exceed 100% debt-to-GDP. Interest costs alone consume 4% of GDP in high-debt OECD nations, up from 3% in 2021. Any attempt to cut spending slows growth and worsens the ratio\u2014a fiscal trap with no easy exit, especially as central banks can no longer suppress rates.',
+    dataPoints: [
+      { value: '$100T+', label: 'Global public debt in 2024 (IMF Fiscal Monitor)' },
+      { value: '6 of 7', label: 'G7 nations above 100% debt-to-GDP (RSM, Nov 2025)' },
+      { value: '4% GDP', label: 'Avg. interest cost in high-debt OECD nations (BIS, 2024)' }
+    ],
+    sparkData: [70,73,76,83,92,93,93,93,93,96],
+    sparkLabel: 'Global public debt (% of GDP), 2015\u20132024',
+    markets: ['US Treasuries','EM Bonds','EUR/USD','EU Equities','Real Estate']
+  },
+  {
+    id: 'cre',
+    num: '04',
+    title: 'The Real Estate Refinancing Wall',
+    severity: 7,
+    media: 4,
+    contagion: 6,
+    reach: 6,
+    reversibility: 5,
+    timeHorizon: 'Near: 0\u201312 months',
+    color: '#c1666b',
+    desc: '$875 billion in commercial and multifamily real estate loans mature in 2026 alone, peaking at $1.26 trillion in 2027. These loans were written when rates were 3\u20134%; refinancing now costs 6\u20137%+. Regional banks hold a large share and many owners can\'t cover the gap. Forced sales and defaults could ripple through the banking system, especially in the US and Europe.',
+    dataPoints: [
+      { value: '$875B', label: 'CRE debt maturing in 2026 (MBA, Feb 2026)' },
+      { value: '$1.26T', label: 'Peak maturities projected for 2027 (S&P Global)' },
+      { value: '~$4T', label: 'Total CRE maturities, 2025\u20132029 (industry estimates)' }
+    ],
+    sparkData: [420,480,560,650,720,810,957,875,936,1260],
+    sparkLabel: 'CRE annual debt maturities ($B), 2018\u20132027',
+    markets: ['Real Estate','S&P 500','Regional Banks','EM Bonds']
+  },
+  {
+    id: 'yen',
+    num: '05',
+    title: 'Japan\'s Ticking Time Bomb',
+    severity: 7,
+    media: 2,
+    contagion: 8,
+    reach: 7,
+    reversibility: 4,
+    timeHorizon: 'Near: 0\u201312 months',
+    color: '#8ecae6',
+    desc: 'After decades of zero or negative rates, Japan is normalizing\u2014and the world isn\'t ready. The yen carry trade (estimated at $500B\u2013$2T) funded global bets with cheap yen. As rates rise, a sudden yen spike could force rapid unwinding\u2014just like August 2024, when the Nikkei fell 12% in one day and the S&P 500 dropped 6%. Japan\'s 235% debt-to-GDP ratio gives policymakers almost no room for error.',
+    dataPoints: [
+      { value: '235%', label: 'Japan debt-to-GDP ratio (IMF/RSM, 2025)' },
+      { value: '-12%', label: 'Nikkei 225 single-day crash, Aug 5 2024' },
+      { value: '$500B+', label: 'Estimated carry trade size (AEI, Dec 2025)' }
+    ],
+    sparkData: [-0.1,-0.1,0,0,0.1,0.1,0.25,0.5,0.75,1.0],
+    sparkLabel: 'BOJ Policy Rate (%), 2017\u20132026',
+    markets: ['Nikkei','S&P 500','EM Equities','US Treasuries']
+  }
+];
+
+// ============================================================
+// INTERCONNECTION DATA
+// ============================================================
+const networkNodes = [
+  // Risk factors
+  { id: 'shadow', label: 'Shadow Banking', group: 'risk', importance: 10 },
+  { id: 'oil', label: 'Oil Shock\u2192Debt Spiral', group: 'risk', importance: 8 },
+  { id: 'debt', label: 'Global Debt Trap', group: 'risk', importance: 9 },
+  { id: 'cre', label: 'CRE Refi Wall', group: 'risk', importance: 7 },
+  { id: 'yen', label: 'Japan Rate Bomb', group: 'risk', importance: 8 },
+  // Market outcomes
+  { id: 'sp_crash', label: 'S&P 500 \u221215%', group: 'outcome', importance: 7 },
+  { id: 'em_default', label: 'EM Bond Defaults', group: 'outcome', importance: 6 },
+  { id: 'usd_spike', label: 'USD Spike', group: 'outcome', importance: 6 },
+  { id: 'credit_freeze', label: 'Credit Freeze', group: 'outcome', importance: 7 },
+  { id: 'bank_stress', label: 'Bank Stress', group: 'outcome', importance: 6 },
+  { id: 're_crash', label: 'Real Estate \u221220%', group: 'outcome', importance: 5 },
+  { id: 'vol_spike', label: 'Volatility Spike', group: 'outcome', importance: 5 },
+  { id: 'rate_surge', label: 'Yield Surge', group: 'outcome', importance: 5 }
+];
+const networkLinks = [
+  // Risk\u2192Risk connections
+  { source: 'shadow', target: 'debt', strength: 8 },
+  { source: 'shadow', target: 'cre', strength: 7 },
+  { source: 'oil', target: 'debt', strength: 7 },
+  { source: 'oil', target: 'yen', strength: 5 },
+  { source: 'debt', target: 'cre', strength: 6 },
+  { source: 'debt', target: 'yen', strength: 6 },
+  { source: 'yen', target: 'shadow', strength: 7 },
+  // Risk\u2192Outcome connections
+  { source: 'shadow', target: 'credit_freeze', strength: 9 },
+  { source: 'shadow', target: 'sp_crash', strength: 7 },
+  { source: 'shadow', target: 'vol_spike', strength: 8 },
+  { source: 'oil', target: 'em_default', strength: 8 },
+  { source: 'oil', target: 'usd_spike', strength: 6 },
+  { source: 'debt', target: 'rate_surge', strength: 8 },
+  { source: 'debt', target: 'em_default', strength: 7 },
+  { source: 'debt', target: 'bank_stress', strength: 6 },
+  { source: 'cre', target: 'bank_stress', strength: 8 },
+  { source: 'cre', target: 're_crash', strength: 9 },
+  { source: 'cre', target: 'credit_freeze', strength: 5 },
+  { source: 'yen', target: 'sp_crash', strength: 7 },
+  { source: 'yen', target: 'vol_spike', strength: 8 },
+  { source: 'yen', target: 'usd_spike', strength: 6 }
+];
+
+// ============================================================
+// PORTFOLIO DATA
+// ============================================================
+const portfolioData = [
+  { asset: 'US Equities', risk: 'high', factors: 'Shadow Banking, Japan, CRE', note: 'Concentrated in 7 stocks. Diversify into equal-weight or value strategies.' },
+  { asset: 'EM Equities', risk: 'high', factors: 'Oil Shock, Global Debt, Japan', note: 'Dollar strength and commodity costs hit hardest. Favor commodity exporters.' },
+  { asset: 'EU Equities', risk: 'med', factors: 'Oil Shock, Global Debt', note: 'Energy-import vulnerability. Lean toward defensive sectors and Nordic markets.' },
+  { asset: 'EM Bonds', risk: 'high', factors: 'Oil Shock, Global Debt, Shadow Banking', note: 'Dollar-debt refinancing at risk. Prefer local-currency EM bonds with strong policy frameworks.' },
+  { asset: 'US Treasuries', risk: 'med', factors: 'Global Debt, Shadow Banking', note: 'Safe haven still works short-term, but long-duration risk rising with fiscal trajectory.' },
+  { asset: 'Gold', risk: 'low', factors: '\u2014', note: 'Classic hedge against all five risks. Consider 5\u201310% allocation increase.' },
+  { asset: 'Oil & Commodities', risk: 'med', factors: 'Oil Shock', note: 'Short-term spike likely, long-term demand risk. Use as tactical, not strategic, position.' },
+  { asset: 'Real Estate', risk: 'high', factors: 'CRE, Global Debt, Shadow Banking', note: 'Refinancing wall directly threatens values. Reduce CRE REIT exposure; favor logistics/data centers.' },
+  { asset: 'Cash / USD', risk: 'low', factors: '\u2014', note: 'Strongest position in crisis scenario. Hold higher-than-usual cash reserves.' },
+  { asset: 'Crypto', risk: 'high', factors: 'Shadow Banking, Japan', note: 'Correlated with risk assets in liquidity crises. Reduce to core BTC/ETH position only.' }
+];
+
+// ============================================================
+// SECTION 2: RADAR CHART
+// ============================================================
+function buildRadar() {
+  const categories = ['Risk Severity','Media Underreporting','Speed of Contagion','Global Reach','Reversibility'];
+  const traces = factors.map(f => ({
+    type: 'scatterpolar',
+    r: [f.severity, 10 - f.media, f.contagion, f.reach, 10 - f.reversibility, f.severity],
+    theta: [...categories, categories[0]],
+    fill: 'toself',
+    fillcolor: f.color + '15',
+    line: { color: f.color, width: 2 },
+    name: f.title.length > 28 ? f.title.substring(0, 26) + '...' : f.title,
+    hovertemplate: '%{theta}: %{r}<extra>' + f.title + '</extra>'
+  }));
+  Plotly.newPlot('radarChart', traces, {
+    polar: {
+      bgcolor: 'transparent',
+      radialaxis: {
+        visible: true, range: [0, 10],
+        tickfont: { color: '#8899aa', size: 10, family: 'Inter' },
+        gridcolor: 'rgba(255,255,255,0.06)',
+        linecolor: 'transparent'
+      },
+      angularaxis: {
+        tickfont: { color: '#cbd5e1', size: 11, family: 'Inter' },
+        gridcolor: 'rgba(255,255,255,0.06)',
+        linecolor: 'rgba(255,255,255,0.08)'
+      }
+    },
+    paper_bgcolor: 'transparent',
+    plot_bgcolor: 'transparent',
+    font: { family: 'Inter', color: '#cbd5e1' },
+    legend: {
+      font: { size: 11, color: '#cbd5e1', family: 'Inter' },
+      bgcolor: 'transparent',
+      orientation: 'h', y: -0.15, x: 0.5, xanchor: 'center'
+    },
+    margin: { t: 40, b: 60, l: 60, r: 60 },
+    showlegend: true
+  }, { responsive: true, displayModeBar: false });
+}
+
+// ============================================================
+// SECTION 3: FACTOR CARDS
+// ============================================================
+function buildCards() {
+  const grid = document.getElementById('factorCards');
+  factors.forEach(f => {
+    const severityClass = f.severity >= 8 ? 'severity-high' : f.severity >= 5 ? 'severity-med' : 'severity-low';
+    const severityIcon = f.severity >= 8 ? '\ud83d\udd34' : f.severity >= 5 ? '\ud83d\udfe1' : '\ud83d\udfe2';
+    const card = document.createElement('div');
+    card.className = 'risk-card';
+    card.innerHTML = `
+      <div class="card-top">
+        <div>
+          <div class="card-number">RISK ${f.num}</div>
+          <div class="card-title">${f.title}</div>
+        </div>
+        <div class="severity-badge ${severityClass}">${severityIcon} ${f.severity}/10</div>
+      </div>
+      <p class="card-desc">${f.desc}</p>
+      <div class="card-tags">
+        <span class="tag tag-time">${f.timeHorizon}</span>
+        ${f.markets.map(m => `<span class="tag tag-market">${m}</span>`).join('')}
+      </div>
+      <div class="data-callouts">
+        ${f.dataPoints.slice(0,2).map(dp => `
+          <div class="callout">
+            <div class="callout-value">${dp.value}</div>
+            <div class="callout-label">${dp.label}</div>
+          </div>
+        `).join('')}
+      </div>
+      ${f.dataPoints[2] ? `
+      <div class="data-callouts" style="grid-template-columns:1fr">
+        <div class="callout">
+          <div class="callout-value">${f.dataPoints[2].value}</div>
+          <div class="callout-label">${f.dataPoints[2].label}</div>
+        </div>
+      </div>` : ''}
+      <div class="sparkline-wrap">
+        <canvas id="spark-${f.id}" width="400" height="48"></canvas>
+      </div>
+      <div style="font-size:10px;color:var(--text-muted);margin-top:4px">${f.sparkLabel}</div>
+    `;
+    grid.appendChild(card);
+    setTimeout(() => drawSparkline(`spark-${f.id}`, f.sparkData, f.color), 100);
+  });
+}
+
+function drawSparkline(canvasId, data, color) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.parentElement.clientWidth - 16;
+  const h = 32;
+  canvas.width = w * 2;
+  canvas.height = h * 2;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  ctx.scale(2, 2);
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+  const points = data.map((v, i) => ({
+    x: (i / (data.length - 1)) * w,
+    y: h - 4 - ((v - min) / range) * (h - 8)
+  }));
+  // area fill
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, h);
+  points.forEach(p => ctx.lineTo(p.x, p.y));
+  ctx.lineTo(points[points.length-1].x, h);
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, color + '30');
+  grad.addColorStop(1, color + '05');
+  ctx.fillStyle = grad;
+  ctx.fill();
+  // line
+  ctx.beginPath();
+  points.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // end dot
+  const last = points[points.length-1];
+  ctx.beginPath();
+  ctx.arc(last.x, last.y, 3, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+// ============================================================
+// SECTION 4: NETWORK GRAPH
+// ============================================================
+function buildNetwork() {
+  const container = document.getElementById('networkGraph');
+  const width = container.clientWidth;
+  const height = Math.max(500, Math.min(600, window.innerHeight * 0.6));
+  container.style.height = height + 'px';
+
+  const svg = d3.select('#networkGraph').append('svg')
+    .attr('width', width).attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`);
+
+  const tooltip = d3.select('.network-wrap').append('div')
+    .attr('class', 'tooltip').style('opacity', 0);
+
+  const sim = d3.forceSimulation(networkNodes)
+    .force('link', d3.forceLink(networkLinks).id(d => d.id).distance(d => 140 - d.strength * 6))
+    .force('charge', d3.forceManyBody().strength(-400))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(d => d.importance * 3 + 20));
+
+  const link = svg.append('g').selectAll('line')
+    .data(networkLinks).join('line')
+    .attr('class', 'link')
+    .attr('stroke', d => {
+      const srcNode = networkNodes.find(n => n.id === (typeof d.source === 'object' ? d.source.id : d.source));
+      return srcNode && srcNode.group === 'risk' ? '#f4a261' : '#e63946';
+    })
+    .attr('stroke-width', d => d.strength * 0.6)
+    .attr('stroke-opacity', 0.35);
+
+  const node = svg.append('g').selectAll('g')
+    .data(networkNodes).join('g')
+    .attr('class', 'node')
+    .call(d3.drag()
+      .on('start', (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
+      .on('end', (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
+    );
+
+  node.append('circle')
+    .attr('r', d => d.importance * 2.5 + 8)
+    .attr('fill', d => d.group === 'risk' ? '#f4a261' : '#e63946')
+    .attr('fill-opacity', 0.2)
+    .attr('stroke', d => d.group === 'risk' ? '#f4a261' : '#e63946')
+    .attr('stroke-width', 2);
+
+  node.append('text')
+    .attr('class', 'node-label')
+    .attr('text-anchor', 'middle')
+    .attr('dy', d => d.importance * 2.5 + 22)
+    .text(d => d.label);
+
+  // Interaction
+  node.on('mouseover', function(e, d) {
+    const connected = new Set();
+    connected.add(d.id);
+    networkLinks.forEach(l => {
+      const sid = typeof l.source === 'object' ? l.source.id : l.source;
+      const tid = typeof l.target === 'object' ? l.target.id : l.target;
+      if (sid === d.id) connected.add(tid);
+      if (tid === d.id) connected.add(sid);
+    });
+    node.classed('dimmed', n => !connected.has(n.id));
+    link.classed('dimmed', l => {
+      const sid = typeof l.source === 'object' ? l.source.id : l.source;
+      const tid = typeof l.target === 'object' ? l.target.id : l.target;
+      return sid !== d.id && tid !== d.id;
+    });
+    link.classed('highlighted', l => {
+      const sid = typeof l.source === 'object' ? l.source.id : l.source;
+      const tid = typeof l.target === 'object' ? l.target.id : l.target;
+      return sid === d.id || tid === d.id;
+    });
+    tooltip.transition().duration(200).style('opacity', 1);
+    const factor = factors.find(f => f.id === d.id);
+    const info = factor ? `<div class="tooltip-title">${d.label}</div>Severity: ${factor.severity}/10<br>Media Coverage: ${factor.media}/10<br>${factor.timeHorizon}` :
+      `<div class="tooltip-title">${d.label}</div>Market outcome triggered by connected risk factors`;
+    tooltip.html(info)
+      .style('left', (e.offsetX + 16) + 'px')
+      .style('top', (e.offsetY - 10) + 'px');
+  })
+  .on('mouseout', function() {
+    node.classed('dimmed', false);
+    link.classed('dimmed', false).classed('highlighted', false);
+    tooltip.transition().duration(200).style('opacity', 0);
+  });
+
+  sim.on('tick', () => {
+    link
+      .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+    node.attr('transform', d => {
+      d.x = Math.max(40, Math.min(width - 40, d.x));
+      d.y = Math.max(40, Math.min(height - 40, d.y));
+      return `translate(${d.x},${d.y})`;
+    });
+  });
+}
+
+// ============================================================
+// SECTION 5: SCENARIO MODELING
+// ============================================================
+const sliderState = { shadow: 20, oil: 15, debt: 25, cre: 10, yen: 10 };
+
+const presets = {
+  base:    { shadow: 20, oil: 15, debt: 25, cre: 10, yen: 10 },
+  storm:   { shadow: 55, oil: 50, debt: 45, cre: 40, yen: 35 },
+  perfect: { shadow: 85, oil: 80, debt: 75, cre: 70, yen: 75 }
+};
+
+// Market impact weights (how much each factor affects each market)
+const marketWeights = {
+  'US Equities':    { shadow: 0.30, oil: 0.10, debt: 0.15, cre: 0.25, yen: 0.20 },
+  'EM Equities':    { shadow: 0.15, oil: 0.30, debt: 0.25, cre: 0.05, yen: 0.15 },
+  'EM Bonds':       { shadow: 0.20, oil: 0.30, debt: 0.30, cre: 0.05, yen: 0.10 },
+  'EU Equities':    { shadow: 0.20, oil: 0.25, debt: 0.20, cre: 0.15, yen: 0.10 },
+  'US Treasuries':  { shadow: 0.25, oil: 0.05, debt: 0.35, cre: 0.10, yen: 0.15 },
+  'Gold':           { shadow: 0.05, oil: 0.10, debt: 0.05, cre: 0.02, yen: 0.05 },
+  'Oil':            { shadow: 0.05, oil: 0.50, debt: 0.05, cre: 0.02, yen: 0.05 },
+  'Real Estate':    { shadow: 0.15, oil: 0.05, debt: 0.20, cre: 0.45, yen: 0.05 },
+  'Crypto':         { shadow: 0.25, oil: 0.05, debt: 0.10, cre: 0.05, yen: 0.30 },
+  'Regional Banks': { shadow: 0.20, oil: 0.05, debt: 0.15, cre: 0.40, yen: 0.05 }
+};
+
+function buildSliders() {
+  const container = document.getElementById('sliders');
+  factors.forEach(f => {
+    const div = document.createElement('div');
+    div.className = 'slider-group';
+    div.innerHTML = `
+      <div class="slider-label">
+        <span>${f.title}</span>
+        <span class="slider-value" id="sv-${f.id}">${sliderState[f.id]}%</span>
+      </div>
+      <input type="range" id="sl-${f.id}" min="0" max="100" value="${sliderState[f.id]}"
+        oninput="updateSlider('${f.id}', this.value)">
+    `;
+    container.appendChild(div);
+  });
+  updateScenario();
+}
+
+function updateSlider(id, val) {
+  sliderState[id] = parseInt(val);
+  document.getElementById(`sv-${id}`).textContent = val + '%';
+  // Remove active class from preset buttons
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  updateScenario();
+}
+
+function setPreset(name) {
+  const p = presets[name];
+  Object.keys(p).forEach(k => {
+    sliderState[k] = p[k];
+    document.getElementById(`sl-${k}`).value = p[k];
+    document.getElementById(`sv-${k}`).textContent = p[k] + '%';
+  });
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  updateScenario();
+}
+
+function updateScenario() {
+  // Calculate combined drawdown
+  const avg = Object.values(sliderState).reduce((s, v) => s + v, 0) / 5;
+  // Non-linear: mild at low, accelerates at high (interaction effects)
+  const interaction = Object.values(sliderState).filter(v => v > 50).length;
+  const base = (avg / 100) * 15;
+  const bonus = interaction * 1.5;
+  const drawdown = Math.min(25, Math.max(2, base + bonus));
+  const dd = -drawdown.toFixed(1);
+
+  const gaugeVal = document.getElementById('drawdownValue');
+  const gaugeBar = document.getElementById('drawdownBar');
+  gaugeVal.textContent = dd + '%';
+  const pct = (drawdown / 25) * 100;
+  gaugeBar.style.width = pct + '%';
+
+  if (drawdown < 8) { gaugeVal.style.color = '#2a9d8f'; gaugeBar.style.background = '#2a9d8f'; }
+  else if (drawdown < 15) { gaugeVal.style.color = '#f4a261'; gaugeBar.style.background = '#f4a261'; }
+  else { gaugeVal.style.color = '#e63946'; gaugeBar.style.background = '#e63946'; }
+
+  // Contagion speed
+  const contagionLevel = Math.min(5, Math.floor(avg / 20) + 1);
+  const dots = document.querySelectorAll('#contagionDots .contagion-dot');
+  const labels = ['Low', 'Moderate', 'Elevated', 'High', 'Extreme'];
+  dots.forEach((dot, i) => {
+    dot.className = 'contagion-dot';
+    if (i < contagionLevel) {
+      dot.classList.add(contagionLevel >= 4 ? 'danger' : 'active');
+    }
+  });
+  document.getElementById('contagionLabel').textContent = labels[contagionLevel - 1] || 'Low';
+
+  // Top 3 affected markets
+  const impacts = Object.entries(marketWeights).map(([market, weights]) => {
+    let impact = 0;
+    Object.entries(weights).forEach(([factor, w]) => {
+      impact += (sliderState[factor] / 100) * w * drawdown;
+    });
+    return { market, impact: impact.toFixed(1) };
+  }).sort((a, b) => b.impact - a.impact).slice(0, 3);
+
+  const list = document.getElementById('affectedList');
+  list.innerHTML = impacts.map(m => `
+    <div class="affected-item">
+      <span class="affected-name">${m.market}</span>
+      <span class="affected-impact">-${m.impact}%</span>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// SECTION 6: PORTFOLIO TABLE
+// ============================================================
+function buildPortfolio() {
+  const tbody = document.getElementById('portfolioBody');
+  portfolioData.forEach(row => {
+    const riskClass = row.risk === 'high' ? 'risk-dot-high' : row.risk === 'med' ? 'risk-dot-med' : 'risk-dot-low';
+    const riskLabel = row.risk === 'high' ? 'High' : row.risk === 'med' ? 'Medium' : 'Low';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-weight:600;color:var(--text-primary)">${row.asset}</td>
+      <td><span class="risk-dot ${riskClass}"></span>${riskLabel}</td>
+      <td style="font-size:12px">${row.factors}</td>
+      <td style="font-size:12px">${row.note}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ============================================================
+// NAV SCROLL HIGHLIGHT
+// ============================================================
+function updateNav() {
+  const sections = document.querySelectorAll('section[id]');
+  const scrollY = window.scrollY + 100;
+  sections.forEach(sec => {
+    const top = sec.offsetTop;
+    const bottom = top + sec.offsetHeight;
+    const link = document.querySelector(`.nav-link[href="#${sec.id}"]`);
+    if (link) {
+      if (scrollY >= top && scrollY < bottom) {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    }
+  });
+}
+window.addEventListener('scroll', updateNav);
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  buildRadar();
+  buildCards();
+  buildNetwork();
+  buildSliders();
+  buildPortfolio();
+});
+
+// Resize handler
+window.addEventListener('resize', () => {
+  // Rebuild sparklines on resize
+  factors.forEach(f => drawSparkline(`spark-${f.id}`, f.sparkData, f.color));
+});
+</script>
+
+</body>
+</html>

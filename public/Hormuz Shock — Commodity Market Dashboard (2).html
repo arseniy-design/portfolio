@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hormuz Shock — Commodity Market Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2L4 10v12l12 8 12-8V10L16 2z' fill='%231B2A4A' stroke='%2320808D' stroke-width='2'/><circle cx='16' cy='16' r='4' fill='%23C17A3A'/></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F3F0;
+      --surface: #FFFFFF;
+      --surface-alt: #EDE9E4;
+      --navy: #1B2A4A;
+      --navy-light: #2C4066;
+      --teal: #20808D;
+      --teal-light: #2A9DA8;
+      --teal-pale: #E0F2F4;
+      --copper: #C17A3A;
+      --copper-light: #D4944F;
+      --copper-pale: #F5E6D0;
+      --red: #A13544;
+      --red-light: #C74E60;
+      --text: #2C2A26;
+      --text-secondary: #6B6760;
+      --text-muted: #9A958E;
+      --border: #D8D3CC;
+      --border-light: #E8E4DF;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --shadow: 0 1px 3px rgba(27,42,74,0.06), 0 1px 2px rgba(27,42,74,0.04);
+      --shadow-md: 0 4px 12px rgba(27,42,74,0.08), 0 2px 4px rgba(27,42,74,0.04);
+      --shadow-lg: 0 12px 32px rgba(27,42,74,0.10), 0 4px 8px rgba(27,42,74,0.06);
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    /* ---- HEADER ---- */
+    .header {
+      background: var(--navy);
+      color: #fff;
+      padding: 24px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(27,42,74,0.2);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .logo-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .logo-text p {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ---- TAB NAV ---- */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 4px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .tab-btn.active { color: var(--navy); background: #fff; font-weight: 600; }
+
+    /* ---- MAIN CONTENT ---- */
+    .main { max-width: 1280px; margin: 0 auto; padding: 32px; }
+
+    .section { display: none; animation: fadeIn 0.35s ease; }
+    .section.active { display: block; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 680px;
+      line-height: 1.65;
+    }
+
+    /* ---- CARDS ---- */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover { box-shadow: var(--shadow-md); }
+
+    /* ---- CALLOUT ---- */
+    .callout {
+      background: var(--navy);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .callout-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--copper);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+
+    .callout-text h3 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .callout-text p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 2px;
+    }
+
+    /* ---- CHOKEPOINT SECTION ---- */
+    .chokepoint-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .flow-diagram-container {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .flow-diagram-container h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .flow-svg-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .flow-svg-wrap svg {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+    }
+
+    .commodity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .commodity-stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .commodity-stat-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--teal);
+    }
+
+    .commodity-stat-card .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    .commodity-stat-card .stat-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .commodity-stat-card .stat-detail {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .commodity-stat-card .stat-exporters {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* ---- CHAIN REACTIONS ---- */
+    .chain-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+
+    .chain-card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .chain-card:hover { box-shadow: var(--shadow-md); border-color: var(--teal); }
+
+    .chain-card-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .chain-card-header .chain-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .chain-card-header .chain-info {
+      flex: 1;
+    }
+
+    .chain-card-header .chain-info h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .chain-card-header .chain-info p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .chain-card-header .chain-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--surface-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .chain-card.expanded .chain-toggle { transform: rotate(180deg); background: var(--teal-pale); }
+
+    .chain-card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .chain-card.expanded .chain-card-body {
+      max-height: 600px;
+    }
+
+    .chain-steps {
+      padding: 0 24px 20px;
+    }
+
+    .chain-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    .chain-card.expanded .chain-step {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .chain-card.expanded .chain-step:nth-child(1) { transition-delay: 0.05s; }
+    .chain-card.expanded .chain-step:nth-child(2) { transition-delay: 0.1s; }
+    .chain-card.expanded .chain-step:nth-child(3) { transition-delay: 0.15s; }
+    .chain-card.expanded .chain-step:nth-child(4) { transition-delay: 0.2s; }
+    .chain-card.expanded .chain-step:nth-child(5) { transition-delay: 0.25s; }
+    .chain-card.expanded .chain-step:nth-child(6) { transition-delay: 0.3s; }
+
+    .chain-step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      margin-top: 6px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .chain-step-dot::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 3px;
+      width: 2px;
+      height: 24px;
+      background: var(--border);
+    }
+
+    .chain-step:last-child .chain-step-dot::after { display: none; }
+
+    .chain-step-dot.impact { background: var(--red); }
+
+    .chain-step-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .chain-step-text strong { color: var(--navy); font-weight: 600; }
+    .chain-step-text .impact-num { color: var(--red); font-weight: 600; }
+
+    .chain-impact {
+      margin: 0 24px 20px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, rgba(161,53,68,0.06), rgba(193,122,58,0.06));
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--red);
+    }
+
+    .chain-impact p {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--red);
+    }
+
+    /* Domino Effect Timeline */
+    .domino-timeline {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-top: 24px;
+    }
+
+    .domino-timeline h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .domino-bar {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      height: 56px;
+    }
+
+    .domino-segment {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .domino-segment span { font-weight: 700; font-size: 12px; }
+
+    /* ---- FUTURES SIGNAL ---- */
+    .chart-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .toggle-group {
+      display: flex;
+      gap: 2px;
+      background: var(--surface-alt);
+      border-radius: var(--radius-sm);
+      padding: 3px;
+    }
+
+    .toggle-btn {
+      background: transparent;
+      border: none;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .toggle-btn.active {
+      background: var(--surface);
+      color: var(--navy);
+      box-shadow: var(--shadow);
+      font-weight: 600;
+    }
+
+    .chart-container {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .chart-container canvas {
+      width: 100% !important;
+      max-height: 460px;
+    }
+
+    .legend-custom {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .legend-item:hover { background: var(--surface-alt); }
+
+    .legend-item.hidden { opacity: 0.35; text-decoration: line-through; }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ---- THE HEDGE ---- */
+    .role-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .role-card {
+      background: var(--surface);
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .role-card:hover { border-color: var(--teal); box-shadow: var(--shadow-md); }
+    .role-card.selected { border-color: var(--teal); background: var(--teal-pale); }
+
+    .role-card .role-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .role-card h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .role-card p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+    /* Simulation Panel */
+    .sim-panel {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .sim-panel.active { display: block; }
+
+    .sim-exposure {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    .sim-exposure h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .exposure-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .exposure-stat {
+      padding: 16px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+    }
+
+    .exposure-stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .exposure-stat .value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .exposure-stat .value.negative { color: var(--red); }
+
+    /* Hedge choices */
+    .hedge-choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .hedge-choice {
+      background: var(--surface);
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .hedge-choice:hover { border-color: var(--teal); }
+    .hedge-choice.selected { border-color: var(--teal); background: var(--teal-pale); }
+
+    .hedge-choice h5 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .hedge-choice p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* P&L Result */
+    .pnl-result {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .pnl-result.active { display: block; }
+
+    .pnl-card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .pnl-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .pnl-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .pnl-bar-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 100px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pnl-bar-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .pnl-bar-track {
+      height: 32px;
+      background: var(--bg);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pnl-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+
+    .pnl-bar-value {
+      font-size: 14px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .pnl-bar-value.savings { color: var(--teal); }
+    .pnl-bar-value.loss { color: var(--red); }
+
+    /* Takeaway */
+    .takeaway {
+      background: linear-gradient(135deg, rgba(32,128,141,0.06), rgba(193,122,58,0.06));
+      border: 1px solid var(--teal);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+
+    .takeaway h5 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    .takeaway p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ---- FOOTER TAKEAWAY ---- */
+    .global-takeaway {
+      background: var(--navy);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .global-takeaway p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .global-takeaway p em {
+      color: var(--copper-light);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* ---- SOURCES ---- */
+    .sources {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-light);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+    }
+
+    .sources span { font-weight: 600; color: var(--text-secondary); }
+
+    .sources a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .sources a:hover { text-decoration: underline; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .header { padding: 16px 20px; }
+      .header-inner { flex-direction: column; gap: 12px; }
+      .tab-nav { overflow-x: auto; width: 100%; }
+      .main { padding: 20px 16px; }
+      .section-header h2 { font-size: 22px; }
+      .chain-cards { grid-template-columns: 1fr; }
+      .commodity-grid { grid-template-columns: 1fr; }
+      .role-cards { grid-template-columns: 1fr; }
+      .hedge-choices { grid-template-columns: 1fr; }
+      .pnl-bar-row { grid-template-columns: 1fr; gap: 4px; }
+      .callout { flex-direction: column; text-align: center; }
+      .domino-bar { flex-direction: column; height: auto; }
+      .domino-segment { padding: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-group">
+        <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Hormuz Shock logo">
+          <!-- Hexagonal strait shape -->
+          <path d="M20 3L35 11.5V28.5L20 37L5 28.5V11.5L20 3Z" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+          <!-- Inner passage -->
+          <path d="M14 16L20 12L26 16V24L20 28L14 24V16Z" stroke="#20808D" stroke-width="2" fill="rgba(32,128,141,0.15)"/>
+          <!-- Chokepoint center -->
+          <circle cx="20" cy="20" r="3.5" fill="#C17A3A"/>
+          <!-- Radiating lines (commodities flowing) -->
+          <line x1="20" y1="16.5" x2="20" y2="8" stroke="#20808D" stroke-width="1" opacity="0.6"/>
+          <line x1="23.5" y1="18" x2="30" y2="12" stroke="#20808D" stroke-width="1" opacity="0.6"/>
+          <line x1="23.5" y1="22" x2="30" y2="28" stroke="#20808D" stroke-width="1" opacity="0.6"/>
+          <line x1="20" y1="23.5" x2="20" y2="32" stroke="#20808D" stroke-width="1" opacity="0.6"/>
+          <line x1="16.5" y1="22" x2="10" y2="28" stroke="#20808D" stroke-width="1" opacity="0.6"/>
+          <line x1="16.5" y1="18" x2="10" y2="12" stroke="#20808D" stroke-width="1" opacity="0.6"/>
+        </svg>
+        <div class="logo-text">
+          <h1>Hormuz Shock</h1>
+          <p>Commodity Market Dashboard</p>
+        </div>
+      </div>
+      <nav class="tab-nav" role="tablist">
+        <button class="tab-btn active" data-tab="chokepoint" role="tab" aria-selected="true">The Chokepoint</button>
+        <button class="tab-btn" data-tab="chains" role="tab" aria-selected="false">Chain Reactions</button>
+        <button class="tab-btn" data-tab="futures" role="tab" aria-selected="false">Futures Signal</button>
+        <button class="tab-btn" data-tab="hedge" role="tab" aria-selected="false">The Hedge</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== SECTION 1: THE CHOKEPOINT ===== -->
+    <section id="chokepoint" class="section active">
+      <div class="section-header">
+        <h2>The Chokepoint</h2>
+        <p>The Strait of Hormuz is a narrow waterway between Iran and Oman — just 21 nautical miles wide at its narrowest. Through it flows the lifeblood of the global economy.</p>
+      </div>
+
+      <div class="callout" style="margin-bottom: 28px;">
+        <div class="callout-icon">⛽</div>
+        <div class="callout-text">
+          <h3>20 million barrels per day</h3>
+          <p>That's 231 barrels every second passing through the strait</p>
+        </div>
+      </div>
+
+      <div class="flow-diagram-container">
+        <h3>Commodity Flows Through the Strait of Hormuz</h3>
+        <div class="flow-svg-wrap">
+          <svg viewBox="0 0 900 520" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Flow diagram showing commodities radiating from the Strait of Hormuz">
+            <!-- Central Strait -->
+            <ellipse cx="450" cy="260" rx="75" ry="45" fill="#1B2A4A" opacity="0.9"/>
+            <ellipse cx="450" cy="260" rx="55" ry="30" fill="none" stroke="#20808D" stroke-width="2" stroke-dasharray="6 3"/>
+            <text x="450" y="254" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="12" font-weight="700">STRAIT OF</text>
+            <text x="450" y="272" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="12" font-weight="700">HORMUZ</text>
+
+            <!-- Radiating lines -->
+            <line x1="450" y1="215" x2="450" y2="80" stroke="#20808D" stroke-width="2" opacity="0.35"/>
+            <line x1="375" y1="225" x2="180" y2="90" stroke="#20808D" stroke-width="2" opacity="0.35"/>
+            <line x1="525" y1="225" x2="720" y2="90" stroke="#20808D" stroke-width="2" opacity="0.35"/>
+            <line x1="375" y1="280" x2="140" y2="340" stroke="#20808D" stroke-width="2" opacity="0.35"/>
+            <line x1="525" y1="280" x2="760" y2="340" stroke="#20808D" stroke-width="2" opacity="0.35"/>
+            <line x1="400" y1="300" x2="250" y2="450" stroke="#20808D" stroke-width="2" opacity="0.35"/>
+            <line x1="500" y1="300" x2="650" y2="450" stroke="#20808D" stroke-width="2" opacity="0.35"/>
+
+            <!-- Crude Oil (top center) -->
+            <rect x="385" y="30" width="130" height="58" rx="10" fill="#1B2A4A"/>
+            <rect x="385" y="30" width="130" height="58" rx="10" fill="none" stroke="#C17A3A" stroke-width="2"/>
+            <text x="450" y="53" text-anchor="middle" fill="#C17A3A" font-family="Inter, sans-serif" font-size="13" font-weight="700">Crude Oil</text>
+            <text x="450" y="72" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter, sans-serif" font-size="10">20% global consumption</text>
+
+            <!-- LNG (top left) -->
+            <rect x="105" y="40" width="130" height="58" rx="10" fill="#1B2A4A"/>
+            <rect x="105" y="40" width="130" height="58" rx="10" fill="none" stroke="#20808D" stroke-width="1.5"/>
+            <text x="170" y="63" text-anchor="middle" fill="#20808D" font-family="Inter, sans-serif" font-size="13" font-weight="700">LNG</text>
+            <text x="170" y="82" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter, sans-serif" font-size="10">~20% global trade</text>
+
+            <!-- Petrochemicals (top right) -->
+            <rect x="645" y="40" width="140" height="58" rx="10" fill="#1B2A4A"/>
+            <rect x="645" y="40" width="140" height="58" rx="10" fill="none" stroke="#20808D" stroke-width="1.5"/>
+            <text x="715" y="63" text-anchor="middle" fill="#20808D" font-family="Inter, sans-serif" font-size="13" font-weight="700">Petrochemicals</text>
+            <text x="715" y="82" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter, sans-serif" font-size="10">~33% methanol trade</text>
+
+            <!-- Fertilizers (mid left) -->
+            <rect x="60" y="300" width="140" height="58" rx="10" fill="#1B2A4A"/>
+            <rect x="60" y="300" width="140" height="58" rx="10" fill="none" stroke="#20808D" stroke-width="1.5"/>
+            <text x="130" y="323" text-anchor="middle" fill="#20808D" font-family="Inter, sans-serif" font-size="13" font-weight="700">Fertilizers</text>
+            <text x="130" y="342" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter, sans-serif" font-size="10">46% urea trade</text>
+
+            <!-- Sulfur (mid right) -->
+            <rect x="690" y="300" width="130" height="58" rx="10" fill="#1B2A4A"/>
+            <rect x="690" y="300" width="130" height="58" rx="10" fill="none" stroke="#20808D" stroke-width="1.5"/>
+            <text x="755" y="323" text-anchor="middle" fill="#20808D" font-family="Inter, sans-serif" font-size="13" font-weight="700">Sulfur</text>
+            <text x="755" y="342" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter, sans-serif" font-size="10">~50% seaborne</text>
+
+            <!-- Helium (bottom left) -->
+            <rect x="175" y="415" width="130" height="58" rx="10" fill="#1B2A4A"/>
+            <rect x="175" y="415" width="130" height="58" rx="10" fill="none" stroke="#20808D" stroke-width="1.5"/>
+            <text x="240" y="438" text-anchor="middle" fill="#20808D" font-family="Inter, sans-serif" font-size="13" font-weight="700">Helium</text>
+            <text x="240" y="457" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter, sans-serif" font-size="10">~30% global supply</text>
+
+            <!-- Aluminum (bottom right) -->
+            <rect x="575" y="415" width="130" height="58" rx="10" fill="#1B2A4A"/>
+            <rect x="575" y="415" width="130" height="58" rx="10" fill="none" stroke="#20808D" stroke-width="1.5"/>
+            <text x="640" y="438" text-anchor="middle" fill="#20808D" font-family="Inter, sans-serif" font-size="13" font-weight="700">Aluminum</text>
+            <text x="640" y="457" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter, sans-serif" font-size="10">UAE top-5 global</text>
+
+            <!-- Animated pulse ring -->
+            <circle cx="450" cy="260" r="62" fill="none" stroke="#C17A3A" stroke-width="1" opacity="0.4">
+              <animate attributeName="r" from="55" to="90" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" from="0.4" to="0" dur="3s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+      </div>
+
+      <div class="commodity-grid" style="margin-top: 24px;">
+        <div class="commodity-stat-card">
+          <div class="stat-label">Crude Oil</div>
+          <div class="stat-value">20%</div>
+          <div class="stat-detail">of global consumption, 27% of seaborne trade</div>
+          <div class="stat-exporters">Saudi Arabia (38%), Iraq, UAE, Iran, Kuwait</div>
+        </div>
+        <div class="commodity-stat-card">
+          <div class="stat-label">LNG</div>
+          <div class="stat-value">~20%</div>
+          <div class="stat-detail">of global LNG trade</div>
+          <div class="stat-exporters">Qatar (primary), UAE</div>
+        </div>
+        <div class="commodity-stat-card">
+          <div class="stat-label">Fertilizers (Urea)</div>
+          <div class="stat-value">46%</div>
+          <div class="stat-detail">of global urea trade, ~30% of all fertilizer</div>
+          <div class="stat-exporters">Saudi Arabia, Qatar</div>
+        </div>
+        <div class="commodity-stat-card">
+          <div class="stat-label">Sulfur</div>
+          <div class="stat-value">~50%</div>
+          <div class="stat-detail">of global seaborne sulfur</div>
+          <div class="stat-exporters">Saudi Arabia, UAE, Qatar</div>
+        </div>
+        <div class="commodity-stat-card">
+          <div class="stat-label">Helium</div>
+          <div class="stat-value">~30%</div>
+          <div class="stat-detail">of global supply</div>
+          <div class="stat-exporters">Qatar (#2 global producer)</div>
+        </div>
+        <div class="commodity-stat-card">
+          <div class="stat-label">Aluminum</div>
+          <div class="stat-value">Top-5</div>
+          <div class="stat-detail">UAE is a top-5 global producer</div>
+          <div class="stat-exporters">UAE</div>
+        </div>
+        <div class="commodity-stat-card">
+          <div class="stat-label">Petrochemicals</div>
+          <div class="stat-value">~33%</div>
+          <div class="stat-detail">of global methanol trade</div>
+          <div class="stat-exporters">Saudi Arabia, Iran, Qatar</div>
+        </div>
+      </div>
+
+      <div class="global-takeaway" style="margin-top: 32px;">
+        <p>One <em>21-nautical-mile-wide</em> strait connects to your gas station, your electricity bill, your grocery store, your hospital, and your smartphone. That's the <em>interconnectivity</em> of global commodity markets.</p>
+      </div>
+
+      <div class="sources">
+        <span>Sources:</span>
+        <a href="https://www.eia.gov/todayinenergy/detail.php?id=61002" target="_blank">EIA 2025</a> ·
+        <a href="https://www.weforum.org/" target="_blank">WEF April 2026</a> ·
+        <a href="https://www.thinkbrg.com/" target="_blank">BRG March 2026</a> ·
+        Perplexity Finance
+      </div>
+    </section>
+
+    <!-- ===== SECTION 2: CHAIN REACTIONS ===== -->
+    <section id="chains" class="section">
+      <div class="section-header">
+        <h2>Chain Reactions</h2>
+        <p>Click any commodity to trace how a Hormuz disruption cascades from raw materials through supply chains to the products on your shelf.</p>
+      </div>
+
+      <div class="chain-cards" id="chainCards">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="domino-timeline">
+        <h3>Domino Effect Timeline — How Fast Does the Shock Spread?</h3>
+        <div class="domino-bar">
+          <div class="domino-segment" style="flex: 1; background: var(--red);">
+            <span>Hours</span>
+            Oil Prices
+          </div>
+          <div class="domino-segment" style="flex: 1.5; background: var(--copper);">
+            <span>Days</span>
+            Gas &amp; Shipping
+          </div>
+          <div class="domino-segment" style="flex: 2; background: var(--navy-light);">
+            <span>Weeks</span>
+            Industrial Inputs
+          </div>
+          <div class="domino-segment" style="flex: 3; background: var(--navy);">
+            <span>2–3 Quarters</span>
+            Food &amp; Consumer Goods
+          </div>
+        </div>
+      </div>
+
+      <div class="global-takeaway" style="margin-top: 32px;">
+        <p>One <em>21-nautical-mile-wide</em> strait connects to your gas station, your electricity bill, your grocery store, your hospital, and your smartphone. That's the <em>interconnectivity</em> of global commodity markets.</p>
+      </div>
+
+      <div class="sources">
+        <span>Sources:</span>
+        <a href="https://www.eia.gov/todayinenergy/detail.php?id=61002" target="_blank">EIA 2025</a> ·
+        <a href="https://www.weforum.org/" target="_blank">WEF April 2026</a> ·
+        <a href="https://www.thinkbrg.com/" target="_blank">BRG March 2026</a> ·
+        Perplexity Finance
+      </div>
+    </section>
+
+    <!-- ===== SECTION 3: FUTURES SIGNAL ===== -->
+    <section id="futures" class="section">
+      <div class="section-header">
+        <h2>Futures Signal</h2>
+        <p>Real commodity futures data from Jan 2024 to April 2026. Watch how prices moved before and after the Hormuz crisis began. Toggle between normalized view (base 100) and absolute prices.</p>
+      </div>
+
+      <div class="chart-controls">
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-mode="normalized">Normalized (Base 100)</button>
+          <button class="toggle-btn" data-mode="absolute">Absolute Prices</button>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="futuresChart"></canvas>
+        <div class="legend-custom" id="futuresLegend"></div>
+      </div>
+
+      <div class="global-takeaway" style="margin-top: 32px;">
+        <p>One <em>21-nautical-mile-wide</em> strait connects to your gas station, your electricity bill, your grocery store, your hospital, and your smartphone. That's the <em>interconnectivity</em> of global commodity markets.</p>
+      </div>
+
+      <div class="sources">
+        <span>Sources:</span>
+        <a href="https://www.eia.gov/todayinenergy/detail.php?id=61002" target="_blank">EIA 2025</a> ·
+        <a href="https://www.weforum.org/" target="_blank">WEF April 2026</a> ·
+        <a href="https://www.thinkbrg.com/" target="_blank">BRG March 2026</a> ·
+        Perplexity Finance (price data)
+      </div>
+    </section>
+
+    <!-- ===== SECTION 4: THE HEDGE ===== -->
+    <section id="hedge" class="section">
+      <div class="section-header">
+        <h2>The Hedge</h2>
+        <p>Choose a role and explore how different hedging strategies protect — or expose — your organization to commodity price shocks from a Hormuz disruption.</p>
+      </div>
+
+      <div class="role-cards" id="roleCards">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="sim-panel" id="simPanel">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="global-takeaway" style="margin-top: 32px;">
+        <p>One <em>21-nautical-mile-wide</em> strait connects to your gas station, your electricity bill, your grocery store, your hospital, and your smartphone. That's the <em>interconnectivity</em> of global commodity markets.</p>
+      </div>
+
+      <div class="sources">
+        <span>Sources:</span>
+        <a href="https://www.eia.gov/todayinenergy/detail.php?id=61002" target="_blank">EIA 2025</a> ·
+        <a href="https://www.weforum.org/" target="_blank">WEF April 2026</a> ·
+        <a href="https://www.thinkbrg.com/" target="_blank">BRG March 2026</a> ·
+        Perplexity Finance
+      </div>
+    </section>
+
+  </main>
+
+<script>
+// ============================================================
+// TAB NAVIGATION
+// ============================================================
+const tabBtns = document.querySelectorAll('.tab-btn');
+const sections = document.querySelectorAll('.section');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+    sections.forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+
+    // Init chart when futures tab is opened
+    if (btn.dataset.tab === 'futures' && !futuresChartInstance) {
+      initFuturesChart();
+    }
+  });
+});
+
+// ============================================================
+// CHAIN REACTIONS DATA & RENDERING
+// ============================================================
+const chainData = [
+  {
+    title: 'Crude Oil → Consumer',
+    subtitle: 'Impact timeline: Hours',
+    icon: '🛢️',
+    iconBg: '#1B2A4A',
+    steps: [
+      { text: '<strong>Crude Oil</strong> supply disrupted through the strait', impact: false },
+      { text: '<strong>Gasoline & Diesel</strong> prices surge at refineries', impact: false },
+      { text: '<strong>Transportation costs</strong> spike across all freight', impact: false },
+      { text: '<strong>Price of everything shipped</strong> increases', impact: false },
+      { text: '<span class="impact-num">+15–25%</span> at the pump, <span class="impact-num">+5–10%</span> shipping surcharge on all goods', impact: true }
+    ],
+    impactSummary: 'Fastest chain reaction — oil prices move within hours of any disruption signal.'
+  },
+  {
+    title: 'LNG → Consumer',
+    subtitle: 'Impact timeline: Days',
+    icon: '🔥',
+    iconBg: '#20808D',
+    steps: [
+      { text: '<strong>LNG supply</strong> from Qatar/UAE restricted', impact: false },
+      { text: '<strong>Natural gas prices</strong> spike globally', impact: false },
+      { text: '<strong>Electricity generation & heating</strong> costs soar', impact: false },
+      { text: '<strong>Utility bills</strong> rise <span class="impact-num">20–40%</span>', impact: false },
+      { text: '<strong>Industrial production costs</strong> increase', impact: false },
+      { text: '<span class="impact-num">Consumer goods prices rise</span> across the board', impact: true }
+    ],
+    impactSummary: 'European and Asian markets most exposed — LNG spot prices react in days.'
+  },
+  {
+    title: 'Fertilizers → Consumer',
+    subtitle: 'Impact timeline: 2–3 Quarters (delayed)',
+    icon: '🌾',
+    iconBg: '#C17A3A',
+    steps: [
+      { text: '<strong>Urea/Ammonia</strong> supply cut from Saudi Arabia & Qatar', impact: false },
+      { text: '<strong>Fertilizer prices</strong> spike globally', impact: false },
+      { text: '<strong>Farmers reduce application</strong> or switch to inferior alternatives', impact: false },
+      { text: '<strong>Crop yields fall</strong> in the following season', impact: false },
+      { text: '<strong>Grain prices rise</strong>, then <strong>meat prices</strong> (animal feed)', impact: false },
+      { text: 'Grocery bill up <span class="impact-num">+10–20%</span> — DELAYED 2–3 quarters', impact: true }
+    ],
+    impactSummary: 'The hidden chain — most people don\'t connect their grocery bill to a strait 6,000 miles away.'
+  },
+  {
+    title: 'Helium → Consumer',
+    subtitle: 'Impact timeline: Weeks',
+    icon: '🏥',
+    iconBg: '#A13544',
+    steps: [
+      { text: '<strong>Helium supply cut 30%</strong> from Qatar (world\'s #2 producer)', impact: false },
+      { text: '<strong>MRI machines go offline</strong> — helium cools superconducting magnets', impact: false },
+      { text: '<strong>Semiconductor fab disruptions</strong> (helium used in chip manufacturing)', impact: false },
+      { text: '<strong>Healthcare wait times</strong> increase for imaging', impact: false },
+      { text: '<span class="impact-num">Medical imaging costs rise</span>, <span class="impact-num">electronics prices up</span>', impact: true }
+    ],
+    impactSummary: 'Helium is irreplaceable for MRI cooling and chip fabrication — no substitute exists.'
+  },
+  {
+    title: 'Aluminum → Consumer',
+    subtitle: 'Impact timeline: Weeks to Months',
+    icon: '🏭',
+    iconBg: '#2C4066',
+    steps: [
+      { text: '<strong>Aluminum supply</strong> disrupted from UAE (top-5 global)', impact: false },
+      { text: '<strong>Automotive production slows</strong> — aluminum is critical for lightweight vehicles', impact: false },
+      { text: '<strong>Aerospace parts shortage</strong> affects aircraft manufacturing', impact: false },
+      { text: '<strong>Canned goods packaging</strong> costs rise', impact: false },
+      { text: 'Vehicle prices <span class="impact-num">+3–5%</span>, aircraft delivery delays', impact: true }
+    ],
+    impactSummary: 'Aluminum touches vehicles, planes, food packaging, and construction — a broad-based impact.'
+  },
+  {
+    title: 'Petrochemicals → Consumer',
+    subtitle: 'Impact timeline: Weeks',
+    icon: '⚗️',
+    iconBg: '#1B2A4A',
+    steps: [
+      { text: '<strong>Methanol/MEG</strong> supply cut (~33% of global methanol trade)', impact: false },
+      { text: '<strong>Plastics production</strong> falls globally', impact: false },
+      { text: '<strong>Packaging costs</strong> rise across food and consumer goods', impact: false },
+      { text: '<strong>Pharmaceutical supply</strong> affected (plastic medical devices)', impact: false },
+      { text: '<strong>Synthetic fiber shortage</strong> impacts clothing', impact: false },
+      { text: '<span class="impact-num">Consumer goods prices up</span> across the board', impact: true }
+    ],
+    impactSummary: 'Petrochemicals are in everything — from water bottles to hospital IV bags to polyester shirts.'
+  }
+];
+
+function renderChainCards() {
+  const container = document.getElementById('chainCards');
+  container.innerHTML = chainData.map((chain, i) => `
+    <div class="chain-card" data-index="${i}" onclick="toggleChain(this)">
+      <div class="chain-card-header">
+        <div class="chain-icon" style="background: ${chain.iconBg}; color: #fff;">${chain.icon}</div>
+        <div class="chain-info">
+          <h4>${chain.title}</h4>
+          <p>${chain.subtitle}</p>
+        </div>
+        <div class="chain-toggle">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div class="chain-card-body">
+        <div class="chain-steps">
+          ${chain.steps.map(step => `
+            <div class="chain-step">
+              <div class="chain-step-dot ${step.impact ? 'impact' : ''}"></div>
+              <div class="chain-step-text">${step.text}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="chain-impact">
+          <p>${chain.impactSummary}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleChain(card) {
+  const wasExpanded = card.classList.contains('expanded');
+  // Close all
+  document.querySelectorAll('.chain-card').forEach(c => c.classList.remove('expanded'));
+  // Open this one if it wasn't already open
+  if (!wasExpanded) {
+    card.classList.add('expanded');
+  }
+}
+
+renderChainCards();
+
+// ============================================================
+// FUTURES SIGNAL DATA & CHART
+// ============================================================
+const futuresLabels = [
+  'Jan 24','Feb 24','Mar 24','Apr 24','May 24','Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24',
+  'Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25',
+  'Jan 26','Feb 26','Mar 26','Apr 26'
+];
+
+const futuresData = {
+  'WTI Crude ($/bbl)': {
+    color: '#C17A3A',
+    data: [75.85,78.26,83.17,81.93,76.99,81.54,77.91,73.55,68.17,69.26,68.00,71.72,72.53,69.76,71.48,58.21,60.79,65.11,69.26,64.01,62.37,60.98,59.61,57.42,65.21,67.02,101.38,110.59]
+  },
+  'Brent Crude ($/bbl)': {
+    color: '#A13544',
+    data: [80.55,81.91,87.00,86.33,81.11,85.00,80.23,76.24,71.46,72.45,72.94,74.64,75.67,72.28,73.97,61.06,62.78,66.74,71.70,67.48,66.03,64.77,63.44,60.85,69.32,72.87,103.97,108.43]
+  },
+  'Natural Gas ($/MMBtu)': {
+    color: '#20808D',
+    data: [2.10,1.86,1.76,1.99,2.59,2.60,2.04,2.13,2.92,2.71,3.36,3.63,3.04,3.83,4.12,3.33,3.45,3.46,3.11,3.00,3.30,4.12,4.83,3.69,4.35,2.86,2.88,2.84]
+  },
+  'Aluminum ($/tonne)': {
+    color: '#2C4066',
+    data: [2259.25,2204.25,2318.25,2591.25,2630.75,2493.50,2236.25,2383.00,2559.75,2592.00,2562.00,2546.50,2588.00,2582.00,2475.75,2318.25,2364.75,2563.00,2493.00,2529.50,2622.00,2862.25,2860.00,2972.25,3090.75,3077.50,3389.75,3410.00]
+  },
+  'Corn (¢/bushel)': {
+    color: '#848456',
+    data: [448.25,429.50,442.00,446.75,446.25,407.50,382.75,401.00,424.75,410.75,423.00,458.50,482.00,469.50,457.25,475.50,444.00,409.25,394.00,420.25,415.50,431.50,446.50,440.25,428.25,448.50,457.75,450.75]
+  },
+  'Wheat (¢/bushel)': {
+    color: '#944454',
+    data: [622.00,587.25,585.25,635.25,708.75,586.25,549.00,565.25,583.75,569.25,520.75,559.25,579.25,573.00,557.00,529.50,533.25,526.75,526.25,519.75,497.75,524.50,527.75,514.75,544.75,580.50,635.50,607.50]
+  },
+  'Soybeans (¢/bushel)': {
+    color: '#6E522B',
+    data: [1222.25,1140.75,1191.50,1163.00,1205.00,1104.00,1022.50,1000.00,1057.00,994.50,989.50,1010.50,1042.00,1025.75,1014.75,1044.50,1041.75,1027.00,989.25,1054.50,1001.75,1115.25,1134.25,1047.50,1064.25,1170.75,1171.00,1168.75]
+  }
+};
+
+let futuresChartInstance = null;
+let chartMode = 'normalized';
+
+function getChartData(mode) {
+  const names = Object.keys(futuresData);
+  return names.map(name => {
+    const d = futuresData[name];
+    const base = d.data[0];
+    return {
+      label: name,
+      data: mode === 'normalized' ? d.data.map(v => (v / base) * 100) : d.data,
+      borderColor: d.color,
+      backgroundColor: d.color + '18',
+      borderWidth: 2.5,
+      pointRadius: 0,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: d.color,
+      tension: 0.3,
+      fill: false
+    };
+  });
+}
+
+function initFuturesChart() {
+  const ctx = document.getElementById('futuresChart').getContext('2d');
+
+  // Crisis annotation index (Feb 26 = index 25)
+  const crisisIndex = 25;
+
+  futuresChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: futuresLabels,
+      datasets: getChartData(chartMode)
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: 2.2,
+      interaction: {
+        mode: 'index',
+        intersect: false
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1B2A4A',
+          titleColor: '#fff',
+          bodyColor: 'rgba(255,255,255,0.85)',
+          padding: 12,
+          cornerRadius: 8,
+          titleFont: { family: 'Inter', weight: '600', size: 13 },
+          bodyFont: { family: 'Inter', size: 12 },
+          callbacks: {
+            label: function(ctx) {
+              const name = ctx.dataset.label;
+              const val = ctx.parsed.y;
+              if (chartMode === 'normalized') {
+                return `${name}: ${val.toFixed(1)}`;
+              }
+              return `${name}: ${val.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            }
+          }
+        },
+        annotation: {
+          annotations: {
+            crisisLine: {
+              type: 'line',
+              xMin: crisisIndex,
+              xMax: crisisIndex,
+              borderColor: '#A13544',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              label: {
+                display: true,
+                content: 'Hormuz Crisis Begins',
+                position: 'start',
+                backgroundColor: '#A13544',
+                color: '#fff',
+                font: { family: 'Inter', size: 11, weight: '600' },
+                padding: { x: 8, y: 4 },
+                borderRadius: 4
+              }
+            },
+            crisisArea: {
+              type: 'box',
+              xMin: crisisIndex,
+              xMax: 27,
+              backgroundColor: 'rgba(161,53,68,0.06)',
+              borderWidth: 0
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(27,42,74,0.06)', drawBorder: false },
+          ticks: {
+            font: { family: 'Inter', size: 11 },
+            color: '#9A958E',
+            maxRotation: 45
+          }
+        },
+        y: {
+          grid: { color: 'rgba(27,42,74,0.06)', drawBorder: false },
+          ticks: {
+            font: { family: 'Inter', size: 11 },
+            color: '#9A958E',
+            callback: function(val) {
+              if (chartMode === 'normalized') return val.toFixed(0);
+              return val.toLocaleString();
+            }
+          },
+          title: {
+            display: true,
+            text: chartMode === 'normalized' ? 'Index (Jan 2024 = 100)' : 'Price',
+            font: { family: 'Inter', size: 12, weight: '500' },
+            color: '#6B6760'
+          }
+        }
+      }
+    }
+  });
+
+  renderFuturesLegend();
+}
+
+function renderFuturesLegend() {
+  const legend = document.getElementById('futuresLegend');
+  const names = Object.keys(futuresData);
+  legend.innerHTML = names.map((name, i) => `
+    <div class="legend-item" data-index="${i}" onclick="toggleDataset(${i})">
+      <div class="legend-dot" style="background: ${futuresData[name].color};"></div>
+      ${name}
+    </div>
+  `).join('');
+}
+
+function toggleDataset(index) {
+  const chart = futuresChartInstance;
+  const meta = chart.getDatasetMeta(index);
+  meta.hidden = !meta.hidden;
+  chart.update();
+  // Update legend visual
+  const items = document.querySelectorAll('.legend-item');
+  items[index].classList.toggle('hidden');
+}
+
+// Toggle mode
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    chartMode = btn.dataset.mode;
+
+    if (futuresChartInstance) {
+      futuresChartInstance.data.datasets = getChartData(chartMode);
+      futuresChartInstance.options.scales.y.title.text = chartMode === 'normalized' ? 'Index (Jan 2024 = 100)' : 'Price';
+      futuresChartInstance.options.scales.y.ticks.callback = function(val) {
+        if (chartMode === 'normalized') return val.toFixed(0);
+        return val.toLocaleString();
+      };
+      futuresChartInstance.update();
+    }
+  });
+});
+
+// ============================================================
+// THE HEDGE — ROLE SIMULATION
+// ============================================================
+const roleData = [
+  {
+    title: 'Airline CFO',
+    icon: '✈️',
+    iconBg: '#1B2A4A',
+    desc: 'Primary exposure: Jet fuel (from crude oil)',
+    exposure: {
+      budget: '$2.4B',
+      baseline: '$80/bbl',
+      scenario: '$110/bbl (+37.5%)',
+      unhedgedLoss: '$900M'
+    },
+    hedges: [
+      {
+        name: 'Full Hedge (100%)',
+        desc: 'Buy crude oil futures at $80/bbl for entire fuel budget',
+        savings: 900,
+        loss: 0,
+        maxCost: 2400
+      },
+      {
+        name: 'Partial Hedge (50%)',
+        desc: 'Hedge half the fuel budget with futures at $80/bbl',
+        savings: 450,
+        loss: 450,
+        maxCost: 2400
+      },
+      {
+        name: 'No Hedge',
+        desc: 'Absorb full market price increase with no protection',
+        savings: 0,
+        loss: 900,
+        maxCost: 2400
+      }
+    ],
+    takeaway: 'Fuel hedging is standard practice. Southwest Airlines famously hedged fuel at $51/bbl before the 2008 spike, saving $3.5B while competitors reported massive losses.',
+    currency: '$'
+  },
+  {
+    title: 'European Utility Director',
+    icon: '⚡',
+    iconBg: '#20808D',
+    desc: 'Primary exposure: LNG / Natural Gas',
+    exposure: {
+      budget: '€800M',
+      baseline: '€30/MWh',
+      scenario: '€42/MWh (+40%)',
+      unhedgedLoss: '€320M'
+    },
+    hedges: [
+      {
+        name: 'Full Hedge (100%)',
+        desc: 'Lock in gas supply contracts at €30/MWh',
+        savings: 320,
+        loss: 0,
+        maxCost: 800
+      },
+      {
+        name: 'Partial Hedge (50%)',
+        desc: 'Hedge half procurement with futures at €30/MWh',
+        savings: 160,
+        loss: 160,
+        maxCost: 800
+      },
+      {
+        name: 'No Hedge',
+        desc: 'Buy on spot market — fully exposed to price spike',
+        savings: 0,
+        loss: 320,
+        maxCost: 800
+      }
+    ],
+    takeaway: 'European utilities that locked in LNG contracts before the 2022 Russian gas crisis saved billions. Those that didn\'t faced existential threats.',
+    currency: '€'
+  },
+  {
+    title: 'Food Manufacturer',
+    icon: '🏭',
+    iconBg: '#C17A3A',
+    desc: 'Primary exposure: Grain prices (corn, wheat, soybeans)',
+    exposure: {
+      budget: '$500M',
+      baseline: 'Current market prices',
+      scenario: '+15% (fertilizer chain effect)',
+      unhedgedLoss: '$75M'
+    },
+    hedges: [
+      {
+        name: 'Full Hedge (100%)',
+        desc: 'Buy grain futures at current prices for annual procurement',
+        savings: 75,
+        loss: 0,
+        maxCost: 500
+      },
+      {
+        name: 'Partial Hedge (50%)',
+        desc: 'Hedge half of grain procurement needs',
+        savings: 37.5,
+        loss: 37.5,
+        maxCost: 500
+      },
+      {
+        name: 'No Hedge',
+        desc: 'Purchase grains at market prices as needed',
+        savings: 0,
+        loss: 75,
+        maxCost: 500
+      }
+    ],
+    takeaway: 'The 2–3 quarter lag between fertilizer price spikes and food price increases creates a window for hedging — but only if you understand the chain reaction.',
+    currency: '$'
+  },
+  {
+    title: 'Hospital Administrator',
+    icon: '🏥',
+    iconBg: '#A13544',
+    desc: 'Primary exposure: Helium for MRI machines',
+    exposure: {
+      budget: '$12M',
+      baseline: 'Current helium prices',
+      scenario: '+100% (30% supply cut)',
+      unhedgedLoss: '$12M + $45M deferred revenue'
+    },
+    hedges: [
+      {
+        name: 'Long-term Supply Contract',
+        desc: 'Lock in multi-year contract with helium supplier — limited protection',
+        savings: 8,
+        loss: 4,
+        maxCost: 12
+      },
+      {
+        name: 'Strategic Reserve',
+        desc: 'Build 6-month helium reserve — high upfront cost but ensures MRI uptime',
+        savings: 6,
+        loss: 6,
+        maxCost: 12
+      },
+      {
+        name: 'No Hedge',
+        desc: 'No liquid futures market for helium — fully exposed to price and supply risk',
+        savings: 0,
+        loss: 57,
+        maxCost: 57
+      }
+    ],
+    takeaway: 'Not all risks can be hedged with futures. Helium has no liquid futures market, illustrating the limits of derivatives. Strategic reserves and long-term supply contracts become the alternative.',
+    currency: '$',
+    special: true
+  }
+];
+
+let selectedRole = null;
+let selectedHedge = null;
+
+function renderRoleCards() {
+  const container = document.getElementById('roleCards');
+  container.innerHTML = roleData.map((role, i) => `
+    <div class="role-card" data-index="${i}" onclick="selectRole(${i})">
+      <div class="role-icon" style="background: ${role.iconBg}; color: #fff;">${role.icon}</div>
+      <h4>${role.title}</h4>
+      <p>${role.desc}</p>
+    </div>
+  `).join('');
+}
+
+function selectRole(index) {
+  selectedRole = index;
+  selectedHedge = null;
+  const role = roleData[index];
+
+  // Update card selection
+  document.querySelectorAll('.role-card').forEach((c, i) => {
+    c.classList.toggle('selected', i === index);
+  });
+
+  const panel = document.getElementById('simPanel');
+  panel.classList.add('active');
+  panel.innerHTML = `
+    <div class="sim-exposure">
+      <h3>${role.icon} ${role.title} — Exposure Profile</h3>
+      <div class="exposure-stats">
+        <div class="exposure-stat">
+          <div class="label">Annual Budget</div>
+          <div class="value">${role.exposure.budget}</div>
+        </div>
+        <div class="exposure-stat">
+          <div class="label">Baseline Price</div>
+          <div class="value">${role.exposure.baseline}</div>
+        </div>
+        <div class="exposure-stat">
+          <div class="label">Hormuz Scenario</div>
+          <div class="value">${role.exposure.scenario}</div>
+        </div>
+        <div class="exposure-stat">
+          <div class="label">Unhedged Loss</div>
+          <div class="value negative">${role.exposure.unhedgedLoss}</div>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 12px;">Choose Your Hedging Strategy:</h4>
+    <div class="hedge-choices">
+      ${role.hedges.map((h, hi) => `
+        <div class="hedge-choice" data-index="${hi}" onclick="selectHedge(${index}, ${hi})">
+          <h5>${h.name}</h5>
+          <p>${h.desc}</p>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="pnl-result" id="pnlResult"></div>
+  `;
+}
+
+function selectHedge(roleIndex, hedgeIndex) {
+  selectedHedge = hedgeIndex;
+  const role = roleData[roleIndex];
+  const hedge = role.hedges[hedgeIndex];
+
+  // Update hedge card selection
+  document.querySelectorAll('.hedge-choice').forEach((c, i) => {
+    c.classList.toggle('selected', i === hedgeIndex);
+  });
+
+  const pnl = document.getElementById('pnlResult');
+  pnl.classList.add('active');
+
+  const maxVal = hedge.maxCost;
+  const savingsPercent = (hedge.savings / maxVal) * 100;
+  const lossPercent = (hedge.loss / maxVal) * 100;
+
+  pnl.innerHTML = `
+    <div class="pnl-card">
+      <h4>P&L Outcome: ${hedge.name}</h4>
+      <div class="pnl-bars">
+        <div class="pnl-bar-row">
+          <div class="pnl-bar-label">Cost Avoided</div>
+          <div class="pnl-bar-track">
+            <div class="pnl-bar-fill" id="savingsBar" style="background: linear-gradient(90deg, #20808D, #2A9DA8);"></div>
+          </div>
+          <div class="pnl-bar-value savings">${role.currency}${hedge.savings}M</div>
+        </div>
+        <div class="pnl-bar-row">
+          <div class="pnl-bar-label">Cost Absorbed</div>
+          <div class="pnl-bar-track">
+            <div class="pnl-bar-fill" id="lossBar" style="background: linear-gradient(90deg, #A13544, #C74E60);"></div>
+          </div>
+          <div class="pnl-bar-value loss">${role.currency}${hedge.loss}M</div>
+        </div>
+      </div>
+      ${role.special && hedgeIndex === 2 ? `
+        <div style="padding: 12px 16px; background: rgba(161,53,68,0.08); border-radius: 8px; margin-bottom: 16px; border-left: 3px solid var(--red);">
+          <p style="font-size: 13px; color: var(--red); font-weight: 500;">
+            Includes $12M helium cost increase + $45M in deferred MRI revenue from equipment downtime
+          </p>
+        </div>
+      ` : ''}
+      <div class="takeaway">
+        <h5>Key Takeaway</h5>
+        <p>${role.takeaway}</p>
+      </div>
+    </div>
+  `;
+
+  // Animate bars
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const sb = document.getElementById('savingsBar');
+      const lb = document.getElementById('lossBar');
+      if (sb) sb.style.width = savingsPercent + '%';
+      if (lb) lb.style.width = lossPercent + '%';
+    });
+  });
+}
+
+renderRoleCards();
+
+</script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

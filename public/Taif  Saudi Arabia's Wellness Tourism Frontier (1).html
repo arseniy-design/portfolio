@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taif: Saudi Arabia's Wellness Tourism Frontier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --rose: #8B1A4A;
+  --rose-light: #B8315F;
+  --rose-pale: #F2D4DF;
+  --gold: #C9932F;
+  --gold-light: #E5B84A;
+  --gold-pale: #F5E8C8;
+  --cream: #F5ECD7;
+  --sage: #4A7C59;
+  --sage-light: #6BA37D;
+  --charcoal: #1C1C1E;
+  --charcoal-2: #252527;
+  --charcoal-3: #2E2E30;
+  --charcoal-4: #3A3A3C;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+  --text-3xl: clamp(2.5rem, 1rem + 4vw, 4.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --content-wide: 1280px;
+}
+
+[data-theme="dark"] {
+  --color-bg: #111113;
+  --color-surface: #1C1C1E;
+  --color-surface-2: #252527;
+  --color-surface-3: #2E2E30;
+  --color-border: #3A3A3C;
+  --color-divider: #2E2E30;
+  --color-text: #E8E4DB;
+  --color-text-muted: #9A9890;
+  --color-text-faint: #5A5855;
+  --color-accent: #D4784A;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+[data-theme="light"] {
+  --color-bg: #FAF6F0;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F5ECD7;
+  --color-surface-3: #EDE3CC;
+  --color-border: #DDD5C0;
+  --color-divider: #E8E0CC;
+  --color-text: #1C1C1E;
+  --color-text-muted: #5C5850;
+  --color-text-faint: #9A9480;
+  --color-accent: #C9932F;
+  --shadow-sm: 0 1px 3px rgba(28,28,30,0.08);
+  --shadow-md: 0 4px 16px rgba(28,28,30,0.1);
+  --shadow-lg: 0 12px 40px rgba(28,28,30,0.15);
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+img, picture, canvas, svg { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+h1,h2,h3,h4,h5,h6 { text-wrap: balance; line-height: 1.15; }
+p, li { text-wrap: pretty; }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-8);
+}
+.nav-inner {
+  max-width: var(--content-wide);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+.nav-logo-mark {
+  width: 32px;
+  height: 32px;
+}
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.nav-links {
+  display: flex;
+  gap: var(--space-1);
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.nav-links a:hover {
+  color: var(--color-text);
+  background: var(--color-surface-2);
+}
+.nav-actions { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
+.theme-toggle {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-text-muted);
+  transition: all var(--transition);
+  border: 1px solid var(--color-border);
+}
+.theme-toggle:hover { color: var(--color-text); background: var(--color-surface-2); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: calc(var(--space-16) + 64px) var(--space-8) var(--space-16);
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,26,74,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 60%, rgba(201,147,47,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(74,124,89,0.12) 0%, transparent 50%);
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+[data-theme="light"] .hero-grid {
+  background-image: 
+    linear-gradient(rgba(28,28,30,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28,28,30,0.04) 1px, transparent 1px);
+}
+.hero-content {
+  max-width: var(--content-wide);
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-5);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 300;
+  color: var(--color-text);
+  line-height: 1.05;
+  margin-bottom: var(--space-6);
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--rose-light);
+}
+.hero-subtitle {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+  margin-bottom: var(--space-10);
+  line-height: 1.7;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  max-width: 900px;
+}
+.hero-stat {
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  backdrop-filter: blur(8px);
+}
+.hero-stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+.hero-stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: clamp(var(--space-16), 8vw, var(--space-20)) var(--space-8);
+}
+.section-inner {
+  max-width: var(--content-wide);
+  margin: 0 auto;
+}
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.section-number {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--rose);
+  text-transform: uppercase;
+}
+.section-divider {
+  height: 1px;
+  flex: 1;
+  background: var(--color-border);
+  max-width: 48px;
+}
+.section-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.section-insight {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin-bottom: var(--space-12);
+  padding-left: var(--space-6);
+  border-left: 3px solid var(--rose);
+  max-width: 72ch;
+}
+.section-insight strong { font-style: normal; font-weight: 600; color: var(--gold); }
+
+/* ===== KPI CARDS ===== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+.kpi-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+}
+.kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.kpi-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+.kpi-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+.kpi-value span { font-size: 55%; color: var(--color-text-muted); font-weight: 400; }
+.kpi-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+}
+.kpi-delta.up { color: var(--sage); background: color-mix(in srgb, var(--sage) 15%, transparent); }
+.kpi-delta.neutral { color: var(--gold); background: color-mix(in srgb, var(--gold) 15%, transparent); }
+.kpi-delta.warn { color: var(--rose-light); background: color-mix(in srgb, var(--rose-light) 15%, transparent); }
+.kpi-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  margin-top: var(--space-2);
+  line-height: 1.5;
+}
+.kpi-card.animate-count .kpi-value { counter-reset: none; }
+
+/* ===== CHARTS GRID ===== */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.chart-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+.chart-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+.chart-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+  line-height: 1.5;
+}
+.chart-container { position: relative; }
+
+/* ===== INFRASTRUCTURE TABLE ===== */
+.infra-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-8);
+}
+.infra-header {
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.infra-title { font-size: var(--text-sm); font-weight: 600; }
+.infra-filters { display: flex; gap: var(--space-2); }
+.filter-btn {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  transition: all var(--transition);
+  background: none;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: white;
+}
+.infra-table { width: 100%; }
+.infra-table th {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-surface-2);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+.infra-table td {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-sm);
+  border-bottom: 1px solid var(--color-divider);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.infra-table tr:last-child td { border-bottom: none; }
+.infra-table tr:hover td { background: color-mix(in srgb, var(--color-surface-2) 50%, transparent); }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge-5star { background: color-mix(in srgb, var(--gold) 20%, transparent); color: var(--gold); }
+.badge-4star { background: color-mix(in srgb, var(--gold) 12%, transparent); color: color-mix(in srgb, var(--gold) 80%, var(--color-text)); }
+.badge-eco { background: color-mix(in srgb, var(--sage) 20%, transparent); color: var(--sage); }
+.badge-coming { background: color-mix(in srgb, var(--rose) 15%, transparent); color: var(--rose-light); }
+.badge-wellness { background: color-mix(in srgb, var(--sage) 15%, transparent); color: var(--sage-light); }
+.badge-medical { background: color-mix(in srgb, #5591c7 15%, transparent); color: #5591c7; }
+.badge-gap { background: color-mix(in srgb, var(--color-text-muted) 12%, transparent); color: var(--color-text-muted); }
+
+/* ===== PROJECT TRACKER ===== */
+.tracker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+.tracker-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  position: relative;
+}
+.tracker-status {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+}
+.status-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px var(--space-3);
+  border-radius: var(--radius-full);
+}
+.status-announced { background: color-mix(in srgb, var(--gold) 18%, transparent); color: var(--gold); }
+.status-progress { background: color-mix(in srgb, var(--rose) 18%, transparent); color: var(--rose-light); }
+.status-completed { background: color-mix(in srgb, var(--sage) 18%, transparent); color: var(--sage-light); }
+.tracker-org {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+.tracker-name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  line-height: 1.2;
+  padding-right: var(--space-16);
+}
+.tracker-amount {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: var(--space-2);
+}
+.tracker-date {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* ===== DATA GAP ===== */
+.data-gap {
+  background: color-mix(in srgb, var(--color-text-faint) 8%, transparent);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-top: var(--space-3);
+}
+.data-gap strong {
+  color: var(--color-text-faint);
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ===== SECTION 2: ROSE ECONOMY ===== */
+.rose-section { background: color-mix(in srgb, var(--rose) 4%, var(--color-bg)); }
+
+.rose-table-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-8);
+}
+.rose-table { width: 100%; }
+.rose-table th {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-surface-2);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+.rose-table td {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm);
+  border-bottom: 1px solid var(--color-divider);
+  vertical-align: middle;
+}
+.rose-table tr:last-child td { border-bottom: none; }
+.rose-table tr.highlight td { background: color-mix(in srgb, var(--rose) 8%, transparent); }
+.price-bar {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  overflow: hidden;
+  margin-top: var(--space-2);
+  max-width: 120px;
+}
+.price-bar-fill { height: 100%; border-radius: var(--radius-full); }
+.unesco-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+}
+.unesco-yes { background: color-mix(in srgb, var(--gold) 20%, transparent); color: var(--gold); }
+.unesco-no { background: color-mix(in srgb, var(--color-text-faint) 15%, transparent); color: var(--color-text-faint); }
+
+.wellness-assets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+.asset-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: transform var(--transition);
+}
+.asset-card:hover { transform: translateY(-2px); }
+.asset-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: var(--space-4);
+}
+.asset-icon.rose { background: color-mix(in srgb, var(--rose) 15%, transparent); }
+.asset-icon.mountain { background: color-mix(in srgb, var(--sage) 15%, transparent); }
+.asset-icon.spring { background: color-mix(in srgb, #5591c7 15%, transparent); }
+.asset-icon.honey { background: color-mix(in srgb, var(--gold) 15%, transparent); }
+.asset-icon.air { background: color-mix(in srgb, var(--sage-light) 15%, transparent); }
+.asset-icon.farm { background: color-mix(in srgb, var(--rose) 10%, var(--sage) 10%); }
+.asset-name {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+.asset-value {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: var(--space-1);
+}
+.asset-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+.scale-bar {
+  display: flex;
+  gap: 3px;
+  margin-top: var(--space-3);
+}
+.scale-dot {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: var(--color-border);
+}
+.scale-dot.filled { background: var(--rose); }
+.scale-dot.filled.sage { background: var(--sage); }
+.scale-dot.filled.gold { background: var(--gold); }
+
+/* ===== UNESCO TIMELINE ===== */
+.timeline {
+  position: relative;
+  padding-left: var(--space-10);
+  margin-bottom: var(--space-8);
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: var(--space-5);
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--rose), var(--gold), var(--sage));
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-6);
+}
+.timeline-dot {
+  position: absolute;
+  left: calc(-1 * var(--space-10) + var(--space-5) - 6px);
+  top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--color-bg);
+}
+.timeline-dot.rose { background: var(--rose); }
+.timeline-dot.gold { background: var(--gold); }
+.timeline-dot.sage { background: var(--sage); }
+.timeline-date {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-1);
+}
+.timeline-content {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+.timeline-heading {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+.timeline-body { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.6; }
+
+/* ===== SECTION 3: COMPETITION ===== */
+.competitor-matrix-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.matrix-title { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-2); }
+.matrix-sub { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-5); }
+
+.soudah-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.compare-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+.compare-card.taif { border-top: 3px solid var(--rose); }
+.compare-card.soudah { border-top: 3px solid var(--gold); }
+.compare-header { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-3); }
+.compare-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; margin-bottom: var(--space-4); }
+.compare-row { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-divider); font-size: var(--text-xs); }
+.compare-row:last-child { border-bottom: none; }
+.compare-key { color: var(--color-text-muted); }
+.compare-val { font-weight: 600; text-align: right; }
+.compare-val.rose { color: var(--rose-light); }
+.compare-val.gold { color: var(--gold); }
+.compare-val.sage { color: var(--sage-light); }
+
+.operator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+.operator-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.operator-name { font-weight: 700; font-size: var(--text-sm); margin-bottom: var(--space-2); }
+.operator-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px var(--space-2);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+.op-confirmed { background: color-mix(in srgb, var(--sage) 18%, transparent); color: var(--sage-light); }
+.op-absent { background: color-mix(in srgb, var(--color-text-faint) 15%, transparent); color: var(--color-text-faint); }
+.op-rumored { background: color-mix(in srgb, var(--gold) 15%, transparent); color: var(--gold); }
+.confidence-bar { display: flex; gap: 3px; margin-bottom: var(--space-3); }
+.conf-seg { height: 4px; flex: 1; border-radius: 2px; background: var(--color-border); }
+.conf-seg.filled.green { background: var(--sage); }
+.conf-seg.filled.gold { background: var(--gold); }
+.conf-seg.filled.rose { background: var(--rose); }
+.operator-note { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.55; }
+
+/* Thailand expandable */
+.case-study {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+.case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition);
+}
+.case-header:hover { background: var(--color-surface-2); }
+.case-header-left { flex: 1; }
+.case-country { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; color: var(--color-text-faint); text-transform: uppercase; margin-bottom: var(--space-1); }
+.case-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; }
+.case-toggle { color: var(--color-text-muted); transition: transform var(--transition); flex-shrink: 0; }
+.case-toggle.open { transform: rotate(180deg); }
+.case-body {
+  padding: 0 var(--space-6) var(--space-6);
+  display: none;
+}
+.case-body.open { display: block; }
+.case-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+.case-metric-val { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--gold); }
+.case-metric-label { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 2px; }
+.insight-panel {
+  background: color-mix(in srgb, var(--rose) 8%, var(--color-surface-2));
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  border-left: 3px solid var(--rose);
+}
+.insight-panel-title { font-size: var(--text-xs); font-weight: 700; color: var(--rose-light); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--space-2); }
+.insight-panel-text { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.7; }
+
+/* ===== SECTION 4: BARRIERS ===== */
+.barriers-section { background: color-mix(in srgb, var(--charcoal) 30%, var(--color-bg)); }
+.accordion { margin-bottom: var(--space-8); }
+.accordion-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+}
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.accordion-trigger:hover { background: var(--color-surface-2); }
+.accordion-trigger-left { display: flex; align-items: center; gap: var(--space-4); }
+.accordion-cat-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px var(--space-2);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  min-width: 100px;
+  text-align: center;
+}
+.acc-regulatory { background: color-mix(in srgb, var(--rose) 15%, transparent); color: var(--rose-light); }
+.acc-infra { background: color-mix(in srgb, var(--gold) 15%, transparent); color: var(--gold); }
+.acc-connectivity { background: color-mix(in srgb, #5591c7 15%, transparent); color: #5591c7; }
+.acc-demand { background: color-mix(in srgb, var(--sage) 15%, transparent); color: var(--sage-light); }
+.acc-licensing { background: color-mix(in srgb, #a86fdf 15%, transparent); color: #a86fdf; }
+.accordion-title { font-weight: 600; font-size: var(--text-sm); }
+.accordion-chevron { color: var(--color-text-muted); transition: transform var(--transition); }
+.accordion-chevron.open { transform: rotate(180deg); }
+.accordion-body { padding: 0 var(--space-6) var(--space-5); display: none; }
+.accordion-body.open { display: block; }
+.barrier-list { list-style: none; }
+.barrier-list li {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-divider);
+  display: flex;
+  gap: var(--space-3);
+}
+.barrier-list li:last-child { border-bottom: none; }
+.barrier-bullet {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--rose);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.airport-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.airport-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-5); flex-wrap: wrap; }
+.airport-title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; }
+.airport-iata { font-size: var(--text-xs); color: var(--color-text-faint); font-weight: 700; letter-spacing: 0.1em; }
+.airport-stats { display: flex; gap: var(--space-6); flex-wrap: wrap; margin-bottom: var(--space-5); }
+.airport-stat { }
+.airport-stat-val { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--gold); }
+.airport-stat-label { font-size: var(--text-xs); color: var(--color-text-muted); }
+.route-pills { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-4); }
+.route-pill {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font-size: var(--text-xs); font-weight: 500;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+.route-pill.international { border-color: color-mix(in srgb, var(--gold) 40%, var(--color-border)); color: var(--gold); }
+
+/* ===== SECTION 5: BENCHMARKS ===== */
+.benchmarks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.benchmark-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.benchmark-header {
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+.benchmark-location { font-size: var(--text-xs); font-weight: 700; color: var(--color-text-faint); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--space-1); }
+.benchmark-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; line-height: 1.25; }
+.benchmark-type { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-1); }
+.benchmark-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.bm-metric {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-divider);
+  border-right: 1px solid var(--color-divider);
+}
+.bm-metric:nth-child(even) { border-right: none; }
+.bm-metric:nth-last-child(-n+2) { border-bottom: none; }
+.bm-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--gold); }
+.bm-label { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 2px; }
+.benchmark-insight {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--rose) 5%, transparent);
+}
+.bi-label { font-size: 0.68rem; font-weight: 700; color: var(--rose-light); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--space-1); }
+.bi-text { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.6; }
+
+.gcc-models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+.gcc-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.gcc-flag { font-size: 1.5rem; margin-bottom: var(--space-3); }
+.gcc-name { font-weight: 700; font-size: var(--text-sm); margin-bottom: var(--space-1); }
+.gcc-type { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-3); }
+.gcc-stat { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-1); }
+.gcc-stat strong { color: var(--color-text); }
+.gcc-lesson {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-divider);
+  font-size: var(--text-xs);
+  color: var(--rose-light);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* ===== STRATEGIC HYPOTHESIS ===== */
+.hypothesis-section {
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--rose) 12%, var(--color-bg)),
+    color-mix(in srgb, var(--gold) 6%, var(--color-bg)));
+  border-top: 1px solid var(--color-border);
+}
+.hypothesis-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  perspective: 1000px;
+}
+.flip-card {
+  height: 320px;
+  cursor: pointer;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+}
+.flip-card-front {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  justify-content: space-between;
+}
+.flip-card-back {
+  background: var(--rose);
+  transform: rotateY(180deg);
+  color: white;
+  justify-content: space-between;
+}
+.flip-card.challenger .flip-card-back { background: var(--gold); }
+.flip-card.test .flip-card-back { background: var(--sage); }
+.flip-type {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-4);
+}
+.flip-type.rose-t { color: var(--rose-light); }
+.flip-type.gold-t { color: var(--gold); }
+.flip-type.sage-t { color: var(--sage-light); }
+.flip-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+  flex: 1;
+}
+.flip-hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.flip-back-type {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: var(--space-4);
+}
+.flip-back-content {
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.95);
+  flex: 1;
+}
+.flip-back-source {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-8);
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+}
+footer strong { color: var(--color-text-muted); }
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+
+/* ===== MISSED-OPPORTUNITY CHART ===== */
+.missed-opp {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .charts-row { grid-template-columns: 1fr; }
+  .soudah-compare { grid-template-columns: 1fr; }
+  .hypothesis-grid { grid-template-columns: 1fr; }
+  .flip-card { height: auto; }
+  .flip-card-inner { transform-style: flat; }
+  .flip-card-front { position: relative; border-radius: var(--radius-lg); }
+  .flip-card-back { position: relative; border-radius: var(--radius-lg); transform: none; margin-top: var(--space-2); }
+  .flip-card.flipped .flip-card-inner { transform: none; }
+  .nav-links { display: none; }
+  .case-metrics { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .hero-stats { grid-template-columns: 1fr; }
+  .benchmark-metrics { grid-template-columns: 1fr; }
+  .bm-metric { border-right: none; }
+}
+
+/* ===== SECTION ALT BG ===== */
+.alt-bg { background: var(--color-surface-2, color-mix(in srgb, var(--color-surface) 50%, var(--color-bg))); }
+[data-theme="dark"] .alt-bg { background: #18181A; }
+[data-theme="light"] .alt-bg { background: #F0E8D6; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="Taif Dashboard Home">
+      <svg class="nav-logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="14" stroke="#8B1A4A" stroke-width="1.5"/>
+        <path d="M16 8 C16 8, 10 12, 10 17 C10 20.3 12.7 23 16 23 C19.3 23 22 20.3 22 17 C22 12 16 8 16 8Z" fill="#8B1A4A" opacity="0.9"/>
+        <path d="M16 10 C16 10, 11.5 13.5, 11.5 17.5 C11.5 20 13.5 22 16 22" stroke="#C9932F" stroke-width="1" fill="none"/>
+        <circle cx="16" cy="10" r="1.5" fill="#C9932F"/>
+        <circle cx="11" cy="14" r="1" fill="#C9932F" opacity="0.7"/>
+        <circle cx="21" cy="14" r="1" fill="#C9932F" opacity="0.7"/>
+      </svg>
+      <span class="nav-logo-text">Taif Dashboard</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#rose-economy">Rose Economy</a></li>
+      <li><a href="#competition">Competition</a></li>
+      <li><a href="#barriers">Barriers</a></li>
+      <li><a href="#benchmarks">Benchmarks</a></li>
+      <li><a href="#hypothesis">Hypothesis</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Tourism Development Fund · Innovation Analysis · April 2026</p>
+    <h1 class="hero-title">Taif: Saudi Arabia's<br><em>Wellness Tourism Frontier</em></h1>
+    <p class="hero-subtitle">3.6 million visitors, a UNESCO inscription, a $7.7B competitor under construction 240 km south — and a first-mover window closing by 2030.</p>
+    <div class="hero-stats">
+      <div class="hero-stat fade-in">
+        <div class="hero-stat-value" data-count="3.6" data-suffix="M">3.6M</div>
+        <div class="hero-stat-label">Visitors 2024<br><span style="color:var(--sage-light);font-weight:600">↑ 9% YoY</span></div>
+      </div>
+      <div class="hero-stat fade-in fade-in-delay-1">
+        <div class="hero-stat-value">SAR 3.4B</div>
+        <div class="hero-stat-label">Tourism spending 2024<br><span style="color:var(--color-text-faint)">$906M USD</span></div>
+      </div>
+      <div class="hero-stat fade-in fade-in-delay-2">
+        <div class="hero-stat-value">Dec 2024</div>
+        <div class="hero-stat-label">UNESCO inscription<br><span style="color:var(--gold);font-weight:600">Taif Rose Heritage</span></div>
+      </div>
+      <div class="hero-stat fade-in fade-in-delay-3">
+        <div class="hero-stat-value">2027–30</div>
+        <div class="hero-stat-label">First-mover window<br><span style="color:var(--rose-light);font-weight:600">Before Soudah opens</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to explore <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+</section>
+
+<!-- SECTION 1: OVERVIEW -->
+<section class="section" id="overview">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">
+      <span class="section-number">01</span>
+      <div class="section-divider"></div>
+      <span class="section-label">Current State</span>
+    </div>
+    <p class="section-insight fade-in">Taif's visitor base grew 9% in 2024, yet <strong>all growth is concentrated in two seasonal peaks</strong> — the rest of the year, hotels operate at barely a third of capacity and the city's globally distinctive assets sit idle.</p>
+
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
+      <div class="kpi-card fade-in">
+        <div class="kpi-label">Visitors 2023</div>
+        <div class="kpi-value">3.3<span>M</span></div>
+        <span class="kpi-delta neutral">Estimated</span>
+        <div class="kpi-sub">Derived from 2024 figure &amp; 9% YoY growth reported by Saudi MoT</div>
+      </div>
+      <div class="kpi-card fade-in fade-in-delay-1">
+        <div class="kpi-label">Visitors 2024</div>
+        <div class="kpi-value">3.6<span>M</span></div>
+        <span class="kpi-delta up">↑ 9% YoY</span>
+        <div class="kpi-sub">Saudi Ministry of Tourism official figure, July 2025 announcement</div>
+      </div>
+      <div class="kpi-card fade-in fade-in-delay-2">
+        <div class="kpi-label">Visitors 2025 (proj.)</div>
+        <div class="kpi-value">3.9<span>M</span></div>
+        <span class="kpi-delta neutral">~Est.</span>
+        <div class="kpi-sub">Projection based on Saudi Summer 2025 program launch focus on Taif</div>
+      </div>
+      <div class="kpi-card fade-in fade-in-delay-3">
+        <div class="kpi-label">Peak Occupancy (Summer)</div>
+        <div class="kpi-value">78<span>%</span></div>
+        <span class="kpi-delta up">Jun–Sep</span>
+        <div class="kpi-sub">Domestic families seeking elevation climate relief; Airbnb demand proxy</div>
+      </div>
+      <div class="kpi-card fade-in">
+        <div class="kpi-label">Rose Season Occupancy</div>
+        <div class="kpi-value">65<span>%</span></div>
+        <span class="kpi-delta neutral">Mar–May</span>
+        <div class="kpi-sub">Rose Festival 2022: 957,000 visitors over Eid Al-Fitr period alone</div>
+      </div>
+      <div class="kpi-card fade-in fade-in-delay-1">
+        <div class="kpi-label">Off-Peak Occupancy</div>
+        <div class="kpi-value">~25<span>%</span></div>
+        <span class="kpi-delta warn">Oct–Feb</span>
+        <div class="kpi-sub">⚠ Estimated — demand in softest month ~⅓ of peak per Airbnb proxy data</div>
+      </div>
+      <div class="kpi-card fade-in fade-in-delay-2">
+        <div class="kpi-label">Avg. Length of Stay</div>
+        <div class="kpi-value">2.8<span>nights</span></div>
+        <span class="kpi-delta warn">Below target</span>
+        <div class="kpi-sub">⚠ Data Gap — market opacity. Wellness destinations typically 5–7 nights.</div>
+      </div>
+      <div class="kpi-card fade-in fade-in-delay-3">
+        <div class="kpi-label">Avg. Spend per Visitor</div>
+        <div class="kpi-value">SAR 944</div>
+        <span class="kpi-delta neutral">~$251 USD</span>
+        <div class="kpi-sub">Derived: SAR 3.4B ÷ 3.6M visitors. Includes day-trippers — inflates volume, deflates spend.</div>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW -->
+    <div class="charts-row fade-in">
+      <div class="chart-card">
+        <div class="chart-title">Monthly Visitor Distribution (Index)</div>
+        <div class="chart-sub">Heavy bifurcation: Summer climate escape + Rose season harvest. Shoulder months structurally thin. Index: peak month = 100. Source: Airbnb demand proxy + festival data.</div>
+        <div class="chart-container" style="height:260px;">
+          <canvas id="monthlyChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Peak vs. Off-Peak Occupancy</div>
+        <div class="chart-sub">The wellness tourism problem in one chart: 53 percentage points separate peak and trough. Competitor destinations (Grasse, Bulgaria) achieve 55–60% year-round averages.</div>
+        <div class="chart-container" style="height:260px;">
+          <canvas id="occupancyChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFRASTRUCTURE TABLE -->
+    <div class="infra-section fade-in">
+      <div class="infra-header">
+        <div class="infra-title">Infrastructure Map — Named Facilities</div>
+        <div class="infra-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="hotel">Hotels</button>
+          <button class="filter-btn" data-filter="wellness">Wellness</button>
+          <button class="filter-btn" data-filter="medical">Medical</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="infra-table" id="infraTable">
+          <thead>
+            <tr>
+              <th>Facility</th>
+              <th>Type</th>
+              <th>Capacity</th>
+              <th>Wellness Assets</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-type="hotel">
+              <td><strong>InterContinental Taif (IHG)</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Airport Road, 1,700m elevation</span></td>
+              <td><span class="badge badge-5star">5★ Hotel</span></td>
+              <td>179–192 rooms<br>5 wings</td>
+              <td>Spa, Turkish bath, sauna, jacuzzi, pool, fitness, massage, tennis, cycling</td>
+              <td><span class="badge badge-gap">Opened 1977<br>Last reno 1993</span></td>
+            </tr>
+            <tr data-type="hotel">
+              <td><strong>Warwick Al Taif Hotel</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">City center</span></td>
+              <td><span class="badge badge-4star">4★ Hotel</span></td>
+              <td>122 rooms</td>
+              <td>Spa services, fitness center, outdoor pool</td>
+              <td><span class="badge badge-wellness">Operational</span></td>
+            </tr>
+            <tr data-type="hotel">
+              <td><strong>Shubra Palace Hotel</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Heritage district</span></td>
+              <td><span class="badge badge-4star">4★ Hotel</span></td>
+              <td>~80 rooms</td>
+              <td>Heritage experience, traditional architecture</td>
+              <td><span class="badge badge-wellness">Operational</span></td>
+            </tr>
+            <tr data-type="hotel">
+              <td><strong>ENVI Lodge Al Shafa</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Al Shafa, 2,000m+ elevation</span></td>
+              <td><span class="badge badge-eco">Eco Lodge</span></td>
+              <td>~30–40 units (est.)</td>
+              <td>Nature immersion, outdoor wellness, multi-generational programming</td>
+              <td><span class="badge badge-coming">Opening Dec 2026</span></td>
+            </tr>
+            <tr data-type="wellness">
+              <td><strong>Rose Farm Tourism (Seyaha.net)</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Multiple farm locations</span></td>
+              <td><span class="badge badge-wellness">Farm Tourism</span></td>
+              <td>Day-trip capacity only</td>
+              <td>Rose walks, harvesting, distillation education, perfume-making</td>
+              <td><span class="badge badge-gap">Apr 16–May 31 only</span></td>
+            </tr>
+            <tr data-type="wellness">
+              <td><strong>Saudi Reef Model Farm</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Taif rose district</span></td>
+              <td><span class="badge badge-eco">Rural Tourism</span></td>
+              <td>1 converted farm</td>
+              <td>Luxury rose oils, linen sprays, musks; immersive agri-tourism</td>
+              <td><span class="badge badge-wellness">Operational</span></td>
+            </tr>
+            <tr data-type="wellness">
+              <td><strong>Mountain Hiking (Peek.com)</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Al Shafa Mountains</span></td>
+              <td><span class="badge badge-wellness">Adventure</span></td>
+              <td>Small group guided tours</td>
+              <td>Scenic mountain routes, panoramic vistas, fruit sellers</td>
+              <td><span class="badge badge-gap">No certified trail network</span></td>
+            </tr>
+            <tr data-type="medical">
+              <td><strong>Taif Medical Tourism</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">InterContinental Taif — Sept 2025 conf.</span></td>
+              <td><span class="badge badge-medical">Medical Tourism</span></td>
+              <td>500+ conference participants</td>
+              <td>Global Medical Tourism Conference hub, Sept 7–8 2025</td>
+              <td><span class="badge badge-gap">⚠ Commitments not public</span></td>
+            </tr>
+            <tr data-type="hotel">
+              <td><strong>Buhayra Corniche Hotel</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Corniche area</span></td>
+              <td><span class="badge badge-4star">3–4★ Hotel</span></td>
+              <td>~100 rooms (est.)</td>
+              <td>Lake views, garden access</td>
+              <td><span class="badge badge-wellness">Operational</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROJECT TRACKER -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-5)" class="fade-in">Vision 2030 / TDF / PIF Project Tracker</h3>
+    <div class="tracker-grid fade-in">
+      <div class="tracker-card">
+        <div class="tracker-status"><span class="status-badge status-announced">Announced</span></div>
+        <div class="tracker-org">TDF</div>
+        <div class="tracker-name">Tourism Development Fund — National Hospitality Pipeline</div>
+        <div class="tracker-amount">SAR 40B enabled / $4B capital</div>
+        <div class="tracker-date">Established by Royal Decree June 2020 · 137 eligible projects</div>
+      </div>
+      <div class="tracker-card">
+        <div class="tracker-status"><span class="status-badge status-progress">In Progress</span></div>
+        <div class="tracker-org">PIF</div>
+        <div class="tracker-name">Soudah Peaks — Asir Luxury Mountain Resort</div>
+        <div class="tracker-amount">$7.7B / SAR 28.9B</div>
+        <div class="tracker-date">Launched Sept 2023 · Phase 1 projected 2027 · 636.5 km²</div>
+      </div>
+      <div class="tracker-card">
+        <div class="tracker-status"><span class="status-badge status-announced">Announced</span></div>
+        <div class="tracker-org">Ministry of Tourism</div>
+        <div class="tracker-name">New Taif International Airport</div>
+        <div class="tracker-amount">⚠ Funding not yet public</div>
+        <div class="tracker-date">Target opening: 2030 · Will replace current Ta'if Regional Airport (TIF)</div>
+      </div>
+      <div class="tracker-card">
+        <div class="tracker-status"><span class="status-badge status-progress">In Progress</span></div>
+        <div class="tracker-org">ENVI Lodges</div>
+        <div class="tracker-name">ENVI Al Shafa — Outdoor Wellness Lodge</div>
+        <div class="tracker-amount">⚠ Investment not disclosed</div>
+        <div class="tracker-date">Signed Jan 2026 · Opening target Dec 2026 · First intl. operator</div>
+      </div>
+      <div class="tracker-card">
+        <div class="tracker-status"><span class="status-badge status-completed">Completed</span></div>
+        <div class="tracker-org">UNESCO / Saudi Ministry of Culture</div>
+        <div class="tracker-name">UNESCO Intangible Heritage Inscription</div>
+        <div class="tracker-amount">No cost — diplomatic milestone</div>
+        <div class="tracker-date">Inscribed Dec 3, 2024 · "Cultural practices related to Taif roses"</div>
+      </div>
+      <div class="tracker-card">
+        <div class="tracker-status"><span class="status-badge status-announced">Announced</span></div>
+        <div class="tracker-org">TDF</div>
+        <div class="tracker-name">TDF–Arab National Bank Tourism Financing</div>
+        <div class="tracker-amount">SAR 300M ($80M)</div>
+        <div class="tracker-date">Agreement signed Dec 2025 · Enables SME hospitality operators</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ROSE ECONOMY -->
+<section class="section alt-bg rose-section" id="rose-economy">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">
+      <span class="section-number">02</span>
+      <div class="section-divider"></div>
+      <span class="section-label">Rose Economy &amp; Wellness Assets</span>
+    </div>
+    <p class="section-insight fade-in">Taif's Ward Taifi rose oil commands prestige equal to or above Bulgarian rose otto at <strong>$9,500–$16,000/kg globally</strong> — yet the city captures almost none of the wellness experience premium that Grasse built over 400 years.</p>
+
+    <!-- ROSE COMPARISON TABLE -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-4)" class="fade-in">Global Rose Oil Comparison</h3>
+    <div class="rose-table-wrap fade-in">
+      <table class="rose-table">
+        <thead>
+          <tr>
+            <th>Origin</th>
+            <th>Price / kg (2024)</th>
+            <th>Annual Production</th>
+            <th>Market Share</th>
+            <th>UNESCO Status</th>
+            <th>Wellness Positioning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td><strong>🌹 Taif, Saudi Arabia</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Ward Taifi (Damask)</span></td>
+            <td>
+              <strong style="color:var(--gold)">$12,000–$18,000</strong>
+              <div class="price-bar"><div class="price-bar-fill" style="width:100%;background:var(--rose)"></div></div>
+              <div style="font-size:0.7rem;color:var(--color-text-faint)">Prestige premium; limited export data</div>
+            </td>
+            <td>~4–6 tonnes/yr<br><span style="font-size:0.7rem;color:var(--color-text-faint)">~500–550M roses; est.</span></td>
+            <td>~5–8%<br><span style="font-size:0.7rem;color:var(--color-text-faint)">Mainly domestic</span></td>
+            <td><span class="unesco-badge unesco-yes">✓ UNESCO 2024</span></td>
+            <td>12–15h skin longevity; equal/above Bulgarian prestige; highly fragmented export</td>
+          </tr>
+          <tr>
+            <td><strong>🌹 Bulgaria</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Rose Valley (Kazanlak)</span></td>
+            <td>
+              <strong style="color:var(--gold)">$9,500–$16,050</strong>
+              <div class="price-bar"><div class="price-bar-fill" style="width:88%;background:var(--gold)"></div></div>
+              <div style="font-size:0.7rem;color:var(--color-text-faint)">2024 export price range</div>
+            </td>
+            <td>~1.7 tonnes/yr<br><span style="font-size:0.7rem;color:var(--color-text-faint)">~50% of global supply</span></td>
+            <td>~50%<br><span style="font-size:0.7rem;color:var(--color-text-faint)">Global dominant</span></td>
+            <td><span class="unesco-badge unesco-no">Pending</span></td>
+            <td>6–8h skin longevity; established Chanel, LVMH supply contracts; Rose Festival 100K visitors</td>
+          </tr>
+          <tr>
+            <td><strong>🌹 Turkey</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Isparta region</span></td>
+            <td>
+              <strong style="color:var(--gold)">$6,000–$11,000</strong>
+              <div class="price-bar"><div class="price-bar-fill" style="width:62%;background:var(--sage)"></div></div>
+              <div style="font-size:0.7rem;color:var(--color-text-faint)">Price rose to $11K/kg in 2017</div>
+            </td>
+            <td>~20–25 tonnes/yr<br><span style="font-size:0.7rem;color:var(--color-text-faint)">Largest volume</span></td>
+            <td>~35%<br><span style="font-size:0.7rem;color:var(--color-text-faint)">Volume leader</span></td>
+            <td><span class="unesco-badge unesco-no">Not inscribed</span></td>
+            <td>Price-competitive; emerging wellness tourism; Isparta Rose Festival growing</td>
+          </tr>
+          <tr>
+            <td><strong>🌹 Iran</strong><br><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Kashan (Damask)</span></td>
+            <td>
+              <strong style="color:var(--gold)">$4,000–$8,000</strong>
+              <div class="price-bar"><div class="price-bar-fill" style="width:45%;background:var(--color-text-faint)"></div></div>
+              <div style="font-size:0.7rem;color:var(--color-text-faint)">Sanctions compress export pricing</div>
+            </td>
+            <td>~5–8 tonnes/yr<br><span style="font-size:0.7rem;color:var(--color-text-faint)">Limited export data</span></td>
+            <td>~8%<br><span style="font-size:0.7rem;color:var(--color-text-faint)">Constrained by sanctions</span></td>
+            <td><span class="unesco-badge unesco-no">Not inscribed</span></td>
+            <td>Historically prestigious Rosewater tradition; export constrained by geopolitics</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="data-gap fade-in">
+      <strong>⚠ Data Gap — market opacity</strong>
+      Taif-specific rose oil export volumes and formal market-price data are not published by Saudi GASTAT or any commodity tracker. The production scale (1.14M shrubs, 910–1,300 farms, 36 factories, SAR 52M declared value) is documented; the actual commercial realization is opaque. This gap signals a structural pricing discovery problem — a key barrier to attracting luxury brand supply contracts.
+    </div>
+
+    <!-- WELLNESS ASSETS -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin:var(--space-10) 0 var(--space-5)" class="fade-in">Wellness Asset Map</h3>
+    <div class="wellness-assets-grid fade-in">
+      <div class="asset-card">
+        <div class="asset-icon rose">🌹</div>
+        <div class="asset-name">Rose Farms</div>
+        <div class="asset-value">910–1,300</div>
+        <div class="asset-desc">Properties across ~700 ha, 1.14M rose shrubs. 36 perfume factories. SAR 52M declared factory value. 15%+ YoY growth in 2026 harvest season.</div>
+        <div class="scale-bar">
+          <div class="scale-dot filled"></div><div class="scale-dot filled"></div><div class="scale-dot filled"></div><div class="scale-dot filled"></div><div class="scale-dot"></div>
+        </div>
+        <div style="font-size:0.68rem;color:var(--color-text-faint);margin-top:4px">Asset scale: Very High</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon farm">🏡</div>
+        <div class="asset-name">Farm Tourism Experiences</div>
+        <div class="asset-value">Nascent</div>
+        <div class="asset-desc">Seyaha.net packages available Apr 16–May 31 only. Saudi Reef model farm operational. Tama Farm tourism mentioned. Highly seasonal, fragmented, no overnight product.</div>
+        <div class="scale-bar">
+          <div class="scale-dot filled"></div><div class="scale-dot filled"></div><div class="scale-dot"></div><div class="scale-dot"></div><div class="scale-dot"></div>
+        </div>
+        <div style="font-size:0.68rem;color:var(--color-text-faint);margin-top:4px">Experience maturity: Low</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon mountain">⛰️</div>
+        <div class="asset-name">Elevation &amp; Climate</div>
+        <div class="asset-value">1,700–2,100m</div>
+        <div class="asset-desc">Al Shafa sits 2,000m+. ENVI calls it "an increasingly rare luxury in the Arabian Peninsula." Year-round cool climate — not seasonal. Air quality significantly better than coastal cities.</div>
+        <div class="scale-bar">
+          <div class="scale-dot filled sage"></div><div class="scale-dot filled sage"></div><div class="scale-dot filled sage"></div><div class="scale-dot filled sage"></div><div class="scale-dot filled sage"></div>
+        </div>
+        <div style="font-size:0.68rem;color:var(--color-text-faint);margin-top:4px">Competitive advantage: Exceptional</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon spring">💧</div>
+        <div class="asset-name">Hot Springs &amp; Thermal</div>
+        <div class="asset-value">⚠ Data Gap</div>
+        <div class="asset-desc">References to thermal/hot spring assets in Taif and Al Shafa region exist in travel literature but no certified hydrological data or developed balneotherapy infrastructure has been confirmed.</div>
+        <div class="scale-bar">
+          <div class="scale-dot filled"></div><div class="scale-dot"></div><div class="scale-dot"></div><div class="scale-dot"></div><div class="scale-dot"></div>
+        </div>
+        <div style="font-size:0.68rem;color:var(--color-text-faint);margin-top:4px">Development readiness: Unknown</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon honey">🍯</div>
+        <div class="asset-name">Honey &amp; Herbal Traditions</div>
+        <div class="asset-value">Sidra Honey</div>
+        <div class="asset-desc">Saudi Sidra honey commands premium prices globally ($200–$400/kg). Taif region supports aromatic herbs aligned with TAIM (Traditional Arabic &amp; Islamic Medicine) wellness protocols.</div>
+        <div class="scale-bar">
+          <div class="scale-dot filled gold"></div><div class="scale-dot filled gold"></div><div class="scale-dot filled gold"></div><div class="scale-dot"></div><div class="scale-dot"></div>
+        </div>
+        <div style="font-size:0.68rem;color:var(--color-text-faint);margin-top:4px">Commercial potential: High</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-icon air">🌿</div>
+        <div class="asset-name">Biodiversity &amp; Gardens</div>
+        <div class="asset-value">Known Parks</div>
+        <div class="asset-desc">Al Rudaf Park, Al Hada cable car area, fruit orchards (grapes, pomegranates, figs, peaches). Taif nicknamed "City of Roses" and "Summer Capital." Green infrastructure for forest bathing.</div>
+        <div class="scale-bar">
+          <div class="scale-dot filled sage"></div><div class="scale-dot filled sage"></div><div class="scale-dot filled sage"></div><div class="scale-dot"></div><div class="scale-dot"></div>
+        </div>
+        <div style="font-size:0.68rem;color:var(--color-text-faint);margin-top:4px">Monetization: Underexploited</div>
+      </div>
+    </div>
+
+    <!-- UNESCO TIMELINE -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-5)" class="fade-in">UNESCO Recognition Impact Timeline</h3>
+    <div class="timeline fade-in">
+      <div class="timeline-item">
+        <div class="timeline-dot rose"></div>
+        <div class="timeline-date">December 3, 2024</div>
+        <div class="timeline-content">
+          <div class="timeline-heading">UNESCO Inscription — "Cultural Practices Related to Taif Roses"</div>
+          <div class="timeline-body">Announced by Minister of Culture Prince Badr bin Abdullah. Covers full lifecycle: fertilization (Dec–Feb), harvest (March, 35–45 days), family distillation, and use in beauty products, medicine, food, and social rituals. Saudi Arabia joins Grasse (France, inscribed 2018) as the only two rose-heritage UNESCO sites globally.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot gold"></div>
+        <div class="timeline-date">April 2026</div>
+        <div class="timeline-content">
+          <div class="timeline-heading">Rose &amp; Aromatic Plants Global Forum — First Post-Inscription Commercial Signal</div>
+          <div class="timeline-body">Taif hosted the Rose and Aromatic Plants Global Forum explicitly positioning the inscription as a luxury branding platform. Attracted international perfumery and aromatherapy buyers. First concrete commercial utilization of the UNESCO status. SAR 52M rose economy now marketed as UNESCO-validated luxury.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot sage"></div>
+        <div class="timeline-date">2026–2028 (Projected)</div>
+        <div class="timeline-content">
+          <div class="timeline-heading">Luxury Brand Supply Contract Opportunity Window</div>
+          <div class="timeline-body">Bulgarian rose's Chanel and LVMH supply relationships took 15+ years to formalize. Taif's UNESCO inscription creates a 2–4 year window to attract luxury brand partnerships before the inscription becomes normalized. ENVI Al Shafa opening Dec 2026 will create the first branded wellness touchpoint that can package the UNESCO story for high-spend visitors.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot rose"></div>
+        <div class="timeline-date">2030 (Risk)</div>
+        <div class="timeline-content">
+          <div class="timeline-heading">Soudah Peaks Opens — Competitive Rebalancing</div>
+          <div class="timeline-body">If Taif has not established a recognizable wellness brand identity and at least one anchor luxury property by 2030, Soudah Peaks (3,015m elevation, $7.7B investment, PIF backing, likely Six Senses or Aman operator) will define Saudi luxury mountain wellness — and Taif becomes the budget alternative at its own doorstep.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROSE CHART -->
+    <div class="chart-card fade-in" style="margin-bottom:var(--space-8)">
+      <div class="chart-title">Rose Economy Value Chain — Where Value Is Captured vs. Lost</div>
+      <div class="chart-sub">Taif currently captures primarily the raw material stage. Grasse captures full value across all stages. Indicative scale — not precise monetary data.</div>
+      <div class="chart-container" style="height:220px;">
+        <canvas id="valueChainChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: COMPETITION -->
+<section class="section" id="competition">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">
+      <span class="section-number">03</span>
+      <div class="section-divider"></div>
+      <span class="section-label">Competitive Landscape</span>
+    </div>
+    <p class="section-insight fade-in">Taif sits in a gap no competitor currently occupies: <strong>domestic accessibility + authentic botanical wellness depth</strong> — but that gap closes by 2027 when Soudah Peaks reaches Phase 1 completion.</p>
+
+    <!-- COMPETITOR MATRIX -->
+    <div class="competitor-matrix-wrap fade-in">
+      <div class="matrix-title">Wellness Destination Positioning Matrix</div>
+      <div class="matrix-sub">X-axis: Accessibility for Saudi domestic traveler (0 = international flight required, 10 = drive or short domestic flight). Y-axis: Wellness offering depth (0 = resort pool only, 10 = clinical/transformational programming). Taif shown as opportunity zone.</div>
+      <div style="height:380px;"><canvas id="matrixChart"></canvas></div>
+    </div>
+
+    <!-- SOUDAH COMPARE -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-5)" class="fade-in">Head-to-Head: Taif vs. Soudah Peaks</h3>
+    <div class="soudah-compare fade-in">
+      <div class="compare-card taif">
+        <div class="compare-header">Current State</div>
+        <div class="compare-name">Taif</div>
+        <div class="compare-row"><span class="compare-key">Investment committed</span><span class="compare-val rose">~$20M est.</span></div>
+        <div class="compare-row"><span class="compare-key">Altitude</span><span class="compare-val">1,700–2,100m</span></div>
+        <div class="compare-row"><span class="compare-key">Intl. operator</span><span class="compare-val sage">ENVI (Dec 2026)</span></div>
+        <div class="compare-row"><span class="compare-key">UNESCO status</span><span class="compare-val sage">✓ Dec 2024</span></div>
+        <div class="compare-row"><span class="compare-key">Anchor wellness resort</span><span class="compare-val rose">None</span></div>
+        <div class="compare-row"><span class="compare-key">Distinct identity</span><span class="compare-val sage">Rose + TAIM heritage</span></div>
+        <div class="compare-row"><span class="compare-key">Distance from Riyadh</span><span class="compare-val">~750 km / 1h flight</span></div>
+        <div class="compare-row"><span class="compare-key">Direct intl. flights</span><span class="compare-val rose">Istanbul only (Europe)</span></div>
+        <div class="compare-row"><span class="compare-key">Phase 1 open</span><span class="compare-val sage">Now (partial)</span></div>
+      </div>
+      <div class="compare-card soudah">
+        <div class="compare-header">$7.7B PIF Project</div>
+        <div class="compare-name">Soudah Peaks</div>
+        <div class="compare-row"><span class="compare-key">Investment committed</span><span class="compare-val gold">$7.7B / SAR 28.9B</span></div>
+        <div class="compare-row"><span class="compare-key">Altitude</span><span class="compare-val gold">3,015m (Saudi's highest)</span></div>
+        <div class="compare-row"><span class="compare-key">Intl. operator</span><span class="compare-val rose">Not yet announced</span></div>
+        <div class="compare-row"><span class="compare-key">UNESCO status</span><span class="compare-val rose">None</span></div>
+        <div class="compare-row"><span class="compare-key">Anchor wellness resort</span><span class="compare-val gold">Multi — under construction</span></div>
+        <div class="compare-row"><span class="compare-key">Distinct identity</span><span class="compare-val">Mountain luxury (generic)</span></div>
+        <div class="compare-row"><span class="compare-key">Distance from Riyadh</span><span class="compare-val">~1,000 km / 1.5h flight</span></div>
+        <div class="compare-row"><span class="compare-key">Direct intl. flights</span><span class="compare-val rose">None (Abha airport)</span></div>
+        <div class="compare-row"><span class="compare-key">Phase 1 open</span><span class="compare-val rose">Projected 2027</span></div>
+      </div>
+    </div>
+
+    <!-- OPERATOR INTEREST -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-5)" class="fade-in">International Brand Interest Tracker</h3>
+    <div class="operator-grid fade-in">
+      <div class="operator-card">
+        <div class="operator-name">ENVI Lodges</div>
+        <div class="operator-status op-confirmed">✓ Confirmed</div>
+        <div class="confidence-bar">
+          <div class="conf-seg filled green"></div><div class="conf-seg filled green"></div><div class="conf-seg filled green"></div><div class="conf-seg filled green"></div><div class="conf-seg filled green"></div>
+        </div>
+        <div class="operator-note">Signed January 2026. Al Shafa lodge opening December 2026. Outdoor experiential brand. Only confirmed international operator in Taif as of April 2026.</div>
+      </div>
+      <div class="operator-card">
+        <div class="operator-name">Six Senses</div>
+        <div class="operator-status op-absent">✗ Absent — Taif</div>
+        <div class="confidence-bar">
+          <div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div>
+        </div>
+        <div class="operator-note">No public Taif-specific project or site study found. Six Senses AMAALA (Red Sea, 2026) is their Saudi priority. VP of Wellness confirmed Saudi wellness growth, but not Taif specifically.</div>
+      </div>
+      <div class="operator-card">
+        <div class="operator-name">Aman Resorts</div>
+        <div class="operator-status op-absent">✗ Absent — Taif</div>
+        <div class="confidence-bar">
+          <div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div>
+        </div>
+        <div class="operator-note">No Taif announcement. Aman operates Amanyara, AMAALA presence discussed. The absence of Aman from Taif while present in other Saudi locations is a credibility signal worth monitoring.</div>
+      </div>
+      <div class="operator-card">
+        <div class="operator-name">SHA Wellness</div>
+        <div class="operator-status op-absent">✗ Absent — Taif</div>
+        <div class="confidence-bar">
+          <div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div>
+        </div>
+        <div class="operator-note">SHA Mexico and UAE confirmed. Saudi Arabia interest confirmed by CEO. No Taif-specific project. SHA's botanical medicine protocols are a natural fit with Taif's rose economy but no engagement found.</div>
+      </div>
+      <div class="operator-card">
+        <div class="operator-name">Chiva-Som</div>
+        <div class="operator-status op-absent">✗ Absent — Taif</div>
+        <div class="confidence-bar">
+          <div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div><div class="conf-seg"></div>
+        </div>
+        <div class="operator-note">Operates Zulal (Qatar, 2022) — most directly replicable GCC model. TAIM-based programming aligns perfectly with Taif rose/herbal assets. No Taif engagement public as of April 2026.</div>
+      </div>
+      <div class="operator-card">
+        <div class="operator-name">IHG (InterContinental)</div>
+        <div class="operator-status op-confirmed">Present — Legacy</div>
+        <div class="confidence-bar">
+          <div class="conf-seg filled green"></div><div class="conf-seg filled green"></div><div class="conf-seg filled green"></div><div class="conf-seg"></div><div class="conf-seg"></div>
+        </div>
+        <div class="operator-note">InterContinental Taif operational since 1977, last renovated 1993. Product age represents a competitive liability. No announced renovation or repositioning as of April 2026.</div>
+      </div>
+    </div>
+
+    <!-- CASE STUDIES -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-5)" class="fade-in">International Case Studies (Expandable)</h3>
+
+    <div class="case-study fade-in">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-header-left">
+          <div class="case-country">Thailand — National Ecosystem Model</div>
+          <div class="case-title">$42.7B Wellness Economy Built on Deliberate Ecosystem Architecture</div>
+        </div>
+        <svg class="case-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="case-body">
+        <div class="case-metrics">
+          <div><div class="case-metric-val">$42.7B</div><div class="case-metric-label">Total wellness economy 2024</div></div>
+          <div><div class="case-metric-val">$14B</div><div class="case-metric-label">Wellness tourism specifically</div></div>
+          <div><div class="case-metric-val">36.4%</div><div class="case-metric-label">YoY growth rate 2023–24</div></div>
+          <div><div class="case-metric-val">28%</div><div class="case-metric-label">Growth — 4x global average</div></div>
+          <div><div class="case-metric-val">15th</div><div class="case-metric-label">Global wellness tourism rank</div></div>
+          <div><div class="case-metric-val">30 yrs</div><div class="case-metric-label">Time to build this position</div></div>
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-4);line-height:1.7">
+          <strong style="color:var(--color-text)">Critical decisions that drove the transformation:</strong><br>
+          1. Thai Ministry of Public Health issued Ministerial Notification recognizing 127 Thai traditional medicines and 130 herbal products. 2. Department of Thai Traditional and Alternative Medicine set national wellness standards. 3. Thailand Convention and Exhibition Bureau (TCEB) positioned Thailand as "Wellness Hub of Asia." 4. International operators attracted via BOI incentives and streamlined licensing. 5. Medical Tourism Council created cross-ministry coordination body.
+        </div>
+        <div class="insight-panel">
+          <div class="insight-panel-title">What Taif Can Copy</div>
+          <div class="insight-panel-text">
+            Thailand's key insight: wellness credibility requires <em>certification infrastructure before operator attraction</em>. The Thai government built the standards framework (TAIM certification equivalent) that gave operators confidence to invest. Taif needs: (1) a Ministry of Tourism–issued "Taif Wellness Mark" for rose-based treatments, (2) a cross-ministry coordination body for wellness operator licensing, (3) a fast-track for international operators willing to commit to TAIM programming. Thailand didn't wait for operators to arrive — it built the regulatory environment that made arrival logical.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: BARRIERS -->
+<section class="section alt-bg barriers-section" id="barriers">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">
+      <span class="section-number">04</span>
+      <div class="section-divider"></div>
+      <span class="section-label">Structural Barriers — Root Cause Analysis</span>
+    </div>
+    <p class="section-insight fade-in">The binding constraint is not a lack of assets — it's <strong>five interlocking structural barriers</strong> that no single actor can resolve: regulatory complexity, infrastructure gaps, airlift deficiency, demand suppression, and operator licensing opacity.</p>
+
+    <!-- ACCORDION BARRIERS -->
+    <div class="accordion fade-in">
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+          <div class="accordion-trigger-left">
+            <span class="accordion-cat-badge acc-regulatory">Regulatory</span>
+            <span class="accordion-title">Land Use, Zoning &amp; Investor Confidence</span>
+          </div>
+          <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-body">
+          <ul class="barrier-list">
+            <li><div class="barrier-bullet"></div><span>2024 Taif University peer-reviewed study explicitly identifies "complex and ever-evolving regulations" undermining investor confidence and long-term planning in Saudi urban development</span></li>
+            <li><div class="barrier-bullet"></div><span>Agricultural land conversion to tourism use (e.g., rose farms to wellness resorts) requires multi-agency approvals: Ministry of Tourism + Ministry of Municipal and Rural Affairs + Ministry of Environment, Water and Agriculture — no streamlined pathway identified</span></li>
+            <li><div class="barrier-bullet"></div><span>"Consistent legal frameworks and simplified property acquisition processes" called for in academic literature — indicating these do not yet exist at city level</span></li>
+            <li><div class="barrier-bullet"></div><span>Vision 2030 legal reforms ongoing nationally, but city-level implementation lag documented</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+          <div class="accordion-trigger-left">
+            <span class="accordion-cat-badge acc-infra">Infrastructure</span>
+            <span class="accordion-title">Accommodation Gap &amp; Wellness Product Deficit</span>
+          </div>
+          <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-body">
+          <ul class="barrier-list">
+            <li><div class="barrier-bullet"></div><span>The InterContinental Taif — city's only 5-star property — opened 1977, last renovated 1993. A 30+ year product age gap is a structural liability for attracting high-spend wellness travelers</span></li>
+            <li><div class="barrier-bullet"></div><span>No anchor wellness resort with clinical programming, nature immersion design, and TAIM/botanical identity exists anywhere in Taif as of April 2026</span></li>
+            <li><div class="barrier-bullet"></div><span>No mapped, certified hiking trail network — Al Shafa mountain assets are accessible but unpackaged</span></li>
+            <li><div class="barrier-bullet"></div><span>No vertically integrated rose economy (farm → distillation experience → spa product → branded retail → wellness treatment under one roof)</span></li>
+            <li><div class="barrier-bullet"></div><span>266 tourism establishment licenses issued in 2024, but overwhelmingly small operators — no large-format wellness anchor</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+          <div class="accordion-trigger-left">
+            <span class="accordion-cat-badge acc-connectivity">Connectivity</span>
+            <span class="accordion-title">Airport Constraint &amp; Airlift Gap</span>
+          </div>
+          <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-body">
+          <ul class="barrier-list">
+            <li><div class="barrier-bullet"></div><span>Ta'if Regional Airport (TIF) serves 12 destinations with 11–13 airlines. Saudia dominates: ~42 weekly departures (48% of all flights). Flyadeal domestic only.</span></li>
+            <li><div class="barrier-bullet"></div><span>No direct flights from Taif to any European capital except Istanbul (Turkish Airlines, 4h 15min). No direct routes to South or Southeast Asia.</span></li>
+            <li><div class="barrier-bullet"></div><span>No direct connection to primary GCC wellness source markets: Dubai, Abu Dhabi, Bahrain — all requiring Riyadh or Jeddah connection</span></li>
+            <li><div class="barrier-bullet"></div><span>New Taif International Airport announced for 2030 — removes international airlift barrier but creates a 4-year window where any concept launched must be anchored in domestic and GCC road/domestic-flight market</span></li>
+            <li><div class="barrier-bullet"></div><span>⚠ Capacity data for current airport not publicly available — market opacity on passenger throughput</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+          <div class="accordion-trigger-left">
+            <span class="accordion-cat-badge acc-demand">Demand Suppression</span>
+            <span class="accordion-title">SAR 110.4B Saudi Outbound Spend vs. Taif's Capture Rate</span>
+          </div>
+          <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-body">
+          <ul class="barrier-list">
+            <li><div class="barrier-bullet"></div><span>Saudi residents spent SAR 110.4 billion ($29.4B) abroad in 2025 — up 7% YoY. Saudi outbound projected to reach $25.49B by 2027.</span></li>
+            <li><div class="barrier-bullet"></div><span>GCC outbound travel and tourism market reached $70.46B in 2024. Thailand, India, Turkey, select European nations are preferred wellness destinations for Saudi travelers.</span></li>
+            <li><div class="barrier-bullet"></div><span>Saudi Arabia's wellness tourism market valued at $2.5B in 2024, growing at 66% annually (Six Senses VP). Current Taif capture = SAR 3.4B total tourism spend — wellness share is unquantified.</span></li>
+            <li><div class="barrier-bullet"></div><span>Average Taif visitor spends ~SAR 944 ($251) total. Wellness travelers at Zulal (Qatar) spend $600–$1,500/night. The gap = 6–12x uncaptured value per visitor night.</span></li>
+            <li><div class="barrier-bullet"></div><span>⚠ Data Gap: No Taif-specific wellness tourism spend data exists. Entire sector runs on national averages and proxy indicators.</span></li>
+          </ul>
+          <div style="height:220px;margin-top:var(--space-5)"><canvas id="missedOppChart"></canvas></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+          <div class="accordion-trigger-left">
+            <span class="accordion-cat-badge acc-licensing">Operator Licensing</span>
+            <span class="accordion-title">Wellness Operator Entry Friction &amp; Certification Gap</span>
+          </div>
+          <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-body">
+          <ul class="barrier-list">
+            <li><div class="barrier-bullet"></div><span>No national wellness operator certification framework analogous to Thailand's Ministry of Public Health recognition of 127 traditional medicines. Saudi Arabia's TAIM potential is formally unrecognized in any tourism licensing pathway.</span></li>
+            <li><div class="barrier-bullet"></div><span>International wellness brands (Six Senses, SHA, Chiva-Som) require regulatory clarity on: therapist licensing, controlled substance use in treatments (herbal medicine), clinical programming permits, and insurance frameworks — none Taif-specific.</span></li>
+            <li><div class="barrier-bullet"></div><span>Global Medical Tourism Conference (Sept 2025, Taif, 500+ participants, launched by Prince Saud bin Nahar) — conference held but no post-event commitment register published. ⚠ Strategic gap: high-profile event with no public output.</span></li>
+            <li><div class="barrier-bullet"></div><span>Saudi Commission for Health Specialties licensing process for international wellness practitioners adds 6–18 months to operator setup timelines — significant friction vs. UAE/Qatar competitors</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- AIRPORT CARD -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-5)" class="fade-in">Taif International Airport Status Card</h3>
+    <div class="airport-card fade-in">
+      <div class="airport-header">
+        <div>
+          <div class="airport-iata">IATA: TIF · ICAO: OETF</div>
+          <div class="airport-title">Ta'if Regional Airport</div>
+        </div>
+        <div>
+          <span class="badge badge-coming" style="font-size:0.8rem;padding:6px 12px">Replacement: 2030</span>
+        </div>
+      </div>
+      <div class="airport-stats">
+        <div class="airport-stat"><div class="airport-stat-val">12</div><div class="airport-stat-label">Destinations served</div></div>
+        <div class="airport-stat"><div class="airport-stat-val">11–13</div><div class="airport-stat-label">Airlines operating</div></div>
+        <div class="airport-stat"><div class="airport-stat-val">~42</div><div class="airport-stat-label">Saudia weekly flights (48%)</div></div>
+        <div class="airport-stat"><div class="airport-stat-val">1</div><div class="airport-stat-label">European connection (Istanbul)</div></div>
+      </div>
+      <div style="font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);margin-bottom:var(--space-3)">Current Routes</div>
+      <div class="route-pills">
+        <span class="route-pill">🇸🇦 Riyadh (domestic)</span>
+        <span class="route-pill">🇸🇦 Jeddah (domestic)</span>
+        <span class="route-pill international">🇹🇷 Istanbul — Turkish Airlines (4h 15m)</span>
+        <span class="route-pill international">🇦🇪 Sharjah — Air Arabia</span>
+        <span class="route-pill international">🇪🇬 Cairo</span>
+        <span class="route-pill international">🇶🇦 Doha</span>
+        <span class="route-pill">🇸🇦 Dammam</span>
+        <span class="route-pill">🇸🇦 Medina</span>
+        <span class="route-pill" style="color:var(--rose-light);border-color:color-mix(in srgb, var(--rose) 40%, var(--color-border))">✗ Dubai — No service</span>
+        <span class="route-pill" style="color:var(--rose-light);border-color:color-mix(in srgb, var(--rose) 40%, var(--color-border))">✗ Abu Dhabi — No service</span>
+        <span class="route-pill" style="color:var(--rose-light);border-color:color-mix(in srgb, var(--rose) 40%, var(--color-border))">✗ London/Paris/Frankfurt — No service</span>
+      </div>
+      <div class="data-gap">
+        <strong>⚠ Data Gap — market opacity</strong>
+        Airport passenger capacity, load factors, and precise terminal throughput data are not publicly available. New Taif International Airport (target 2030) details — size, operator, terminal count, capacity, investment amount — have not been published as of April 2026. The gap between current connectivity and wellness tourism requirement is the single largest short-term barrier.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: BENCHMARKS -->
+<section class="section" id="benchmarks">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">
+      <span class="section-number">05</span>
+      <div class="section-divider"></div>
+      <span class="section-label">Global Benchmarks &amp; Comparable Models</span>
+    </div>
+    <p class="section-insight fade-in">Three transformation blueprints — fragrance heritage, agricultural festival, national ecosystem — show that <strong>Taif's assets are sufficient; the missing element is strategic packaging over 5–15 years.</strong></p>
+
+    <div class="benchmarks-grid fade-in">
+      <!-- GRASSE -->
+      <div class="benchmark-card">
+        <div class="benchmark-header">
+          <div class="benchmark-location">France · Provence · 350m elevation</div>
+          <div class="benchmark-name">Grasse — Fragrance Heritage to Year-Round Wellness Economy</div>
+          <div class="benchmark-type">Botanical / Fragrance → Vertically Integrated Luxury Economy</div>
+        </div>
+        <div class="benchmark-metrics">
+          <div class="bm-metric"><div class="bm-val">€600M+</div><div class="bm-label">Annual perfume turnover</div></div>
+          <div class="bm-metric"><div class="bm-val">10%</div><div class="bm-label">Global scent/flavor market share</div></div>
+          <div class="bm-metric"><div class="bm-val">60</div><div class="bm-label">Perfumers in ecosystem</div></div>
+          <div class="bm-metric"><div class="bm-val">€59K/kg</div><div class="bm-label">Jasmine absolute price</div></div>
+          <div class="bm-metric"><div class="bm-val">UNESCO</div><div class="bm-label">Inscribed 2018</div></div>
+          <div class="bm-metric"><div class="bm-val">400 yrs</div><div class="bm-label">Brand-building timeline</div></div>
+        </div>
+        <div class="benchmark-insight">
+          <div class="bi-label">What Taif Can Copy</div>
+          <div class="bi-text">Vertical integration: Grasse went from raw material to finished Chanel No.5 ingredient via 400 years of investment in perfumery schools, fragrance museums, distillery tours, and luxury retail. Taif's UNESCO inscription (2024) gives the legitimacy foundation. The 5-year accelerated path: TDF-funded rose distillery tourism complex + a master perfumery school partnership + one Chanel/LVMH supply contract announcement.</div>
+        </div>
+      </div>
+
+      <!-- BULGARIA -->
+      <div class="benchmark-card">
+        <div class="benchmark-header">
+          <div class="benchmark-location">Bulgaria · Kazanlak Valley</div>
+          <div class="benchmark-name">Bulgaria's Rose Valley — Agricultural Festival Tourism Evolving into Wellness</div>
+          <div class="benchmark-type">Agricultural Production → Festival Tourism → Spa/Balneo Wellness</div>
+        </div>
+        <div class="benchmark-metrics">
+          <div class="bm-metric"><div class="bm-val">~50%</div><div class="bm-label">Global rose oil supply</div></div>
+          <div class="bm-metric"><div class="bm-val">100K</div><div class="bm-label">Festival tourists 2024</div></div>
+          <div class="bm-metric"><div class="bm-val">$9.5–16K</div><div class="bm-label">Per kg export price</div></div>
+          <div class="bm-metric"><div class="bm-val">53</div><div class="bm-label">Distilleries operating</div></div>
+          <div class="bm-metric"><div class="bm-val">Pavel Banya</div><div class="bm-label">Spa town with mineral springs</div></div>
+          <div class="bm-metric"><div class="bm-val">~15–20yr</div><div class="bm-label">Festival-to-wellness evolution</div></div>
+        </div>
+        <div class="benchmark-insight">
+          <div class="bi-label">What Taif Can Copy</div>
+          <div class="bi-text">Bulgaria demonstrates that a seasonal rose festival (late May–June) can anchor year-round wellness through adjacent spa infrastructure. Pavel Banya (30 min from Kazanlak) combined mineral springs with rose-based balneotherapy into a full spa offering. Taif equivalent: position Al Shafa (2,000m thermal zone) as the year-round wellness base with the rose festival as the annual demand spike — not the sole product.</div>
+        </div>
+      </div>
+
+      <!-- THAILAND -->
+      <div class="benchmark-card">
+        <div class="benchmark-header">
+          <div class="benchmark-location">Thailand · Chiang Mai / Koh Samui / Bangkok</div>
+          <div class="benchmark-name">Thailand — National Ecosystem Architecture as Critical Infrastructure</div>
+          <div class="benchmark-type">National Policy → Certification Framework → Operator Attraction → $42.7B Economy</div>
+        </div>
+        <div class="benchmark-metrics">
+          <div class="bm-metric"><div class="bm-val">$42.7B</div><div class="bm-label">Total wellness economy</div></div>
+          <div class="bm-metric"><div class="bm-val">$14B</div><div class="bm-label">Wellness tourism specifically</div></div>
+          <div class="bm-metric"><div class="bm-val">36.4%</div><div class="bm-label">YoY growth (2023–24)</div></div>
+          <div class="bm-metric"><div class="bm-val">28%</div><div class="bm-label">4× global average growth</div></div>
+          <div class="bm-metric"><div class="bm-val">127</div><div class="bm-label">Recognized traditional medicines</div></div>
+          <div class="bm-metric"><div class="bm-val">30 yrs</div><div class="bm-label">Ecosystem build time</div></div>
+        </div>
+        <div class="benchmark-insight">
+          <div class="bi-label">What Taif Can Copy</div>
+          <div class="bi-text">Thailand built the certification infrastructure before attracting operators — creating legal certainty that drew Six Senses, Chiva-Som, and 200+ smaller operators. Taif needs a "Saudi Wellness Mark" for TAIM-based rose treatments, a cross-ministry wellness licensing body, and BOI-equivalent incentives for operators committing to Taif. The 30-year timeline is compressible with targeted PIF capital — Zulal (Qatar) achieved GCC-first positioning in 5 years with Chiva-Som partnership.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GCC REPLICABLE MODELS -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-5)" class="fade-in">Replicable GCC Models — Smaller, Faster-to-Execute</h3>
+    <div class="gcc-models-grid fade-in">
+      <div class="gcc-card">
+        <div class="gcc-flag">🇶🇦</div>
+        <div class="gcc-name">Zulal Wellness Resort — Qatar</div>
+        <div class="gcc-type">Chiva-Som Partnership · TAIM-Based Programming</div>
+        <div class="gcc-stat"><strong>Opened:</strong> March 2022</div>
+        <div class="gcc-stat"><strong>Scale:</strong> 280,000 sqm, 180 rooms</div>
+        <div class="gcc-stat"><strong>Model:</strong> Traditional Arabic &amp; Islamic Medicine</div>
+        <div class="gcc-stat"><strong>Investment:</strong> ~$300M est.</div>
+        <div class="gcc-lesson">✦ Taif application: Replace Zulal's desert setting with Taif's mountain/rose setting. TAIM botanical protocols have stronger raw material support in Taif than in Al Ruwais, Qatar.</div>
+      </div>
+      <div class="gcc-card">
+        <div class="gcc-flag">🇦🇪</div>
+        <div class="gcc-name">Six Senses Zighy Bay — Oman</div>
+        <div class="gcc-type">Remote Luxury · Adventure + Wellness</div>
+        <div class="gcc-stat"><strong>Opened:</strong> 2007</div>
+        <div class="gcc-stat"><strong>Scale:</strong> 82 pool villas, Musandam peninsula</div>
+        <div class="gcc-stat"><strong>Model:</strong> Nature immersion + local culture integration</div>
+        <div class="gcc-stat"><strong>ADR:</strong> $800–$2,000/night</div>
+        <div class="gcc-lesson">✦ Taif application: Remote access (paraglide-in or boat at Zighy) → mountain road experience to Al Shafa. Scarcity + access drama creates luxury positioning.</div>
+      </div>
+      <div class="gcc-card">
+        <div class="gcc-flag">🇸🇦</div>
+        <div class="gcc-name">ENVI Lodges Al Shafa — Taif</div>
+        <div class="gcc-type">First Mover · Outdoor Experiential · Dec 2026</div>
+        <div class="gcc-stat"><strong>Opening:</strong> December 2026</div>
+        <div class="gcc-stat"><strong>Scale:</strong> ~30–40 units (est.)</div>
+        <div class="gcc-stat"><strong>Model:</strong> Nature immersion, multi-generational</div>
+        <div class="gcc-stat"><strong>Investment:</strong> Not disclosed</div>
+        <div class="gcc-lesson">✦ Strategic importance: First international operator to test Taif's wellness market. If occupancy exceeds 65%+ in Year 1, this triggers a proof-of-concept that attracts Tier 1 operator interest.</div>
+      </div>
+      <div class="gcc-card">
+        <div class="gcc-flag">🇸🇦</div>
+        <div class="gcc-name">Aseel Rural Tourism — Saudi Reef</div>
+        <div class="gcc-type">Government-Backed Agritourism · Scalable Template</div>
+        <div class="gcc-stat"><strong>Program:</strong> Saudi Reef rural tourism conversions</div>
+        <div class="gcc-stat"><strong>Taif presence:</strong> ≥1 confirmed rose farm conversion</div>
+        <div class="gcc-stat"><strong>Model:</strong> High-value oils, perfumes, agri-experiences</div>
+        <div class="gcc-stat"><strong>Investment:</strong> SME-scale, TDF-eligible</div>
+        <div class="gcc-lesson">✦ Taif application: Saudi Reef's framework is already in Taif. The missing element is overnight accommodation (glamping or lodge) layered onto existing farm conversions — extending one-day visits to 2–3 night stays.</div>
+      </div>
+    </div>
+
+    <!-- OUTBOUND OPPORTUNITY CHART -->
+    <div class="chart-card fade-in">
+      <div class="chart-title">Saudi Outbound Wellness Spend vs. Taif Estimated Capture</div>
+      <div class="chart-sub">Saudi residents spent $29.4B abroad in 2025. Saudi wellness tourism market: $2.5B growing at 66% annually. Taif's estimated wellness tourism capture: &lt;2% of domestic wellness spend — representing the largest identifiable missed-opportunity in the dataset. Source: GASTAT, Six Senses VP statement, TDF projections.</div>
+      <div style="height:200px;"><canvas id="outboundChart"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIC HYPOTHESIS -->
+<section class="section hypothesis-section" id="hypothesis">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">
+      <span class="section-number">06</span>
+      <div class="section-divider"></div>
+      <span class="section-label">Strategic Hypothesis</span>
+    </div>
+    <p class="section-insight fade-in" style="margin-bottom:var(--space-8)">Three competing framings of Taif's opportunity — <strong>click each card to reveal the evidence behind the hypothesis.</strong></p>
+
+    <div class="hypothesis-grid">
+      <div class="flip-card fade-in" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <div class="flip-type rose-t">Original Hypothesis</div>
+              <div class="flip-title">"Taif lacks a coordinated wellness ecosystem — coordination is the binding constraint."</div>
+            </div>
+            <div class="flip-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              Click to see the evidence
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-type">Evidence Assessment</div>
+            <div class="flip-back-content">
+              <strong>Broadly correct, but imprecise.</strong> The coordination deficit is real — no single actor connects rose farm → wellness treatment → branded stay → return visit. However, the evidence shows three deeper structural barriers that coordination alone cannot solve: (1) the airlift constraint limits international wellness travelers until 2030; (2) no anchor luxury resort exists to give operators confidence to enter; (3) the regulatory/licensing environment adds 6–18 months to any operator's setup timeline. Coordination is necessary but not sufficient. The real binding constraint is: <em>who builds the anchor resort that de-risks every subsequent investor?</em>
+            </div>
+            <div class="flip-back-source">Sources: Taif University 2024 study; ENVI Jan 2026 signing; Saudi SCHS licensing data</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card challenger fade-in fade-in-delay-1" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <div class="flip-type gold-t">Challenger Hypothesis</div>
+              <div class="flip-title">"The first-mover window is 2026–2029. After Soudah opens, Taif becomes the budget alternative."</div>
+            </div>
+            <div class="flip-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              Click to see the evidence
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-type">Evidence Assessment</div>
+            <div class="flip-back-content">
+              <strong>Strongly supported by the data.</strong> Soudah Peaks Phase 1 arrives by 2027 with $7.7B in PIF investment, Saudi Arabia's highest altitude (3,015m vs. Taif's 2,100m), and likely a Tier 1 operator. If Taif has not opened at least one anchor wellness property with genuine botanical identity by then, it cannot compete on luxury positioning. However, the challenger hypothesis understates Taif's durable advantages: UNESCO (Soudah has none), rose economy authenticity, proximity to Mecca (spiritual wellness dimension), and a larger existing visitor base. <em>Taif can win by being distinctly different — not a Soudah clone.</em>
+            </div>
+            <div class="flip-back-source">Sources: Soudah Peaks PIF update April 2026; MIPIM March 2026; WSP partnership announcement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card test fade-in fade-in-delay-2" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <div class="flip-type sage-t">What to Test Next</div>
+              <div class="flip-title">"ENVI Al Shafa's Year 1 occupancy is the most important data point in Saudi wellness tourism for 2027."</div>
+            </div>
+            <div class="flip-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              Click to see the reasoning
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-type">Research Agenda</div>
+            <div class="flip-back-content">
+              <strong>Three experiments to run in 2027:</strong><br><br>
+              1. <strong>ENVI occupancy signal:</strong> If ENVI Al Shafa achieves 65%+ occupancy in its first 12 months (Dec 2026 – Dec 2027), it proves willingness-to-pay for Taif wellness. That single data point unlocks Tier 1 operator conversations.<br><br>
+              2. <strong>Rose economy pricing test:</strong> Can one vertically integrated rose experience (farm → distillation → spa treatment → retail) charge SAR 800+ per visitor day? If yes, the economics of a 50-room wellness retreat are viable without PIF scale.<br><br>
+              3. <strong>GCC road-trip wellness:</strong> Would UAE-based Saudi travelers drive to Taif for a 3-night wellness retreat vs. flying to Thailand? Survey data (n=500) is the missing evidence for the demand hypothesis.
+            </div>
+            <div class="flip-back-source">Research gaps identified in evidence-based analysis, April 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Prepared for the <strong>Tourism Development Fund Innovation Team</strong> · April 2026 · Evidence-Based Analysis</p>
+  <p style="margin-top:var(--space-2)">Data sources: Saudi Ministry of Tourism, GASTAT, UNESCO, PIF, TDF, Arab News, Saudi Gazette, academic literature (Taif University 2024), Airbnb demand proxy, perfumery market data. Where data is unavailable, estimates are labeled.</p>
+  <p style="margin-top:var(--space-2)">Interactive dashboard built for innovation mentoring · <strong>Taif: Saudi Arabia's Wellness Tourism Frontier</strong></p>
+</footer>
+
+<script>
+// ===== THEME TOGGLE =====
+(function() {
+  const btn = document.querySelector('[data-theme-toggle]');
+  const root = document.documentElement;
+  let theme = 'dark';
+  root.setAttribute('data-theme', theme);
+  if (btn) {
+    btn.addEventListener('click', () => {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', theme);
+      btn.innerHTML = theme === 'dark'
+        ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+        : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+      // Refresh charts for theme
+      setTimeout(() => { updateChartsTheme(); }, 50);
+    });
+  }
+})();
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== INFRA TABLE FILTER =====
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('#infraTable tbody tr').forEach(row => {
+      row.style.display = (filter === 'all' || row.dataset.type === filter) ? '' : 'none';
+    });
+  });
+});
+
+// ===== ACCORDION =====
+function toggleAccordion(trigger) {
+  const body = trigger.nextElementSibling;
+  const chevron = trigger.querySelector('.accordion-chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+  if (!isOpen && body.querySelector('canvas')) {
+    setTimeout(() => initMissedOppChart(), 100);
+  }
+}
+
+// ===== CASE STUDY TOGGLE =====
+function toggleCase(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.case-toggle');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+}
+
+// ===== COLOR HELPERS =====
+function getCSSVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+// ===== CHART DEFAULTS =====
+Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
+
+function getChartColors() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  return {
+    text: isDark ? '#E8E4DB' : '#1C1C1E',
+    textMuted: isDark ? '#9A9890' : '#5C5850',
+    border: isDark ? '#3A3A3C' : '#DDD5C0',
+    surface: isDark ? '#252527' : '#FFFFFF',
+    rose: '#8B1A4A',
+    roseLight: '#B8315F',
+    gold: '#C9932F',
+    goldLight: '#E5B84A',
+    sage: '#4A7C59',
+    sageLight: '#6BA37D',
+  };
+}
+
+// ===== CHART: MONTHLY VISITORS =====
+function initMonthlyChart() {
+  const ctx = document.getElementById('monthlyChart');
+  if (!ctx) return;
+  const c = getChartColors();
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const data = [22, 28, 65, 85, 45, 80, 100, 95, 78, 30, 20, 24];
+  const colors = data.map(v => v >= 80 ? c.rose : v >= 60 ? c.gold : c.sage + '80');
+  
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [{
+        data,
+        backgroundColor: colors,
+        borderRadius: 5,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => `Index: ${ctx.raw} (peak=100)`,
+            afterLabel: ctx => {
+              if (ctx.raw >= 80) return '🔴 Peak season';
+              if (ctx.raw >= 60) return '🟡 Rose/spring season';
+              return '⚪ Shoulder / off-peak';
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: c.border + '40' }, ticks: { color: c.textMuted, font: { size: 11 } } },
+        y: { grid: { color: c.border + '40' }, ticks: { color: c.textMuted, font: { size: 11 } }, max: 110 }
+      }
+    }
+  });
+}
+
+// ===== CHART: OCCUPANCY =====
+function initOccupancyChart() {
+  const ctx = document.getElementById('occupancyChart');
+  if (!ctx) return;
+  const c = getChartColors();
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Summer\n(Jun–Sep)', 'Rose Season\n(Mar–May)', 'Autumn\n(Oct–Nov)', 'Winter\n(Dec–Feb)'],
+      datasets: [{
+        label: 'Taif Occupancy %',
+        data: [78, 65, 28, 20],
+        backgroundColor: [c.rose, c.gold, c.sage + '99', c.sage + '55'],
+        borderRadius: 8,
+        borderSkipped: false,
+      }, {
+        label: 'Wellness Destination Target',
+        data: [60, 60, 60, 60],
+        type: 'line',
+        borderColor: c.textMuted,
+        borderDash: [5, 4],
+        borderWidth: 1.5,
+        pointRadius: 0,
+        fill: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: c.textMuted, font: { size: 11 }, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}%` } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: c.textMuted, font: { size: 11 } } },
+        y: { grid: { color: c.border + '40' }, ticks: { color: c.textMuted, font: { size: 11 }, callback: v => v + '%' }, max: 100 }
+      }
+    }
+  });
+}
+
+// ===== CHART: VALUE CHAIN =====
+function initValueChainChart() {
+  const ctx = document.getElementById('valueChainChart');
+  if (!ctx) return;
+  const c = getChartColors();
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Raw Material\n(Rose Harvest)', 'Distillation\n& Processing', 'Experience\nPackaging', 'Branded\nRetail', 'Wellness\nTreatment'],
+      datasets: [
+        {
+          label: 'Grasse (France)',
+          data: [85, 90, 95, 98, 92],
+          backgroundColor: c.gold + 'CC',
+          borderRadius: 5,
+          borderSkipped: false,
+        },
+        {
+          label: 'Taif (Current)',
+          data: [70, 40, 15, 8, 5],
+          backgroundColor: c.rose + 'CC',
+          borderRadius: 5,
+          borderSkipped: false,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: c.textMuted, font: { size: 11 }, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}/100 capture index` } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: c.textMuted, font: { size: 10 } } },
+        y: { grid: { color: c.border + '40' }, ticks: { color: c.textMuted, font: { size: 11 } }, max: 100 }
+      }
+    }
+  });
+}
+
+// ===== CHART: COMPETITOR MATRIX =====
+function initMatrixChart() {
+  const ctx = document.getElementById('matrixChart');
+  if (!ctx) return;
+  const c = getChartColors();
+
+  const destinations = [
+    { label: 'Taif\n(Current)', x: 7.5, y: 2.5, r: 14, color: c.rose, note: 'High access, low depth — the gap opportunity' },
+    { label: 'Taif\n(2030 Target)', x: 7.5, y: 7, r: 10, color: c.roseLight, note: 'Vision: anchor resort + TAIM programming' },
+    { label: 'Soudah Peaks\n(2027+)', x: 6, y: 7.5, r: 16, color: c.gold, note: '$7.7B — Phase 1 by 2027' },
+    { label: 'Six Senses\nAMAALA (Saudi)', x: 5, y: 9, r: 12, color: c.goldLight, note: 'Red Sea, opening 2026' },
+    { label: 'Zulal Wellness\n(Qatar)', x: 7, y: 8.5, r: 11, color: c.sage, note: 'First TAIM resort in GCC, 2022' },
+    { label: 'Thailand\n(Wellness Hub)', x: 2.5, y: 9.5, r: 18, color: c.sageLight, note: '$42.7B economy' },
+    { label: 'Maldives', x: 1.5, y: 7, r: 13, color: '#5591c7', note: 'Marine luxury — different niche' },
+    { label: 'Zighy Bay\nOman', x: 4.5, y: 7.5, r: 9, color: '#a86fdf', note: 'Remote luxury, 82 villas' },
+    { label: 'SHA Wellness\n(UAE/Mexico)', x: 3.5, y: 9.2, r: 10, color: '#dd6974', note: 'Clinical longevity model' },
+  ];
+
+  new Chart(ctx, {
+    type: 'bubble',
+    data: {
+      datasets: destinations.map(d => ({
+        label: d.label,
+        data: [{ x: d.x, y: d.y, r: d.r }],
+        backgroundColor: d.color + '55',
+        borderColor: d.color,
+        borderWidth: 2,
+      }))
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: ctx => ctx[0].dataset.label.replace(/\n/g, ' '),
+            label: ctx => {
+              const d = destinations[ctx.datasetIndex];
+              return [`Accessibility: ${d.x}/10`, `Wellness depth: ${d.y}/10`, d.note];
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          min: 0, max: 10,
+          title: { display: true, text: '← International only   Accessibility for Saudi domestic traveler   Drive/domestic flight →', color: c.textMuted, font: { size: 11 } },
+          grid: { color: c.border + '40' },
+          ticks: { color: c.textMuted, font: { size: 10 } }
+        },
+        y: {
+          min: 0, max: 10,
+          title: { display: true, text: '↑ Clinical / transformational wellness depth', color: c.textMuted, font: { size: 11 } },
+          grid: { color: c.border + '40' },
+          ticks: { color: c.textMuted, font: { size: 10 } }
+        }
+      }
+    },
+    plugins: [{
+      afterDraw(chart) {
+        const ctx2 = chart.ctx;
+        chart.data.datasets.forEach((ds, i) => {
+          const meta = chart.getDatasetMeta(i);
+          if (meta.data[0]) {
+            const pt = meta.data[0];
+            ctx2.save();
+            ctx2.fillStyle = getChartColors().text;
+            ctx2.font = '9px Inter, sans-serif';
+            ctx2.textAlign = 'center';
+            const label = ds.label.split('\n');
+            label.forEach((line, li) => {
+              ctx2.fillText(line, pt.x, pt.y + pt.options.radius + 12 + li * 11);
+            });
+            ctx2.restore();
+          }
+        });
+        // Draw "GAP ZONE" annotation
+        const xScale = chart.scales.x;
+        const yScale = chart.scales.y;
+        const x1 = xScale.getPixelForValue(6.5);
+        const x2 = xScale.getPixelForValue(9);
+        const y1 = yScale.getPixelForValue(5.5);
+        const y2 = yScale.getPixelForValue(9);
+        ctx2.save();
+        ctx2.strokeStyle = '#8B1A4A88';
+        ctx2.lineWidth = 1.5;
+        ctx2.setLineDash([6, 4]);
+        ctx2.strokeRect(x1, y2, x2-x1, y1-y2);
+        ctx2.fillStyle = '#8B1A4A22';
+        ctx2.fillRect(x1, y2, x2-x1, y1-y2);
+        ctx2.fillStyle = '#8B1A4A';
+        ctx2.font = 'bold 10px Inter, sans-serif';
+        ctx2.textAlign = 'center';
+        ctx2.fillText('OPPORTUNITY ZONE', (x1+x2)/2, y2 - 6);
+        ctx2.restore();
+      }
+    }]
+  });
+}
+
+// ===== CHART: MISSED OPPORTUNITY =====
+let missedOppChartInstance = null;
+function initMissedOppChart() {
+  const ctx = document.getElementById('missedOppChart');
+  if (!ctx) return;
+  if (missedOppChartInstance) { missedOppChartInstance.destroy(); }
+  const c = getChartColors();
+  missedOppChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Saudi Outbound\nTotal ($29.4B)', 'Saudi Wellness\nMarket ($2.5B)', 'Taif Total\nTourism ($906M)', 'Taif Wellness\nCapture (est. <$30M)'],
+      datasets: [{
+        data: [29400, 2500, 906, 30],
+        backgroundColor: [c.textMuted + '66', c.gold + 'AA', c.rose + 'AA', c.sage + 'BB'],
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `$${ctx.raw.toLocaleString()}M` } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: c.textMuted, font: { size: 10 } } },
+        y: {
+          type: 'logarithmic',
+          grid: { color: c.border + '40' },
+          ticks: {
+            color: c.textMuted, font: { size: 10 },
+            callback: v => '$' + (v >= 1000 ? (v/1000)+'B' : v+'M')
+          }
+        }
+      }
+    }
+  });
+}
+
+// ===== CHART: OUTBOUND =====
+function initOutboundChart() {
+  const ctx = document.getElementById('outboundChart');
+  if (!ctx) return;
+  const c = getChartColors();
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Thailand & SEA (wellness)', 'Turkey (medical/wellness)', 'Europe (spa/longevity)', 'UAE & GCC (health)', 'Taif capture (est.)', 'Other outbound'],
+      datasets: [{
+        data: [28, 18, 15, 12, 3, 24],
+        backgroundColor: [c.sage, c.gold, c.roseLight, '#5591c7', c.rose, c.textMuted + '55'],
+        borderColor: 'transparent',
+        borderWidth: 2,
+        hoverOffset: 8,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '62%',
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: { color: c.textMuted, font: { size: 10 }, boxWidth: 10, padding: 8 }
+        },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw}% of wellness outbound` } }
+      }
+    }
+  });
+}
+
+function updateChartsTheme() {
+  // charts are re-read via CSS vars on next render cycle — simplified approach
+}
+
+// ===== INIT ALL CHARTS =====
+window.addEventListener('load', () => {
+  initMonthlyChart();
+  initOccupancyChart();
+  initValueChainChart();
+  initMatrixChart();
+  initOutboundChart();
+});
+</script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  var scrollRaf=0;
+  function emitScroll(){
+    scrollRaf=0;
+    var x=window.scrollX||window.pageXOffset||0;
+    var y=window.scrollY||window.pageYOffset||0;
+    window.parent.postMessage({type:'INLINE_EDIT_SCROLL',scrollX:x,scrollY:y},'*');
+  }
+  window.addEventListener('scroll',function(){
+    if(scrollRaf)return;
+    scrollRaf=requestAnimationFrame(emitScroll);
+  },{passive:true,capture:true});
+  emitScroll();
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

@@ -166,41 +166,43 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- FINANCE — full-width feature card -->
         <div class="bg-white rounded-2xl overflow-hidden border border-warm-200">
-          <div class="grid md:grid-cols-[1fr_300px]">
-            <div class="p-8 md:p-10">
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">00</span>
-                <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Robert W. Baird & Co. · 2014 – 2019</span>
+          <div class="p-8 md:p-10">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">00</span>
+              <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Robert W. Baird & Co. · 2014 – 2019</span>
+            </div>
+            <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem)">FINANCE</h3>
+            <p class="text-navy-500 text-sm leading-relaxed mb-6 max-w-2xl">Fixed Income & Capital Markets. Six years managing 100 private households and 30 corporate accounts — retirement funds, foundations, and investment portfolios. Built the client practice from the ground up, led 10 corporate accounts independently, and completed 100+ financial plans with a 95% objectives-met rate.</p>
+            <div class="flex flex-wrap gap-6 mb-6">
+              <div>
+                <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.6B</p>
+                <p class="text-xs text-navy-400 mt-0.5">AUM Managed</p>
               </div>
-              <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem)">FINANCE</h3>
-              <p class="text-navy-500 text-sm leading-relaxed mb-6 max-w-lg">Fixed Income & Capital Markets. Six years managing 100 private households and 30 corporate accounts — retirement funds, foundations, and investment portfolios. Built the client practice from the ground up, led 10 corporate accounts independently, and completed 100+ financial plans with a 95% objectives-met rate.</p>
-              <div class="flex flex-wrap gap-6 mb-6">
-                <div>
-                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.6B</p>
-                  <p class="text-xs text-navy-400 mt-0.5">AUM Managed</p>
-                </div>
-                <div>
-                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">100+</p>
-                  <p class="text-xs text-navy-400 mt-0.5">Financial Plans · 95% Met</p>
-                </div>
-                <div>
-                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">50%</p>
-                  <p class="text-xs text-navy-400 mt-0.5">Practice Growth</p>
-                </div>
-                <div>
-                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.5M</p>
-                  <p class="text-xs text-navy-400 mt-0.5">Annual Revenue</p>
-                </div>
+              <div>
+                <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">100+</p>
+                <p class="text-xs text-navy-400 mt-0.5">Financial Plans · 95% Met</p>
               </div>
-              <div class="flex flex-wrap gap-2">
-                {["Private Client", "Corporate Retirement", "Foundation Accounts", "Fixed Income", "Capital Markets"].map(c => (
-                  <span class="text-xs px-3 py-1 rounded-full" style="background:#0D1B2A;color:rgba(255,255,255,0.7);font-family:var(--font-display)">{c}</span>
-                ))}
+              <div>
+                <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">50%</p>
+                <p class="text-xs text-navy-400 mt-0.5">Practice Growth</p>
+              </div>
+              <div>
+                <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.5M</p>
+                <p class="text-xs text-navy-400 mt-0.5">Annual Revenue</p>
               </div>
             </div>
-            <div class="relative hidden md:block bg-warm-100">
-              <img src="/FCBA0EAE-A6FF-4B56-B4BC-271FA03F5F65_1_105_c.jpeg" alt="Arseniy at Baird" class="w-full h-full object-cover object-center" style="min-height:320px" />
-              <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(255,255,255,0.4) 0%, transparent 35%)"></div>
+            <div class="flex flex-wrap gap-2">
+              {["Private Client", "Corporate Retirement", "Foundation Accounts", "Fixed Income", "Capital Markets"].map(c => (
+                <span class="text-xs px-3 py-1 rounded-full" style="background:#0D1B2A;color:rgba(255,255,255,0.7);font-family:var(--font-display)">{c}</span>
+              ))}
+            </div>
+          </div>
+          <!-- Cinematic photo strip -->
+          <div class="relative overflow-hidden" style="height:220px">
+            <img src="/baird-team.jpg" alt="Arseniy Goldberg at Baird" class="w-full h-full object-cover object-center" />
+            <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(13,27,42,0.65) 0%, rgba(13,27,42,0.25) 50%, rgba(13,27,42,0.45) 100%)"></div>
+            <div class="absolute inset-0 flex items-end px-8 md:px-10 pb-6">
+              <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family:var(--font-display);color:rgba(255,255,255,0.5)">Robert W. Baird & Co. · Chicago &nbsp;·&nbsp; Capital Markets</p>
             </div>
           </div>
           <!-- Artifact row -->

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Delta Dossier — Q1 2026 Pre-Earnings Deep Dive</title>
+  <meta name="description" content="A comprehensive pre-earnings analysis of Delta Air Lines (DAL) ahead of Q1 2026 results, covering beat/miss probability, options strategy, macro data, and competitive positioning.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+  <link rel="stylesheet" href="./base.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- ============================================================= -->
+  <!-- NAV                                                            -->
+  <!-- ============================================================= -->
+  <nav class="topnav" role="navigation" aria-label="Main navigation">
+    <div class="topnav__inner">
+      <a href="#hero" class="topnav__brand">
+        <span class="topnav__ticker">DAL</span>
+        <span class="topnav__price">$65.62</span>
+      </a>
+      <ul class="topnav__links" role="list">
+        <li><a href="#verdict">Verdict</a></li>
+        <li><a href="#numbers">Numbers</a></li>
+        <li><a href="#track-record">Track Record</a></li>
+        <li><a href="#geopolitical">War Factor</a></li>
+        <li><a href="#competition">Competition</a></li>
+        <li><a href="#options">Options</a></li>
+        <li><a href="#technical">Technical</a></li>
+        <li><a href="#scenarios">Scenarios</a></li>
+        <li><a href="#trade">The Trade</a></li>
+      </ul>
+      <div class="topnav__actions">
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============================================================= -->
+    <!-- HERO                                                           -->
+    <!-- ============================================================= -->
+    <section class="hero" id="hero">
+      <div class="hero__eyebrow">Equity Research Brief</div>
+      <h1 class="hero__headline">Delta Air Lines</h1>
+      <p class="hero__subtitle">Q1 2026 Pre-Earnings Deep Dive</p>
+      <div class="hero__divider"></div>
+      <div class="hero__meta">
+        <span>April 7, 2026</span>
+        <span>NYSE: DAL</span>
+        <span>Sector: Airlines</span>
+      </div>
+      <div style="margin-top: var(--space-6); display: flex; justify-content: center;">
+        <div class="hero__earnings-badge">
+          <span class="dot"></span>
+          Earnings: Tomorrow, 6:30 AM ET (Before Market Open)
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 01 — THE VERDICT                                               -->
+    <!-- ============================================================= -->
+    <section class="section section--alt" id="verdict">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">01</span>
+          <h2 class="section__title">The Verdict</h2>
+        </div>
+        <div class="editorial-grid reveal">
+          <div class="prose drop-cap">
+            <p>Delta enters tomorrow's print as the best-positioned U.S. legacy carrier — but the market isn't pricing certainty. After raising revenue guidance to $15.0–$15.3 billion on March 17 (from $14.0–$14.5B), management has already telegraphed strength. The question is whether the Iran war fuel headwind overwhelms that top-line momentum.</p>
+            <p>Our estimated beat probability is <strong>60–65%</strong>, anchored by Delta's 83% historical beat rate, strong U.S. domestic demand (+25% YoY sales per CEO Ed Bastian), and the Monroe refinery providing a structural fuel cost advantage. The risk is a guidance cut on Q2 fuel uncertainty.</p>
+          </div>
+          <div>
+            <div style="padding: var(--space-5); background: var(--color-surface-2); border-radius: var(--radius-lg); border: 1px solid var(--color-divider);">
+              <div style="font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-4);">Beat Probability</div>
+              <div class="big-number big-number--accent" data-count-to="62.5" data-suffix="%">0%</div>
+              <div class="prob-meter" style="margin-top: var(--space-4);">
+                <div class="prob-meter__bar-bg">
+                  <div class="prob-meter__bar-fill" data-fill="62.5"></div>
+                </div>
+                <div class="prob-meter__labels">
+                  <span>0%</span>
+                  <span>100%</span>
+                </div>
+              </div>
+              <div style="margin-top: var(--space-4); font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.6;">
+                Based on historical beat rate (83%), guidance raise, domestic demand strength, and fuel headwind risk.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 02 — BY THE NUMBERS                                            -->
+    <!-- ============================================================= -->
+    <section class="section" id="numbers">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">02</span>
+          <h2 class="section__title">By the Numbers</h2>
+          <p class="section__lead">Key consensus estimates and Delta's own guidance for Q1 2026.</p>
+        </div>
+        <div class="kpi-strip reveal">
+          <div class="kpi-card">
+            <div class="kpi-card__label">Consensus EPS</div>
+            <div class="kpi-card__value">$0.63–$0.70</div>
+            <div class="kpi-card__delta kpi-card__delta--neutral">Non-GAAP</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card__label">Delta EPS Guidance</div>
+            <div class="kpi-card__value">$0.70</div>
+            <div class="kpi-card__delta kpi-card__delta--up">Midpoint $0.50–$0.90</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card__label">Revenue (Guided)</div>
+            <div class="kpi-card__value">$15.15B</div>
+            <div class="kpi-card__delta kpi-card__delta--up">Raised Mar 17</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card__label">FY2026 EPS Guidance</div>
+            <div class="kpi-card__value">$7.00</div>
+            <div class="kpi-card__delta kpi-card__delta--neutral">Midpoint $6.50–$7.50</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card__label">Stock Price</div>
+            <div class="kpi-card__value">$65.62</div>
+            <div class="kpi-card__delta kpi-card__delta--down">−1.72% Today</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card__label">Analyst Consensus</div>
+            <div class="kpi-card__value">Strong Buy</div>
+            <div class="kpi-card__delta kpi-card__delta--up">Avg PT $77.88</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 03 — TRACK RECORD                                              -->
+    <!-- ============================================================= -->
+    <section class="section section--alt" id="track-record">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">03</span>
+          <h2 class="section__title">Track Record</h2>
+          <p class="section__lead">Delta has beaten consensus in 5 of its last 6 quarters, with an average EPS surprise of +$0.09.</p>
+        </div>
+        <div class="editorial-grid reveal">
+          <div class="chart-wrap">
+            <div class="chart-wrap__title">EPS: Actual vs. Estimate (Last 6 Quarters)</div>
+            <canvas id="chart-eps"></canvas>
+          </div>
+          <div>
+            <div class="chart-wrap">
+              <div class="chart-wrap__title">Post-Earnings Day Moves</div>
+              <canvas id="chart-moves"></canvas>
+            </div>
+            <div style="margin-top: var(--space-4); padding: var(--space-4); background: var(--color-surface-2); border-radius: var(--radius-md); border: 1px solid var(--color-divider);">
+              <div style="display: flex; justify-content: space-between; font-size: var(--text-sm); margin-bottom: var(--space-2);">
+                <span class="color-muted">Beat Rate</span>
+                <span class="fw-700 color-success">83% (5/6)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: var(--text-sm); margin-bottom: var(--space-2);">
+                <span class="color-muted">Avg Surprise</span>
+                <span class="fw-700">+$0.09</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: var(--text-sm); margin-bottom: var(--space-2);">
+                <span class="color-muted">Avg |Move|</span>
+                <span class="fw-700">8.7%</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);">
+                <span class="color-muted">Positive After</span>
+                <span class="fw-700 color-success">4 of 6</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 04 — THE GEOPOLITICAL OVERHANG                                 -->
+    <!-- ============================================================= -->
+    <section class="section section--navy" id="geopolitical">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">04</span>
+          <h2 class="section__title" style="color: #e2e0db;">The War Factor</h2>
+          <p class="section__lead" style="color: rgba(226,224,219,0.6);">The Iran conflict has reshaped the cost structure of every global airline. Delta's Q1 carries an estimated $400M fuel headwind — but not all carriers are equal.</p>
+        </div>
+
+        <div class="editorial-grid reveal" style="margin-bottom: var(--space-8);">
+          <div>
+            <div class="prose" style="color: rgba(226,224,219,0.85);">
+              <p>The Strait of Hormuz has been closed for over 30 days. Jet fuel prices have nearly doubled, surging from $2.50/gallon pre-crisis to $4.88/gallon — the sharpest spike since the 2008 oil shock. International carriers have cancelled routes across the Middle East and Central Asia, while insurance premiums for overflights have skyrocketed.</p>
+              <p>But here's the paradox: <strong style="color: #e2e0db;">U.S. domestic demand remains robust.</strong> Delta CEO Ed Bastian reported a 25% increase in domestic sales year-over-year, and forward bookings show no deceleration. Americans are flying domestically even as international routes face disruption.</p>
+            </div>
+          </div>
+          <div>
+            <div style="text-align: center; padding: var(--space-6) 0;">
+              <div style="font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(226,224,219,0.4); margin-bottom: var(--space-4);">Jet Fuel Price per Gallon</div>
+              <div style="display: flex; align-items: flex-end; justify-content: center; gap: var(--space-6);">
+                <div>
+                  <div style="font-size: var(--text-xs); color: rgba(226,224,219,0.5); margin-bottom: var(--space-1);">Pre-Crisis</div>
+                  <div style="font-family: var(--font-display); font-size: var(--text-2xl); color: rgba(226,224,219,0.7);">$2.50</div>
+                </div>
+                <div style="font-size: var(--text-xl); color: var(--color-error); padding-bottom: var(--space-2);">→</div>
+                <div>
+                  <div style="font-size: var(--text-xs); color: rgba(226,224,219,0.5); margin-bottom: var(--space-1);">Current</div>
+                  <div style="font-family: var(--font-display); font-size: var(--text-2xl); color: var(--color-error);">$4.88</div>
+                </div>
+              </div>
+              <div style="font-size: var(--text-xs); color: rgba(226,224,219,0.4); margin-top: var(--space-4);">+95% increase since Strait of Hormuz closure</div>
+            </div>
+
+            <div style="margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(226,224,219,0.12); border-radius: var(--radius-md);">
+              <div style="display: flex; justify-content: space-between; font-size: var(--text-sm); margin-bottom: var(--space-2); color: rgba(226,224,219,0.7);">
+                <span>Q1 Fuel Headwind</span>
+                <span class="fw-700" style="color: var(--color-error);">~$400M</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: var(--text-sm); margin-bottom: var(--space-2); color: rgba(226,224,219,0.7);">
+                <span>Domestic Demand</span>
+                <span class="fw-700" style="color: var(--color-success);">+25% YoY</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: var(--text-sm); color: rgba(226,224,219,0.7);">
+                <span>Monroe Refinery</span>
+                <span class="tag tag--green">Structural Edge</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <blockquote class="pull-quote" style="border-left-color: var(--color-accent); color: rgba(226,224,219,0.9); max-width: 55ch;">
+            Delta's Monroe Energy refinery — acquired in 2012 — processes 185,000 barrels/day and provides a natural hedge that no other U.S. airline can replicate. In a fuel crisis, this isn't just an advantage; it's a moat.
+            <cite style="color: rgba(226,224,219,0.4);">Reuters, March 25, 2026</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 05 — COMPETITIVE LANDSCAPE                                     -->
+    <!-- ============================================================= -->
+    <section class="section" id="competition">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">05</span>
+          <h2 class="section__title">The Competition</h2>
+          <p class="section__lead">How Delta stacks up against United and American heading into earnings season.</p>
+        </div>
+        <div class="comp-grid reveal">
+          <div class="comp-card comp-card--highlight">
+            <div class="comp-card__ticker">DAL <span class="tag" style="margin-left: var(--space-2); font-size: 10px;">Our Focus</span></div>
+            <div class="comp-card__name">Delta Air Lines</div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Price</span>
+              <span class="comp-card__value">$65.62</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Guidance Raised</span>
+              <span class="comp-card__value color-success">Yes (Mar 17)</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Refinery Hedge</span>
+              <span class="comp-card__value color-success">Monroe Energy</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Analyst Rating</span>
+              <span class="comp-card__value">Strong Buy</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Avg Price Target</span>
+              <span class="comp-card__value">$77.88</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Premium Strategy</span>
+              <span class="comp-card__value color-success">Leading</span>
+            </div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card__ticker">UAL</div>
+            <div class="comp-card__name">United Airlines</div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Price</span>
+              <span class="comp-card__value">$88.07</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Guidance Raised</span>
+              <span class="comp-card__value color-success">Yes</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Refinery Hedge</span>
+              <span class="comp-card__value color-error">None</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Analyst Rating</span>
+              <span class="comp-card__value">Buy</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Avg Price Target</span>
+              <span class="comp-card__value">—</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Intl. Exposure</span>
+              <span class="comp-card__value color-accent">Higher Risk</span>
+            </div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card__ticker">AAL</div>
+            <div class="comp-card__name">American Airlines</div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Price</span>
+              <span class="comp-card__value">$10.67</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Guidance Raised</span>
+              <span class="comp-card__value color-error">No</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Refinery Hedge</span>
+              <span class="comp-card__value color-error">None</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Analyst Rating</span>
+              <span class="comp-card__value">Hold</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Avg Price Target</span>
+              <span class="comp-card__value">—</span>
+            </div>
+            <div class="comp-card__row">
+              <span class="comp-card__label">Debt Load</span>
+              <span class="comp-card__value color-error">Highest</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal" style="margin-top: var(--space-8);">
+          <blockquote class="pull-quote">
+            Among the Big Three, Delta's combination of a guidance raise, refinery hedge, and premium revenue strategy makes it the cleanest way to play the post-crisis airline recovery.
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 06 — OPTIONS MARKET INTELLIGENCE                               -->
+    <!-- ============================================================= -->
+    <section class="section section--alt" id="options">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">06</span>
+          <h2 class="section__title">Options Intelligence</h2>
+          <p class="section__lead">The options market is pricing significant uncertainty — and skewing defensive.</p>
+        </div>
+        <div class="options-grid reveal">
+          <div class="option-stat">
+            <div class="option-stat__value">54%</div>
+            <div class="option-stat__label">IV30</div>
+            <div class="option-stat__sub">88th percentile (1-year)</div>
+          </div>
+          <div class="option-stat">
+            <div class="option-stat__value">±9.4%</div>
+            <div class="option-stat__label">Implied Move</div>
+            <div class="option-stat__sub">±$6.17 from $65.62</div>
+          </div>
+          <div class="option-stat">
+            <div class="option-stat__value">1.59</div>
+            <div class="option-stat__label">Put/Call Ratio</div>
+            <div class="option-stat__sub">Bearish skew</div>
+          </div>
+          <div class="option-stat">
+            <div class="option-stat__value">~40%</div>
+            <div class="option-stat__label">Expected IV Crush</div>
+            <div class="option-stat__sub">Post-earnings typical drop</div>
+          </div>
+        </div>
+
+        <div class="editorial-grid reveal" style="margin-top: var(--space-8);">
+          <div class="prose">
+            <p><strong>What the options market is telling us:</strong> With implied volatility at the 88th percentile, premiums are rich. The ±9.4% implied move exceeds the historical average absolute move of 8.7%, suggesting options are slightly overpricing the expected swing.</p>
+            <p>The elevated put/call ratio of 1.59 signals that hedging activity dominates directional bets. This bearish skew creates opportunity: if Delta beats and raises, the short squeeze potential on the downside protection unwind could amplify the upside move.</p>
+          </div>
+          <div>
+            <div class="chart-wrap">
+              <div class="chart-wrap__title">Implied vs. Realized Move</div>
+              <canvas id="chart-iv"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 07 — TECHNICAL PICTURE                                         -->
+    <!-- ============================================================= -->
+    <section class="section" id="technical">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">07</span>
+          <h2 class="section__title">Technical Picture</h2>
+          <p class="section__lead">Price action, key moving averages, and where analysts see fair value.</p>
+        </div>
+
+        <div class="editorial-grid--asymmetric reveal" style="display: grid; grid-template-columns: 1fr; gap: var(--space-8);">
+          <div class="chart-wrap">
+            <div class="chart-wrap__title">DAL Key Price Levels</div>
+            <div class="levels-strip" style="margin-top: var(--space-8); margin-bottom: var(--space-16);">
+              <!-- Support -->
+              <div class="levels-strip__marker" style="left: 5%; background: var(--color-error);" aria-label="Support at $56"></div>
+              <div class="levels-strip__label" style="left: 5%; color: var(--color-error);">$56.00</div>
+              <div class="levels-strip__name" style="left: 5%;">Support</div>
+
+              <!-- 200-day MA -->
+              <div class="levels-strip__marker" style="left: 27%; background: var(--color-accent);" aria-label="200-day MA at $61.83"></div>
+              <div class="levels-strip__label" style="left: 27%; color: var(--color-accent);">$61.83</div>
+              <div class="levels-strip__name" style="left: 27%;">200-Day MA</div>
+
+              <!-- Current -->
+              <div class="levels-strip__marker" style="left: 42%; background: var(--color-text); width: 18px; height: 18px; z-index: 2;" aria-label="Current price $65.62"></div>
+              <div class="levels-strip__label" style="left: 42%; font-weight: 700; font-size: var(--text-sm);">$65.62</div>
+              <div class="levels-strip__name" style="left: 42%; font-weight: 700;">Current</div>
+
+              <!-- 50-day MA -->
+              <div class="levels-strip__marker" style="left: 46%; background: var(--color-accent);" aria-label="50-day MA at $66.44"></div>
+              <div class="levels-strip__label" style="left: 46%; color: var(--color-accent);">$66.44</div>
+              <div class="levels-strip__name" style="left: 46%;">50-Day MA</div>
+
+              <!-- Resistance -->
+              <div class="levels-strip__marker" style="left: 65%; background: var(--color-success);" aria-label="Resistance at $72"></div>
+              <div class="levels-strip__label" style="left: 65%; color: var(--color-success);">$72.00</div>
+              <div class="levels-strip__name" style="left: 65%;">Resistance</div>
+
+              <!-- Avg PT -->
+              <div class="levels-strip__marker" style="left: 88%; background: var(--color-success);" aria-label="Avg analyst PT $77.88"></div>
+              <div class="levels-strip__label" style="left: 88%; color: var(--color-success);">$77.88</div>
+              <div class="levels-strip__name" style="left: 88%;">Avg PT</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="editorial-grid reveal" style="margin-top: var(--space-4);">
+          <div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Indicator</th>
+                  <th class="text-right">Value</th>
+                  <th class="text-right">Signal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RSI (14)</td>
+                  <td class="text-right">52</td>
+                  <td class="text-right"><span class="tag">Neutral</span></td>
+                </tr>
+                <tr>
+                  <td>50-Day MA</td>
+                  <td class="text-right">$66.44</td>
+                  <td class="text-right"><span class="tag--red" style="padding: 2px 8px; border-radius: 3px; font-size: var(--text-xs); font-weight: 600;">Below</span></td>
+                </tr>
+                <tr>
+                  <td>200-Day MA</td>
+                  <td class="text-right">$61.83</td>
+                  <td class="text-right"><span class="tag--green" style="padding: 2px 8px; border-radius: 3px; font-size: var(--text-xs); font-weight: 600;">Above</span></td>
+                </tr>
+                <tr>
+                  <td>52-Week Range</td>
+                  <td class="text-right">$42.47 – $71.49</td>
+                  <td class="text-right"><span class="tag">Mid-Range</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="prose">
+            <p><strong>Positioning:</strong> DAL sits just below its 50-day moving average ($66.44) and comfortably above the 200-day ($61.83). RSI at 52 is neutral — critically, it is <strong>not</strong> overbought heading into earnings, which leaves room for an upside move without technical resistance from momentum indicators.</p>
+            <p>The analyst consensus price target of $77.88 implies 18.7% upside, with the range spanning $70–$89. The stock trades at a discount to the most conservative target on the Street.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 08 — SCENARIO MATRIX                                           -->
+    <!-- ============================================================= -->
+    <section class="section section--alt" id="scenarios">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">08</span>
+          <h2 class="section__title">Scenario Matrix</h2>
+          <p class="section__lead">Four probability-weighted outcomes for tomorrow's print. Click any scenario to explore the details.</p>
+        </div>
+        <div class="scenario-grid reveal">
+
+          <!-- Scenario 1: Beat + Raise -->
+          <div class="scenario-card" data-scenario="beat-raise">
+            <div class="scenario-card__header">
+              <div class="scenario-card__name">Beat + Raise</div>
+              <div class="scenario-card__prob">35%</div>
+            </div>
+            <div class="scenario-card__prob-bar">
+              <div class="scenario-card__prob-fill" data-fill="35" style="background: var(--color-success);"></div>
+            </div>
+            <div class="tag tag--green" style="margin-bottom: var(--space-2);">Most Bullish</div>
+            <div class="scenario-card__details">
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">EPS</span>
+                <span class="scenario-card__detail-value color-success">$0.75–$0.85</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Revenue</span>
+                <span class="scenario-card__detail-value">$15.2B+</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Price Move</span>
+                <span class="scenario-card__detail-value color-success">+8% to +12%</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Target</span>
+                <span class="scenario-card__detail-value">$71–$73</span>
+              </div>
+              <p>Monroe refinery delivers better-than-expected fuel savings, premium revenue exceeds guidance, FY guidance raised. This scenario triggers analyst upgrades and short covering.</p>
+            </div>
+          </div>
+
+          <!-- Scenario 2: Beat + Maintain -->
+          <div class="scenario-card" data-scenario="beat-maintain">
+            <div class="scenario-card__header">
+              <div class="scenario-card__name">Beat + Maintain</div>
+              <div class="scenario-card__prob">30%</div>
+            </div>
+            <div class="scenario-card__prob-bar">
+              <div class="scenario-card__prob-fill" data-fill="30" style="background: var(--color-success);"></div>
+            </div>
+            <div class="tag tag--green" style="margin-bottom: var(--space-2);">Bullish</div>
+            <div class="scenario-card__details">
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">EPS</span>
+                <span class="scenario-card__detail-value color-success">$0.70–$0.80</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Revenue</span>
+                <span class="scenario-card__detail-value">$15.0B–$15.3B</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Price Move</span>
+                <span class="scenario-card__detail-value color-success">+3% to +6%</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Target</span>
+                <span class="scenario-card__detail-value">$67–$69</span>
+              </div>
+              <p>Solid beat on domestic strength, but management maintains FY guidance citing fuel uncertainty. Market reads cautiously positive — limited upside as guidance isn't raised.</p>
+            </div>
+          </div>
+
+          <!-- Scenario 3: In-Line -->
+          <div class="scenario-card" data-scenario="inline">
+            <div class="scenario-card__header">
+              <div class="scenario-card__name">In-Line</div>
+              <div class="scenario-card__prob">15%</div>
+            </div>
+            <div class="scenario-card__prob-bar">
+              <div class="scenario-card__prob-fill" data-fill="15" style="background: var(--color-accent);"></div>
+            </div>
+            <div class="tag" style="margin-bottom: var(--space-2);">Neutral</div>
+            <div class="scenario-card__details">
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">EPS</span>
+                <span class="scenario-card__detail-value">$0.63–$0.70</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Revenue</span>
+                <span class="scenario-card__detail-value">$14.8B–$15.0B</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Price Move</span>
+                <span class="scenario-card__detail-value">−2% to +2%</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Target</span>
+                <span class="scenario-card__detail-value">$64–$67</span>
+              </div>
+              <p>Revenue meets guidance but fuel costs eat into margins. Market shrugs — IV crush benefits premium sellers. Stock treads water near current levels.</p>
+            </div>
+          </div>
+
+          <!-- Scenario 4: Miss + Cut -->
+          <div class="scenario-card" data-scenario="miss-cut">
+            <div class="scenario-card__header">
+              <div class="scenario-card__name">Miss + Cut</div>
+              <div class="scenario-card__prob">20%</div>
+            </div>
+            <div class="scenario-card__prob-bar">
+              <div class="scenario-card__prob-fill" data-fill="20" style="background: var(--color-error);"></div>
+            </div>
+            <div class="tag tag--red" style="margin-bottom: var(--space-2);">Bearish</div>
+            <div class="scenario-card__details">
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">EPS</span>
+                <span class="scenario-card__detail-value color-error">&lt;$0.60</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Revenue</span>
+                <span class="scenario-card__detail-value">$14.5B–$14.8B</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Price Move</span>
+                <span class="scenario-card__detail-value color-error">−10% to −15%</span>
+              </div>
+              <div class="scenario-card__detail-row">
+                <span class="scenario-card__detail-label">Target</span>
+                <span class="scenario-card__detail-value color-error">$56–$59</span>
+              </div>
+              <p>Fuel headwinds overwhelm domestic demand, FY guidance cut below $6.50. Triggers sector-wide sell-off and potential test of 200-day MA at $61.83. This is the tail risk — and why options are priced rich.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 09 — THE TRADE                                                 -->
+    <!-- ============================================================= -->
+    <section class="section" id="trade">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">09</span>
+          <h2 class="section__title">The Trade</h2>
+          <p class="section__lead">Recommended positioning for both equity and options strategies.</p>
+        </div>
+        <div class="editorial-grid reveal">
+          <div class="trade-box">
+            <div class="trade-box__label">Equity Strategy</div>
+            <div class="trade-box__title">Tactical Buy on Post-Earnings Dip</div>
+            <div class="trade-box__row">
+              <span class="color-muted">Conviction Entry</span>
+              <span class="fw-700">$60–$63 on weakness</span>
+            </div>
+            <div class="trade-box__row">
+              <span class="color-muted">Breakout Entry</span>
+              <span class="fw-700">$66–$68 on confirmed beat</span>
+            </div>
+            <div class="trade-box__row">
+              <span class="color-muted">Stop Loss</span>
+              <span class="fw-700 color-error">$55.50 (below 200-MA)</span>
+            </div>
+            <div class="trade-box__row">
+              <span class="color-muted">Target 1</span>
+              <span class="fw-700 color-success">$72 (resistance)</span>
+            </div>
+            <div class="trade-box__row">
+              <span class="color-muted">Target 2</span>
+              <span class="fw-700 color-success">$78 (avg analyst PT)</span>
+            </div>
+            <div class="trade-box__row">
+              <span class="color-muted">Timeframe</span>
+              <span class="fw-700">2–4 weeks</span>
+            </div>
+          </div>
+          <div>
+            <div class="trade-box">
+              <div class="trade-box__label">Options Strategy (Recommended)</div>
+              <div class="trade-box__title">Sell Premium via Iron Condor</div>
+              <div class="trade-box__row">
+                <span class="color-muted">Rationale</span>
+                <span class="fw-600">IV at 88th pctl — sell the crush</span>
+              </div>
+              <div class="trade-box__row">
+                <span class="color-muted">Structure</span>
+                <span class="fw-600">Short $57/$60 puts + short $73/$76 calls</span>
+              </div>
+              <div class="trade-box__row">
+                <span class="color-muted">Max Profit</span>
+                <span class="fw-700 color-success">Net credit received</span>
+              </div>
+              <div class="trade-box__row">
+                <span class="color-muted">Max Loss</span>
+                <span class="fw-700 color-error">Spread width − credit</span>
+              </div>
+            </div>
+            <div class="trade-box" style="margin-top: var(--space-4);">
+              <div class="trade-box__label">Alternative</div>
+              <div class="trade-box__title">Post-Crush May Calls</div>
+              <div class="trade-box__row">
+                <span class="color-muted">Timing</span>
+                <span class="fw-600">Buy after earnings IV crush</span>
+              </div>
+              <div class="trade-box__row">
+                <span class="color-muted">Target</span>
+                <span class="fw-600">May $70 calls</span>
+              </div>
+              <div class="trade-box__row">
+                <span class="color-muted">Thesis</span>
+                <span class="fw-600">Cheaper premium + multi-week runway</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- 10 — RISK FACTORS                                              -->
+    <!-- ============================================================= -->
+    <section class="section section--alt" id="risks">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__number">10</span>
+          <h2 class="section__title">Risk Factors</h2>
+        </div>
+        <div class="risk-grid reveal">
+          <div class="risk-card">
+            <div class="risk-card__severity risk-card__severity--high">High</div>
+            <div class="risk-card__title">Fuel Cost Escalation</div>
+            <div class="risk-card__desc">Prolonged Strait of Hormuz closure or expansion of the Iran conflict could push jet fuel above $5.50/gal, overwhelming revenue gains and forcing industry-wide guidance cuts.</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-card__severity risk-card__severity--high">High</div>
+            <div class="risk-card__title">FY Guidance Cut</div>
+            <div class="risk-card__desc">If Delta revises FY2026 EPS below $6.50 citing fuel uncertainty, the stock could gap below the 200-day MA at $61.83, triggering technical selling.</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-card__severity risk-card__severity--medium">Medium</div>
+            <div class="risk-card__title">Tariff-Driven Demand Destruction</div>
+            <div class="risk-card__desc">Escalating trade tensions and new tariffs could reduce business travel volumes, particularly on trans-Pacific and trans-Atlantic premium routes.</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-card__severity risk-card__severity--medium">Medium</div>
+            <div class="risk-card__title">International Route Disruptions</div>
+            <div class="risk-card__desc">Middle East route cancellations and higher insurance premiums for overflights reduce capacity and increase costs on international segments.</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-card__severity risk-card__severity--low">Low</div>
+            <div class="risk-card__title">Monroe Refinery Disruption</div>
+            <div class="risk-card__desc">Any operational issue at the Monroe refinery (maintenance, regulatory) would remove Delta's primary fuel hedge advantage during the worst possible time.</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-card__severity risk-card__severity--low">Low</div>
+            <div class="risk-card__title">Consumer Sentiment Shift</div>
+            <div class="risk-card__desc">A sudden pullback in U.S. consumer confidence or recession fears could slow the domestic travel demand that's currently insulating Delta's revenue.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================= -->
+  <!-- FOOTER                                                          -->
+  <!-- ============================================================= -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__disclaimer">This report is for educational and informational purposes only and does not constitute investment advice, a solicitation, or a recommendation to buy or sell any securities. All data sourced from public filings, news reports, and market data providers. Past performance does not guarantee future results. Options trading involves significant risk of loss.</p>
+      <div class="site-footer__sources">
+        <h3>Sources</h3>
+        <ul role="list">
+          <li><a href="https://www.iata.org/en/pressroom/2026-releases/2026-03-31-01/" target="_blank" rel="noopener noreferrer">IATA Feb 2026 Traffic Data</a></li>
+          <li><a href="https://www.reuters.com/business/energy/delta-air-lines-refinery-bet-looks-more-valuable-jet-fuel-squeeze-2026-03-25/" target="_blank" rel="noopener noreferrer">Reuters: Delta Refinery</a></li>
+          <li><a href="https://www.reuters.com/world/middle-east/us-airlines-lean-demand-fares-iran-war-rattles-overseas-peers-2026-03-20/" target="_blank" rel="noopener noreferrer">Reuters: US Airlines Demand</a></li>
+          <li><a href="https://www.ajc.com/business/2026/03/high-fuel-costs-triggered-by-iran-war-driving-up-airfares-says-delta-ceo/" target="_blank" rel="noopener noreferrer">AJC: Delta CEO on Fuel</a></li>
+          <li><a href="https://www.ainvest.com/news/delta-air-lines-earnings-trade-high-implied-volatility-bearish-options-sentiment-set-asymmetric-risk-term-2604/" target="_blank" rel="noopener noreferrer">AInvest: Options Analysis</a></li>
+          <li><a href="https://www.kavout.com/market-lens/how-did-jet-fuel-prices-skyrocket-so-dramatically" target="_blank" rel="noopener noreferrer">Kavout: Fuel Price Data</a></li>
+          <li><a href="https://perplexity.ai/finance/DAL" target="_blank" rel="noopener noreferrer">Perplexity Finance: DAL</a></li>
+        </ul>
+      </div>
+      <p class="site-footer__credit">Analysis generated with Perplexity Computer — April 7, 2026</p>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

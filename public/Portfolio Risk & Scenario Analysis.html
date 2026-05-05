@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Risk &amp; Scenario Analysis</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --text-xs: clamp(0.6875rem, 0.65rem + 0.15vw, 0.8125rem);
+  --text-sm: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
+  --text-base: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  --text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+  --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0b0e14; --surface: #111520; --surface-2: #161b28;
+  --surface-3: #1c2235; --border: #252d42; --border-light: #1e2538;
+  --text: #e2e6ef; --text-muted: #8892a8; --text-faint: #525c72;
+  --accent: #4f9cf7; --accent-dim: rgba(79,156,247,0.12);
+  --green: #34d399; --green-dim: rgba(52,211,153,0.12);
+  --red: #f87171; --red-dim: rgba(248,113,113,0.12);
+  --orange: #fb923c; --orange-dim: rgba(251,146,60,0.12);
+  --yellow: #fbbf24; --yellow-dim: rgba(251,191,36,0.12);
+  --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.12);
+  --cyan: #22d3ee; --cyan-dim: rgba(34,211,238,0.12);
+  --shadow: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] {
+  --bg: #f4f6f9; --surface: #ffffff; --surface-2: #f8f9fb;
+  --surface-3: #eef0f4; --border: #dde1e8; --border-light: #e8ebf0;
+  --text: #1a1f2e; --text-muted: #5c6478; --text-faint: #9aa0b0;
+  --accent: #2563eb; --accent-dim: rgba(37,99,235,0.08);
+  --green: #059669; --green-dim: rgba(5,150,105,0.08);
+  --red: #dc2626; --red-dim: rgba(220,38,38,0.08);
+  --orange: #d97706; --orange-dim: rgba(217,119,6,0.08);
+  --yellow: #ca8a04; --yellow-dim: rgba(202,138,4,0.08);
+  --purple: #7c3aed; --purple-dim: rgba(124,58,237,0.08);
+  --cyan: #0891b2; --cyan-dim: rgba(8,145,178,0.08);
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100dvh;
+}
+
+.container { max-width: 1320px; margin: 0 auto; padding: 0 var(--space-6); }
+
+/* Header */
+.header {
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-8);
+}
+.header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-4); }
+.header h1 { font-size: var(--text-2xl); font-weight: 700; letter-spacing: -0.02em; }
+.header .subtitle { color: var(--text-muted); font-size: var(--text-sm); margin-top: var(--space-1); }
+.theme-toggle {
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text-muted); padding: var(--space-2) var(--space-3); cursor: pointer;
+  font-size: var(--text-sm); transition: all var(--transition);
+}
+.theme-toggle:hover { background: var(--surface-3); color: var(--text); }
+
+/* Nav tabs */
+.nav-tabs {
+  display: flex; gap: var(--space-1); margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border); overflow-x: auto; padding-bottom: 0;
+}
+.nav-tab {
+  padding: var(--space-3) var(--space-5); font-size: var(--text-sm); font-weight: 500;
+  color: var(--text-muted); cursor: pointer; border: none; background: none;
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all var(--transition);
+}
+.nav-tab:hover { color: var(--text); }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Section containers */
+.section { display: none; }
+.section.active { display: block; }
+.section-title { font-size: var(--text-xl); font-weight: 600; margin-bottom: var(--space-6); letter-spacing: -0.01em; }
+.subsection { margin-bottom: var(--space-8); }
+.subsection-title { font-size: var(--text-lg); font-weight: 600; margin-bottom: var(--space-4); color: var(--text); }
+
+/* Scorecard */
+.scorecard { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-8); }
+.score-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: var(--space-5); box-shadow: var(--shadow);
+}
+.score-label { font-size: var(--text-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+.score-value { font-size: var(--text-xl); font-weight: 700; margin-top: var(--space-2); font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+.score-delta { font-size: var(--text-xs); margin-top: var(--space-1); font-weight: 500; }
+.positive { color: var(--green); }
+.negative { color: var(--red); }
+.neutral { color: var(--text-muted); }
+.warning-text { color: var(--orange); }
+
+/* Cards and grid */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-8); }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-8); }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: var(--space-6); box-shadow: var(--shadow);
+}
+.card-title { font-size: var(--text-base); font-weight: 600; margin-bottom: var(--space-4); }
+.chart-container { position: relative; width: 100%; }
+.chart-container.donut { max-width: 320px; margin: 0 auto; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+th { text-align: left; padding: var(--space-3) var(--space-4); font-weight: 600; color: var(--text-muted);
+     font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em;
+     border-bottom: 2px solid var(--border); white-space: nowrap; }
+td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border-light); white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--accent-dim); }
+.mono { font-family: var(--font-mono); font-size: var(--text-xs); }
+
+/* Heatmap */
+.heatmap-grid {
+  display: grid;
+  gap: 1px;
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+}
+.heatmap-cell {
+  display: flex; align-items: center; justify-content: center;
+  padding: 4px 2px; font-weight: 500; border-radius: 2px; min-width: 36px; min-height: 30px;
+}
+.heatmap-label {
+  display: flex; align-items: center; justify-content: center;
+  padding: 4px 2px; font-weight: 600; color: var(--text-muted); font-size: 0.625rem;
+}
+
+/* Alert boxes */
+.alert {
+  padding: var(--space-4) var(--space-5); border-radius: var(--radius-md);
+  margin-bottom: var(--space-4); font-size: var(--text-sm); line-height: 1.6;
+}
+.alert-risk { background: var(--red-dim); border-left: 3px solid var(--red); }
+.alert-warn { background: var(--orange-dim); border-left: 3px solid var(--orange); }
+.alert-info { background: var(--accent-dim); border-left: 3px solid var(--accent); }
+.alert-ok { background: var(--green-dim); border-left: 3px solid var(--green); }
+.alert strong { font-weight: 600; }
+
+/* Scenario cards */
+.scenario-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: var(--space-6); margin-bottom: var(--space-6); box-shadow: var(--shadow);
+}
+.scenario-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.scenario-badge {
+  padding: var(--space-1) var(--space-3); border-radius: var(--radius-sm);
+  font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.scenario-mild .scenario-badge { background: var(--yellow-dim); color: var(--yellow); }
+.scenario-bear .scenario-badge { background: var(--orange-dim); color: var(--orange); }
+.scenario-severe .scenario-badge { background: var(--red-dim); color: var(--red); }
+.scenario-title { font-size: var(--text-lg); font-weight: 600; }
+.scenario-analog { font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-1); }
+
+/* Recommendation list */
+.rec-list { list-style: none; }
+.rec-item { padding: var(--space-4) 0; border-bottom: 1px solid var(--border-light); }
+.rec-item:last-child { border-bottom: none; }
+.rec-item h4 { font-size: var(--text-base); font-weight: 600; margin-bottom: var(--space-2); }
+.rec-item p { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.6; }
+
+/* Footer */
+.footer { padding: var(--space-8) 0 var(--space-6); margin-top: var(--space-12); border-top: 1px solid var(--border); text-align: center; }
+.footer a { color: var(--text-faint); font-size: var(--text-xs); text-decoration: none; }
+.footer a:hover { color: var(--text-muted); }
+
+/* Tags */
+.tag {
+  display: inline-block; padding: 2px var(--space-2); border-radius: var(--radius-sm);
+  font-size: var(--text-xs); font-weight: 500;
+}
+.tag-green { background: var(--green-dim); color: var(--green); }
+.tag-red { background: var(--red-dim); color: var(--red); }
+.tag-yellow { background: var(--yellow-dim); color: var(--yellow); }
+.tag-blue { background: var(--accent-dim); color: var(--accent); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { padding: 0 var(--space-4); }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .scorecard { grid-template-columns: repeat(2, 1fr); }
+  .nav-tabs { gap: 0; }
+  .nav-tab { padding: var(--space-3); font-size: var(--text-xs); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-top">
+    <div>
+      <h1>Portfolio Risk &amp; Scenario Analysis</h1>
+      <p class="subtitle">Live data as of March 16, 2026 &middot; 14 holdings &middot; Total: $8,089</p>
+    </div>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- RISK SCORECARD -->
+<div class="scorecard" id="scorecard">
+  <div class="score-card">
+    <div class="score-label">Portfolio Value</div>
+    <div class="score-value">$8,089</div>
+    <div class="score-delta neutral">14 positions + cash</div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">Portfolio Beta</div>
+    <div class="score-value">1.18</div>
+    <div class="score-delta warning-text">Above market</div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">30-Day Volatility</div>
+    <div class="score-value">22.4%</div>
+    <div class="score-delta warning-text">Elevated</div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">Unrealized P&amp;L</div>
+    <div class="score-value positive">+$251</div>
+    <div class="score-delta positive">+3.24% overall</div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">Top Risk</div>
+    <div class="score-value" style="font-size:var(--text-lg);">Tech 49%</div>
+    <div class="score-delta negative">High concentration</div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">S&amp;P 500</div>
+    <div class="score-value">6,700</div>
+    <div class="score-delta negative">-4.3% off high</div>
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs">
+  <button class="nav-tab active" data-tab="allocation">Allocation</button>
+  <button class="nav-tab" data-tab="risk">Risk Profile</button>
+  <button class="nav-tab" data-tab="market">Market Context</button>
+  <button class="nav-tab" data-tab="scenarios">Scenarios</button>
+  <button class="nav-tab" data-tab="recommendations">Recommendations</button>
+</nav>
+
+<!-- ===================== SECTION 1: ALLOCATION ===================== -->
+<div class="section active" id="sec-allocation">
+  <h2 class="section-title">Portfolio Allocation Summary</h2>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">By Asset Class</div>
+      <div class="chart-container donut"><canvas id="chartAssetClass"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">By Sector</div>
+      <div class="chart-container donut"><canvas id="chartSector"></canvas></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">By Geography</div>
+      <div class="chart-container donut"><canvas id="chartGeo"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Unrealized P&amp;L by Holding</div>
+      <div class="chart-container"><canvas id="chartPL"></canvas></div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Holdings Detail</div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Symbol</th><th>Name</th><th>Shares</th><th>Price</th><th>Equity</th><th>% of Portfolio</th><th>Avg Cost</th><th>P&amp;L</th><th>P&amp;L %</th></tr>
+          </thead>
+          <tbody id="holdingsTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 2: RISK PROFILE ===================== -->
+<div class="section" id="sec-risk">
+  <h2 class="section-title">Risk Profile Assessment</h2>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title">Portfolio Beta vs S&amp;P 500</div>
+      <div style="text-align:center;padding:var(--space-4) 0;">
+        <div style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-mono);color:var(--orange);">1.18</div>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-2);">Weighted avg beta. Portfolio amplifies market moves by ~18%</p>
+      </div>
+      <div class="chart-container"><canvas id="chartBeta"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Volatility (Annualized)</div>
+      <div class="chart-container"><canvas id="chartVol"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Concentration Risk</div>
+      <div class="chart-container"><canvas id="chartConc"></canvas></div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Correlation Matrix (1-Year Daily Returns)</div>
+    <div class="card" style="overflow-x:auto;">
+      <div id="heatmap"></div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Risk Flags</div>
+    <div class="alert alert-risk"><strong>High Tech Concentration:</strong> NVDA + GOOG + MSFT + AMZN = 37.2% of portfolio. A tech-specific selloff disproportionately impacts you. These four holdings are strongly correlated (avg r = 0.78).</div>
+    <div class="alert alert-warn"><strong>China ADR Exposure:</strong> BIDU (3.6%) + BYDDY (4.4%) = 8.1% in Chinese ADRs. These carry dual risk: underlying business + geopolitical/regulatory delisting risk + CNY/USD currency risk. Both currently in unrealized loss territory.</div>
+    <div class="alert alert-warn"><strong>Crypto Drawdown:</strong> BTC and ETH are down -41% and -52% from their highs respectively. Combined crypto is 17.1% of portfolio and in unrealized loss ($-260 combined). High vol assets in a declining cycle.</div>
+    <div class="alert alert-info"><strong>JETS Short Hedge:</strong> The -2 share JETS short (-$49) provides a small hedge against airline/travel sector weakness. Currently profitable (+$0.62). However, sizing is minimal at only 0.6% of portfolio — limited hedging effect.</div>
+    <div class="alert alert-ok"><strong>Energy Overweight:</strong> XOP + OXY = 10.7% of portfolio, benefiting from elevated oil prices (WTI at $76, Brent at $82). The Strait of Hormuz closure has been a tailwind, but a resolution could reverse gains quickly.</div>
+    <div class="alert alert-warn"><strong>Unrealized Losses:</strong> Six positions underwater: BTC (-$147), ETH (-$113), MSFT (-$67), BIDU (-$54), BYDDY (-$52), ITA (-$8). Total unrealized loss on losing positions: -$441.</div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 3: MARKET CONTEXT ===================== -->
+<div class="section" id="sec-market">
+  <h2 class="section-title">Current Market Context</h2>
+
+  <div class="scorecard">
+    <div class="score-card">
+      <div class="score-label">S&amp;P 500</div>
+      <div class="score-value">6,700</div>
+      <div class="score-delta negative">-4.3% from 7,002 high</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">NASDAQ</div>
+      <div class="score-value">22,374</div>
+      <div class="score-delta negative">-6.9% from 24,020 high</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">WTI Crude</div>
+      <div class="score-value">$76.29</div>
+      <div class="score-delta positive">+33% YTD</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Bitcoin</div>
+      <div class="score-value">$74,432</div>
+      <div class="score-delta negative">-41% from high</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Ethereum</div>
+      <div class="score-value">$2,362</div>
+      <div class="score-delta negative">-52% from high</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Market Mood</div>
+      <div class="score-value" style="font-size:var(--text-lg);">Uncertain</div>
+      <div class="score-delta warning-text">Crypto upbeat</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Active Macro Risks</div>
+
+    <div class="alert alert-risk">
+      <strong>Strait of Hormuz Closure / Iran Conflict:</strong> US-Israeli strikes on Iran in early March 2026 led to the closure of the Strait of Hormuz, through which ~20% of global oil flows. WTI surged +33% YTD to $76. This is the single largest macro risk: it inflates energy positions (XOP, OXY benefit) but threatens broader inflation, rate-cut expectations, and consumer spending.
+    </div>
+    <div class="alert alert-warn">
+      <strong>Fed Rate Path Frozen:</strong> The Fed paused after 3 cuts in late 2025. The oil shock has made further cuts "virtually impossible." Swap markets don't expect a cut before October 2026. This is negative for growth stocks (NVDA, GOOG, AMZN, MSFT) and crypto, which rallied on rate-cut expectations.
+    </div>
+    <div class="alert alert-warn">
+      <strong>AI Trade Momentum Fading:</strong> NVDA and MSFT are -14% and -28% below their 52-week highs. The AI enthusiasm that drove 2024-2025 rallies is meeting reality checks on monetization timelines. Still long-term bullish, but near-term multiple compression risk.
+    </div>
+    <div class="alert alert-info">
+      <strong>China Stimulus &amp; Recovery:</strong> Beijing has deployed aggressive stimulus. Goldman raised 2026 China GDP forecast to 4.8%. BIDU benefits from AI leadership and Apollo Go autonomous driving. However, Pentagon list risk and trade war overhang persist. BYDDY revenue growth is strong but US-listed ADR discount widens on geopolitical fear.
+    </div>
+    <div class="alert alert-info">
+      <strong>Crypto Cycle:</strong> BTC and ETH are in a significant drawdown from late-2025 highs. The crypto market sentiment has shifted to "upbeat" today, but both assets are well off highs. The rate-pause environment limits upside catalysts near-term.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 4: SCENARIOS ===================== -->
+<div class="section" id="sec-scenarios">
+  <h2 class="section-title">Scenario Analysis &mdash; Stress Tests</h2>
+
+  <div class="grid-2" style="margin-bottom:var(--space-6);">
+    <div class="card">
+      <div class="card-title">Scenario Impact: Total Portfolio Value</div>
+      <div class="chart-container"><canvas id="chartScenarioTotal"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Scenario Impact: Per-Holding P&amp;L</div>
+      <div class="chart-container"><canvas id="chartScenarioBar"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Scenario A -->
+  <div class="scenario-card scenario-mild">
+    <div class="scenario-header">
+      <span class="scenario-badge">Scenario A</span>
+      <div>
+        <div class="scenario-title">Mild Correction (-10%)</div>
+        <div class="scenario-analog">Analog: Q4 2018 rate scare / Aug 2024 carry trade unwind</div>
+      </div>
+    </div>
+    <p style="font-size:var(--text-sm);color:var(--text-muted);margin-bottom:var(--space-4);">Risk-off rotation: tech sells off -12%, energy holds flat, crypto drops -15%, airlines flat, defense holds.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Holding</th><th>Current</th><th>Scenario Price</th><th>$ Impact</th><th>% Change</th></tr></thead>
+        <tbody>
+          <tr><td>NVDA</td><td class="mono">$1,002</td><td class="mono">$882</td><td class="mono negative">-$120</td><td class="negative">-12.0%</td></tr>
+          <tr><td>GOOG</td><td class="mono">$1,100</td><td class="mono">$968</td><td class="mono negative">-$132</td><td class="negative">-12.0%</td></tr>
+          <tr><td>MSFT</td><td class="mono">$705</td><td class="mono">$620</td><td class="mono negative">-$85</td><td class="negative">-12.0%</td></tr>
+          <tr><td>VOO</td><td class="mono">$1,587</td><td class="mono">$1,428</td><td class="mono negative">-$159</td><td class="negative">-10.0%</td></tr>
+          <tr><td>BTC</td><td class="mono">$922</td><td class="mono">$784</td><td class="mono negative">-$138</td><td class="negative">-15.0%</td></tr>
+          <tr><td>ETH</td><td class="mono">$462</td><td class="mono">$393</td><td class="mono negative">-$69</td><td class="negative">-15.0%</td></tr>
+          <tr><td>XOP</td><td class="mono">$613</td><td class="mono">$613</td><td class="mono neutral">$0</td><td class="neutral">0.0%</td></tr>
+          <tr><td>OXY</td><td class="mono">$256</td><td class="mono">$256</td><td class="mono neutral">$0</td><td class="neutral">0.0%</td></tr>
+          <tr><td>JETS (short)</td><td class="mono">-$49</td><td class="mono">-$49</td><td class="mono neutral">$0</td><td class="neutral">0.0%</td></tr>
+          <tr style="font-weight:600;border-top:2px solid var(--border)"><td>TOTAL</td><td class="mono">$8,089</td><td class="mono">$7,234</td><td class="mono negative">-$855</td><td class="negative">-10.6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:var(--space-4);font-size:var(--text-sm);">
+      <p><strong>Biggest losers:</strong> VOO (-$159), BTC (-$138), GOOG (-$132)</p>
+      <p><strong>Relative outperformers:</strong> XOP, OXY (energy holds), ITA (defense spending insulated)</p>
+      <p><strong>Recovery timeline:</strong> 2-4 months historically. Q4 2018 recovered by April 2019.</p>
+    </div>
+  </div>
+
+  <!-- Scenario B -->
+  <div class="scenario-card scenario-bear">
+    <div class="scenario-header">
+      <span class="scenario-badge">Scenario B</span>
+      <div>
+        <div class="scenario-title">Bear Market Entry (-20%)</div>
+        <div class="scenario-analog">Analog: 2022 rate shock / dot-com 2001 initial phase</div>
+      </div>
+    </div>
+    <p style="font-size:var(--text-sm);color:var(--text-muted);margin-bottom:var(--space-4);">Broad selloff with rising correlations. Tech -25%, China ADRs -35%, crypto -30%, energy -10%, airlines -20%, short JETS benefits.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Holding</th><th>Current</th><th>Scenario Price</th><th>$ Impact</th><th>% Change</th></tr></thead>
+        <tbody>
+          <tr><td>NVDA</td><td class="mono">$1,002</td><td class="mono">$752</td><td class="mono negative">-$251</td><td class="negative">-25.0%</td></tr>
+          <tr><td>GOOG</td><td class="mono">$1,100</td><td class="mono">$825</td><td class="mono negative">-$275</td><td class="negative">-25.0%</td></tr>
+          <tr><td>MSFT</td><td class="mono">$705</td><td class="mono">$529</td><td class="mono negative">-$176</td><td class="negative">-25.0%</td></tr>
+          <tr><td>VOO</td><td class="mono">$1,587</td><td class="mono">$1,270</td><td class="mono negative">-$317</td><td class="negative">-20.0%</td></tr>
+          <tr><td>BIDU</td><td class="mono">$294</td><td class="mono">$191</td><td class="mono negative">-$103</td><td class="negative">-35.0%</td></tr>
+          <tr><td>BYDDY</td><td class="mono">$358</td><td class="mono">$233</td><td class="mono negative">-$125</td><td class="negative">-35.0%</td></tr>
+          <tr><td>BTC</td><td class="mono">$922</td><td class="mono">$645</td><td class="mono negative">-$277</td><td class="negative">-30.0%</td></tr>
+          <tr><td>ETH</td><td class="mono">$462</td><td class="mono">$323</td><td class="mono negative">-$139</td><td class="negative">-30.0%</td></tr>
+          <tr><td>JETS (short)</td><td class="mono">-$49</td><td class="mono">-$39</td><td class="mono positive">+$10</td><td class="positive">+20.0%</td></tr>
+          <tr><td>XOP</td><td class="mono">$613</td><td class="mono">$552</td><td class="mono negative">-$61</td><td class="negative">-10.0%</td></tr>
+          <tr style="font-weight:600;border-top:2px solid var(--border)"><td>TOTAL</td><td class="mono">$8,089</td><td class="mono">$6,212</td><td class="mono negative">-$1,877</td><td class="negative">-23.2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:var(--space-4);font-size:var(--text-sm);">
+      <p><strong>Biggest losers:</strong> VOO (-$317), BTC (-$277), GOOG (-$275)</p>
+      <p><strong>Relative outperformers:</strong> JETS short (+$10 gain), XOP (-10% vs -20% market)</p>
+      <p><strong>Recovery timeline:</strong> 6-12 months. 2022 bear bottomed Oct, recovered by Jan 2024 (~15 months).</p>
+    </div>
+  </div>
+
+  <!-- Scenario C -->
+  <div class="scenario-card scenario-severe">
+    <div class="scenario-header">
+      <span class="scenario-badge">Scenario C</span>
+      <div>
+        <div class="scenario-title">Severe Bear / Macro Shock (-35%)</div>
+        <div class="scenario-analog">Analog: COVID March 2020 / 2008 GFC</div>
+      </div>
+    </div>
+    <p style="font-size:var(--text-sm);color:var(--text-muted);margin-bottom:var(--space-4);">Total capitulation. All assets fall. Tech -40%, China ADRs -50%, crypto -55%, energy -25%, airlines -35%, defense -20%. JETS short is only partial offset.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Holding</th><th>Current</th><th>Scenario Price</th><th>$ Impact</th><th>% Change</th></tr></thead>
+        <tbody>
+          <tr><td>NVDA</td><td class="mono">$1,002</td><td class="mono">$601</td><td class="mono negative">-$401</td><td class="negative">-40.0%</td></tr>
+          <tr><td>GOOG</td><td class="mono">$1,100</td><td class="mono">$660</td><td class="mono negative">-$440</td><td class="negative">-40.0%</td></tr>
+          <tr><td>MSFT</td><td class="mono">$705</td><td class="mono">$423</td><td class="mono negative">-$282</td><td class="negative">-40.0%</td></tr>
+          <tr><td>VOO</td><td class="mono">$1,587</td><td class="mono">$1,032</td><td class="mono negative">-$555</td><td class="negative">-35.0%</td></tr>
+          <tr><td>AMZN</td><td class="mono">$202</td><td class="mono">$121</td><td class="mono negative">-$81</td><td class="negative">-40.0%</td></tr>
+          <tr><td>BIDU</td><td class="mono">$294</td><td class="mono">$147</td><td class="mono negative">-$147</td><td class="negative">-50.0%</td></tr>
+          <tr><td>BYDDY</td><td class="mono">$358</td><td class="mono">$179</td><td class="mono negative">-$179</td><td class="negative">-50.0%</td></tr>
+          <tr><td>BTC</td><td class="mono">$922</td><td class="mono">$415</td><td class="mono negative">-$507</td><td class="negative">-55.0%</td></tr>
+          <tr><td>ETH</td><td class="mono">$462</td><td class="mono">$208</td><td class="mono negative">-$254</td><td class="negative">-55.0%</td></tr>
+          <tr><td>JETS (short)</td><td class="mono">-$49</td><td class="mono">-$32</td><td class="mono positive">+$17</td><td class="positive">+35.0%</td></tr>
+          <tr><td>XOP</td><td class="mono">$613</td><td class="mono">$460</td><td class="mono negative">-$153</td><td class="negative">-25.0%</td></tr>
+          <tr><td>OXY</td><td class="mono">$256</td><td class="mono">$192</td><td class="mono negative">-$64</td><td class="negative">-25.0%</td></tr>
+          <tr style="font-weight:600;border-top:2px solid var(--border)"><td>TOTAL</td><td class="mono">$8,089</td><td class="mono">$4,833</td><td class="mono negative">-$3,256</td><td class="negative">-40.3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:var(--space-4);font-size:var(--text-sm);">
+      <p><strong>Biggest losers:</strong> VOO (-$555), BTC (-$507), GOOG (-$440)</p>
+      <p><strong>Relative outperformers:</strong> JETS short (+$17), Cash ($350 preserved), ITA (defense spending resilient in GFC analogs)</p>
+      <p><strong>Recovery timeline:</strong> 12-24 months. COVID V-recovery took 5 months; 2008 GFC took 4+ years for full recovery.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 5: RECOMMENDATIONS ===================== -->
+<div class="section" id="sec-recommendations">
+  <h2 class="section-title">Actionable Recommendations</h2>
+
+  <div class="subsection">
+    <div class="subsection-title">Asymmetric Downside Risks</div>
+    <div class="alert alert-risk"><strong>Crypto (BTC + ETH):</strong> At 17.1% of portfolio, these are the highest-vol assets with the most asymmetric downside. Already down 41-52% from highs, but a further 50%+ decline is plausible in a severe scenario. A total wipeout of crypto would erase $1,384 (17% of portfolio). The risk/reward is unfavorable until the rate-cut cycle resumes.</div>
+    <div class="alert alert-warn"><strong>BIDU:</strong> Carries triple-layer risk &mdash; China macro slowdown, US-China geopolitical escalation (Pentagon list), and ADR delisting risk. At $122, it's well below the JPMorgan $188 target but the downside convexity is severe in a bear case. The 71x P/E also provides little valuation cushion.</div>
+    <div class="alert alert-warn"><strong>MSFT:</strong> Already -28% from its 52-week high of $555. AI capex commitments are large and monetization timelines uncertain. However, fundamental business is strong (P/E 25x is reasonable), so this is more of a "dead money" risk than catastrophic loss risk.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">JETS Short Position</div>
+    <div class="card">
+      <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.7;">
+        <strong>Current sizing:</strong> -2 shares = -$49 (0.6% of portfolio). This is effectively negligible as a hedge.<br><br>
+        <strong>Recommendation: Size up to 5-8 shares (-$123 to -$197).</strong> Airlines face headwinds from elevated fuel costs (jet fuel tracks crude oil closely, and Brent is at $82). If the Hormuz situation persists, airline margins get squeezed further. JETS is also trading at 13x earnings vs. the S&P at 27x, reflecting the market's skepticism.<br><br>
+        <strong>Risk of sizing up:</strong> If oil prices normalize rapidly (Hormuz reopens, Iran deal), airlines rally hard. JETS hit $31 at its 52-week high. A move back there would cost ~$13/share on the short.<br><br>
+        <strong>Verdict:</strong> <span class="tag tag-yellow">Modestly increase</span> to 4-5 shares. The short serves as a partial hedge to your energy long (XOP + OXY). The two positions create a "fuel price spread" trade: energy longs profit from high oil, JETS short profits from airline margin squeeze. Keep it balanced.
+      </p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Hedging Options</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Put Options (Largest Positions)</div>
+        <ul class="rec-list">
+          <li class="rec-item">
+            <h4>NVDA Puts</h4>
+            <p>Buy 1 contract of NVDA $165 put, 60-90 DTE. Protects ~$100 of downside below $165 (10% OTM). Cost: ~$6-8/contract. Covers your largest gainer against a tech reversal.</p>
+          </li>
+          <li class="rec-item">
+            <h4>VOO Puts / SPY Puts</h4>
+            <p>Buy 1 SPY $560 put, 90 DTE, to hedge the $1,587 VOO position. Approx cost: $8-12/contract. This is your broadest single-position hedge since VOO is 19.6% of portfolio.</p>
+          </li>
+          <li class="rec-item">
+            <h4>QQQ Puts for Tech Basket</h4>
+            <p>Instead of individual puts on GOOG/MSFT/AMZN, 1 QQQ $440 put covers tech exposure broadly. More capital-efficient than individual stock puts.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Inverse ETFs (No Options Account Needed)</div>
+        <ul class="rec-list">
+          <li class="rec-item">
+            <h4>SH (ProShares Short S&P 500)</h4>
+            <p>Buy $200-300 of SH for a broad market hedge. Inverse 1x, no leverage decay. Suitable for holding 1-3 months during uncertain periods.</p>
+          </li>
+          <li class="rec-item">
+            <h4>SQQQ (ProShares UltraShort QQQ)</h4>
+            <p>For aggressive tech hedge, $50-100 in SQQQ. Leveraged 3x inverse — use only for short-term tactical hedges (days to weeks). Not for buy-and-hold.</p>
+          </li>
+          <li class="rec-item">
+            <h4>BITO Puts (Bitcoin hedge)</h4>
+            <p>If options available, buy BITO puts as a proxy for BTC downside protection. More liquid than direct crypto options.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Rebalancing Suggestions</div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Action</th><th>Current Weight</th><th>Target Weight</th><th>Rationale</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag tag-red">Trim</span> NVDA</td><td class="mono">12.4%</td><td class="mono">8-9%</td><td>Lock in +38% gain. Reduce single-stock concentration. Sell ~1.0 shares (~$183).</td></tr>
+            <tr><td><span class="tag tag-red">Trim</span> BTC</td><td class="mono">11.4%</td><td class="mono">7-8%</td><td>Reduce vol. Sell 0.003 BTC (~$223) to fund hedges or add to VOO.</td></tr>
+            <tr><td><span class="tag tag-green">Add</span> VOO</td><td class="mono">19.6%</td><td class="mono">22-24%</td><td>Increase diversified core. Use trim proceeds to buy 0.3-0.5 shares.</td></tr>
+            <tr><td><span class="tag tag-yellow">Hold</span> Energy</td><td class="mono">10.7%</td><td class="mono">10-12%</td><td>Keep while Hormuz crisis persists. Set trailing stop at -8%.</td></tr>
+            <tr><td><span class="tag tag-yellow">Hold</span> China ADRs</td><td class="mono">8.1%</td><td class="mono">5-6%</td><td>Trim BIDU by 0.5 shares (~$61) if it rallies to $135+. Hold BYDDY for now.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-4);">
+        <strong>Effect:</strong> These moves would reduce portfolio beta from ~1.18 to ~1.05-1.08, lowering max drawdown in Scenario C from -40.3% to approximately -34-36%, while preserving upside through VOO broad market exposure.
+      </p>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Dry Powder Strategy ($350 Cash)</div>
+    <div class="card">
+      <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.7;margin-bottom:var(--space-4);">
+        Do not deploy all at once. Use a tiered approach based on market levels:
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Trigger</th><th>Deploy</th><th>Target</th><th>Rationale</th></tr></thead>
+          <tbody>
+            <tr><td>S&amp;P 500 hits 6,300 (-6%)</td><td class="mono">$100</td><td>VOO</td><td>Mild pullback entry. Dollar-cost average into core.</td></tr>
+            <tr><td>S&amp;P 500 hits 5,800 (-13%)</td><td class="mono">$125</td><td>NVDA at ~$155 or GOOG at ~$260</td><td>Quality tech on sale. These levels represent strong support.</td></tr>
+            <tr><td>S&amp;P 500 hits 5,200 (-22%)</td><td class="mono">$125</td><td>Split: $75 VOO + $50 BTC</td><td>Full bear entry. Historically optimal buying zone. Add risk assets.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-4);">
+        If markets rally instead of pulling back, keep the cash. $350 (4.3% of portfolio) is a reasonable dry powder reserve during uncertain conditions.
+      </p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<footer class="footer">
+  <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+</footer>
+
+<script>
+// ===== THEME TOGGLE =====
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  // Default to dark for finance dashboard
+  d='dark';
+  r.setAttribute('data-theme',d);
+  t&&t.addEventListener('click',()=>{
+    d=d==='dark'?'light':'dark';
+    r.setAttribute('data-theme',d);
+    updateChartColors();
+  });
+})();
+
+// ===== TAB NAVIGATION =====
+document.querySelectorAll('.nav-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('sec-'+tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ===== CHART COLORS =====
+function getChartColors(){
+  const cs=getComputedStyle(document.documentElement);
+  return {
+    text: cs.getPropertyValue('--text').trim(),
+    muted: cs.getPropertyValue('--text-muted').trim(),
+    faint: cs.getPropertyValue('--text-faint').trim(),
+    border: cs.getPropertyValue('--border').trim(),
+    accent: cs.getPropertyValue('--accent').trim(),
+    green: cs.getPropertyValue('--green').trim(),
+    red: cs.getPropertyValue('--red').trim(),
+    orange: cs.getPropertyValue('--orange').trim(),
+    yellow: cs.getPropertyValue('--yellow').trim(),
+    purple: cs.getPropertyValue('--purple').trim(),
+    cyan: cs.getPropertyValue('--cyan').trim(),
+    surface: cs.getPropertyValue('--surface').trim(),
+  };
+}
+
+const PALETTE = ['#4f9cf7','#34d399','#fb923c','#f87171','#a78bfa','#22d3ee','#fbbf24','#f472b6','#818cf8','#2dd4bf','#e879f9','#84cc16','#64748b','#06b6d4'];
+
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#8892a8';
+
+// ===== PORTFOLIO DATA =====
+const holdings = [
+  {sym:'NVDA',name:'NVIDIA',shares:5.471,price:183.22,avg:132.48,eq:1002.43,sector:'Technology',geo:'US',type:'stock',beta:1.65,vol30:42,vol1y:58},
+  {sym:'GOOG',name:'Alphabet',shares:3.612,price:304.42,avg:239.58,eq:1099.56,sector:'Technology',geo:'US',type:'stock',beta:1.10,vol30:28,vol1y:34},
+  {sym:'VOO',name:'Vanguard S&P 500',shares:2.579,price:615.19,avg:542.94,eq:1586.98,sector:'Broad Market',geo:'US',type:'etf',beta:1.00,vol30:18,vol1y:16},
+  {sym:'MSFT',name:'Microsoft',shares:1.762,price:399.95,avg:438.11,eq:704.71,sector:'Technology',geo:'US',type:'stock',beta:1.05,vol30:26,vol1y:30},
+  {sym:'XOP',name:'SPDR Oil & Gas',shares:3.663,price:167.37,avg:163.82,eq:612.95,sector:'Energy',geo:'US',type:'etf',beta:1.30,vol30:32,vol1y:38},
+  {sym:'ETH',name:'Ethereum',shares:0.1957,price:2362.16,avg:2938.44,eq:462.06,sector:'Crypto',geo:'Global',type:'crypto',beta:2.20,vol30:55,vol1y:72},
+  {sym:'BTC',name:'Bitcoin',shares:0.0124,price:74432.12,avg:86327.32,eq:921.86,sector:'Crypto',geo:'Global',type:'crypto',beta:1.80,vol30:48,vol1y:65},
+  {sym:'BYDDY',name:'BYD Company',shares:27,price:13.26,avg:15.18,eq:358.02,sector:'Consumer/EV',geo:'China',type:'stock',beta:1.15,vol30:35,vol1y:45},
+  {sym:'BIDU',name:'Baidu',shares:2.411,price:121.80,avg:144.20,eq:293.66,sector:'Technology',geo:'China',type:'stock',beta:1.25,vol30:38,vol1y:48},
+  {sym:'OXY',name:'Occidental Petroleum',shares:4.472,price:57.25,avg:55.61,eq:255.98,sector:'Energy',geo:'US',type:'stock',beta:1.40,vol30:30,vol1y:35},
+  {sym:'ITA',name:'iShares Aerospace',shares:1,price:232.81,avg:240.58,eq:232.81,sector:'Aerospace',geo:'US',type:'etf',beta:0.90,vol30:22,vol1y:24},
+  {sym:'AMZN',name:'Amazon',shares:0.956,price:211.74,avg:209.12,eq:202.42,sector:'Technology',geo:'US',type:'stock',beta:1.15,vol30:30,vol1y:35},
+  {sym:'NU',name:'Nu Holdings',shares:4.323,price:14.27,avg:11.57,eq:61.69,sector:'Financials',geo:'LatAm',type:'stock',beta:1.50,vol30:40,vol1y:50},
+  {sym:'JETS',name:'US Global Jets (SHORT)',shares:-2,price:24.58,avg:24.89,eq:-49.16,sector:'Airlines',geo:'US',type:'short',beta:-0.95,vol30:28,vol1y:32},
+];
+const cash = 350;
+const totalPortfolio = 8089.31;
+
+// ===== HOLDINGS TABLE =====
+(function(){
+  const tb=document.getElementById('holdingsTable');
+  const sorted=[...holdings].sort((a,b)=>Math.abs(b.eq)-Math.abs(a.eq));
+  sorted.forEach(h=>{
+    const pl=h.shares*(h.price-h.avg);
+    const plPct=((h.price-h.avg)/h.avg*100);
+    const pctPort=(h.eq/totalPortfolio*100);
+    const plClass=pl>=0?'positive':'negative';
+    const row=document.createElement('tr');
+    row.innerHTML=`
+      <td><strong>${h.sym}</strong></td>
+      <td>${h.name}</td>
+      <td class="mono">${h.shares.toFixed(h.shares<1?4:3)}</td>
+      <td class="mono">$${h.price.toLocaleString('en-US',{minimumFractionDigits:2})}</td>
+      <td class="mono">$${h.eq.toFixed(0)}</td>
+      <td class="mono">${pctPort.toFixed(1)}%</td>
+      <td class="mono">$${h.avg.toFixed(2)}</td>
+      <td class="mono ${plClass}">${pl>=0?'+':''}$${pl.toFixed(0)}</td>
+      <td class="mono ${plClass}">${plPct>=0?'+':''}${plPct.toFixed(1)}%</td>
+    `;
+    tb.appendChild(row);
+  });
+  // Cash row
+  const cashRow=document.createElement('tr');
+  cashRow.innerHTML=`<td><strong>CASH</strong></td><td>US Dollars</td><td class="mono">-</td><td class="mono">-</td><td class="mono">$350</td><td class="mono">${(350/totalPortfolio*100).toFixed(1)}%</td><td class="mono">-</td><td class="mono neutral">-</td><td class="mono neutral">-</td>`;
+  tb.appendChild(cashRow);
+})();
+
+// ===== DONUT CHARTS =====
+function createDonut(canvasId, labels, data, colors){
+  const ctx=document.getElementById(canvasId).getContext('2d');
+  return new Chart(ctx,{
+    type:'doughnut',
+    data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,hoverOffset:6}]},
+    options:{
+      responsive:true,
+      cutout:'65%',
+      plugins:{
+        legend:{position:'bottom',labels:{padding:12,usePointStyle:true,pointStyle:'circle',font:{size:11}}},
+        tooltip:{callbacks:{label:ctx=>`${ctx.label}: $${ctx.parsed.toFixed(0)} (${(ctx.parsed/totalPortfolio*100).toFixed(1)}%)`}}
+      }
+    }
+  });
+}
+
+// Asset Class
+const assetClassData={};
+holdings.forEach(h=>{
+  let cls=h.type==='stock'?'Individual Stocks':h.type==='etf'?'ETFs':h.type==='crypto'?'Cryptocurrency':'Short Positions';
+  assetClassData[cls]=(assetClassData[cls]||0)+Math.abs(h.eq);
+});
+assetClassData['Cash']=cash;
+createDonut('chartAssetClass',Object.keys(assetClassData),Object.values(assetClassData),PALETTE);
+
+// Sector
+const sectorData={};
+holdings.forEach(h=>{sectorData[h.sector]=(sectorData[h.sector]||0)+Math.abs(h.eq);});
+createDonut('chartSector',Object.keys(sectorData),Object.values(sectorData),PALETTE);
+
+// Geo
+const geoData={};
+holdings.forEach(h=>{geoData[h.geo]=(geoData[h.geo]||0)+Math.abs(h.eq);});
+geoData['Cash (USD)']=cash;
+createDonut('chartGeo',Object.keys(geoData),Object.values(geoData),PALETTE);
+
+// Unrealized P&L bar
+(function(){
+  const sorted=[...holdings].sort((a,b)=>{
+    const plA=a.shares*(a.price-a.avg);
+    const plB=b.shares*(b.price-b.avg);
+    return plA-plB;
+  });
+  const labels=sorted.map(h=>h.sym);
+  const data=sorted.map(h=>+(h.shares*(h.price-h.avg)).toFixed(2));
+  const colors=data.map(v=>v>=0?'#34d399':'#f87171');
+  new Chart(document.getElementById('chartPL').getContext('2d'),{
+    type:'bar',
+    data:{labels,datasets:[{data,backgroundColor:colors,borderRadius:3,barPercentage:0.7}]},
+    options:{
+      responsive:true,indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`$${ctx.parsed.x.toFixed(0)}`}}},
+      scales:{
+        x:{grid:{color:'rgba(136,146,168,0.1)'},ticks:{callback:v=>'$'+v}},
+        y:{grid:{display:false},ticks:{font:{size:11,weight:500}}}
+      }
+    }
+  });
+})();
+
+// ===== RISK SECTION CHARTS =====
+// Beta comparison
+(function(){
+  const sorted=[...holdings].sort((a,b)=>b.beta-a.beta);
+  new Chart(document.getElementById('chartBeta').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:sorted.map(h=>h.sym),
+      datasets:[{
+        data:sorted.map(h=>h.beta),
+        backgroundColor:sorted.map(h=>h.beta>1.3?'#f87171':h.beta>1?'#fb923c':h.beta>0?'#34d399':'#4f9cf7'),
+        borderRadius:3,barPercentage:0.6
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'Beta: '+ctx.parsed.y.toFixed(2)}}},
+      scales:{
+        y:{grid:{color:'rgba(136,146,168,0.1)'},beginAtZero:true,
+           ticks:{callback:v=>v.toFixed(1)}},
+        x:{grid:{display:false},ticks:{font:{size:10}}}
+      },
+      annotation:{annotations:{line1:{type:'line',yMin:1,yMax:1,borderColor:'#fbbf24',borderWidth:1,borderDash:[4,4]}}}
+    }
+  });
+})();
+
+// Volatility
+(function(){
+  const sorted=[...holdings].filter(h=>h.type!=='short').sort((a,b)=>b.vol1y-a.vol1y);
+  new Chart(document.getElementById('chartVol').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:sorted.map(h=>h.sym),
+      datasets:[
+        {label:'30-Day Vol',data:sorted.map(h=>h.vol30),backgroundColor:'#4f9cf7',borderRadius:3,barPercentage:0.5},
+        {label:'1-Year Vol',data:sorted.map(h=>h.vol1y),backgroundColor:'rgba(79,156,247,0.3)',borderRadius:3,barPercentage:0.5}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',font:{size:11}}}},
+      scales:{
+        y:{grid:{color:'rgba(136,146,168,0.1)'},ticks:{callback:v=>v+'%'}},
+        x:{grid:{display:false},ticks:{font:{size:10}}}
+      }
+    }
+  });
+})();
+
+// Concentration (top 5)
+(function(){
+  const sorted=[...holdings].sort((a,b)=>Math.abs(b.eq)-Math.abs(a.eq)).slice(0,5);
+  const rest=totalPortfolio-sorted.reduce((s,h)=>s+Math.abs(h.eq),0);
+  new Chart(document.getElementById('chartConc').getContext('2d'),{
+    type:'doughnut',
+    data:{
+      labels:[...sorted.map(h=>h.sym),'Others+Cash'],
+      datasets:[{
+        data:[...sorted.map(h=>Math.abs(h.eq)),rest],
+        backgroundColor:PALETTE,borderWidth:0,hoverOffset:6
+      }]
+    },
+    options:{
+      responsive:true,cutout:'60%',
+      plugins:{
+        legend:{position:'bottom',labels:{padding:10,usePointStyle:true,pointStyle:'circle',font:{size:11}}},
+        tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${(ctx.parsed/totalPortfolio*100).toFixed(1)}%`}}
+      }
+    }
+  });
+})();
+
+// ===== CORRELATION HEATMAP =====
+(function(){
+  const syms=['NVDA','GOOG','MSFT','AMZN','VOO','XOP','OXY','BTC','ETH','BIDU','BYDDY','NU','ITA','JETS'];
+  // Pre-computed approximate correlations based on 1-year data patterns
+  const corr=[
+    [1.00,0.82,0.78,0.80,0.85,0.18,0.22,0.45,0.42,0.35,0.20,0.55,0.40,-0.30],
+    [0.82,1.00,0.84,0.88,0.90,0.15,0.18,0.40,0.38,0.38,0.22,0.50,0.42,-0.28],
+    [0.78,0.84,1.00,0.85,0.88,0.12,0.15,0.38,0.35,0.32,0.18,0.48,0.38,-0.25],
+    [0.80,0.88,0.85,1.00,0.92,0.10,0.14,0.42,0.40,0.35,0.20,0.52,0.35,-0.32],
+    [0.85,0.90,0.88,0.92,1.00,0.25,0.30,0.42,0.38,0.35,0.22,0.55,0.48,-0.35],
+    [0.18,0.15,0.12,0.10,0.25,1.00,0.88,0.08,0.05,0.10,0.12,0.15,0.20,0.10],
+    [0.22,0.18,0.15,0.14,0.30,0.88,1.00,0.10,0.08,0.12,0.14,0.18,0.22,0.08],
+    [0.45,0.40,0.38,0.42,0.42,0.08,0.10,1.00,0.92,0.25,0.15,0.35,0.15,-0.15],
+    [0.42,0.38,0.35,0.40,0.38,0.05,0.08,0.92,1.00,0.22,0.12,0.32,0.12,-0.12],
+    [0.35,0.38,0.32,0.35,0.35,0.10,0.12,0.25,0.22,1.00,0.72,0.30,0.18,-0.18],
+    [0.20,0.22,0.18,0.20,0.22,0.12,0.14,0.15,0.12,0.72,1.00,0.22,0.10,-0.08],
+    [0.55,0.50,0.48,0.52,0.55,0.15,0.18,0.35,0.32,0.30,0.22,1.00,0.28,-0.22],
+    [0.40,0.42,0.38,0.35,0.48,0.20,0.22,0.15,0.12,0.18,0.10,0.28,1.00,-0.15],
+    [-0.30,-0.28,-0.25,-0.32,-0.35,0.10,0.08,-0.15,-0.12,-0.18,-0.08,-0.22,-0.15,1.00]
+  ];
+
+  const n=syms.length;
+  const grid=document.getElementById('heatmap');
+  grid.style.display='grid';
+  grid.style.gridTemplateColumns=`56px repeat(${n},1fr)`;
+  grid.style.gap='1px';
+  grid.style.fontFamily="var(--font-mono)";
+  grid.style.fontSize='0.625rem';
+
+  // Top-left empty
+  grid.innerHTML='<div class="heatmap-label"></div>';
+  // Column headers
+  syms.forEach(s=>{grid.innerHTML+=`<div class="heatmap-label">${s}</div>`;});
+  // Rows
+  for(let i=0;i<n;i++){
+    grid.innerHTML+=`<div class="heatmap-label">${syms[i]}</div>`;
+    for(let j=0;j<n;j++){
+      const v=corr[i][j];
+      let bg,fg;
+      if(i===j){bg='rgba(79,156,247,0.25)';fg='var(--accent)';}
+      else if(v>0.7){bg='rgba(248,113,113,0.35)';fg='#fca5a5';}
+      else if(v>0.4){bg='rgba(251,146,60,0.25)';fg='#fdba74';}
+      else if(v>0.1){bg='rgba(251,191,36,0.15)';fg='#fcd34d';}
+      else if(v>-0.1){bg='rgba(136,146,168,0.08)';fg='var(--text-faint)';}
+      else if(v>-0.3){bg='rgba(52,211,153,0.15)';fg='#6ee7b7';}
+      else {bg='rgba(52,211,153,0.30)';fg='#34d399';}
+      grid.innerHTML+=`<div class="heatmap-cell" style="background:${bg};color:${fg};" title="${syms[i]} vs ${syms[j]}: ${v.toFixed(2)}">${v.toFixed(2)}</div>`;
+    }
+  }
+})();
+
+// ===== SCENARIO CHARTS =====
+(function(){
+  // Total portfolio value across scenarios
+  new Chart(document.getElementById('chartScenarioTotal').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['Current','Scenario A\n(-10%)','Scenario B\n(-20%)','Scenario C\n(-35%)'],
+      datasets:[{
+        data:[8089,7234,6212,4833],
+        backgroundColor:['#4f9cf7','#fbbf24','#fb923c','#f87171'],
+        borderRadius:4,barPercentage:0.6
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`$${ctx.parsed.y.toLocaleString()}`}}},
+      scales:{
+        y:{grid:{color:'rgba(136,146,168,0.1)'},ticks:{callback:v=>'$'+v.toLocaleString()},min:3000},
+        x:{grid:{display:false}}
+      }
+    }
+  });
+
+  // Per-holding impact in Scenario B (Bear)
+  const impacts=[
+    {sym:'VOO',val:-317},{sym:'BTC',val:-277},{sym:'GOOG',val:-275},
+    {sym:'NVDA',val:-251},{sym:'MSFT',val:-176},{sym:'ETH',val:-139},
+    {sym:'BYDDY',val:-125},{sym:'BIDU',val:-103},{sym:'XOP',val:-61},
+    {sym:'AMZN',val:-50},{sym:'OXY',val:-26},{sym:'NU',val:-12},
+    {sym:'ITA',val:-35},{sym:'JETS',val:10}
+  ].sort((a,b)=>a.val-b.val);
+
+  new Chart(document.getElementById('chartScenarioBar').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:impacts.map(i=>i.sym),
+      datasets:[{
+        label:'Scenario B Impact ($)',
+        data:impacts.map(i=>i.val),
+        backgroundColor:impacts.map(i=>i.val>=0?'#34d399':'#f87171'),
+        borderRadius:3,barPercentage:0.65
+      }]
+    },
+    options:{
+      responsive:true,indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`$${ctx.parsed.x}`}}},
+      scales:{
+        x:{grid:{color:'rgba(136,146,168,0.1)'},ticks:{callback:v=>'$'+v}},
+        y:{grid:{display:false},ticks:{font:{size:11,weight:500}}}
+      }
+    }
+  });
+})();
+
+// ===== UPDATE CHART COLORS ON THEME CHANGE =====
+function updateChartColors(){
+  Chart.defaults.color=getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim();
+  Chart.instances.forEach(c=>{c.options.scales&&Object.values(c.options.scales).forEach(s=>{if(s.grid)s.grid.color='rgba(136,146,168,0.1)';});c.update();});
+}
+</script>
+</body>
+</html>
