@@ -139,13 +139,13 @@ import Layout from '../layouts/Layout.astro';
         <div class="max-w-2xl">
           <p class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-4" style="font-family:var(--font-display)">About</p>
           <p class="text-navy-700 leading-relaxed mb-4" style="font-size:clamp(1rem,1.6vw,1.15rem)">
-            I'm a Founding Partner at Flow Strategy Consulting, Academic Director of AI-Powered Finance at IE Business School, and Adjunct Professor at IE University and Oregon State University.
+            I'm a Founding Partner at Flow Strategy Consulting and Academic Director of AI-Powered Finance at IE Business School. My career runs across capital markets, venture building, and organizational consulting — with a teaching practice built on top of real-world experience, not the other way around.
           </p>
           <p class="text-navy-500 leading-relaxed mb-4" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">
-            With twelve years of experience across finance, consulting, entrepreneurship, and education on five continents, my work sits at the intersection of AI, business strategy, and human behavior. I began my career in capital markets managing portfolios and advising Fortune 500 clients, then built and scaled innovation programs, EdTech products, and startups before turning to the classroom. Today I teach generative AI, finance, innovation, and behavioral sciences to undergraduates, MBAs, and executives, while running a consultancy that helps organizations adopt AI from strategy to implementation.
+            I spent five years at Robert W. Baird managing portfolios across all major asset classes before moving into consulting and innovation. Since then I've built and led programs in six countries, advised startups through growth and fundraising, and helped organizations from Fortune 500 firms to government ministries navigate AI — from strategy to implementation. When I teach, it's because I've done the work first.
           </p>
           <p class="text-navy-500 leading-relaxed" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">
-            My interests center on how people learn, decide, and adapt in a world increasingly shaped by AI. I'm focused on critical thinking and decision-making as core skills for the modern era, and on preparing students and professionals to work alongside intelligent systems rather than be displaced by them. I've trained over 300 educators on AI workflows and built a faculty community around AI integration at IE University.
+            What ties it together is a belief that AI doesn't replace judgment — it amplifies it. Whether I'm in a boardroom, a lecture hall, or a founding team meeting, I'm focused on one thing: helping people make better decisions under pressure.
           </p>
         </div>
       </div>
@@ -165,7 +165,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="bg-white rounded-2xl overflow-hidden border border-warm-200">
           <div class="p-8 md:p-10">
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Robert W. Baird & Co. · Chicago · 2014 – 2019</span>
+              <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Robert W. Baird & Co. · 2014 – 2019</span>
             </div>
             <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem)">FINANCE</h3>
             <p class="text-navy-500 text-sm leading-relaxed mb-6 max-w-2xl">Capital Markets. Six years managing 100 private households and 30 corporate accounts — retirement funds, foundations, and investment portfolios — across three advisory models: aggressive, moderate, and conservative. Led 10 corporate accounts independently and completed 100+ financial plans with a 95% objectives-met rate.</p>
@@ -228,7 +228,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="absolute top-0 left-0 right-0 h-20" style="background:linear-gradient(to bottom, #F4F1EC, transparent)"></div>
       <div class="absolute inset-0 flex items-end">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-          <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family:var(--font-display);color:rgba(255,255,255,0.45)">Robert W. Baird & Co. · Chicago &nbsp;·&nbsp; Capital Markets Team</p>
+          <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family:var(--font-display);color:rgba(255,255,255,0.45)">Robert W. Baird & Co. &nbsp;·&nbsp; Capital Markets Team</p>
         </div>
       </div>
     </div>
@@ -1407,6 +1407,55 @@ import Layout from '../layouts/Layout.astro';
       btn.textContent = hidden ? 'Show less' : `Show ${extras.length} more`;
     }
   </script>
+
+  <!-- WORK WITH ME -->
+  <section id="work-with-me" class="py-24 bg-warm-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8">
+      <div class="mb-14 reveal">
+        <p class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-4" style="font-family:var(--font-display)">Work With Me</p>
+        <h2 class="font-bold text-navy-900 leading-tight" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">Who are you?</h2>
+        <p class="text-navy-500 mt-3" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">Different problems. Different engagements. Tell me where you're coming from.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
+        {[
+          {
+            who: "University or Business School",
+            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3.33 1.67 8.67 1.67 12 0v-5"/></svg>`,
+            offer: "Curriculum design, AI integration, executive education, and guest teaching across MBA and undergraduate programs.",
+            cta: "Academic partnership",
+          },
+          {
+            who: "Company or Executive Team",
+            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`,
+            offer: "AI adoption strategy, leadership workshops, organizational change, and decision-making frameworks for senior teams.",
+            cta: "Consulting engagement",
+          },
+          {
+            who: "Startup or Founder",
+            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+            offer: "Advisory on go-to-market, fundraising narrative, product-market fit, and building high-performing early teams.",
+            cta: "Startup advisory",
+          },
+          {
+            who: "Event or Conference",
+            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+            offer: "Keynotes and workshops on AI, finance, decision-making, and innovation. Delivered to audiences from 30 to 3,000.",
+            cta: "Speaking inquiry",
+          },
+        ].map(c => (
+          <a href="#contact" class="group block bg-white rounded-2xl p-7 border border-warm-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300 cursor-pointer">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5 text-navy-700 group-hover:text-orange-500 transition-colors" style="background:rgba(13,27,42,0.06)" set:html={c.icon} />
+            <p class="font-bold text-navy-900 text-sm mb-3 leading-snug" style="font-family:var(--font-display)">{c.who}</p>
+            <p class="text-navy-400 text-sm leading-relaxed mb-5">{c.offer}</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-orange-500 group-hover:gap-2.5 transition-all" style="font-family:var(--font-display)">
+              {c.cta}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- CONTACT -->
   <section id="contact" class="py-28" style="background: #0D1B2A">
