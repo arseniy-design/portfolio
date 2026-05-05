@@ -107,8 +107,8 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Courses Designed</p>
         </div>
       </div>
-      <!-- Row 2: 4 stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4">
+      <!-- Row 2: 5 stats -->
+      <div class="grid grid-cols-2 md:grid-cols-5">
         <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-5 border-r border-warm-200">
           <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span></p>
           <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Ventures Launched</p>
@@ -121,10 +121,14 @@ import Layout from '../layouts/Layout.astro';
           <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span><span class="text-orange-500">+</span></p>
           <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Continents</p>
         </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-8">
+        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-8 border-r border-warm-200">
           <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="3">0</span></p>
           <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Languages</p>
           <p class="text-navy-300 text-xs mt-1" style="font-family: var(--font-display)">EN · RU · ES</p>
+        </div>
+        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-9">
+          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)">$1.6<span class="text-orange-500">B</span></p>
+          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">AUM Managed</p>
         </div>
       </div>
     </div>
@@ -1510,7 +1514,7 @@ import Layout from '../layouts/Layout.astro';
         <button id="submit-btn" type="submit"
           class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl transition-colors text-sm tracking-wide"
           style="font-family: var(--font-display)">
-          Send →
+          Let's work together →
         </button>
         <div id="form-success" class="hidden text-center py-6">
           <p class="text-white font-semibold mb-1" style="font-family: var(--font-display)">Got it.</p>
@@ -1775,7 +1779,7 @@ import Layout from '../layouts/Layout.astro';
         form.querySelectorAll('input, textarea, button').forEach(el => (el as HTMLElement).style.display = 'none');
         formSuccess?.classList.remove('hidden');
       } else {
-        submitBtn.textContent = 'Send Message →';
+        submitBtn.textContent = 'Let\'s work together →';
         submitBtn.disabled = false;
       }
     } catch {
