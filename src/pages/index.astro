@@ -161,60 +161,115 @@ import Layout from '../layouts/Layout.astro';
         </p>
       </div>
 
-      <!-- Three-strip manifesto -->
-      <div class="rounded-2xl overflow-hidden mb-16 reveal">
-        {[
-          {
-            num: "01",
-            mode: "BUILD",
-            tagline: "Ventures built from scratch — in Azerbaijan, Spain, and the US.",
-            chips: ["SABAH Hub", "Flow Strategy", "North", "Stride"],
-            stats: ["4 Innovation Programs", "Finance · EdTech · AI", "Azerbaijan · Spain · US"],
-          },
-          {
-            num: "02",
-            mode: "ADVISE",
-            tagline: "Strategy to implementation. Built around real company challenges.",
-            chips: ["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla"],
-            stats: ["AI Implementation", "Digital Strategy", "Financial Modeling · GTM"],
-          },
-          {
-            num: "03",
-            mode: "TEACH",
-            tagline: "Classrooms, boardrooms, briefing rooms. The standard doesn't change.",
-            chips: ["STC", "PIF Saudi Arabia", "Qatari Police", "IE Business School", "Oregon State", "Leonardo"],
-            stats: ["4.9 / 5 Rating", "NPS 70", "5× Teaching Excellence"],
-          },
-        ].map((s, i) => (
-          <div
-            class="relative overflow-hidden"
-            style={`background:${i === 1 ? '#0f2236' : '#0D1B2A'};${i > 0 ? 'border-top:1px solid rgba(255,255,255,0.05)' : ''}`}
-          >
-            <span style="position:absolute;right:-0.5rem;top:50%;transform:translateY(-50%);font-size:9rem;font-weight:900;font-family:var(--font-display);color:rgba(255,255,255,0.025);line-height:1;pointer-events:none;user-select:none;letter-spacing:-0.05em">{s.num}</span>
+      <!-- Work strips — redesigned -->
+      <div class="mb-16 space-y-4 reveal">
 
-            <div class="flex flex-col md:flex-row md:items-center gap-6 md:gap-10 px-8 md:px-12 py-10 relative z-10">
-              <div class="flex-shrink-0 md:w-72">
-                <p class="font-bold tracking-tight leading-none mb-2" style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);color:#fff">{s.mode}</p>
-                <p class="text-sm leading-snug" style="color:rgba(255,255,255,0.4);max-width:240px">{s.tagline}</p>
+        <!-- FINANCE — full-width feature card -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-warm-200">
+          <div class="grid md:grid-cols-[1fr_300px]">
+            <div class="p-8 md:p-10">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">00</span>
+                <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Robert W. Baird & Co. · 2014 – 2019</span>
               </div>
-
-              <div class="hidden md:block flex-shrink-0" style="width:1px;height:56px;background:linear-gradient(to bottom,transparent,rgba(244,98,31,0.5),transparent)"></div>
-
-              <div class="flex-1">
-                <div class="flex flex-wrap gap-2 mb-4">
-                  {s.chips.map(c => (
-                    <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.1);font-family:var(--font-display);white-space:nowrap">{c}</span>
-                  ))}
+              <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem)">FINANCE</h3>
+              <p class="text-navy-500 text-sm leading-relaxed mb-6 max-w-lg">Fixed Income & Capital Markets. Six years managing 100 private households and 30 corporate accounts — retirement funds, foundations, and investment portfolios. Built the client practice from the ground up, led 10 corporate accounts independently, and completed 100+ financial plans with a 95% objectives-met rate.</p>
+              <div class="flex flex-wrap gap-6 mb-6">
+                <div>
+                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.6B</p>
+                  <p class="text-xs text-navy-400 mt-0.5">AUM Managed</p>
                 </div>
-                <div class="flex flex-wrap gap-x-5 gap-y-1">
-                  {s.stats.map(st => (
-                    <span class="text-xs font-bold" style="color:#F4621F;font-family:var(--font-display)">{st}</span>
-                  ))}
+                <div>
+                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">100+</p>
+                  <p class="text-xs text-navy-400 mt-0.5">Financial Plans · 95% Met</p>
                 </div>
+                <div>
+                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">50%</p>
+                  <p class="text-xs text-navy-400 mt-0.5">Practice Growth</p>
+                </div>
+                <div>
+                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.5M</p>
+                  <p class="text-xs text-navy-400 mt-0.5">Annual Revenue</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {["Private Client", "Corporate Retirement", "Foundation Accounts", "Fixed Income", "Capital Markets"].map(c => (
+                  <span class="text-xs px-3 py-1 rounded-full" style="background:#0D1B2A;color:rgba(255,255,255,0.7);font-family:var(--font-display)">{c}</span>
+                ))}
               </div>
             </div>
+            <div class="relative hidden md:block bg-warm-100">
+              <img src="/FCBA0EAE-A6FF-4B56-B4BC-271FA03F5F65_1_105_c.jpeg" alt="Arseniy at Baird" class="w-full h-full object-cover object-center" style="min-height:320px" />
+              <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(255,255,255,0.4) 0%, transparent 35%)"></div>
+            </div>
           </div>
-        ))}
+          <!-- Artifact row -->
+          <div class="border-t border-warm-100 px-8 md:px-10 py-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-4" style="font-family:var(--font-display)">Client Deliverables · Built with AI</p>
+            <div class="flex gap-3 overflow-x-auto pb-1" style="-webkit-overflow-scrolling:touch;scrollbar-width:none">
+              {[
+                { title: "Taif Market Entry", type: "Market Analysis", desc: "Saudi Arabia wellness tourism opportunity assessment", href: "https://taifmarketentry.pplx.app" },
+                { title: "Hormuz Shock", type: "Commodity Dashboard", desc: "Geopolitical risk scenario for oil & shipping markets", href: "https://hormuzshock.pplx.app" },
+                { title: "Portfolio Risk Analysis", type: "Risk Model", desc: "Scenario-based stress testing across asset classes", href: "https://portfolioanalysis.pplx.app" },
+                { title: "Macro Risk Intelligence", type: "Research Memo", desc: "Live macro risk monitor across global markets", href: "https://macrorisks.pplx.app" },
+                { title: "The Delta Dossier", type: "Earnings Report", desc: "Q1 2026 pre-earnings deep dive across key sectors", href: "/deltaindex.html" },
+              ].map(a => (
+                <a href={a.href} target="_blank" rel="noopener"
+                  class="flex-shrink-0 group bg-warm-50 hover:bg-warm-100 border border-warm-200 rounded-xl p-4 transition-colors"
+                  style="width:196px">
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-orange-500 mb-1.5" style="font-family:var(--font-display)">{a.type}</p>
+                  <p class="font-semibold text-navy-900 text-sm leading-snug mb-1.5" style="font-family:var(--font-display)">{a.title}</p>
+                  <p class="text-xs text-navy-400 leading-snug mb-3">{a.desc}</p>
+                  <span class="text-xs font-semibold text-orange-500" style="font-family:var(--font-display)">Open →</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- BUILD · ADVISE · TEACH — three cards -->
+        <div class="grid md:grid-cols-3 gap-4">
+          {[
+            {
+              num: "01",
+              mode: "BUILD",
+              tagline: "Ventures built from scratch — in Azerbaijan, Spain, and the US.",
+              chips: ["SABAH Hub", "Flow Strategy", "North", "Stride"],
+              stats: ["4 Innovation Programs", "Finance · EdTech · AI", "Azerbaijan · Spain · US"],
+            },
+            {
+              num: "02",
+              mode: "ADVISE",
+              tagline: "Strategy to implementation. Built around real company challenges.",
+              chips: ["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla"],
+              stats: ["AI Implementation", "Digital Strategy", "Financial Modeling · GTM"],
+            },
+            {
+              num: "03",
+              mode: "TEACH",
+              tagline: "Classrooms, boardrooms, briefing rooms. The standard doesn't change.",
+              chips: ["STC", "PIF Saudi Arabia", "Qatari Police", "IE Business School", "Oregon State", "Leonardo"],
+              stats: ["4.9 / 5 Rating", "NPS 70", "5× Teaching Excellence"],
+            },
+          ].map(s => (
+            <div class="bg-white rounded-2xl p-7 border border-warm-200 flex flex-col">
+              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-2" style="font-family:var(--font-display)">{s.num}</span>
+              <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">{s.mode}</h3>
+              <p class="text-navy-400 text-sm leading-snug mb-5">{s.tagline}</p>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {s.chips.map(c => (
+                  <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                ))}
+              </div>
+              <div class="mt-auto pt-4 border-t border-warm-100 flex flex-wrap gap-x-4 gap-y-1">
+                {s.stats.map(st => (
+                  <span class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">{st}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
 
       <!-- Outcomes label -->
