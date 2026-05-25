@@ -48,14 +48,12 @@ import Layout from '../layouts/Layout.astro';
           <span class="block font-bold tracking-tight" style="font-size: clamp(2.8rem,6vw,4.5rem)">5 Continents.</span>
           <span class="block font-light mt-3" style="font-size: clamp(1.8rem,4vw,2.8rem); color: rgba(255,255,255,0.75)">One Obsession.</span>
         </h1>
-        <p class="text-base leading-relaxed max-w-full sm:max-w-[400px] mb-5 font-medium" style="color: rgba(255,255,255,0.85)">
-          How humans grow — through <span style="color:#F4621F;font-weight:700">Finance</span>,<br>
-          <span style="color:#F4621F;font-weight:700">Artificial Intelligence</span>, and
-          <span style="color:#F4621F;font-weight:700">Education</span>.
-        </p>
-        <p class="text-sm mb-10 tracking-widest uppercase font-semibold" style="font-family: var(--font-display); color: rgba(255,255,255,0.75)">
-          Professor &nbsp;·&nbsp; Consultant &nbsp;·&nbsp; Entrepreneur
-        </p>
+        <p class="text-base font-medium mb-4 whitespace-nowrap" style="color:rgba(255,255,255,0.85)">What drives human decisions.</p>
+        <div class="flex gap-2 mb-10">
+          {["Finance", "AI", "Education"].map(t => (
+            <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.35);font-family:var(--font-display)">{t}</span>
+          ))}
+        </div>
         <div class="flex flex-wrap gap-3 mb-5">
           <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-colors text-sm tracking-wide" style="font-family: var(--font-display)">
             Let's Work Together
@@ -135,13 +133,15 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- WORK -->
-  <section id="work" class="py-24 bg-warm-100">
+  <section id="work" class="pt-16 pb-24 bg-warm-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
 
       <!-- Bio -->
       <div class="mb-16 reveal">
         <div class="max-w-2xl">
-          <p class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-4" style="font-family:var(--font-display)">About</p>
+          <div class="section-label">
+            <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">About</span>
+          </div>
           <p class="text-navy-700 leading-relaxed mb-4" style="font-size:clamp(1rem,1.6vw,1.15rem)">
             I'm a Founding Partner at Flow Strategy Consulting and Academic Director of AI-Powered Finance at IE Business School. My career runs across capital markets, venture building, and organizational consulting — with a teaching practice built on top of real-world experience, not the other way around.
           </p>
@@ -154,72 +154,120 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Manifesto heading -->
-      <div class="mb-12 reveal">
-        <h2 class="font-bold text-navy-900 leading-none mb-2" style="font-family: var(--font-display); font-size: clamp(2.8rem,5.5vw,4.5rem)">
-          Finance. Startups. AI.
-        </h2>
-        <p class="font-light text-navy-400 mb-5" style="font-family: var(--font-display); font-size: clamp(1.2rem,2.5vw,1.75rem)">
-          The practitioner who also teaches. The professor who also builds.
-        </p>
-      </div>
-
-      <!-- FINANCE card -->
+      <!-- THE JOURNEY -->
       <div class="mb-0 reveal">
-        <div class="bg-white rounded-2xl overflow-hidden border border-warm-200">
-          <div class="p-8 md:p-10">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Robert W. Baird & Co. · 2014 – 2019</span>
-            </div>
-            <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem)">FINANCE</h3>
-            <p class="text-navy-500 text-sm leading-relaxed mb-6 max-w-2xl">Capital Markets. Six years managing 100 private households and 30 corporate accounts — retirement funds, foundations, and investment portfolios — across three advisory models: aggressive, moderate, and conservative. Led 10 corporate accounts independently and completed 100+ financial plans with a 95% objectives-met rate.</p>
-            <div class="flex flex-wrap gap-6 mb-6">
-              <div>
-                <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.6B</p>
-                <p class="text-xs text-navy-400 mt-0.5">AUM Managed</p>
-              </div>
-              <div>
-                <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">100+</p>
-                <p class="text-xs text-navy-400 mt-0.5">Financial Plans · 95% Met</p>
-              </div>
-              <div>
-                <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">50%</p>
-                <p class="text-xs text-navy-400 mt-0.5">Practice Growth</p>
-              </div>
-              <div>
-                <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.5M</p>
-                <p class="text-xs text-navy-400 mt-0.5">Annual Revenue</p>
-              </div>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              {["Private Client", "Corporate Retirement", "Foundation Accounts", "Equities", "Fixed Income", "Real Estate", "Annuities", "Funds"].map(c => (
-                <span class="text-xs px-3 py-1 rounded-full" style="background:#0D1B2A;color:rgba(255,255,255,0.7);font-family:var(--font-display)">{c}</span>
-              ))}
-            </div>
+
+        <!-- Toggle bar -->
+        <div class="flex items-center gap-3 mb-8">
+          <button id="journey-btn-finance" onclick="switchJourney('finance')"
+            class="flex-1 text-center px-5 py-3 rounded-xl text-sm font-bold transition-all"
+            style="font-family:var(--font-display);background:#0D1B2A;color:#fff;border:1px solid #0D1B2A">
+            2014 – 2020 · Finance
+          </button>
+          <div class="flex-shrink-0 text-center px-4">
+            <p class="text-[9px] font-bold tracking-[0.3em] uppercase mb-0.5" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">Career Pivot · 2020</p>
+            <p class="text-xs font-medium text-navy-600 whitespace-nowrap" style="font-family:var(--font-display)">IE Business School · MBA</p>
           </div>
-          <!-- Artifact row -->
-          <div class="border-t border-warm-100 px-8 md:px-10 py-6">
-            <p class="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-4" style="font-family:var(--font-display)">Client Deliverables · Built with AI</p>
-            <div class="flex gap-3 overflow-x-auto pb-1" style="-webkit-overflow-scrolling:touch;scrollbar-width:none">
-              {[
-                { title: "Taif Market Entry", type: "Market Analysis", desc: "Saudi Arabia wellness tourism opportunity assessment", href: "https://taifmarketentry.pplx.app" },
-                { title: "Hormuz Shock", type: "Commodity Dashboard", desc: "Geopolitical risk scenario for oil & shipping markets", href: "https://hormuzshock.pplx.app" },
-                { title: "Portfolio Risk Analysis", type: "Risk Model", desc: "Scenario-based stress testing across asset classes", href: "https://portfolioanalysis.pplx.app" },
-                { title: "Macro Risk Intelligence", type: "Research Memo", desc: "Live macro risk monitor across global markets", href: "https://macrorisks.pplx.app" },
-                { title: "The Delta Dossier", type: "Earnings Report", desc: "Q1 2026 pre-earnings deep dive across key sectors", href: "/delta-dossier/" },
-              ].map(a => (
-                <a href={a.href} target="_blank" rel="noopener"
-                  class="flex-shrink-0 group bg-warm-50 hover:bg-warm-100 border border-warm-200 rounded-xl p-4 transition-colors"
-                  style="width:196px">
-                  <p class="text-[10px] font-bold uppercase tracking-widest text-orange-500 mb-1.5" style="font-family:var(--font-display)">{a.type}</p>
-                  <p class="font-semibold text-navy-900 text-sm leading-snug mb-1.5" style="font-family:var(--font-display)">{a.title}</p>
-                  <p class="text-xs text-navy-400 leading-snug mb-3">{a.desc}</p>
-                  <span class="text-xs font-semibold text-orange-500" style="font-family:var(--font-display)">Open →</span>
-                </a>
-              ))}
+          <button id="journey-btn-bat" onclick="switchJourney('bat')"
+            class="flex-1 text-center px-5 py-3 rounded-xl text-sm font-bold transition-all"
+            style="font-family:var(--font-display);background:#F4F1EC;color:#5B7494;border:1px solid #EDE8DF">
+            2020 – Now · Entrepreneurship
+          </button>
+        </div>
+
+        <!-- Phase 1: Finance -->
+        <div id="journey-panel-finance">
+          <div class="bg-white rounded-2xl p-8 md:p-10 border border-warm-200">
+            <div class="grid md:grid-cols-2">
+              <!-- Left: headline + metrics -->
+              <div class="border-b md:border-b-0 md:border-r border-warm-200 pb-7 md:pb-0 md:pr-10">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Robert W. Baird & Co. · 2014 – 2020</span>
+                <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3rem)">FINANCE</h3>
+                <p class="text-navy-400 text-sm leading-snug mb-8 max-w-xs">Capital Markets. Six years managing $1.6B across private households, retirement funds, and corporate portfolios — 95% objectives-met rate across 100+ financial plans.</p>
+                <div class="flex flex-wrap gap-8">
+                  <div>
+                    <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.6B</p>
+                    <p class="text-xs text-navy-400 mt-0.5">AUM Managed</p>
+                  </div>
+                  <div>
+                    <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">100+</p>
+                    <p class="text-xs text-navy-400 mt-0.5">Financial Plans · 95% Met</p>
+                  </div>
+                  <div>
+                    <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">50%</p>
+                    <p class="text-xs text-navy-400 mt-0.5">Practice Growth</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Right: client segments + asset classes -->
+              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col gap-7">
+                <div>
+                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Client Segments</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    {["Private Wealth", "Corporate Retirement", "Institutional", "Endowments & Trusts"].map(c => (
+                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Asset Classes</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    {["Equities", "Fixed Income", "Real Estate", "Annuities", "Alternatives"].map(c => (
+                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Portfolio Strategies</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    {["Aggressive", "Moderately Aggressive", "Conservative", "ETF Satellite"].map(c => (
+                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Phase 2: Build / Advise / Teach -->
+        <div id="journey-panel-bat" class="hidden">
+          <div class="bg-white rounded-2xl p-8 md:p-10 border border-warm-200">
+            <div class="grid md:grid-cols-3">
+              <div class="border-b md:border-b-0 md:border-r border-warm-200 pb-7 md:pb-0 md:pr-8">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">01</span>
+                <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">BUILD</h3>
+                <p class="text-navy-400 text-sm leading-snug mb-5">Ventures built from scratch — in Azerbaijan, Spain, and the US.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {["SABAH Hub", "Flow Strategy", "North"].map(c => (
+                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="border-b md:border-b-0 md:border-r border-warm-200 py-7 md:py-0 md:px-8">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">02</span>
+                <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">ADVISE</h3>
+                <p class="text-navy-400 text-sm leading-snug mb-5">Strategy to implementation. Built around real company challenges.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla"].map(c => (
+                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="pt-7 md:pt-0 md:pl-8">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">03</span>
+                <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">TEACH</h3>
+                <p class="text-navy-400 text-sm leading-snug mb-5">Classrooms, boardrooms, briefing rooms. The standard doesn't change.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {["IE Business School", "Oregon State", "PIF Saudi Arabia", "STC"].map(c => (
+                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div><!-- close max-w container -->
@@ -237,98 +285,129 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-8"><!-- reopen max-w container -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 pt-14"><!-- reopen max-w container -->
 
-      <!-- BUILD · ADVISE · TEACH — three cards -->
-      <div class="mb-16 space-y-4 reveal">
-        <div class="grid md:grid-cols-3 gap-4">
-          {[
-            {
-              num: "01",
-              mode: "BUILD",
-              tagline: "Ventures built from scratch — in Azerbaijan, Spain, and the US.",
-              chips: ["SABAH Hub", "Flow Strategy", "North", "Stride"],
-              stats: ["4 Innovation Programs", "Finance · EdTech · AI", "Azerbaijan · Spain · US"],
-            },
-            {
-              num: "02",
-              mode: "ADVISE",
-              tagline: "Strategy to implementation. Built around real company challenges.",
-              chips: ["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla"],
-              stats: ["AI Implementation", "Digital Strategy", "Financial Modeling · GTM"],
-            },
-            {
-              num: "03",
-              mode: "TEACH",
-              tagline: "Classrooms, boardrooms, briefing rooms. The standard doesn't change.",
-              chips: ["STC", "PIF Saudi Arabia", "Qatari Police", "IE Business School", "Oregon State", "Leonardo"],
-              stats: ["4.9 / 5 Rating", "NPS 70", "5× Teaching Excellence"],
-            },
-          ].map(s => (
-            <div class="bg-white rounded-2xl p-7 border border-warm-200 flex flex-col">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-2" style="font-family:var(--font-display)">{s.num}</span>
-              <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">{s.mode}</h3>
-              <p class="text-navy-400 text-sm leading-snug mb-5">{s.tagline}</p>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                {s.chips.map(c => (
-                  <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                ))}
-              </div>
-              <div class="mt-auto pt-4 border-t border-warm-100 flex flex-wrap gap-x-4 gap-y-1">
-                {s.stats.map(st => (
-                  <span class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">{st}</span>
-                ))}
+      <!-- THE WORK -->
+      <div class="section-label reveal">
+        <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">The Work</span>
+      </div>
+
+      <!-- Main toggle -->
+      <div class="flex gap-3 mb-10 reveal">
+        <button id="work-btn-classroom" onclick="switchWork('classroom')"
+          class="px-6 py-3 rounded-xl text-sm font-bold transition-all"
+          style="font-family:var(--font-display);background:#0D1B2A;color:#fff;border:1px solid #0D1B2A">
+          In the Classroom
+        </button>
+        <button id="work-btn-field" onclick="switchWork('field')"
+          class="px-6 py-3 rounded-xl text-sm font-bold transition-all"
+          style="font-family:var(--font-display);background:#F4F1EC;color:#5B7494;border:1px solid #EDE8DF">
+          In the Field
+        </button>
+      </div>
+
+      <!-- CLASSROOM PANEL -->
+      <div id="work-panel-classroom">
+
+        <!-- Classroom sub-toggles -->
+        <div class="flex gap-0 border-b border-warm-300 mb-8">
+          <button id="classroom-btn-finance" onclick="switchClassroomSub('finance')"
+            class="px-5 pb-3 pt-1 text-sm font-bold transition-all border-b-2 -mb-px"
+            style="font-family:var(--font-display);color:#0D1B2A;border-bottom-color:#F4621F">
+            Finance
+          </button>
+          <button id="classroom-btn-entrepreneurship" onclick="switchClassroomSub('entrepreneurship')"
+            class="px-5 pb-3 pt-1 text-sm font-medium transition-all border-b-2 -mb-px"
+            style="font-family:var(--font-display);color:#5B7494;border-bottom-color:transparent">
+            Entrepreneurship
+          </button>
+          <button id="classroom-btn-behavioral" onclick="switchClassroomSub('behavioral')"
+            class="px-5 pb-3 pt-1 text-sm font-medium transition-all border-b-2 -mb-px"
+            style="font-family:var(--font-display);color:#5B7494;border-bottom-color:transparent">
+            Behavioral Sciences
+          </button>
+        </div>
+
+        <div id="classroom-sub-finance">
+        <!-- Finance Group -->
+        <div>
+          <div class="grid md:grid-cols-3 gap-6">
+
+            <!-- Box 1: Subject Identity -->
+            <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
+              <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
+                <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Classroom</span>
+                <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">FINANCE</h2>
+                <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Taught from the trading desk, not the textbook. Six years at Baird managing $1.6B — brought directly into the classroom.</p>
+                <div class="flex gap-5 mb-6">
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">$1.6B</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Real-world AUM</p></div>
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">300+</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Sessions delivered</p></div>
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">6</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Courses</p></div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mt-auto">
+                  {["IE Business School", "Oregon State", "Executive Ed", "Online"].map(i => (
+                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
+                  ))}
+                </div>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      <!-- Tab bar -->
-      <div class="border-b border-warm-200 mb-10 reveal flex overflow-x-auto" id="work-tabs">
-        <button class="tab-btn active" data-tab="finance"          onclick="switchTab('finance')">Finance</button>
-        <button class="tab-btn"        data-tab="entrepreneurship" onclick="switchTab('entrepreneurship')">Startups</button>
-        <button class="tab-btn"        data-tab="innovation"       onclick="switchTab('innovation')">Innovation Programs</button>
-        <button class="tab-btn"        data-tab="ai"               onclick="switchTab('ai')">AI Productivity</button>
-        <button class="tab-btn"        data-tab="courses"          onclick="switchTab('courses')">Digital Courses</button>
-        <button class="tab-btn"        data-tab="behavioral"       onclick="switchTab('behavioral')">Behavioral</button>
-      </div>
+            <!-- Box 2: Courses -->
+            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Courses</span>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">6 Topics</span>
+              </div>
+              <div class="flex flex-col flex-1 divide-y divide-warm-100">
+                {[
+                  { name: "Capital Markets", count: "Flagship" },
+                  { name: "Corporate Finance", count: "15 Sessions" },
+                  { name: "Financial Consulting", count: "15 Sessions" },
+                  { name: "AI-Powered Finance", count: "15 Sessions" },
+                  { name: "Financial Markets & Fintech", count: "15 Sessions" },
+                  { name: "Advanced Financial Management", count: "15 Sessions" },
+                ].map(c => (
+                  <div class="flex items-center justify-between py-3.5">
+                    <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">{c.name}</span>
+                    <span class="text-xs text-navy-400 flex-shrink-0 ml-3" style="font-family:var(--font-display)">{c.count}</span>
+                  </div>
+                ))}
+              </div>
+              <p class="text-xs text-navy-300 mt-5 italic">And growing.</p>
+            </div>
 
-      <!-- FINANCE TAB -->
-      <div id="tab-finance" class="tab-panel">
-        <div class="grid md:grid-cols-3 gap-5">
-          <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
-            <a href="/capital-markets" target="_blank" rel="noopener" class="block h-48 bg-navy-900 relative p-7 overflow-hidden group">
-              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.10) 0%, transparent 55%)"></div>
-              <div class="absolute bottom-0 right-0 w-64 h-64 rounded-full opacity-5" style="background:radial-gradient(circle, #F4621F, transparent);transform:translate(30%,30%)"></div>
-              <div class="relative z-10">
-                <p class="text-xs font-semibold tracking-widest uppercase mb-4" style="color:rgba(255,255,255,0.3);font-family:var(--font-display)">IE University · BBA · Capital Markets</p>
-                <p class="font-black leading-none tracking-tight text-white" style="font-size:clamp(28px,4vw,40px);font-family:var(--font-display)">22 Activities.</p>
-                <p class="font-black leading-none tracking-tight" style="font-size:clamp(28px,4vw,40px);font-family:var(--font-display);color:#F4621F;font-style:italic">0 Lectures.</p>
-              </div>
-              <div class="absolute bottom-5 right-6 flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style="color:#F4621F;font-family:var(--font-display)">
-                Explore the Hub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-              </div>
-            </a>
-            <div class="p-7">
-              <div class="flex items-start justify-between gap-4 mb-3">
+            <!-- Box 3: Digital Assets -->
+            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-5" style="font-family:var(--font-display)">Digital Assets</span>
+              <a href="https://arseniygoldberg.com/capital-markets" target="_blank" rel="noopener"
+                class="flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group mb-4">
                 <div>
-                  <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Capital Markets</h3>
-                  <p class="text-navy-400 text-sm">How institutional money moves through global systems — and how to raise, deploy, and protect it.</p>
+                  <p class="text-xs text-orange-500 font-semibold mb-0.5" style="font-family:var(--font-display)">Interactive Hub</p>
+                  <p class="text-sm text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">Capital Markets Hub · 22 Activities</p>
                 </div>
-                <a href="/capital-markets" target="_blank" rel="noopener"
-                  class="flex-shrink-0 text-xs font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap"
-                  style="background:#FFF3EE;color:#F4621F;border:1px solid rgba(244,98,31,0.2);font-family:var(--font-display)">
-                  Explore Hub ↗
-                </a>
+                <span class="text-orange-500 text-sm font-bold flex-shrink-0 group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+              <div class="grid grid-cols-2 gap-2 mb-5">
+                {[
+                  { href: "https://vimeo.com/1175592384", vid: "1175592384", title: "Time Value of Money" },
+                  { href: "https://vimeo.com/1175592202", vid: "1175592202", title: "Working Capital" },
+                  { href: "https://vimeo.com/1175592624", vid: "1175592624", title: "Dynamic Valuation" },
+                  { href: "https://vimeo.com/1175592738", vid: "1175592738", title: "Sources of Corporate Financing" },
+                ].map(v => (
+                  <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+                    <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
+                        <svg class="w-3 h-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-1.5" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
+                      <p class="text-white text-[9px] font-medium leading-tight" style="font-family: var(--font-display)">{v.title}</p>
+                    </div>
+                  </a>
+                ))}
               </div>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Equity & debt market structure</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Institutional investors & capital raising</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>IPOs, bonds, and alternative financing</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Valuation methods & market dynamics</li>
-              </ul>
-              <div class="mt-5 pt-5 border-t border-warm-100">
+              <div class="border-t border-warm-100 pt-4">
                 <p class="text-xs font-semibold uppercase tracking-widest text-navy-300 mb-3" style="font-family:var(--font-display)">Valuation Tutors</p>
                 <div class="flex flex-wrap gap-2">
                   {[
@@ -347,594 +426,477 @@ import Layout from '../layouts/Layout.astro';
                 </div>
               </div>
             </div>
-          </div>
-          <div class="flex flex-col gap-5">
-            <div class="work-card bg-white rounded-2xl p-6 flex-1">
-              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Corporate Finance</h3>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Capital structure & WACC</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Investment decisions & NPV</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Financial strategy & planning</li>
-              </ul>
-            </div>
-            <div class="work-card bg-white rounded-2xl p-6 flex-1">
-              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Financial Consulting</h3>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Advisory skills & client management</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Strategic financial solutions</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>CFO-as-a-service frameworks</li>
-              </ul>
-            </div>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">AI-Powered Finance</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>GenAI for financial analysis & modeling</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>AI use cases across the finance function</li>
-            </ul>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Financial Markets & Fintech</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Market structure, instruments & trading</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Digital payments, blockchain & AI in finance</li>
-            </ul>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">15 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Advanced Financial Management</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Risk management & hedging</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Advanced analytics & reporting</li>
-            </ul>
+
           </div>
         </div>
-        <div class="mt-8">
-          <p class="text-xs text-navy-400 font-semibold tracking-widest uppercase mb-4" style="font-family: var(--font-display)">Session Samples</p>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { href: "https://vimeo.com/1175592384", vid: "1175592384", title: "Time Value of Money" },
-              { href: "https://vimeo.com/1175592202", vid: "1175592202", title: "Working Capital" },
-              { href: "https://vimeo.com/1175592624", vid: "1175592624", title: "Dynamic Valuation" },
-              { href: "https://vimeo.com/1175592738", vid: "1175592738", title: "Sources of Corporate Financing" },
-            ].map(v => (
-              <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-                <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
-                    <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div><!-- /classroom-sub-finance -->
+
+        <div id="classroom-sub-entrepreneurship" class="hidden">
+        <!-- Entrepreneurship Group -->
+        <div>
+          <div class="grid md:grid-cols-3 gap-6">
+
+            <!-- Box 1: Subject Identity -->
+            <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
+              <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
+                <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Classroom</span>
+                <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">ENTREPRENEURSHIP</h2>
+                <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Built 5 ventures from scratch across Azerbaijan, Spain, and the US. Real founder experience — not case studies.</p>
+                <div class="flex gap-5 mb-6">
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Ventures built</p></div>
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">4</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Innovation programs</p></div>
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">3</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Continents</p></div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mt-auto">
+                  {["IE Business School", "Oregon State", "Wyss Academy", "TEC de Monterrey"].map(i => (
+                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Box 2: Courses -->
+            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Courses</span>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">6 Topics</span>
+              </div>
+              <div class="flex flex-col flex-1 divide-y divide-warm-100">
+                {[
+                  { name: "Entrepreneurial Journey", count: "Flagship" },
+                  { name: "Design Thinking", count: "8 Sessions" },
+                  { name: "Customer Experience", count: "10 Sessions" },
+                  { name: "Ideation & Validation", count: "3 Sessions" },
+                  { name: "AI as a Cofounder", count: "3 Sessions" },
+                  { name: "Business & Financial Model Design", count: "6 Sessions" },
+                ].map(c => (
+                  <div class="flex items-center justify-between py-3.5">
+                    <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">{c.name}</span>
+                    <span class="text-xs text-navy-400 flex-shrink-0 ml-3" style="font-family:var(--font-display)">{c.count}</span>
                   </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-2" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
-                  <p class="text-white text-[10px] font-medium leading-tight" style="font-family: var(--font-display)">{v.title}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-
-      </div>
-
-      <!-- INNOVATION TAB -->
-      <div id="tab-entrepreneurship" class="tab-panel hidden">
-        <div class="grid md:grid-cols-3 gap-5">
-          <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
-            <div class="h-40 bg-navy-900 relative flex items-end p-6">
-              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.12) 0%, transparent 60%)"></div>
-              <span class="relative z-10 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">15 Sessions</span>
-            </div>
-            <div class="p-7">
-              <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Entrepreneurial Journey</h3>
-              <p class="text-navy-400 text-sm mb-3">From idea to scale — drawn from real ventures, 4 innovation programs, and work with accelerators across three continents. Real-world, not theoretical.</p>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Ideation, validation & lean startup</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Business model design & iteration</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Fundraising & investor relations</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Scaling operations & team building</li>
-              </ul>
-            </div>
-          </div>
-          <div class="flex flex-col gap-5">
-            <div class="work-card bg-white rounded-2xl p-6 flex-1">
-              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">8 Sessions</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Design Thinking</h3>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Empathy mapping & user research</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Ideation & rapid prototyping</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Testing & iteration cycles</li>
-              </ul>
-            </div>
-            <div class="work-card bg-white rounded-2xl p-6 flex-1">
-              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">10 Sessions</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Customer Experience</h3>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Service design & journey mapping</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Loyalty & retention strategies</li>
-              </ul>
-            </div>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">3 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Ideation & Validation</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Problem discovery & opportunity framing</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Rapid testing & assumption mapping</li>
-            </ul>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">3 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">AI as a Cofounder</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Using AI to research, build & decide faster</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Prompt strategies for founders</li>
-            </ul>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">6 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Business & Financial Model Design</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Business model canvas & revenue design</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Unit economics & financial projections</li>
-            </ul>
-          </div>
-        </div>
-        <div class="mt-8">
-          <p class="text-xs text-navy-400 font-semibold tracking-widest uppercase mb-4" style="font-family: var(--font-display)">Session Samples</p>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { href: "https://vimeo.com/1175612851", vid: "1175612851", title: "Intro to Entrepreneurship",  sub: "Azerbaijan State Economics University" },
-              { href: "https://vimeo.com/1175612955", vid: "1175612955", title: "Startup Culture",            sub: "Baku State University" },
-              { href: "https://vimeo.com/1175612878", vid: "1175612878", title: "Lean Startup",              sub: "Academy of Public Administration" },
-              { href: "https://vimeo.com/1175612914", vid: "1175612914", title: "Product Prototyping",       sub: "Azerbaijan State Economic University" },
-            ].map(v => (
-              <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-                <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-10 h-10 rounded-full bg-white/90 group-hover:scale-110 transition-transform flex items-center justify-center">
-                    <svg class="w-4 h-4 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
-                  <p class="text-white font-semibold text-xs leading-tight" style="font-family: var(--font-display)">{v.title}</p>
-                  <p class="text-xs mt-0.5" style="color: rgba(255,255,255,0.55)">{v.sub}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <!-- INNOVATION PROGRAMS TAB -->
-      <div id="tab-innovation" class="tab-panel hidden">
-        <div class="py-2">
-
-          <!-- Featured: RCU Scale-up Hub -->
-          <div class="work-card bg-navy-950 rounded-2xl overflow-hidden mb-5 relative">
-            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.12) 0%, transparent 60%)"></div>
-            <div class="relative z-10 p-7 md:p-8">
-              <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                <div class="flex-1">
-                  <div class="flex flex-wrap items-center gap-2 mb-3">
-                    <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full" style="font-family:var(--font-display)">Saudi Arabia · 2024</span>
-                    <span class="text-xs font-medium px-3 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);font-family:var(--font-display)">Scale-up Program</span>
-                  </div>
-                  <h3 class="font-bold text-2xl text-white mb-2" style="font-family:var(--font-display)">RCU Scale-up Hub</h3>
-                  <p class="text-sm mb-4 max-w-xl" style="color:rgba(255,255,255,0.6);line-height:1.6">Co-designed and launched a structured innovation program for the Royal Commission for AlUla — matching global scale-ups with RCU business units to run funded pilot projects across the entire tourism value chain. IE & KAUST professors delivered training; network included UNWTO, MIT, NASA, and Amadeus Ventures.</p>
-                  <div class="flex flex-wrap gap-6 mb-5">
-                    <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">100</p><p class="text-xs" style="color:rgba(255,255,255,0.4)">Applications received</p></div>
-                    <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">10</p><p class="text-xs" style="color:rgba(255,255,255,0.4)">Scale-ups validated</p></div>
-                    <div><p class="font-bold text-orange-400 text-xl" style="font-family:var(--font-display)">€250k</p><p class="text-xs" style="color:rgba(255,255,255,0.4)">Pilot funding per startup</p></div>
-                    <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5</p><p class="text-xs" style="color:rgba(255,255,255,0.4)">Startups piloting</p></div>
-                  </div>
-                  <div class="flex flex-wrap gap-3">
-                    <a href="https://www.zawya.com/en/business/travel-and-tourism/rcu-launches-scale-up-hub-program-to-enhance-tourism-in-alula-ptpmy2hr" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full transition-all" style="background:rgba(244,98,31,0.2);color:#F4621F;border:1px solid rgba(244,98,31,0.35);font-family:var(--font-display)">
-                      Read Article →
-                    </a>
-                    <a href="/rcu-scale-up-hub.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full transition-all" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.12);font-family:var(--font-display)">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17H8v-2h4v2zm4-4H8v-2h8v2z"/></svg>
-                      View Deck
-                    </a>
-                  </div>
-                </div>
+                ))}
               </div>
-            </div>
-          </div>
-
-          <!-- 3 programs grid -->
-          <div class="grid md:grid-cols-3 gap-5 mb-5">
-
-            <!-- SABAH Hub -->
-            <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-3">
-                  <span class="text-orange-500 text-xs font-bold tracking-widest uppercase" style="font-family:var(--font-display)">Gulf Region</span>
-                  <span class="text-navy-300 text-xs" style="font-family:var(--font-display)">Startup Hub</span>
-                </div>
-                <h3 class="font-bold text-lg text-navy-900 mb-2" style="font-family:var(--font-display)">SABAH Hub</h3>
-                <p class="text-navy-400 text-sm leading-relaxed mb-3">First innovation hub in Azerbaijan — scaled from one program to a full ecosystem of accelerator, incubator, academy, fund, and studio. Led curriculum, partnerships, and operations from launch through year 3.</p>
-                <div class="flex gap-4 mb-4">
-                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">6</p><p class="text-xs text-navy-400">Cohorts</p></div>
-                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">$3M+</p><p class="text-xs text-navy-400">Raised</p></div>
-                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">1,000+</p><p class="text-xs text-navy-400">Applications</p></div>
-                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">5</p><p class="text-xs text-navy-400">Programs</p></div>
-                </div>
-              </div>
-              <a href="https://sabahhub.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-500" style="font-family:var(--font-display)">
-                Visit Program →
-              </a>
+              <p class="text-xs text-navy-300 mt-5 italic">And growing.</p>
             </div>
 
-            <!-- Wyss Academy Changemakers -->
-            <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-3">
-                  <span class="text-orange-500 text-xs font-bold tracking-widest uppercase" style="font-family:var(--font-display)">Switzerland</span>
-                  <span class="text-navy-300 text-xs" style="font-family:var(--font-display)">Sustainability</span>
-                </div>
-                <h3 class="font-bold text-lg text-navy-900 mb-2" style="font-family:var(--font-display)">Changemakers Program</h3>
-                <p class="text-navy-400 text-sm leading-relaxed mb-4">Wyss Academy for Nature program developing entrepreneurs and innovators tackling sustainability and biodiversity challenges at the intersection of science, society, and business.</p>
-              </div>
-              <a href="https://www.wyssacademy.org/en/changemakers-program" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-500" style="font-family:var(--font-display)">
-                Visit Program →
-              </a>
-            </div>
-
-            <!-- Science Connexion Reto + TEC Venture Builder -->
-            <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-3">
-                  <span class="text-orange-500 text-xs font-bold tracking-widest uppercase" style="font-family:var(--font-display)">Mexico · TEC de Monterrey</span>
-                  <span class="text-navy-300 text-xs" style="font-family:var(--font-display)">Venture Builder</span>
-                </div>
-                <h3 class="font-bold text-lg text-navy-900 mb-2" style="font-family:var(--font-display)">Science Connexion & Blue Lab</h3>
-                <p class="text-navy-400 text-sm leading-relaxed mb-3">University-backed venture builder at Tecnológico de Monterrey developing startups from institutional IP. Two ventures — SITTAROB (biotech waste processing) and Arquitectura de Horizontes (AI decision intelligence) — taken through Discovery and market validation.</p>
-                <div class="flex gap-4 mb-4">
-                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">2</p><p class="text-xs text-navy-400">Ventures built</p></div>
-                  <div><p class="font-bold text-navy-900" style="font-family:var(--font-display)">21+</p><p class="text-xs text-navy-400">Experts interviewed</p></div>
-                </div>
-              </div>
-              <div class="flex flex-wrap gap-3">
-                <a href="https://scienceconnexion.com/Convocatorias/SobreReto/6" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-500" style="font-family:var(--font-display)">View Program →</a>
-                <a href="/tec-venture-builder.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-navy-400" style="font-family:var(--font-display)">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17H8v-2h4v2zm4-4H8v-2h8v2z"/></svg>
-                  View Deck
-                </a>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
-      <!-- AI TAB -->
-      <div id="tab-ai" class="tab-panel hidden">
-        <div class="grid md:grid-cols-3 gap-5">
-          <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
-            <div class="h-40 bg-navy-950 relative flex items-end p-6">
-              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.15) 0%, transparent 60%)"></div>
-              <span class="relative z-10 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">24 Walkthroughs</span>
-            </div>
-            <div class="p-7">
-              <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">GenAI Workflow Library</h3>
-              <p class="text-navy-400 text-sm mb-3">Step-by-step AI workflow demonstrations built for real professional contexts — not theory, but tools you can use today.</p>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Research, reports & presentations with AI</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Excel & data analysis with Copilot</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Meeting productivity & team collaboration</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Custom GPT design for education & business</li>
-              </ul>
-            </div>
-          </div>
-          <div class="flex flex-col gap-5">
-            <div class="work-card bg-white rounded-2xl p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT Series</p>
-                <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Stock Options Tutor 1–3</h3>
-                <ul class="space-y-1.5 mb-4">
-                  <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Progressive 3-level simulation</li>
-                  <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Call & put options through scenarios</li>
-                </ul>
-              </div>
-              <div class="flex gap-3">
-                <a href="https://chatgpt.com/g/g-67e66b83b1288191afef1bfa8c2fb089-stock-option-tutor-1" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">L1 →</a>
-                <a href="https://chatgpt.com/g/g-67e665aa53dc81918763a71569557dcc-stock-option-tutor-2" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">L2 →</a>
-                <a href="https://chatgpt.com/g/g-67ed6f19e8d08191ac2f4fdacb34adbe-stock-option-tutor-3" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">L3 →</a>
-              </div>
-            </div>
-            <div class="work-card bg-white rounded-2xl p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT</p>
-                <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Futures Trader Pro</h3>
-                <ul class="space-y-1.5 mb-4">
-                  <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>5-round live market simulation</li>
-                  <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Real prices, contracts & headlines</li>
-                </ul>
-              </div>
-              <a href="https://chatgpt.com/g/g-67f17440919481918ec80d0593f8f218-futures-trader-pro" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
-            </div>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
-            <div>
-              <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Custom GPT</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Macro Finance World</h3>
-              <ul class="space-y-1.5 mb-4">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Macroeconomic decision-making</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Industry & market event responses</li>
-              </ul>
-            </div>
-            <a href="https://chatgpt.com/g/g-67ab3edec99881918e280a7f42de0e27-macro-finance-world" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
-            <div>
-              <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Claude Artifact</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Valuation Tutor</h3>
-              <ul class="space-y-1.5 mb-4">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Socratic DCF valuation coaching</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>No answers — only deeper questions</li>
-              </ul>
-            </div>
-            <a href="https://claude.ai/public/artifacts/3a156b7f-e05b-4e72-b6f0-788f28870b41" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6 flex flex-col justify-between">
-            <div>
-              <p class="text-xs text-orange-500 font-semibold mb-2" style="font-family: var(--font-display)">Perplexity Computer</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Global Macro Risk Dashboard</h3>
-              <ul class="space-y-1.5 mb-4">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Deep research & scenario analysis</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Global economy risk report</li>
-              </ul>
-            </div>
-            <a href="https://www.perplexity.ai/computer/tasks/global-macro-risk-dashboard-re-1AHm8gjISKuHhrH6tN.ORA?view=thread" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500" style="font-family:var(--font-display)">Launch →</a>
-          </div>
-        </div>
-
-        <!-- AI Videos -->
-        <div class="mt-8">
-          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-5" style="font-family: var(--font-display)">See It In Practice</p>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { vid: "1175529346", key: "aivid1", title: "Leveraging AI for Financial Analysis and Valuation with Excel", label: "AI + Excel" },
-              { vid: "1175529293", key: "aivid2", title: "Advanced Features of Claude and Excel for Financial Modeling", label: "Claude + Excel" },
-              { vid: "1175530353", key: "aivid3", title: "Creating Interactive Financial Dashboards with Perplexity", label: "Perplexity + Finance" },
-              { vid: "1175532671", key: "aivid4", title: "Exploring the Features and Benefits of NotebookLM", label: "NotebookLM" },
-            ].map(v => (
-              <div id={`aivid-frame-${v.key}`} class="rounded-2xl overflow-hidden" style="position:relative;aspect-ratio:16/9;cursor:pointer" onclick={`playAiVideo('${v.key}','${v.vid}')`}>
-                <!-- Thumbnail -->
-                <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-                <!-- Gradient overlay -->
-                <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 100%)"></div>
-                <!-- Play button -->
-                <div id={`aivid-overlay-${v.key}`} style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
-                  <div style="width:56px;height:56px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.3)">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0D1B2A"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                </div>
-                <!-- Title -->
-                <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px">
-                  <p style="color:#fff;font-size:13px;font-weight:700;line-height:1.3;font-family:var(--font-display);margin-bottom:3px">{v.title}</p>
-                  <p style="color:rgba(255,255,255,0.55);font-size:11px;font-family:var(--font-display)">{v.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <!-- BEHAVIORAL TAB -->
-      <div id="tab-behavioral" class="tab-panel hidden">
-        <div class="grid md:grid-cols-3 gap-5">
-          <div class="md:col-span-2 work-card work-card-featured bg-white rounded-2xl overflow-hidden">
-            <div class="h-40 bg-navy-900 relative flex items-end p-6">
-              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(244,98,31,0.12) 0%, transparent 60%)"></div>
-              <span class="relative z-10 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full" style="font-family: var(--font-display)">15 Sessions</span>
-            </div>
-            <div class="p-7">
-              <h3 class="font-bold text-xl text-navy-900 mb-1" style="font-family: var(--font-display)">Critical Skills for the Modern World</h3>
-              <p class="text-navy-400 text-sm mb-3">Behavioral science applied to professional life — the decisions you make, the biases you carry, and the habits that hold you back or push you forward.</p>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Cognitive bias & decision traps</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Habit formation & behavior change</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Navigating uncertainty & complexity</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Human performance in digital environments</li>
-              </ul>
-            </div>
-          </div>
-          <div class="flex flex-col gap-5">
-            <div class="work-card bg-white rounded-2xl p-6 flex-1">
-              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">8 Sessions</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Critical Thinking</h3>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Information evaluation frameworks</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Bias identification & reasoning</li>
-              </ul>
-            </div>
-            <div class="work-card bg-white rounded-2xl p-6 flex-1">
-              <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">8 Sessions</p>
-              <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Decision Making</h3>
-              <ul class="space-y-1.5">
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Structured decision frameworks</li>
-                <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Risk, uncertainty & trade-offs</li>
-              </ul>
-            </div>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">8 Sessions</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Financial Behavior</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Psychology of money & loss aversion</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Behavioral economics in practice</li>
-            </ul>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Research</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Human & Machine Intelligence</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Where humans outperform machines</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Where machines close the gap</li>
-            </ul>
-          </div>
-          <div class="work-card bg-white rounded-2xl p-6">
-            <p class="text-xs text-navy-400 mb-2" style="font-family: var(--font-display)">Content Series</p>
-            <h3 class="font-semibold text-base text-navy-900 mb-3" style="font-family: var(--font-display)">Flow Financial Behavior Series</h3>
-            <ul class="space-y-1.5">
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>8 financial behaviors that drive us</li>
-              <li class="flex items-center gap-2 text-xs text-navy-500"><span class="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0"></span>Myth-busting & habit building</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Simulations -->
-        <div class="mt-8">
-          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-5" style="font-family: var(--font-display)">Live Simulations</p>
-          <div class="grid md:grid-cols-3 gap-4">
-            {[
-              {
-                tag: "Custom GPT",
-                name: "Telecomm AI Quick Case",
-                desc: "A rapid-fire case study simulation where participants analyse an AI-driven disruption in the telecom sector and make real business decisions under pressure.",
-                href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case",
-                icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(244,98,31,0.9)" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`
-              },
-              {
-                tag: "Custom GPT",
-                name: "Telecomm Decision-Making Simulator",
-                desc: "Multi-round simulation placing participants in the C-suite of a telecoms company navigating competitive, regulatory, and technological disruption.",
-                href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator",
-                icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(244,98,31,0.9)" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`
-              },
-              {
-                tag: "Claude Artifact",
-                name: "The War Room",
-                desc: "An immersive negotiation and crisis-management simulation. Teams face high-stakes scenarios where cognitive biases, group dynamics, and pressure are the real exam.",
-                href: "https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5",
-                icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(244,98,31,0.9)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
-              },
-            ].map(s => (
-              <div class="rounded-2xl overflow-hidden flex flex-col" style="background:#0D1B2A;box-shadow:0 4px 24px rgba(0,0,0,0.15)">
-                <!-- dark header strip -->
-                <div class="relative flex items-center justify-center" style="height:90px;background:linear-gradient(135deg,#0D1B2A 0%,#162840 60%,#1a2e42 100%)">
-                  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(244,98,31,0.12) 0%,transparent 70%)"></div>
-                  <div style="position:relative;z-index:1;width:52px;height:52px;border-radius:16px;background:rgba(244,98,31,0.1);border:1px solid rgba(244,98,31,0.2);display:flex;align-items:center;justify-content:center" set:html={s.icon}></div>
-                </div>
-                <!-- content -->
-                <div class="p-5 flex flex-col flex-1 justify-between">
-                  <div>
-                    <p class="text-xs font-semibold mb-2" style="font-family:var(--font-display);color:rgba(244,98,31,0.85)">{s.tag}</p>
-                    <h3 class="font-semibold text-sm mb-2.5" style="font-family:var(--font-display);color:#fff">{s.name}</h3>
-                    <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,0.45)">{s.desc}</p>
-                  </div>
-                  <a href={s.href} target="_blank" rel="noopener"
-                    class="mt-5 inline-flex items-center justify-center gap-2 text-xs font-bold rounded-xl py-2.5 transition-all"
-                    style="font-family:var(--font-display);background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3)">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    Launch Simulation
+            <!-- Box 3: Digital Assets -->
+            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-5" style="font-family:var(--font-display)">Digital Assets</span>
+              <div class="grid grid-cols-2 gap-2">
+                {[
+                  { href: "https://vimeo.com/1175612851", vid: "1175612851", title: "Intro to Entrepreneurship" },
+                  { href: "https://vimeo.com/1175612955", vid: "1175612955", title: "Startup Culture" },
+                  { href: "https://vimeo.com/1175612878", vid: "1175612878", title: "Lean Startup" },
+                  { href: "https://vimeo.com/1175612914", vid: "1175612914", title: "Product Prototyping" },
+                ].map(v => (
+                  <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+                    <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
+                        <svg class="w-3 h-3 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-1.5" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
+                      <p class="text-white font-semibold text-[9px] leading-tight" style="font-family: var(--font-display)">{v.title}</p>
+                    </div>
                   </a>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
           </div>
         </div>
+        </div><!-- /classroom-sub-entrepreneurship -->
+
+        <div id="classroom-sub-behavioral" class="hidden">
+        <!-- Behavioral Group -->
+        <div>
+          <div class="grid md:grid-cols-3 gap-6">
+
+            <!-- Box 1: Subject Identity -->
+            <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
+              <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
+                <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Classroom</span>
+                <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">BEHAVIORAL SCIENCES</h2>
+                <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Where cognitive bias meets professional decisions. Applied across finance, leadership, and AI adoption.</p>
+                <div class="flex gap-5 mb-6">
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">6</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Courses</p></div>
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">3</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Live simulations</p></div>
+                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5+</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Industries</p></div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mt-auto">
+                  {["IE Business School", "Oregon State", "PIF Saudi Arabia", "STC"].map(i => (
+                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Box 2: Courses -->
+            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Courses</span>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">6 Topics</span>
+              </div>
+              <div class="flex flex-col flex-1 divide-y divide-warm-100">
+                {[
+                  { name: "Critical Skills for the Modern World", count: "Flagship" },
+                  { name: "Critical Thinking", count: "8 Sessions" },
+                  { name: "Decision Making", count: "8 Sessions" },
+                  { name: "Financial Behavior", count: "8 Sessions" },
+                  { name: "Human & Machine Intelligence", count: "Research" },
+                  { name: "Flow Financial Behavior Series", count: "Content" },
+                ].map(c => (
+                  <div class="flex items-center justify-between py-3.5">
+                    <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">{c.name}</span>
+                    <span class="text-xs text-navy-400 flex-shrink-0 ml-3" style="font-family:var(--font-display)">{c.count}</span>
+                  </div>
+                ))}
+              </div>
+              <p class="text-xs text-navy-300 mt-5 italic">And growing.</p>
+            </div>
+
+            <!-- Box 3: Digital Assets -->
+            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-5" style="font-family:var(--font-display)">Digital Assets</span>
+              <div class="flex flex-col gap-3">
+                {[
+                  {
+                    tag: "Custom GPT",
+                    name: "Telecomm AI Quick Case",
+                    href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case",
+                  },
+                  {
+                    tag: "Custom GPT",
+                    name: "Telecomm Decision-Making Simulator",
+                    href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator",
+                  },
+                  {
+                    tag: "Claude Artifact",
+                    name: "The War Room",
+                    href: "https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5",
+                  },
+                ].map(s => (
+                  <a href={s.href} target="_blank" rel="noopener"
+                    class="flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group">
+                    <div>
+                      <p class="text-xs text-orange-500 font-semibold mb-0.5" style="font-family:var(--font-display)">{s.tag}</p>
+                      <p class="text-sm text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">{s.name}</p>
+                    </div>
+                    <span class="text-orange-500 text-sm font-bold flex-shrink-0 group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div><!-- /classroom-sub-behavioral -->
+
       </div>
 
-      <!-- DIGITAL COURSES TAB -->
-      <div id="tab-courses" class="tab-panel hidden">
-        <div class="py-6">
-          <p class="text-navy-400 text-sm leading-relaxed mb-12">Three fully-produced digital courses built for Rebundle's WhatsApp platform — delivered as conversational micro-lessons directly on mobile.</p>
-          <div class="flex flex-col sm:flex-row items-start justify-center gap-10 lg:gap-20">
-            {[
-              { vid: "1175515603", key: "maia",  tag: "AI",        name: "Generative AI for Business Professionals",     desc: "Start with AI basics and learn from the best." },
-              { vid: "1175515477", key: "diana", tag: "Analytics", name: "Digital Analytics for Business Professionals", desc: "Conquer the fundamentals of Google Analytics." },
-              { vid: "1175515542", key: "eliza", tag: "Wellbeing", name: "Mental Health in the Digital Era",             desc: "Battle social dynamics in disorder development." },
-            ].map(c => (
-              <div class="flex flex-col items-center gap-5 flex-1 max-w-[220px] mx-auto">
-                <!-- iPhone wrapper (provides room for side buttons) -->
-                <div style="position:relative;width:200px;padding:0 8px">
-                  <!-- Left side buttons -->
-                  <div style="position:absolute;left:0;top:72px;width:3px;height:28px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
-                  <div style="position:absolute;left:0;top:112px;width:3px;height:44px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
-                  <div style="position:absolute;left:0;top:164px;width:3px;height:44px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
-                  <!-- Right side button (power) -->
-                  <div style="position:absolute;right:0;top:110px;width:3px;height:56px;background:#3A3A3C;border-radius:0 2px 2px 0"></div>
+      <!-- FIELD PANEL -->
+      <div id="work-panel-field" class="hidden">
 
-                  <!-- iPhone frame -->
-                  <div style="width:184px;aspect-ratio:9/19.5;background:#1C1C1E;border-radius:44px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15),0 0 0 1.5px #000,0 0 0 2.5px #2C2C2E,0 32px 64px rgba(0,0,0,0.5);position:relative;overflow:hidden">
-                    <!-- Screen (edge-to-edge) -->
-                    <div style="position:absolute;inset:0;border-radius:42px;overflow:hidden;background:#000">
-                      <!-- Status bar -->
-                      <div style="position:absolute;top:0;left:0;right:0;height:44px;z-index:30;display:flex;align-items:flex-end;justify-content:space-between;padding:0 18px 6px">
-                        <span style="font-size:11px;font-weight:600;color:#fff;letter-spacing:-0.3px">9:41</span>
-                        <div style="display:flex;align-items:center;gap:5px">
-                          <!-- Signal -->
-                          <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><rect x="0" y="6" width="3" height="5" rx="0.5"/><rect x="4" y="4" width="3" height="7" rx="0.5"/><rect x="8" y="2" width="3" height="9" rx="0.5"/><rect x="12" y="0" width="3" height="11" rx="0.5"/></svg>
-                          <!-- WiFi -->
-                          <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><path d="M7.5 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3.5a4.5 4.5 0 0 1 3.18 1.32l1.06-1.06A6 6 0 0 0 7.5 4a6 6 0 0 0-4.24 1.76l1.06 1.06A4.5 4.5 0 0 1 7.5 5.5zm0-3.5a7.5 7.5 0 0 1 5.3 2.2L13.86 3.14A9 9 0 0 0 7.5 1a9 9 0 0 0-6.36 2.64L2.2 4.7A7.5 7.5 0 0 1 7.5 2.5z" opacity="0.9"/></svg>
-                          <!-- Battery -->
-                          <svg width="24" height="12" viewBox="0 0 24 12" fill="white"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="white" stroke-width="1.2" fill="none"/><rect x="21.5" y="4" width="2" height="4" rx="1" fill="white" opacity="0.4"/><rect x="1.5" y="2.5" width="16" height="7" rx="1.5" fill="white"/></svg>
-                        </div>
-                      </div>
-                      <!-- Dynamic Island -->
-                      <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:28px;background:#000;border-radius:20px;z-index:40;box-shadow:0 0 0 1px #1C1C1E"></div>
-                      <!-- Video iframe -->
-                      <iframe
-                        id={`vimeo-${c.key}`}
-                        src={`https://player.vimeo.com/video/${c.vid}?controls=0&title=0&byline=0&portrait=0&playsinline=1&dnt=1`}
-                        style="position:absolute;inset:0;width:100%;height:100%;display:block;border:none"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowfullscreen
-                      />
-                      <!-- Custom controls bar (hidden until play) -->
-                      <div id={`controls-${c.key}`} style="display:none;position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:35;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);border-radius:24px;padding:6px 12px;display:none;align-items:center;gap:12px">
-                        <!-- Skip back -->
-                        <button onclick={`seekVimeo('${c.key}',-15)`} style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;color:#fff;opacity:0.85" title="-15s">
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="7.5" y="15.5" font-size="6" font-weight="bold" fill="white" text-anchor="middle">15</text></svg>
-                        </button>
-                        <!-- Pause/Play toggle -->
-                        <button id={`playpause-${c.key}`} onclick={`toggleVimeo('${c.key}')`} style="background:rgba(255,255,255,0.15);border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                        </button>
-                        <!-- Skip forward -->
-                        <button onclick={`seekVimeo('${c.key}',15)`} style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;color:#fff;opacity:0.85" title="+15s">
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 13c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6v4l5-5-5-5v4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8h-2z"/><text x="16.5" y="15.5" font-size="6" font-weight="bold" fill="white" text-anchor="middle">15</text></svg>
-                        </button>
-                      </div>
-                      <!-- Home indicator -->
-                      <div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:100px;height:4px;background:rgba(255,255,255,0.35);border-radius:3px;z-index:30"></div>
-                    </div>
+        <!-- Field sub-toggles -->
+        <div class="flex gap-0 border-b border-warm-300 mb-8">
+          <button id="field-btn-innovation" onclick="switchFieldSub('innovation')"
+            class="px-5 pb-3 pt-1 text-sm font-bold transition-all border-b-2 -mb-px"
+            style="font-family:var(--font-display);color:#0D1B2A;border-bottom-color:#F4621F">
+            Innovation Programs
+          </button>
+          <button id="field-btn-ai" onclick="switchFieldSub('ai')"
+            class="px-5 pb-3 pt-1 text-sm font-medium transition-all border-b-2 -mb-px"
+            style="font-family:var(--font-display);color:#5B7494;border-bottom-color:transparent">
+            AI
+          </button>
+          <button id="field-btn-digital" onclick="switchFieldSub('digital')"
+            class="px-5 pb-3 pt-1 text-sm font-medium transition-all border-b-2 -mb-px"
+            style="font-family:var(--font-display);color:#5B7494;border-bottom-color:transparent">
+            Digital Courses
+          </button>
+        </div>
+
+        <div id="field-sub-innovation">
+        <!-- Innovation Programs Group -->
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Box 1: Identity -->
+          <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
+            <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
+              <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Field</span>
+              <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">INNOVATION PROGRAMS</h2>
+              <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Four programs built and run across three continents — from Azerbaijan to Saudi Arabia to Switzerland.</p>
+              <div class="flex gap-5 mb-6">
+                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">4</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Programs</p></div>
+                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">3</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Continents</p></div>
+                <div><p class="font-bold text-orange-400 text-xl" style="font-family:var(--font-display)">€250k</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Pilot funding</p></div>
+              </div>
+              <div class="flex flex-wrap gap-1.5 mt-auto">
+                {["RCU AlUla", "SABAH Hub", "Wyss Academy", "TEC de Monterrey"].map(i => (
+                  <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 2: Programs List -->
+          <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Programs</span>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">4 Total</span>
+            </div>
+            <div class="flex flex-col flex-1 divide-y divide-warm-100">
+              {[
+                { name: "RCU Scale-up Hub", location: "Saudi Arabia · 2024", href: "https://www.zawya.com/en/business/travel-and-tourism/rcu-launches-scale-up-hub-program-to-enhance-tourism-in-alula-ptpmy2hr" },
+                { name: "SABAH Hub", location: "Azerbaijan", href: "https://sabahhub.com/" },
+                { name: "Changemakers Program", location: "Switzerland", href: "https://www.wyssacademy.org/en/changemakers-program" },
+                { name: "Science Connexion & Blue Lab", location: "Mexico", href: "https://scienceconnexion.com/Convocatorias/SobreReto/6" },
+              ].map(p => (
+                <a href={p.href} target="_blank" rel="noopener"
+                  class="flex items-center justify-between py-3.5 group">
+                  <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">{p.name}</span>
+                  <div class="flex items-center gap-2 flex-shrink-0 ml-3">
+                    <span class="text-xs text-navy-400" style="font-family:var(--font-display)">{p.location}</span>
+                    <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
                   </div>
+                </a>
+              ))}
+            </div>
+          </div>
 
-                  <!-- Play overlay -->
-                  <div id={`overlay-${c.key}`}
-                    style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;border-radius:44px"
-                    onclick={`playVimeoPhone('${c.key}')`}>
-                    <div style="width:56px;height:56px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.4);backdrop-filter:blur(8px)">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="#0D1B2A"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
+          <!-- Box 3: Digital Assets -->
+          <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+            <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-5" style="font-family:var(--font-display)">Digital Assets</span>
+            <div class="flex flex-col gap-3">
+              {[
+                { tag: "Article", name: "RCU Scale-up Hub — Zawya", href: "https://www.zawya.com/en/business/travel-and-tourism/rcu-launches-scale-up-hub-program-to-enhance-tourism-in-alula-ptpmy2hr" },
+                { tag: "Deck (PDF)", name: "RCU Scale-up Hub", href: "/rcu-scale-up-hub.pdf" },
+                { tag: "Deck (PDF)", name: "TEC Venture Builder", href: "/tec-venture-builder.pdf" },
+              ].map(s => (
+                <a href={s.href} target="_blank" rel="noopener"
+                  class="flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group">
+                  <div>
+                    <p class="text-xs text-orange-500 font-semibold mb-0.5" style="font-family:var(--font-display)">{s.tag}</p>
+                    <p class="text-sm text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">{s.name}</p>
                   </div>
-                </div>
+                  <span class="text-orange-500 text-sm font-bold flex-shrink-0 group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              ))}
+            </div>
+          </div>
 
-                <div class="text-center">
-                  <span class="text-orange-500 text-xs font-bold tracking-[0.15em] uppercase" style="font-family:var(--font-display)">{c.tag}</span>
-                  <h3 class="font-bold text-navy-900 text-sm mt-1.5 leading-snug" style="font-family:var(--font-display)">{c.name}</h3>
-                  <p class="text-navy-400 text-xs mt-1 leading-relaxed">{c.desc}</p>
+        </div>
+        </div><!-- /field-sub-innovation -->
+
+
+        <div id="field-sub-ai" class="hidden">
+        <!-- AI Group -->
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Box 1: Identity -->
+          <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
+            <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
+              <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Field</span>
+              <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">AI IN PRACTICE</h2>
+              <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">GenAI tools built for real professional contexts — from classroom simulations to client intelligence.</p>
+              <div class="flex gap-5 mb-6">
+                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">6</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Tools built</p></div>
+                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Deliverables</p></div>
+                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">4</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Videos</p></div>
+              </div>
+              <div class="flex flex-wrap gap-1.5 mt-auto">
+                {["IE Business School", "Kyowa Kirin", "STC", "Executive Ed"].map(i => (
+                  <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 2: Tools List -->
+          <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Tools Built</span>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">6 Tools</span>
+            </div>
+            <div class="flex flex-col flex-1 divide-y divide-warm-100">
+              <div class="flex items-center justify-between py-3.5">
+                <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">GenAI Workflow Library</span>
+                <span class="text-xs text-navy-400 flex-shrink-0 ml-3" style="font-family:var(--font-display)">24 Walkthroughs</span>
+              </div>
+              <div class="flex items-center justify-between py-3.5 gap-2">
+                <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">Stock Options Tutor 1–3</span>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <a href="https://chatgpt.com/g/g-67e66b83b1288191afef1bfa8c2fb089-stock-option-tutor-1" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500 hover:underline" style="font-family:var(--font-display)">L1 →</a>
+                  <a href="https://chatgpt.com/g/g-67e665aa53dc81918763a71569557dcc-stock-option-tutor-2" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500 hover:underline" style="font-family:var(--font-display)">L2 →</a>
+                  <a href="https://chatgpt.com/g/g-67ed6f19e8d08191ac2f4fdacb34adbe-stock-option-tutor-3" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500 hover:underline" style="font-family:var(--font-display)">L3 →</a>
                 </div>
               </div>
-            ))}
+              <a href="https://chatgpt.com/g/g-67f17440919481918ec80d0593f8f218-futures-trader-pro" target="_blank" rel="noopener"
+                class="flex items-center justify-between py-3.5 group">
+                <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">Futures Trader Pro</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-3">
+                  <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Custom GPT</span>
+                  <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
+                </div>
+              </a>
+              <a href="https://chatgpt.com/g/g-67ab3edec99881918e280a7f42de0e27-macro-finance-world" target="_blank" rel="noopener"
+                class="flex items-center justify-between py-3.5 group">
+                <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">Macro Finance World</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-3">
+                  <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Custom GPT</span>
+                  <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
+                </div>
+              </a>
+              <a href="https://claude.ai/public/artifacts/3a156b7f-e05b-4e72-b6f0-788f28870b41" target="_blank" rel="noopener"
+                class="flex items-center justify-between py-3.5 group">
+                <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">Valuation Tutor</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-3">
+                  <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Claude Artifact</span>
+                  <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
+                </div>
+              </a>
+              <a href="https://www.perplexity.ai/computer/tasks/global-macro-risk-dashboard-re-1AHm8gjISKuHhrH6tN.ORA?view=thread" target="_blank" rel="noopener"
+                class="flex items-center justify-between py-3.5 group">
+                <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">Global Macro Risk</span>
+                <div class="flex items-center gap-2 flex-shrink-0 ml-3">
+                  <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Perplexity</span>
+                  <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Box 3: Digital Assets -->
+          <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
+            <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-4" style="font-family:var(--font-display)">Digital Assets</span>
+            <div class="grid grid-cols-2 gap-2 mb-5">
+              {[
+                { href: "https://vimeo.com/1175529346", vid: "1175529346", title: "AI + Excel" },
+                { href: "https://vimeo.com/1175529293", vid: "1175529293", title: "Claude + Excel" },
+                { href: "https://vimeo.com/1175530353", vid: "1175530353", title: "Perplexity + Finance" },
+                { href: "https://vimeo.com/1175532671", vid: "1175532671", title: "NotebookLM" },
+              ].map(v => (
+                <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
+                  <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
+                      <svg class="w-3 h-3 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </div>
+                  <div class="absolute bottom-0 left-0 right-0 p-1.5" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
+                    <p class="text-white font-semibold text-[9px] leading-tight" style="font-family: var(--font-display)">{v.title}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+            <div class="border-t border-warm-100 pt-4">
+              <p class="text-xs font-semibold uppercase tracking-widest text-navy-300 mb-3" style="font-family:var(--font-display)">Client Deliverables</p>
+              <div class="flex flex-col gap-2">
+                {[
+                  { tag: "Perplexity Computer", name: "Taif Market Entry", href: "https://taifmarketentry.pplx.app" },
+                  { tag: "Perplexity Computer", name: "Hormuz Shock", href: "https://hormuzshock.pplx.app" },
+                  { tag: "Perplexity Computer", name: "Portfolio Risk Analysis", href: "https://portfolioanalysis.pplx.app" },
+                  { tag: "Perplexity Computer", name: "Macro Risk Intelligence", href: "https://macrorisks.pplx.app" },
+                  { tag: "Client Asset Bundle", name: "Delta Dossier", href: "/delta-dossier/" },
+                ].map(d => (
+                  <a href={d.href} target="_blank" rel="noopener"
+                    class="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg border border-warm-200 hover:border-orange-300 transition-colors group">
+                    <div class="min-w-0">
+                      <p class="text-[10px] text-orange-500 font-semibold" style="font-family:var(--font-display)">{d.tag}</p>
+                      <p class="text-xs text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">{d.name}</p>
+                    </div>
+                    <span class="text-orange-500 text-xs font-bold flex-shrink-0 group-hover:translate-x-0.5 transition-transform">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div><!-- /field-sub-ai -->
+
+
+
+        <div id="field-sub-digital" class="hidden">
+        <!-- Digital Courses Group -->
+        <div>
+          <div class="py-6">
+            <p class="text-navy-400 text-sm leading-relaxed mb-12">Three fully-produced digital courses built for Rebundle's WhatsApp platform — delivered as conversational micro-lessons directly on mobile.</p>
+            <div class="flex flex-col sm:flex-row items-start justify-center gap-10 lg:gap-20">
+              {[
+                { vid: "1175515603", key: "maia",  tag: "AI",        name: "Generative AI for Business Professionals",     desc: "Start with AI basics and learn from the best." },
+                { vid: "1175515477", key: "diana", tag: "Analytics", name: "Digital Analytics for Business Professionals", desc: "Conquer the fundamentals of Google Analytics." },
+                { vid: "1175515542", key: "eliza", tag: "Wellbeing", name: "Mental Health in the Digital Era",             desc: "Battle social dynamics in disorder development." },
+              ].map(c => (
+                <div class="flex flex-col items-center gap-5 flex-1 max-w-[220px] mx-auto">
+                  <div style="position:relative;width:200px;padding:0 8px">
+                    <div style="position:absolute;left:0;top:72px;width:3px;height:28px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
+                    <div style="position:absolute;left:0;top:112px;width:3px;height:44px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
+                    <div style="position:absolute;left:0;top:164px;width:3px;height:44px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
+                    <div style="position:absolute;right:0;top:110px;width:3px;height:56px;background:#3A3A3C;border-radius:0 2px 2px 0"></div>
+                    <div style="width:184px;aspect-ratio:9/19.5;background:#1C1C1E;border-radius:44px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15),0 0 0 1.5px #000,0 0 0 2.5px #2C2C2E,0 32px 64px rgba(0,0,0,0.5);position:relative;overflow:hidden">
+                      <div style="position:absolute;inset:0;border-radius:42px;overflow:hidden;background:#000">
+                        <div style="position:absolute;top:0;left:0;right:0;height:44px;z-index:30;display:flex;align-items:flex-end;justify-content:space-between;padding:0 18px 6px">
+                          <span style="font-size:11px;font-weight:600;color:#fff;letter-spacing:-0.3px">9:41</span>
+                          <div style="display:flex;align-items:center;gap:5px">
+                            <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><rect x="0" y="6" width="3" height="5" rx="0.5"/><rect x="4" y="4" width="3" height="7" rx="0.5"/><rect x="8" y="2" width="3" height="9" rx="0.5"/><rect x="12" y="0" width="3" height="11" rx="0.5"/></svg>
+                            <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><path d="M7.5 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3.5a4.5 4.5 0 0 1 3.18 1.32l1.06-1.06A6 6 0 0 0 7.5 4a6 6 0 0 0-4.24 1.76l1.06 1.06A4.5 4.5 0 0 1 7.5 5.5zm0-3.5a7.5 7.5 0 0 1 5.3 2.2L13.86 3.14A9 9 0 0 0 7.5 1a9 9 0 0 0-6.36 2.64L2.2 4.7A7.5 7.5 0 0 1 7.5 2.5z" opacity="0.9"/></svg>
+                            <svg width="24" height="12" viewBox="0 0 24 12" fill="white"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="white" stroke-width="1.2" fill="none"/><rect x="21.5" y="4" width="2" height="4" rx="1" fill="white" opacity="0.4"/><rect x="1.5" y="2.5" width="16" height="7" rx="1.5" fill="white"/></svg>
+                          </div>
+                        </div>
+                        <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:28px;background:#000;border-radius:20px;z-index:40;box-shadow:0 0 0 1px #1C1C1E"></div>
+                        <iframe
+                          id={`vimeo-${c.key}`}
+                          src={`https://player.vimeo.com/video/${c.vid}?controls=0&title=0&byline=0&portrait=0&playsinline=1&dnt=1`}
+                          style="position:absolute;inset:0;width:100%;height:100%;display:block;border:none"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowfullscreen
+                        />
+                        <div id={`controls-${c.key}`} style="display:none;position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:35;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);border-radius:24px;padding:6px 12px;display:none;align-items:center;gap:12px">
+                          <button onclick={`seekVimeo('${c.key}',-15)`} style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;color:#fff;opacity:0.85" title="-15s">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="7.5" y="15.5" font-size="6" font-weight="bold" fill="white" text-anchor="middle">15</text></svg>
+                          </button>
+                          <button id={`playpause-${c.key}`} onclick={`toggleVimeo('${c.key}')`} style="background:rgba(255,255,255,0.15);border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                          </button>
+                          <button onclick={`seekVimeo('${c.key}',15)`} style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;color:#fff;opacity:0.85" title="+15s">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 13c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6v4l5-5-5-5v4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8h-2z"/><text x="16.5" y="15.5" font-size="6" font-weight="bold" fill="white" text-anchor="middle">15</text></svg>
+                          </button>
+                        </div>
+                        <div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:100px;height:4px;background:rgba(255,255,255,0.35);border-radius:3px;z-index:30"></div>
+                      </div>
+                    </div>
+                    <div id={`overlay-${c.key}`}
+                      style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;border-radius:44px"
+                      onclick={`playVimeoPhone('${c.key}')`}>
+                      <div style="width:56px;height:56px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.4);backdrop-filter:blur(8px)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#0D1B2A"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <span class="text-orange-500 text-xs font-bold tracking-[0.15em] uppercase" style="font-family:var(--font-display)">{c.tag}</span>
+                    <h3 class="font-bold text-navy-900 text-sm mt-1.5 leading-snug" style="font-family:var(--font-display)">{c.name}</h3>
+                    <p class="text-navy-400 text-xs mt-1 leading-relaxed">{c.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+        </div><!-- /field-sub-digital -->
+
       </div>
 
     </div>
   </section>
 
   <!-- CINEMATIC BREAK -->
-  <div class="relative overflow-hidden" style="height: 50vh; min-height: 320px">
-    <img src="/speaking.jpg" alt="Arseniy Goldberg — Ministry of Finance, Saudi Arabia" class="w-full h-full object-cover" style="object-position: center 30%" />
+  <div class="relative overflow-hidden" style="height: 65vh; min-height: 420px">
+    <img src="/speaking.jpg" alt="Arseniy Goldberg — Ministry of Finance, Saudi Arabia" class="w-full h-full object-cover" style="object-position: 62% 30%" />
     <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.35) 40%, rgba(13,27,42,0.55) 100%)"></div>
     <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
     <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #F4F1EC, transparent)"></div>
@@ -1021,11 +983,11 @@ import Layout from '../layouts/Layout.astro';
           <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">What I'm Building</span>
         </div>
         <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
-          Three projects.<br>
-          <span class="text-navy-400 font-light">Finance, education, and AI — made accessible.</span>
+          Two projects.<br>
+          <span class="text-navy-400 font-light">Finance and education — made accessible.</span>
         </h2>
       </div>
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-2 gap-6 max-w-3xl">
         <div class="brand-card bg-white rounded-2xl p-8 reveal flex flex-col">
           <div class="mb-5">
             <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">Flow</h3>
@@ -1046,17 +1008,22 @@ import Layout from '../layouts/Layout.astro';
             <span>Visit North</span><span class="brand-arrow">→</span>
           </a>
         </div>
-        <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-2 flex flex-col">
-          <div class="mb-5">
-            <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">Stride</h3>
-          </div>
-          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">An AI workflow academy built from 150+ real-world use cases — not a theory course, but a library of things you can apply in your actual work today.</p>
-          <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">AI Workflows · Prompting · Productivity</p>
-          <span class="flex items-center gap-2 text-navy-300 text-sm" style="font-family: var(--font-display)">Coming Soon</span>
-        </div>
       </div>
     </div>
   </section>
+
+  <!-- CINEMATIC BREAK — BAKU -->
+  <div class="relative overflow-hidden" style="height: 60vh; min-height: 380px">
+    <img src="/baku-stage.jpg" alt="Arseniy Goldberg — on stage, Baku, Azerbaijan" class="w-full h-full object-cover" style="object-position: center 30%" />
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.3) 50%, rgba(13,27,42,0.55) 100%)"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
+    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #F4F1EC, transparent)"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
+        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Baku, Azerbaijan &nbsp;·&nbsp; SABAH Hub</p>
+      </div>
+    </div>
+  </div>
 
   <!-- RECOGNITION -->
   <section id="recognition" class="py-24 bg-warm-50">
@@ -1243,7 +1210,9 @@ import Layout from '../layouts/Layout.astro';
               { headline: "AI Week at IE Business School", topic: "Kicking off a full week of AI education across marketing, legal, HR, and finance at IE.", likes: 115, comments: 3, url: "https://www.linkedin.com/posts/arseniygoldberg_the-day-has-come-we-are-finally-kicking-activity-7398642043352289281-4VNi" },
               { headline: "What do you look for in education?", topic: "Running workshops across Texas schools: teaching students to find problems and pitch AI-driven solutions.", likes: 96, comments: 6, url: "https://www.linkedin.com/posts/arseniygoldberg_what-do-you-look-for-in-an-educational-experience-activity-7407328885970739201-LhGW" },
               { headline: "\"What do you want to do after university?\"", topic: "Most students had no idea — and that's a systemic problem, not a personal failure.", likes: 83, comments: 15, url: "https://www.linkedin.com/posts/arseniygoldberg_personaldevelopment-financialliteracy-highereducation-activity-7434553202827661313-HH4q" },
+              { headline: "Has anybody seen the graduation speeches?", topic: "Students booing Eric Schmidt at Columbia's graduation — on why AI disruption is an opportunity, not a catastrophe.", likes: 80, comments: 15, url: "https://www.linkedin.com/posts/arseniygoldberg_has-anybody-seen-the-graduation-speeches-share-7462770234530119681-FvAE" },
               { headline: "\"What comes to mind when you hear 'finance'?\"", topic: "Young adults feel excluded from money conversations — not because of ability, but permission.", likes: 78, comments: 8, url: "https://www.linkedin.com/posts/arseniygoldberg_personalfinance-financialliteracy-highereducation-activity-7432012296886915073-SDrp" },
+              { headline: "The student who got it right", topic: "A public recommendation for Pablo Anchia — and a reflection on the four things that make a student truly exceptional.", likes: 75, comments: 12, url: "https://www.linkedin.com/posts/arseniygoldberg_nyc-share-7455500851848114176-Uzt8" },
               { headline: "When people strongly oppose your decisions", topic: "Resistance from others often signals you're on a meaningful path — not a reason to stop.", likes: 63, comments: 4, url: "https://www.linkedin.com/posts/arseniygoldberg_personaldevelopment-careeradvice-moneymindset-activity-7435308161995227136-CzR-" },
               { headline: "We live in a world where AI agents...", topic: "New AI protocols from major tech companies are transforming finance — but hallucinations remain real.", likes: 46, comments: 2, url: "https://www.linkedin.com/posts/arseniygoldberg_we-live-in-a-world-where-googles-agent-activity-7383836035509567489-SN_B" },
               { headline: "Claude Code told me to stop working", topic: "After a full day of building in Notion, the AI told me to close everything and rest — and I listened.", likes: 35, comments: 17, url: "https://www.linkedin.com/posts/arseniygoldberg_ai-productivity-claudecode-share-7440707538804867073-YM7P" },
@@ -1254,7 +1223,9 @@ import Layout from '../layouts/Layout.astro';
             posts: [
               { headline: "When people strongly oppose your decisions", topic: "Resistance from others often signals you're on a meaningful path — not a reason to stop.", likes: 63, comments: 4, url: "https://www.linkedin.com/posts/arseniygoldberg_personaldevelopment-careeradvice-moneymindset-activity-7435308161995227136-CzR-" },
               { headline: "\"What do you want to do after university?\"", topic: "Most students had no idea — and that's a systemic problem, not a personal failure.", likes: 83, comments: 15, url: "https://www.linkedin.com/posts/arseniygoldberg_personaldevelopment-financialliteracy-highereducation-activity-7434553202827661313-HH4q" },
+              { headline: "The student who got it right", topic: "A public recommendation for Pablo Anchia — and a reflection on the four things that make a student truly exceptional.", likes: 75, comments: 12, url: "https://www.linkedin.com/posts/arseniygoldberg_nyc-share-7455500851848114176-Uzt8" },
               { headline: "The FOMO Premium", topic: "Fear of missing out causes investors to overpay ~21% — a lesson I learned the hard way with Bitcoin.", likes: 22, comments: 25, url: "https://www.linkedin.com/posts/arseniygoldberg_the-fomo-premium-why-the-market-pays-you-activity-7439607276585459712-bij8" },
+              { headline: "Are we really incapable of paying attention?", topic: "Digital distraction exploits ancient survival mechanisms — and 'Justified Distraction' makes it worse. Systems built in rational states help regain focus.", likes: 22, comments: 16, url: "https://www.linkedin.com/feed/update/urn:li:activity:7458068437370798080" },
               { headline: "First year at IE Business School", topic: "Reflecting on a transformative first year of full-time teaching — gratitude, growth, and community.", likes: 231, comments: 38, url: "https://www.linkedin.com/posts/arseniygoldberg_first-year-teaching-full-time-at-ie-business-activity-7270416237820567552-F44d" },
               { headline: "Finance, behavior, decisions", topic: "How our behavioral patterns shape financial outcomes more than any spreadsheet could.", url: "https://www.linkedin.com/posts/arseniygoldberg_finance-behavior-decisions-activity-7273286165464571904-YctW" },
               { headline: "Isn't it liberating to say 'I'm sorry'?", topic: "The power of accountability and intellectual humility in professional and personal life.", url: "https://www.linkedin.com/posts/arseniygoldberg_isnt-it-so-liberating-to-say-%F0%9D%90%88%F0%9D%90%A6-%F0%9D%90%AC%F0%9D%90%A8%F0%9D%90%AB%F0%9D%90%AB%F0%9D%90%B2-activity-7271825842735906816-w7aP" },
@@ -1327,9 +1298,11 @@ import Layout from '../layouts/Layout.astro';
               { headline: "Claude Code told me to stop working", topic: "After a full day of building in Notion, the AI told me to close everything and rest — and I listened.", likes: 35, comments: 17, url: "https://www.linkedin.com/posts/arseniygoldberg_ai-productivity-claudecode-share-7440707538804867073-YM7P" },
               { headline: "We learn by doing", topic: "Hands-on AI projects teach faster and deeper than any passive online course.", likes: 33, comments: 7, url: "https://www.linkedin.com/posts/arseniygoldberg_day-in-and-day-out-i-confirm-this-idea-%F0%9D%90%B0%F0%9D%90%9E-activity-7438911607184797696-3t7l" },
               { headline: "LLM models & a car wash", topic: "Stop reading about LLMs — go experiment. The best way to understand them is to test them yourself.", likes: 12, comments: 3, url: "https://www.linkedin.com/posts/arseniygoldberg_llm-models-car-wash-ugcPost-7443277393454129152-YNS2" },
+              { headline: "AI = probabilistic, not deterministic", topic: "The Illusory Truth Effect: our brains, like AI, assign truth by repetition not logic. Know what you're reinforcing in yourself and others.", likes: 13, url: "https://www.linkedin.com/posts/arseniygoldberg_%F0%9D%90%80%F0%9D%90%88-%F0%9D%90%A9%F0%9D%90%AB%F0%9D%90%A8%F0%9D%90%9B%F0%9D%90%9A%F0%9D%90%9B%F0%9D%90%A2%F0%9D%90%A5%F0%9D%90%A2%F0%9D%90%AC%F0%9D%90%AD%F0%9D%90%A2%F0%9D%90%9C-%F0%9D%90%A7%F0%9D%90%A8%F0%9D%90%AD-share-7460601883812859904-0_kD" },
               { headline: "What do you look for in education?", topic: "Running workshops across Texas schools: teaching students to find problems and pitch AI-driven solutions.", likes: 96, comments: 6, url: "https://www.linkedin.com/posts/arseniygoldberg_what-do-you-look-for-in-an-educational-experience-activity-7407328885970739201-LhGW" },
               { headline: "GenAI & Entrepreneurship in Texas", topic: "IE University masterclass tour across Texas — building AI startup pitches from real problems.", likes: 29, comments: 5, url: "https://www.linkedin.com/posts/arseniygoldberg_texas-ie-genai-activity-7404153006151331840-MaLo" },
               { headline: "AI Week at IE Business School", topic: "Kicking off a full week of AI education across marketing, legal, HR, and finance at IE.", likes: 115, comments: 3, url: "https://www.linkedin.com/posts/arseniygoldberg_the-day-has-come-we-are-finally-kicking-activity-7398642043352289281-4VNi" },
+              { headline: "Has anybody seen the graduation speeches?", topic: "Students booing Eric Schmidt at Columbia's graduation — on why AI disruption is an opportunity, not a catastrophe.", likes: 80, comments: 15, url: "https://www.linkedin.com/posts/arseniygoldberg_has-anybody-seen-the-graduation-speeches-share-7462770234530119681-FvAE" },
               { headline: "We live in a world where AI agents...", topic: "New AI protocols from major tech companies are transforming finance — but hallucinations remain real.", likes: 46, comments: 2, url: "https://www.linkedin.com/posts/arseniygoldberg_we-live-in-a-world-where-googles-agent-activity-7383836035509567489-SN_B" },
               { headline: "Are we in an AI Bubble?", topic: "Examining whether AI enthusiasm mirrors past financial bubbles — or a lasting industrial shift.", likes: 204, comments: 16, url: "https://www.linkedin.com/posts/arseniygoldberg_aiinfinance-generativeai-financeleadership-activity-7381208885535137792-AVgk" },
               { headline: "AI in finance and education", topic: "Exploring how artificial intelligence is reshaping finance, education, and professional life.", url: "https://www.linkedin.com/posts/arseniygoldberg_ai-activity-7030589973225443328-pchy" },
@@ -1416,7 +1389,9 @@ import Layout from '../layouts/Layout.astro';
   <section id="work-with-me" class="py-24 bg-warm-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
       <div class="mb-14 reveal">
-        <p class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-4" style="font-family:var(--font-display)">Work With Me</p>
+        <div class="section-label">
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">Work With Me</span>
+        </div>
         <h2 class="font-bold text-navy-900 leading-tight" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">Who are you?</h2>
         <p class="text-navy-500 mt-3" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">Different problems. Different engagements. Tell me where you're coming from.</p>
       </div>
@@ -1545,7 +1520,6 @@ import Layout from '../layouts/Layout.astro';
         <a href="https://www.linkedin.com/in/arseniygoldberg/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">LinkedIn</a>
         <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">Flow</a>
         <a href="https://findyournorth.net/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">North</a>
-        <a href="#" class="text-xs uppercase tracking-wide" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">Stride</a>
       </div>
     </div>
   </footer>
@@ -1589,6 +1563,72 @@ import Layout from '../layouts/Layout.astro';
     document.querySelector(`[data-tab="${tab}"]`)?.classList.add('active');
   }
   (window as any).switchTab = switchTab;
+
+  // Journey toggle
+  function switchJourney(phase: string) {
+    const phases = ['finance', 'bat'];
+    phases.forEach(p => {
+      const panel = document.getElementById('journey-panel-' + p);
+      const btn = document.getElementById('journey-btn-' + p) as HTMLElement;
+      if (p === phase) {
+        panel?.classList.remove('hidden');
+        if (btn) { btn.style.background = '#0D1B2A'; btn.style.color = '#fff'; btn.style.borderColor = '#0D1B2A'; }
+      } else {
+        panel?.classList.add('hidden');
+        if (btn) { btn.style.background = '#F4F1EC'; btn.style.color = '#5B7494'; btn.style.borderColor = '#EDE8DF'; }
+      }
+    });
+  }
+  (window as any).switchJourney = switchJourney;
+
+  // Work toggle
+  function switchWork(panel: string) {
+    const panels = ['classroom', 'field'];
+    panels.forEach(p => {
+      const el = document.getElementById('work-panel-' + p);
+      const btn = document.getElementById('work-btn-' + p) as HTMLElement;
+      if (p === panel) {
+        el?.classList.remove('hidden');
+        if (btn) { btn.style.background = '#0D1B2A'; btn.style.color = '#fff'; btn.style.borderColor = '#0D1B2A'; }
+      } else {
+        el?.classList.add('hidden');
+        if (btn) { btn.style.background = '#F4F1EC'; btn.style.color = '#5B7494'; btn.style.borderColor = '#EDE8DF'; }
+      }
+    });
+  }
+  (window as any).switchWork = switchWork;
+
+  function switchClassroomSub(sub: string) {
+    const subs = ['finance', 'entrepreneurship', 'behavioral'];
+    subs.forEach(s => {
+      const el = document.getElementById('classroom-sub-' + s);
+      const btn = document.getElementById('classroom-btn-' + s) as HTMLElement;
+      if (s === sub) {
+        el?.classList.remove('hidden');
+        if (btn) { btn.style.color = '#0D1B2A'; btn.style.fontWeight = '700'; btn.style.borderBottomColor = '#F4621F'; }
+      } else {
+        el?.classList.add('hidden');
+        if (btn) { btn.style.color = '#5B7494'; btn.style.fontWeight = '500'; btn.style.borderBottomColor = 'transparent'; }
+      }
+    });
+  }
+  (window as any).switchClassroomSub = switchClassroomSub;
+
+  function switchFieldSub(sub: string) {
+    const subs = ['innovation', 'ai', 'digital'];
+    subs.forEach(s => {
+      const el = document.getElementById('field-sub-' + s);
+      const btn = document.getElementById('field-btn-' + s) as HTMLElement;
+      if (s === sub) {
+        el?.classList.remove('hidden');
+        if (btn) { btn.style.color = '#0D1B2A'; btn.style.fontWeight = '700'; btn.style.borderBottomColor = '#F4621F'; }
+      } else {
+        el?.classList.add('hidden');
+        if (btn) { btn.style.color = '#5B7494'; btn.style.fontWeight = '500'; btn.style.borderBottomColor = 'transparent'; }
+      }
+    });
+  }
+  (window as any).switchFieldSub = switchFieldSub;
 
   // Award panel toggle
   (window as any).selectEngagement = function(val: string, btn: HTMLElement) {
