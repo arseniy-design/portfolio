@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # large video files
 videos/
+
+# Raw drop folder for photos/PDFs before processing
+incoming/
