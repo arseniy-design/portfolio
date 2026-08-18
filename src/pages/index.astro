@@ -150,13 +150,13 @@ const lightHero = heroVariant === 'b';
           <div class="section-label">
             <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">About</span>
           </div>
-          <p class="text-navy-700 leading-relaxed mb-4" style="font-size:clamp(1rem,1.6vw,1.15rem)">
+          <p class="text-navy-600 leading-relaxed mb-5" style="font-size:clamp(1rem,1.45vw,1.08rem)">
             I'm a Founding Partner at Flow Strategy Consulting and Academic Director of AI-Powered Finance at IE Business School. My career runs across capital markets, venture building, and organizational consulting. The teaching came out of that work.
           </p>
-          <p class="text-navy-500 leading-relaxed mb-4" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">
+          <p class="text-navy-600 leading-relaxed mb-5" style="font-size:clamp(1rem,1.45vw,1.08rem)">
             At Robert W. Baird I was a Senior Financial Consultant in private wealth management and corporate investment consulting, on the investment committee for 4 private and 40+ corporate portfolios, before moving into innovation and advisory work. Since then I've built and led programs in six countries, advised startups through growth and fundraising, and helped organizations from Fortune 500 firms to government ministries put AI to work, from strategy through implementation. When I teach, it's because I've done the work first.
           </p>
-          <p class="text-navy-500 leading-relaxed" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">
+          <p class="text-navy-600 leading-relaxed" style="font-size:clamp(1rem,1.45vw,1.08rem)">
             The through line is decision-making under pressure. It looks the same in a boardroom as it does in a lecture hall.
           </p>
         </div>
@@ -210,28 +210,16 @@ const lightHero = heroVariant === 'b';
               <!-- Right: client segments + asset classes -->
               <div class="pt-7 md:pt-0 md:pl-10 flex flex-col gap-7">
                 <div>
-                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Client Segments</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    {["Private Wealth", "Corporate Retirement", "Institutional", "Endowments & Trusts"].map(c => (
-                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                    ))}
-                  </div>
+                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Client Segments</span>
+                  <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["Private Wealth", "Corporate Retirement", "Institutional", "Endowments & Trusts"].join('  \u00b7  ')}</p>
                 </div>
                 <div>
-                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Asset Classes</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    {["Equities", "Fixed Income", "Real Estate", "Annuities", "Alternatives"].map(c => (
-                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                    ))}
-                  </div>
+                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Asset Classes</span>
+                  <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["Equities", "Fixed Income", "Real Estate", "Annuities", "Alternatives"].join('  \u00b7  ')}</p>
                 </div>
                 <div>
-                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Portfolio Strategies</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    {["Aggressive", "Moderately Aggressive", "Conservative", "ETF Satellite"].map(c => (
-                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                    ))}
-                  </div>
+                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Portfolio Strategies</span>
+                  <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["Aggressive", "Moderately Aggressive", "Conservative", "ETF Satellite"].join('  \u00b7  ')}</p>
                 </div>
               </div>
             </div>
@@ -246,31 +234,22 @@ const lightHero = heroVariant === 'b';
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">01</span>
                 <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">BUILD</h3>
                 <p class="text-navy-400 text-sm leading-snug mb-5">Ventures built from scratch in Azerbaijan, Spain, and the US.</p>
-                <div class="flex flex-wrap gap-1.5">
-                  {["SABAH Hub", "Flow Strategy", "North"].map(c => (
-                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                  ))}
-                </div>
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Ventures</span>
+                <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["SABAH Hub", "Flow Strategy", "North"].join('  \u00b7  ')}</p>
               </div>
               <div class="border-b md:border-b-0 md:border-r border-warm-200 py-7 md:py-0 md:px-8">
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">02</span>
                 <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">ADVISE</h3>
                 <p class="text-navy-400 text-sm leading-snug mb-5">Strategy to implementation. Built around real company challenges.</p>
-                <div class="flex flex-wrap gap-1.5">
-                  {["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla"].map(c => (
-                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                  ))}
-                </div>
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Clients</span>
+                <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["Kyowa Kirin", "IE Law School", "TEC de Monterrey", "Royal Commission for AlUla"].join('  \u00b7  ')}</p>
               </div>
               <div class="pt-7 md:pt-0 md:pl-8">
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">03</span>
                 <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">TEACH</h3>
                 <p class="text-navy-400 text-sm leading-snug mb-5">Classrooms, boardrooms, briefing rooms. The standard doesn't change.</p>
-                <div class="flex flex-wrap gap-1.5">
-                  {["IE Business School", "Oregon State", "PIF Saudi Arabia", "STC"].map(c => (
-                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                  ))}
-                </div>
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Institutions</span>
+                <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["IE Business School", "Oregon State", "PIF Saudi Arabia", "STC"].join('  \u00b7  ')}</p>
               </div>
             </div>
           </div>
