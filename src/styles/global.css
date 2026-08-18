@@ -160,24 +160,24 @@ body { font-family: var(--font-body); }
   .tab-btn { padding: 10px 14px; font-size: 0.8125rem; }
 }
 
-/* Nav over a light hero (variant B preview). Harmless when the class is absent. */
-#navbar.nav-on-light:not(.scrolled) a[href^="#"]:not([href="#contact"]) { color: rgba(13,27,42,0.6) !important; }
-#navbar.nav-on-light:not(.scrolled) a[href^="#"]:not([href="#contact"]):hover { color: #0D1B2A !important; }
-#navbar.nav-on-light:not(.scrolled) svg text:first-of-type { fill: #0D1B2A !important; }
-#navbar.nav-on-light:not(.scrolled) #mobile-menu-btn { color: rgba(13,27,42,0.6) !important; }
-
-/* Hero variant c3: photo painted as a background layer on the section itself,
-   so there is no child element whose fractional edge can antialias into a seam. */
+/* Hero: the portrait is a pre-feathered WebP with its own alpha ramp, so the
+   image has no edge to hide and needs no gradient covering it. Sized in its
+   own aspect ratio (auto height) so it is never distorted. */
 .hero-c3 {
   background-color: #080F16;
   background-image:
-    linear-gradient(to right, #080F16 0%, #080F16 40%, rgba(8,15,22,0.92) 52%, rgba(8,15,22,0.45) 72%, rgba(8,15,22,0.22) 100%),
-    linear-gradient(to bottom, rgba(8,15,22,0.8) 0%, rgba(8,15,22,0.12) 24%, rgba(8,15,22,0.12) 68%, #080F16 100%),
-    url('/hero.jpg');
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: center, center, right 20%;
-  background-size: cover, cover, auto 128%;
+    linear-gradient(to right, #080F16 0%, rgba(8,15,22,0.92) 26%, rgba(8,15,22,0.45) 48%, rgba(8,15,22,0.10) 70%, rgba(8,15,22,0) 100%),
+    url('/hero-figure.webp');
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, right bottom;
+  background-size: cover, auto 100%;
 }
-@media (max-width: 767px) {
-  .hero-c3 { background-image: linear-gradient(to bottom, rgba(8,15,22,0.55) 0%, #080F16 78%), url('/hero.jpg'); background-position: center, center top; background-size: cover, cover; }
+@media (max-width: 900px) {
+  .hero-c3 {
+    background-image:
+      linear-gradient(to bottom, rgba(8,15,22,0.35) 0%, rgba(8,15,22,0.85) 55%, #080F16 82%),
+      url('/hero-figure.webp');
+    background-position: center, center top;
+    background-size: cover, auto 78%;
+  }
 }
