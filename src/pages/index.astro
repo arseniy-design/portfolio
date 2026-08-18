@@ -165,7 +165,7 @@ import Hero from '../components/Hero.astro';
                 </div>
               </div>
               <!-- Right: client segments + asset classes -->
-              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col gap-7">
+              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col justify-center gap-8">
                 <div>
                   <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Client Segments</span>
                   <div class="flex flex-wrap gap-1.5">
@@ -1320,8 +1320,7 @@ import Hero from '../components/Hero.astro';
                   data-panel={key}>
                   <div class="flex-1">
                     <span class={`li-tag ${tab.tagClass}`} style="font-family:var(--font-display)">{tab.label}</span>
-                    <h3 class="font-bold text-navy-900 text-base mb-2 group-hover:text-orange-500 transition-colors leading-snug" style="font-family:var(--font-display)">{post.headline}</h3>
-                    <p class="text-navy-400 text-sm leading-relaxed">{post.topic}</p>
+                    <h3 class="font-bold text-navy-900 text-base group-hover:text-orange-500 transition-colors leading-snug" style="font-family:var(--font-display)">{post.headline}</h3>
                   </div>
                   <div class="flex items-center justify-between pt-3 border-t border-warm-100">
                     <div class="flex items-center gap-3 text-xs text-navy-400" style="font-family:var(--font-display)">
