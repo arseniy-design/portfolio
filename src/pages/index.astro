@@ -796,6 +796,8 @@ import Layout from '../layouts/Layout.astro';
               <p class="text-xs font-semibold uppercase tracking-widest text-navy-300 mb-3" style="font-family:var(--font-display)">Client Deliverables</p>
               <div class="flex flex-col gap-2">
                 {[
+                  { tag: "Program Experience", name: "Santander Innovation AI Experience", href: "https://flow-ag.notion.site/santander-innovation-ai-experience" },
+                  { tag: "Web App", name: "Gate Check", href: "https://si90-gate-check.onrender.com/" },
                   { tag: "Perplexity Computer", name: "Taif Market Entry", href: "https://taifmarketentry.pplx.app" },
                   { tag: "Perplexity Computer", name: "Hormuz Shock", href: "https://hormuzshock.pplx.app" },
                   { tag: "Perplexity Computer", name: "Portfolio Risk Analysis", href: "https://portfolioanalysis.pplx.app" },
@@ -992,7 +994,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="mb-5">
             <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">Flow</h3>
           </div>
-          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">Strategy and operations consulting for organizations unlocking AI — sovereign wealth funds, financial institutions, and tech companies navigating what comes next.</p>
+          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">Flow is a strategic consultancy for corporates, educational institutions, and startups. AI only works when the operating model underneath it does. Flow builds that first.</p>
           <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">Strategy · Operations · AI Implementation</p>
           <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="flex items-center gap-2 text-orange-500 text-sm font-semibold" style="font-family: var(--font-display)">
             <span>Visit Flow</span><span class="brand-arrow">→</span>
@@ -1163,13 +1165,22 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
       <div class="mb-14 reveal">
         <div class="section-label">
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">On LinkedIn</span>
+          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Writing</span>
         </div>
         <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
           Thoughts worth sharing.<br>
           <span class="text-navy-400 font-light">Written for people, not algorithms.</span>
         </h2>
       </div>
+      <!-- Featured article -->
+      <a href="https://www.ie.edu/insights/articles/modern-finance-runs-against-human-nature/" target="_blank" rel="noopener"
+        class="block bg-white rounded-2xl border border-warm-200 hover:border-orange-300 transition-colors p-7 mb-12 reveal group">
+        <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Published &nbsp;·&nbsp; IE Insights</span>
+        <h3 class="font-bold text-navy-900 mt-2 mb-2 leading-snug" style="font-family:var(--font-display);font-size:clamp(1.25rem,2.2vw,1.6rem)">Modern Finance Runs Against Human Nature</h3>
+        <p class="text-navy-500 text-sm leading-relaxed max-w-2xl">Our psychology, not our knowledge, determines our financial outcomes.</p>
+        <span class="inline-flex items-center gap-1.5 text-orange-500 text-sm font-semibold mt-4" style="font-family:var(--font-display)">Read the article <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span></span>
+      </a>
+
       <style>
         .li-tag { display:inline-block; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:3px 10px; border-radius:999px; margin-bottom:12px; }
         .li-card { border-left: 3px solid transparent; }
@@ -1186,6 +1197,8 @@ import Layout from '../layouts/Layout.astro';
         .tab-active-ent { background:#2563EB !important; color:#fff !important; }
         .tab-active-ai  { background:#7C3AED !important; color:#fff !important; }
       </style>
+
+      <p class="text-xs font-bold tracking-[0.2em] uppercase text-navy-300 mb-4 reveal" style="font-family:var(--font-display)">On LinkedIn</p>
 
       <!-- Tab buttons -->
       <div class="flex flex-wrap gap-2 mb-10 reveal">
