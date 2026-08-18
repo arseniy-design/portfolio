@@ -1,0 +1,275 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// PROTOTYPE of a restructured Work section. Not linked from anywhere, noindex.
+// One card frame, seven cards, two labelled groups, no tabs.
+// Contents deliberately vary between cards; only the frame is constant.
+
+const CLASSROOM = [
+  {
+    name: "Finance",
+    line: "Built on the $1.6B book I managed at Baird, brought straight into the classroom.",
+    stats: [["$1.6B","Real-world AUM"],["300+","Sessions delivered"],["6","Courses"]],
+    courses: [["Capital Markets","Flagship"],["Corporate Finance","15 Sessions"],["Financial Consulting","15 Sessions"],["AI-Powered Finance","15 Sessions"],["Financial Markets & Fintech","15 Sessions"],["Advanced Financial Management","15 Sessions"]],
+    links: [
+      { tag: "Interactive Hub", name: "Capital Markets Hub · 22 Activities", href: "https://arseniygoldberg.com/capital-markets" },
+      { tag: "Course Portfolio", name: "Finance Modules · 50 Video Lessons", href: "https://arseniyportfolio.my.canva.site/arseniy-goldberg-finance-mba-portfolio" },
+    ],
+    videos: [
+      { vid: "1175592384", title: "Time Value of Money" },
+      { vid: "1175592202", title: "Working Capital" },
+      { vid: "1175592624", title: "Dynamic Valuation" },
+      { vid: "1175592738", title: "Sources of Corporate Financing" },
+    ],
+    pills: { label: "Valuation Tutors", items: [
+      { name: "DCF Valuation", href: "https://claude.ai/public/artifacts/98996521-1957-4911-b45a-b67fe336f5d0" },
+      { name: "PVGO Model", href: "https://claude.ai/public/artifacts/fbfb82ab-e4cf-4cd4-b843-82b5775112a2" },
+      { name: "Dividend Discount", href: "https://claude.ai/public/artifacts/38df1612-3558-4f98-a4e3-8e40fce514fa" },
+      { name: "Book Value", href: "https://claude.ai/public/artifacts/2cceef54-0d52-4ae2-a4bb-33f0638739b8" },
+    ]},
+  },
+  {
+    name: "Entrepreneurship",
+    line: "Five ventures built from scratch across six countries. Founder experience, taught first-hand.",
+    stats: [["5","Ventures built"],["4","Innovation programs"],["3","Continents"]],
+    courses: [["Entrepreneurial Journey","Flagship"],["Design Thinking","8 Sessions"],["Customer Experience","10 Sessions"],["Ideation & Validation","3 Sessions"],["AI as a Cofounder","3 Sessions"],["Business & Financial Model Design","6 Sessions"]],
+    videos: [
+      { vid: "1175612851", title: "Intro to Entrepreneurship" },
+      { vid: "1175612955", title: "Startup Culture" },
+      { vid: "1175612878", title: "Lean Startup" },
+      { vid: "1175612914", title: "Product Prototyping" },
+    ],
+  },
+  {
+    name: "Behavioral Sciences",
+    line: "How bias shows up in professional decisions. Applied across finance, leadership, and AI adoption.",
+    stats: [["6","Courses"],["3","Live simulations"],["5+","Industries"]],
+    courses: [["Critical Skills for the Modern World","Flagship"],["Critical Thinking","8 Sessions"],["Decision Making","8 Sessions"],["Financial Behavior","8 Sessions"],["Human & Machine Intelligence","Research"],["Flow Financial Behavior Series","Content"]],
+    links: [
+      { tag: "Custom GPT", name: "Telecomm AI Quick Case", href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case" },
+      { tag: "Custom GPT", name: "Telecomm Decision-Making Simulator", href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator" },
+      { tag: "Claude Artifact", name: "The War Room", href: "https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5" },
+    ],
+  },
+  {
+    name: "Artificial Intelligence",
+    line: "PLACEHOLDER LINE — one sentence about how you teach AI.",
+    stats: [["6","Courses"],["—","—"],["—","—"]],
+    courses: [["Business Applications of AI","Flagship"],["AI as a Co-Founder","—"],["AI-Powered Finance","—"],["AI for Productivity","—"],["AI for Professors","—"],["Critical Thinking in the AI Era","—"]],
+    note: "Session counts and the opening line still needed.",
+  },
+];
+
+const FIELD = [
+  {
+    name: "Innovation Programs",
+    line: "Five programs built and run across three continents, from Azerbaijan to Saudi Arabia to Spain.",
+    stats: [["5","Programs"],["3","Continents"],["€250k","Pilot funding"]],
+    list: { label: "Programs", items: [
+      { name: "RCU Scale-up Hub", meta: "Saudi Arabia · 2024", href: "https://www.zawya.com/en/business/travel-and-tourism/rcu-launches-scale-up-hub-program-to-enhance-tourism-in-alula-ptpmy2hr" },
+      { name: "SABAH Hub", meta: "Azerbaijan", href: "https://sabahhub.com/" },
+      { name: "Changemakers Program", meta: "Switzerland", href: "https://www.wyssacademy.org/en/changemakers-program" },
+      { name: "Science Connexion & Blue Lab", meta: "Mexico", href: "https://scienceconnexion.com/Convocatorias/SobreReto/6" },
+      { name: "Santander Innovators 90", meta: "Spain · 2026", href: "https://app.santanderopenacademy.com/en/program/innovation-and-ai-experience-in-madrid" },
+    ]},
+    links: [
+      { tag: "Article", name: "RCU Scale-up Hub, Zawya", href: "https://www.zawya.com/en/business/travel-and-tourism/rcu-launches-scale-up-hub-program-to-enhance-tourism-in-alula-ptpmy2hr" },
+      { tag: "Deck (PDF)", name: "RCU Scale-up Hub", href: "/rcu-scale-up-hub.pdf" },
+      { tag: "Deck (PDF)", name: "TEC Venture Builder", href: "/tec-venture-builder.pdf" },
+    ],
+  },
+  {
+    name: "AI in Practice",
+    line: "GenAI tools built for real professional contexts, from classroom simulations to client intelligence.",
+    stats: [["6","Tools built"],["7","Deliverables"],["4","Walkthroughs"]],
+    pills: { label: "Tools built", items: [
+      { name: "GenAI Workflow Library · 24", href: "https://arseniygoldberg.com/capital-markets" },
+      { name: "Stock Options Tutor 1", href: "https://chatgpt.com/g/g-67e66b83b1288191afef1bfa8c2fb089-stock-option-tutor-1" },
+      { name: "Stock Options Tutor 2", href: "https://chatgpt.com/g/g-67e665aa53dc81918763a71569557dcc-stock-option-tutor-2" },
+      { name: "Stock Options Tutor 3", href: "https://chatgpt.com/g/g-67ed6f19e8d08191ac2f4fdacb34adbe-stock-option-tutor-3" },
+      { name: "Futures Trader Pro", href: "https://chatgpt.com/g/g-67f17440919481918ec80d0593f8f218-futures-trader-pro" },
+      { name: "Macro Finance World", href: "https://chatgpt.com/g/g-67ab3edec99881918e280a7f42de0e27-macro-finance-world" },
+      { name: "Valuation Tutor", href: "https://claude.ai/public/artifacts/3a156b7f-e05b-4e72-b6f0-788f28870b41" },
+    ]},
+    videos: [
+      { vid: "1175529346", title: "AI + Excel" },
+      { vid: "1175529293", title: "Claude + Excel" },
+      { vid: "1175530353", title: "Perplexity + Finance" },
+      { vid: "1175532671", title: "NotebookLM" },
+    ],
+    links: [
+      { tag: "Program Experience", name: "Santander Innovation AI Experience", href: "https://flow-ag.notion.site/santander-innovation-ai-experience" },
+      { tag: "Web App", name: "Gate Check", href: "https://si90-gate-check.onrender.com/" },
+      { tag: "Sales Enablement", name: "Finance Academy Navigator", href: "https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73" },
+      { tag: "Perplexity Computer", name: "Taif Market Entry", href: "https://taifmarketentry.pplx.app" },
+      { tag: "Perplexity Computer", name: "Hormuz Shock", href: "https://hormuzshock.pplx.app" },
+      { tag: "Perplexity Computer", name: "Portfolio Risk Analysis", href: "https://portfolioanalysis.pplx.app" },
+      { tag: "Perplexity Computer", name: "Macro Risk Intelligence", href: "https://macrorisks.pplx.app" },
+      { tag: "Client Asset Bundle", name: "Delta Dossier", href: "/delta-dossier/" },
+    ],
+  },
+  {
+    name: "Digital Courses",
+    line: "Three fully-produced courses built for Rebundle's WhatsApp platform, delivered as conversational micro-lessons.",
+    stats: [["3","Courses produced"],["100%","Mobile-native"],["1","Platform"]],
+    phones: [
+      { vid: "1175515603", tag: "AI", name: "Generative AI for Business Professionals" },
+      { vid: "1175515477", tag: "Analytics", name: "Digital Analytics for Business Professionals" },
+      { vid: "1175515542", tag: "Wellbeing", name: "Mental Health in the Digital Era" },
+    ],
+  },
+];
+---
+
+<Layout title="Work section prototype" noindex={true}>
+  <style>
+    .lab-bar { background:#F4621F; color:#fff; font-family:var(--font-display); font-weight:700;
+      font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; padding:10px 20px; }
+    .wcard { background:#fff; border:1px solid #EDE8DF; border-radius:1rem; padding:1.75rem; display:flex; flex-direction:column; gap:1.4rem; }
+    .wlabel { font-family:var(--font-display); font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#F4621F; }
+    .wsub   { font-family:var(--font-display); font-size:0.62rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#7D99B8; }
+  </style>
+
+  <div class="lab-bar">Prototype · not live · the real page is unchanged</div>
+
+  <section class="py-20" style="background:#F4F1EC">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+      <div class="mb-4 flex items-center gap-3">
+        <div style="width:32px;height:2px;background:#F4621F"></div>
+        <span class="wlabel">The Work</span>
+      </div>
+      <h2 class="font-bold text-navy-900 leading-tight mb-14" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">
+        Everything, on one page.
+      </h2>
+
+      {[["In the Classroom", CLASSROOM], ["In the Field", FIELD]].map(([groupName, cards]) => (
+        <div class="mb-16">
+          <div class="flex items-baseline gap-4 mb-6 pb-3" style="border-bottom:1px solid #DDD6CC">
+            <span class="font-bold text-navy-900" style="font-family:var(--font-display);font-size:1.15rem">{groupName}</span>
+            <span class="wsub">{cards.length} areas</span>
+          </div>
+
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 items-start">
+            {cards.map(c => (
+              <div class="wcard">
+                {/* identity */}
+                <div>
+                  <span class="wlabel block mb-2">{c.name}</span>
+                  <p class="text-navy-500 text-sm leading-relaxed">{c.line}</p>
+                </div>
+
+                {/* numbers */}
+                <div class="flex flex-wrap pb-1" style="column-gap:1.9rem;row-gap:0.75rem">
+                  {c.stats.map(([n, l]) => (
+                    <div class="flex-shrink-0">
+                      <p class="font-bold text-navy-900 text-xl leading-none" style="font-family:var(--font-display)">{n}</p>
+                      <p class="text-navy-400 text-[0.7rem] mt-1 whitespace-nowrap" style="font-family:var(--font-display)">{l}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {c.courses && (
+                  <div>
+                    <span class="wsub block mb-3">Courses</span>
+                    <div class="flex flex-col divide-y divide-warm-100">
+                      {c.courses.map(([n, meta]) => (
+                        <div class="flex items-baseline justify-between gap-3 py-2">
+                          <span class="text-navy-800 text-sm leading-snug" style="font-family:var(--font-display)">{n}</span>
+                          <span class="text-navy-300 text-xs flex-shrink-0" style="font-family:var(--font-display)">{meta}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {c.list && (
+                  <div>
+                    <span class="wsub block mb-3">{c.list.label}</span>
+                    <div class="flex flex-col divide-y divide-warm-100">
+                      {c.list.items.map(p => (
+                        <a href={p.href} target="_blank" rel="noopener" class="flex items-baseline justify-between gap-3 py-2 group">
+                          <span class="text-navy-800 text-sm leading-snug group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">{p.name}</span>
+                          <span class="text-navy-300 text-xs flex-shrink-0" style="font-family:var(--font-display)">{p.meta}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {c.videos && (
+                  <div>
+                    <span class="wsub block mb-3">Sessions</span>
+                    <div class="grid grid-cols-2 gap-2">
+                      {c.videos.map(v => (
+                        <a href={`https://vimeo.com/${v.vid}`} target="_blank" rel="noopener" class="group relative block rounded-lg overflow-hidden bg-navy-800 aspect-video">
+                          <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors"></div>
+                          <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-7 h-7 rounded-full bg-white/90 flex items-center justify-center">
+                              <svg class="w-2.5 h-2.5 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </span>
+                          </div>
+                          <p class="absolute bottom-0 left-0 right-0 px-1.5 pb-1 text-white text-[0.6rem] font-semibold leading-tight" style="font-family:var(--font-display);text-shadow:0 1px 3px rgba(0,0,0,0.8)">{v.title}</p>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {c.phones && (
+                  <div>
+                    <span class="wsub block mb-3">On WhatsApp</span>
+                    <div class="grid grid-cols-3 gap-2">
+                      {c.phones.map(p => (
+                        <a href={`https://vimeo.com/${p.vid}`} target="_blank" rel="noopener" class="group block">
+                          <div class="rounded-lg overflow-hidden bg-navy-800" style="aspect-ratio:9/16">
+                            <img src={`https://vumbnail.com/${p.vid}.jpg`} alt={p.name} class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
+                          </div>
+                          <p class="text-navy-500 text-[0.65rem] mt-1.5 leading-tight" style="font-family:var(--font-display)">{p.name}</p>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {c.pills && (
+                  <div>
+                    <span class="wsub block mb-3">{c.pills.label}</span>
+                    <div class="flex flex-wrap gap-1.5">
+                      {c.pills.items.map(t => (
+                        <a href={t.href} target="_blank" rel="noopener" class="text-xs px-2.5 py-1 rounded-full transition-colors" style="background:#FFF3EE;color:#F4621F;border:1px solid rgba(244,98,31,0.22);font-family:var(--font-display)">{t.name}</a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {c.links && (
+                  <div>
+                    <span class="wsub block mb-3">Digital Assets</span>
+                    <div class="flex flex-col gap-1.5">
+                      {c.links.map(d => (
+                        <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg border border-warm-200 hover:border-orange-300 transition-colors group">
+                          <div class="min-w-0">
+                            <p class="text-[0.62rem] text-orange-500 font-semibold" style="font-family:var(--font-display)">{d.tag}</p>
+                            <p class="text-xs text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">{d.name}</p>
+                          </div>
+                          <span class="text-orange-500 text-xs font-bold flex-shrink-0 group-hover:translate-x-0.5 transition-transform">→</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {c.note && (
+                  <p class="text-[0.7rem] leading-snug px-3 py-2 rounded-lg" style="background:#FFF3EE;color:#D4521A;font-family:var(--font-display)">{c.note}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </section>
+</Layout>
