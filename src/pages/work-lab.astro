@@ -26,7 +26,7 @@ const CLASSROOM = [
     name: "Entrepreneurship & AI",
     line: "Five ventures built from scratch across six countries. Founder experience, taught first-hand.",
     stats: [["5","Ventures built"],["5","Innovation programs"],["3","Continents"]],
-    courses: [["Entrepreneurial Journey","Flagship"],["Design Thinking","8 Sessions"],["Customer Experience","10 Sessions"],["AI as a Cofounder","3 Sessions"],["Business Applications of AI","NEEDS COUNT"],["AI for Productivity","NEEDS COUNT"]],
+    courses: [["Entrepreneurial Journey","Flagship"],["Design Thinking","8 Sessions"],["Customer Experience","10 Sessions"],["AI as a Cofounder","3 Sessions"],["Business Applications of AI","12 Sessions"],["AI for Productivity","5 Sessions"]],
     videos: [
       { vid: "1175612851", title: "Intro to Entrepreneurship" },
       { vid: "1175612955", title: "Startup Culture" },
@@ -38,7 +38,7 @@ const CLASSROOM = [
     name: "Behavioral Sciences",
     line: "How bias shows up in professional decisions. Applied across finance, leadership, and AI adoption.",
     stats: [["6","Courses"],["3","Live simulations"],["5+","Industries"]],
-    courses: [["Critical Skills for the Modern World","Flagship"],["Critical Thinking in the AI Era","NEEDS COUNT"],["Decision Making","8 Sessions"],["Financial Behavior","8 Sessions"],["Complex Problem Solving","NEEDS COUNT"],["AI for Professors","NEEDS COUNT"]],
+    courses: [["Critical Skills for the Modern World","15 Sessions"],["Critical Thinking in the AI Era","8 Sessions"],["Decision Making","8 Sessions"],["Financial Behavior","8 Sessions"],["Complex Problem Solving","5 Sessions"],["AI for Professors","Up to 5 Sessions"]],
     links: [
       { tag: "Custom GPT", name: "Telecomm AI Quick Case", href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case" },
       { tag: "Custom GPT", name: "Telecomm Decision-Making Simulator", href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator" },
@@ -59,9 +59,7 @@ const FIELD = [
       { name: "Science Connexion & Blue Lab", meta: "Mexico", href: "https://scienceconnexion.com/Convocatorias/SobreReto/6" },
       { name: "Santander Innovators 90", meta: "Spain · 2026", href: "https://app.santanderopenacademy.com/en/program/innovation-and-ai-experience-in-madrid" },
     ]},
-    links: [
-      { tag: "Deck (PDF)", name: "TEC Venture Builder", href: "/tec-venture-builder.pdf" },
-    ],
+
   },
   {
     name: "AI in Practice",
@@ -106,6 +104,8 @@ const FIELD = [
     .lab-bar { background:#F4621F; color:#fff; font-family:var(--font-display); font-weight:700;
       font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; padding:10px 20px; }
     .wcard { background:#fff; border:1px solid #EDE8DF; border-radius:1rem; padding:1.75rem; display:flex; flex-direction:column; gap:1.4rem; }
+    .wcard-field { background:#F7F3EC; border-color:#E4DCCE; }
+    .field-band { background:#FBFAF7; }
     .wlabel { font-family:var(--font-display); font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#F4621F; }
     .wsub   { font-family:var(--font-display); font-size:0.62rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#7D99B8; }
   </style>
@@ -123,16 +123,16 @@ const FIELD = [
         Everything, on one page.
       </h2>
 
-      {[["In the Classroom", CLASSROOM], ["In the Field", FIELD]].map(([groupName, cards]) => (
+      {[["In the Classroom", CLASSROOM, "classroom"], ["In the Field", FIELD, "field"]].map(([groupName, cards, tone]) => (
         <div class="mb-16">
           <div class="flex items-baseline gap-4 mb-6 pb-3" style="border-bottom:1px solid #DDD6CC">
             <span class="font-bold text-navy-900" style="font-family:var(--font-display);font-size:1.15rem">{groupName}</span>
             <span class="wsub">{cards.length} areas</span>
           </div>
 
-          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 items-start">
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
             {cards.map(c => (
-              <div class="wcard">
+              <div class={`wcard ${tone === "field" ? "wcard-field" : ""}`}>
                 {/* identity */}
                 <div>
                   <span class="wlabel block mb-2">{c.name}</span>
@@ -248,7 +248,7 @@ const FIELD = [
                 {c.links && (
                   <div>
                     <span class="wsub block mb-3">Digital Assets</span>
-                    <div class="flex flex-col gap-1.5">
+                    <div class="grid sm:grid-cols-2 gap-1.5">
                       {c.links.map(d => (
                         <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg border border-warm-200 hover:border-orange-300 transition-colors group">
                           <div class="min-w-0">
