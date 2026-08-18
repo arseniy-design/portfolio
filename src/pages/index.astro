@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 const heroVariant = (Astro.url.searchParams.get('hero') || 'current').toLowerCase();
-const altHero = ['a','b','c','c2'].includes(heroVariant);
+const altHero = ['a','b','c','c2','c3'].includes(heroVariant);
 const lightHero = heroVariant === 'b';
 ---
 <Layout>
