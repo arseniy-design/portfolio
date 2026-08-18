@@ -425,7 +425,7 @@ import Hero from '../components/Hero.astro';
               <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
                 <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Classroom</span>
                 <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">ENTREPRENEURSHIP</h2>
-                <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Built 5 ventures from scratch across Azerbaijan, Spain, and the US.</p>
+                <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Built 5 ventures from scratch across six countries.</p>
                 <div class="flex gap-5 mb-6">
                   <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Ventures built</p></div>
                   <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">4</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Innovation programs</p></div>
@@ -1433,10 +1433,10 @@ import Hero from '../components/Hero.astro';
             cta: "Speaking inquiry",
           },
         ].map(c => (
-          <a href="#contact" class="group block bg-white rounded-2xl p-7 border border-warm-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300 cursor-pointer">
+          <a href="#contact" class="group flex flex-col h-full bg-white rounded-2xl p-7 border border-warm-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300 cursor-pointer">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5 text-navy-700 group-hover:text-orange-500 transition-colors" style="background:rgba(13,27,42,0.06)" set:html={c.icon} />
-            <p class="font-bold text-navy-900 text-sm mb-3 leading-snug" style="font-family:var(--font-display)">{c.who}</p>
-            <p class="text-navy-400 text-sm leading-relaxed mb-5">{c.offer}</p>
+            <p class="font-bold text-navy-900 text-sm mb-3 leading-snug min-h-[2.6em]" style="font-family:var(--font-display)">{c.who}</p>
+            <p class="text-navy-400 text-sm leading-relaxed mb-5 flex-1">{c.offer}</p>
             <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-orange-500 group-hover:gap-2.5 transition-all" style="font-family:var(--font-display)">
               {c.cta}
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
