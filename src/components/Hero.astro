@@ -71,7 +71,7 @@ const { variant = 'current' } = Astro.props;
 {variant === 'c' && (
   <section class="relative min-h-screen flex items-center overflow-hidden" style="background:#080F16">
     <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 50% at 76% 55%, rgba(244,98,31,0.13) 0%, transparent 64%)"></div>
-    <div class="absolute inset-0 pointer-events-none" style="opacity:0.035;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
+    <div class="absolute inset-0 pointer-events-none" style="opacity:0.035;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
 
     <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 py-32">
       <div class="grid lg:grid-cols-[1.55fr_1fr] gap-14 lg:gap-20 items-center w-full">
@@ -106,7 +106,7 @@ const { variant = 'current' } = Astro.props;
 {variant === 'c2' && (
   <section class="relative min-h-screen flex flex-col overflow-hidden" style="background:#080F16">
     <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 55% at 68% 45%, rgba(244,98,31,0.14) 0%, transparent 66%)"></div>
-    <div class="absolute inset-0 pointer-events-none" style="opacity:0.06;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
+    <div class="absolute inset-0 pointer-events-none" style="opacity:0.06;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
 
     <div class="relative z-10 flex-1 flex items-center w-full max-w-6xl mx-auto px-6 sm:px-12 pt-36 pb-16">
       <div class="w-full">
@@ -139,18 +139,8 @@ const { variant = 'current' } = Astro.props;
 )}
 
 {variant === 'c3' && (
-  <section class="relative min-h-screen flex flex-col overflow-hidden" style="background:#080F16">
-    <div class="absolute right-0 top-0 bottom-0 w-[60%] lg:w-[54%] hidden md:block">
-      <img src="/hero.jpg" alt="Arseniy Goldberg" class="w-full h-full object-cover"
-        style="object-position:52% 14%;transform:scale(1.03);transform-origin:right center;
-               -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.10) 18%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.92) 72%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 22%, #000 72%, transparent 100%);
-               -webkit-mask-composite: source-in;
-               mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.10) 18%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.92) 72%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 22%, #000 72%, transparent 100%);
-               mask-composite: intersect" />
-      <div class="absolute inset-0 pointer-events-none" style="background:rgba(8,15,22,0.30)"></div>
-    </div>
+  <section class="relative min-h-screen flex flex-col overflow-hidden hero-c3">
     <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 50% at 22% 45%, rgba(244,98,31,0.10) 0%, transparent 62%)"></div>
-    <div class="absolute inset-0 pointer-events-none" style="opacity:0.06;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
 
     <div class="relative z-10 flex-1 flex items-center w-full max-w-6xl mx-auto px-6 sm:px-12 pt-36 pb-16">
       <div class="md:max-w-[58%]">
