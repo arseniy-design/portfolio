@@ -10,7 +10,7 @@ const CLASSROOM = [
     name: "Finance",
     line: "Built on the $1.6B book I managed at Baird, brought straight into the classroom.",
     stats: [["$1.6B","Real-world AUM"],["300+","Sessions delivered"],["6","Courses"]],
-    courses: [["Capital Markets","Flagship · 25 Sessions"],["Corporate Finance","15 Sessions"],["Financial Consulting","15 Sessions"],["AI-Powered Finance","15 Sessions"],["Financial Markets & Fintech","15 Sessions"],["Advanced Financial Management","15 Sessions"]],
+    courses: [["Capital Markets","25 Sessions"],["Corporate Finance","15 Sessions"],["Financial Consulting","15 Sessions"],["AI-Powered Finance","15 Sessions"],["Financial Markets & Fintech","15 Sessions"],["Advanced Financial Management","15 Sessions"]],
     links: [
       { tag: "Interactive Hub", name: "Capital Markets Hub · 22 Activities", href: "https://arseniygoldberg.com/capital-markets" },
       { tag: "Course Portfolio", name: "Finance Modules · 50 Video Lessons", href: "https://arseniyportfolio.my.canva.site/arseniy-goldberg-finance-mba-portfolio" },
@@ -26,7 +26,7 @@ const CLASSROOM = [
     name: "Entrepreneurship & AI",
     line: "Five ventures built from scratch across six countries. Founder experience, taught first-hand.",
     stats: [["5","Ventures built"],["5","Innovation programs"],["3","Continents"]],
-    courses: [["Entrepreneurial Journey","Flagship · 15 Sessions"],["Design Thinking","8 Sessions"],["Customer Experience","10 Sessions"],["AI as a Cofounder","3 Sessions"],["Business Applications of AI","12 Sessions"],["AI for Productivity","5 Sessions"]],
+    courses: [["Entrepreneurial Journey","15 Sessions"],["Design Thinking","8 Sessions"],["Customer Experience","10 Sessions"],["AI as a Cofounder","3 Sessions"],["Business Applications of AI","12 Sessions"],["AI for Productivity","5 Sessions"]],
     videos: [
       { vid: "1175612851", title: "Intro to Entrepreneurship" },
       { vid: "1175612955", title: "Startup Culture" },
@@ -38,7 +38,7 @@ const CLASSROOM = [
     name: "Behavioral Sciences",
     line: "How bias shows up in professional decisions. Applied across finance, leadership, and AI adoption.",
     stats: [["6","Courses"],["3","Live simulations"],["5+","Industries"]],
-    courses: [["Critical Skills for the Modern World","Flagship · 15 Sessions"],["Critical Thinking in the AI Era","8 Sessions"],["Decision Making","8 Sessions"],["Financial Behavior","8 Sessions"],["Complex Problem Solving","5 Sessions"],["AI for Professors","Up to 5 Sessions"]],
+    courses: [["Critical Skills for the Modern World","15 Sessions"],["Critical Thinking in the AI Era","8 Sessions"],["Decision Making","8 Sessions"],["Financial Behavior","8 Sessions"],["Complex Problem Solving","5 Sessions"],["AI for Professors","Up to 5 Sessions"]],
     links: [
       { tag: "Custom GPT", name: "Telecomm AI Quick Case", href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case" },
       { tag: "Custom GPT", name: "Telecomm Decision-Making Simulator", href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator" },
@@ -165,9 +165,9 @@ const FIELD = [
                     <span class="wsub block mb-3">Courses</span>
                     <div class="flex flex-col divide-y divide-warm-100">
                       {c.courses.map(([n, meta]) => (
-                        <div class="flex items-baseline justify-between gap-3 py-2">
-                          <span class="text-navy-800 text-sm leading-snug" style="font-family:var(--font-display)">{n}</span>
-                          <span class="text-navy-300 text-xs flex-shrink-0" style="font-family:var(--font-display)">{meta}</span>
+                        <div class="flex items-baseline justify-between gap-4 py-2.5">
+                          <span class="text-navy-800 leading-snug" style="font-family:var(--font-display);font-size:1rem;font-weight:500">{n}</span>
+                          <span class="text-navy-300 flex-shrink-0" style="font-family:var(--font-display);font-size:0.78rem">{meta}</span>
                         </div>
                       ))}
                     </div>
@@ -179,18 +179,23 @@ const FIELD = [
                     <span class="wsub block mb-3">{c.list.label}</span>
                     <div class="flex flex-col divide-y divide-warm-100">
                       {c.list.items.map(p => (
-                        <a href={p.href} target="_blank" rel="noopener" class="flex items-baseline justify-between gap-3 py-2 group">
-                          <span class="text-navy-800 text-sm leading-snug group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">{p.name}</span>
-                          <span class="text-navy-300 text-xs flex-shrink-0" style="font-family:var(--font-display)">{p.meta}</span>
+                        <a href={p.href} target="_blank" rel="noopener" class="flex items-baseline justify-between gap-4 py-2.5 group">
+                          <span class="text-navy-800 leading-snug group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display);font-size:1rem;font-weight:500">{p.name}</span>
+                          <span class="text-navy-300 flex-shrink-0" style="font-family:var(--font-display);font-size:0.78rem">{p.meta}</span>
                         </a>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {c.videos && (
+                {(c.videos || c.pills || c.links || c.phones) && (
                   <div>
-                    <span class="wsub block mb-3">Sessions</span>
+                    <span class="wsub block mb-3">Digital Assets</span>
+                  </div>
+                )}
+
+                {c.videos && (
+                  <div style="margin-top:-0.9rem">
                     <div class="grid grid-cols-2 gap-2">
                       {c.videos.map(v => (
                         <a href={`https://vimeo.com/${v.vid}`} target="_blank" rel="noopener" class="group relative block rounded-lg overflow-hidden bg-navy-800 aspect-video">
@@ -209,8 +214,7 @@ const FIELD = [
                 )}
 
                 {c.phones && (
-                  <div>
-                    <span class="wsub block mb-3">On WhatsApp</span>
+                  <div style="margin-top:-0.9rem">
                     <div class="flex flex-col items-center gap-4">
                       {/* one handset, the course inside it switches */}
                       <div class="relative" style="width:196px">
@@ -269,8 +273,7 @@ const FIELD = [
                 )}
 
                 {c.pills && (
-                  <div>
-                    <span class="wsub block mb-3">{c.pills.label}</span>
+                  <div style="margin-top:-0.9rem">
                     <div class="flex flex-wrap gap-1.5">
                       {c.pills.items.map(t => (
                         <a href={t.href} target="_blank" rel="noopener" class="text-xs px-2.5 py-1 rounded-full transition-colors" style="background:#FFF3EE;color:#F4621F;border:1px solid rgba(244,98,31,0.22);font-family:var(--font-display)">{t.name}</a>
@@ -280,8 +283,7 @@ const FIELD = [
                 )}
 
                 {c.links && (
-                  <div>
-                    <span class="wsub block mb-3">Digital Assets</span>
+                  <div style="margin-top:-0.9rem">
                     <div class="grid sm:grid-cols-2 gap-1.5">
                       {c.links.map(d => (
                         <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg border border-warm-200 hover:border-orange-300 transition-colors group">
