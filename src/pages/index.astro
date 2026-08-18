@@ -1,14 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-const heroVariant = (Astro.url.searchParams.get('hero') || 'current').toLowerCase();
-const altHero = ['a','b','c','c2','c3'].includes(heroVariant);
-const lightHero = heroVariant === 'b';
 ---
 <Layout>
 
   <!-- NAV -->
-  <nav id="navbar" class={`fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8 ${lightHero ? "nav-on-light" : ""}`}>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <a href="#" class="flex items-center" aria-label="Arseniy Goldberg">
         <svg width="68" height="30" viewBox="0 0 68 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,48 +41,7 @@ const lightHero = heroVariant === 'b';
 
 
   <!-- HERO -->
-  {altHero && <Hero variant={heroVariant} />}
-  {!altHero && (
-  <section class="hero-bg min-h-screen flex items-center overflow-hidden">
-    <div class="absolute left-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-orange-500/15 to-transparent hidden lg:block"></div>
-    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-24 sm:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-      <div>
-        <h1 class="text-white leading-[1.0] mb-7" style="font-family: var(--font-display)">
-          <span class="block font-bold tracking-tight" style="font-size: clamp(2.8rem,6vw,4.5rem)">12 Years.</span>
-          <span class="block font-bold tracking-tight" style="font-size: clamp(2.8rem,6vw,4.5rem)">5 Continents.</span>
-          <span class="block font-light mt-3" style="font-size: clamp(1.8rem,4vw,2.8rem); color: rgba(255,255,255,0.75)">One Obsession.</span>
-        </h1>
-        <p class="text-base font-medium mb-4 whitespace-nowrap" style="color:rgba(255,255,255,0.85)">What drives human decisions.</p>
-        <div class="flex gap-2 mb-10">
-          {["Finance", "AI", "Education"].map(t => (
-            <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.35);font-family:var(--font-display)">{t}</span>
-          ))}
-        </div>
-        <div class="flex flex-wrap gap-3 mb-5">
-          <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-colors text-sm tracking-wide" style="font-family: var(--font-display)">
-            Let's Work Together
-          </a>
-          <a href="#work" class="text-sm px-8 py-4 rounded-full transition-colors font-semibold" style="font-family: var(--font-display); border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.85)">
-            Explore Work ↓
-          </a>
-        </div>
-        <button onclick="openIntroVideo()" class="flex items-center gap-3 text-sm font-medium" style="font-family: var(--font-display); color: rgba(255,255,255,0.75); background:none; border:none; cursor:pointer; padding:0">
-          <span style="width:36px;height:36px;background:rgba(244,98,31,0.2);border:1px solid rgba(244,98,31,0.5);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="#F4621F"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-          Watch a 55-second intro
-        </button>
-      </div>
-      <div class="relative hidden lg:flex justify-end">
-        <div class="relative rounded-2xl overflow-hidden" style="width: 380px; aspect-ratio: 3/4; background: #162236">
-          <img src="/hero.jpg" alt="Arseniy Goldberg" class="w-full h-full object-cover object-center" />
-          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(13,27,42,0.5) 0%, transparent 60%)"></div>
-        </div>
-      </div>
-    </div>
-    <div class="absolute bottom-0 left-0 right-0 h-28 pointer-events-none" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
-  </section>
-  )}
+  <Hero />
 
   <!-- STATS BAR -->
   <section class="bg-warm-50 py-16 border-b border-warm-200">
