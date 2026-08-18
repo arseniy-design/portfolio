@@ -154,7 +154,7 @@ const lightHero = heroVariant === 'b';
             I'm a Founding Partner at Flow Strategy Consulting and Academic Director of AI-Powered Finance at IE Business School. My career runs across capital markets, venture building, and organizational consulting. The teaching came out of that work.
           </p>
           <p class="text-navy-600 leading-relaxed mb-5" style="font-size:clamp(1rem,1.45vw,1.08rem)">
-            At Robert W. Baird I was a Senior Financial Consultant in private wealth management and corporate investment consulting, on the investment committee for 4 private and 40+ corporate portfolios, before moving into innovation and advisory work. Since then I've built and led programs in six countries, advised startups through growth and fundraising, and helped organizations from Fortune 500 firms to government ministries put AI to work, from strategy through implementation. When I teach, it's because I've done the work first.
+            At Robert W. Baird I was a Senior Financial Consultant in private wealth management and corporate investment consulting, on the investment committee for 4 private and 40+ corporate portfolios, before moving into innovation and advisory work. Since then I've built and led programs in six countries, advised startups through growth and fundraising, and helped organizations from Fortune 500 firms to government ministries put AI to work, from strategy through implementation.
           </p>
           <p class="text-navy-600 leading-relaxed" style="font-size:clamp(1rem,1.45vw,1.08rem)">
             The through line is decision-making under pressure. It looks the same in a boardroom as it does in a lecture hall.
@@ -191,7 +191,7 @@ const lightHero = heroVariant === 'b';
               <div class="border-b md:border-b-0 md:border-r border-warm-200 pb-7 md:pb-0 md:pr-10">
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Robert W. Baird & Co. · Senior Financial Consultant · Jul 2015 – Dec 2019</span>
                 <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3rem)">FINANCE</h3>
-                <p class="text-navy-400 text-sm leading-snug mb-8 max-w-xs">Private Wealth Management and Corporate Investment Consulting. $1.6B in investment assets across private households, retirement funds, and corporate portfolios. On the investment committee for 4 private and 40+ corporate portfolios. Client objectives met in 90% of 100+ financial plans.</p>
+                <p class="text-navy-400 text-sm leading-snug mb-8 max-w-xs">Private wealth management and corporate investment consulting, across private households, retirement funds, and corporate portfolios. On the investment committee for 4 private and 40+ corporate portfolios.</p>
                 <div class="flex flex-wrap gap-8">
                   <div>
                     <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.6B</p>
@@ -211,15 +211,27 @@ const lightHero = heroVariant === 'b';
               <div class="pt-7 md:pt-0 md:pl-10 flex flex-col gap-7">
                 <div>
                   <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Client Segments</span>
-                  <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["Private Wealth", "Corporate Retirement", "Institutional", "Endowments & Trusts"].join('  \u00b7  ')}</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    {["Private Wealth", "Corporate Retirement", "Institutional", "Endowments & Trusts"].map(c => (
+                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                    ))}
+                  </div>
                 </div>
                 <div>
                   <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Asset Classes</span>
-                  <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["Equities", "Fixed Income", "Real Estate", "Annuities", "Alternatives"].join('  \u00b7  ')}</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    {["Equities", "Fixed Income", "Real Estate", "Annuities", "Alternatives"].map(c => (
+                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                    ))}
+                  </div>
                 </div>
                 <div>
                   <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Portfolio Strategies</span>
-                  <p class="text-sm leading-relaxed text-navy-500" style="font-family:var(--font-display)">{["Aggressive", "Moderately Aggressive", "Conservative", "ETF Satellite"].join('  \u00b7  ')}</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    {["Aggressive", "Moderately Aggressive", "Conservative", "ETF Satellite"].map(c => (
+                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
