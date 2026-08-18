@@ -159,3 +159,9 @@ body { font-family: var(--font-body); }
 @media (max-width: 639px) {
   .tab-btn { padding: 10px 14px; font-size: 0.8125rem; }
 }
+
+/* Nav over a light hero (variant B preview). Harmless when the class is absent. */
+#navbar.nav-on-light:not(.scrolled) a[href^="#"]:not([href="#contact"]) { color: rgba(13,27,42,0.6) !important; }
+#navbar.nav-on-light:not(.scrolled) a[href^="#"]:not([href="#contact"]):hover { color: #0D1B2A !important; }
+#navbar.nav-on-light:not(.scrolled) svg text:first-of-type { fill: #0D1B2A !important; }
+#navbar.nav-on-light:not(.scrolled) #mobile-menu-btn { color: rgba(13,27,42,0.6) !important; }

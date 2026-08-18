@@ -1,0 +1,109 @@
+---
+// Hero variants for side-by-side evaluation on the live page.
+// Usage: /?hero=a | /?hero=b | /?hero=c   (anything else renders the current hero)
+// Delete this component and the switch in index.astro once a direction is chosen.
+interface Props { variant?: string }
+const { variant = 'current' } = Astro.props;
+---
+
+{variant === 'a' && (
+  <section class="relative min-h-screen flex items-end overflow-hidden" style="background:#0D1B2A">
+    <img src="/athens-panel.jpg" alt="Arseniy Goldberg speaking on an AI panel in Athens"
+      class="absolute inset-0 w-full h-full object-cover" style="object-position: 50% 38%" />
+    <div class="absolute inset-0" style="background: linear-gradient(100deg, rgba(8,15,22,0.97) 0%, rgba(8,15,22,0.90) 34%, rgba(8,15,22,0.30) 66%, rgba(8,15,22,0.55) 100%)"></div>
+    <div class="absolute inset-x-0 bottom-0 h-1/3" style="background: linear-gradient(to top, rgba(8,15,22,0.92), transparent)"></div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 pb-24 sm:pb-32 pt-32">
+      <div class="max-w-3xl">
+        <p class="mb-6 text-xs font-bold tracking-[0.3em] uppercase" style="font-family:var(--font-display);color:#F4621F">Panathēnea &nbsp;·&nbsp; Athens</p>
+        <h1 class="text-white font-bold tracking-tight" style="font-family:var(--font-display); font-size:clamp(2.6rem,7.5vw,6rem); line-height:0.94">
+          12 Years.<br/>5 Continents.<br/><span style="color:rgba(255,255,255,0.55);font-weight:300">One Obsession.</span>
+        </h1>
+        <p class="mt-8 text-lg sm:text-2xl font-light max-w-xl" style="color:rgba(255,255,255,0.85)">What drives human decisions.</p>
+        <div class="mt-10 flex flex-wrap items-center gap-8">
+          <a href="#contact" class="inline-block text-sm font-bold tracking-wide pb-2"
+            style="font-family:var(--font-display);color:#fff;border-bottom:2px solid #F4621F">Let's work together &nbsp;→</a>
+          <button onclick="openIntroVideo()" class="flex items-center gap-3 text-sm font-medium" style="font-family: var(--font-display); color: rgba(255,255,255,0.7); background:none; border:none; cursor:pointer; padding:0">
+            <span style="width:34px;height:34px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            Watch a 55-second intro
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-48 pointer-events-none" style="background: linear-gradient(to top, #FAFAF8 0%, rgba(250,250,248,0.85) 30%, transparent 100%)"></div>
+  </section>
+)}
+
+{variant === 'b' && (
+  <section class="relative min-h-screen flex items-center overflow-hidden" style="background:#FAFAF8">
+    <div class="absolute right-0 top-0 bottom-0 w-[46%] hidden lg:block overflow-hidden">
+      <img src="/hero.jpg" alt="Arseniy Goldberg" class="w-full h-full object-cover" style="object-position: 50% 14%" />
+    </div>
+    <div class="absolute top-0 bottom-0 w-px hidden lg:block" style="left:54%;background:rgba(13,27,42,0.12)"></div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 pt-32 pb-24">
+      <div class="lg:w-[56%]">
+        <p class="mb-8 text-xs font-bold tracking-[0.3em] uppercase" style="font-family:var(--font-display);color:#F4621F">Professor &nbsp;·&nbsp; Consultant &nbsp;·&nbsp; Entrepreneur</p>
+        <h1 class="font-bold tracking-tighter" style="font-family:var(--font-display);color:#0D1B2A;font-size:clamp(2.6rem,6.2vw,5rem);line-height:0.92">
+          12 Years.<br/>5 Continents.<br/>One Obsession.
+        </h1>
+        <div class="mt-10 flex items-start gap-6">
+          <div style="width:56px;height:2px;background:#F4621F;margin-top:14px;flex-shrink:0"></div>
+          <p class="text-xl sm:text-2xl font-light max-w-md" style="color:#2A3E56">What drives human decisions.</p>
+        </div>
+        <div class="mt-12 flex flex-wrap items-center gap-8">
+          <a href="#contact" class="inline-block text-sm font-bold tracking-wide pb-1"
+            style="font-family:var(--font-display);color:#0D1B2A;border-bottom:2px solid #F4621F">Let's work together &nbsp;→</a>
+          <button onclick="openIntroVideo()" class="flex items-center gap-3 text-sm font-medium" style="font-family: var(--font-display); color: #5B7494; background:none; border:none; cursor:pointer; padding:0">
+            <span style="width:34px;height:34px;background:rgba(244,98,31,0.12);border:1px solid rgba(244,98,31,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#F4621F"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            Watch a 55-second intro
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{variant === 'c' && (
+  <section class="relative min-h-screen flex flex-col justify-between overflow-hidden" style="background:#080F16">
+    <div class="absolute inset-0 opacity-[0.5]" style="background: radial-gradient(ellipse 55% 45% at 78% 62%, rgba(244,98,31,0.16) 0%, transparent 62%)"></div>
+
+    <div class="relative z-10 flex-1 flex items-center w-full max-w-7xl mx-auto px-6 sm:px-12 pt-32 pb-12">
+      <div class="grid lg:grid-cols-[1.6fr_1fr] gap-16 items-end w-full">
+        <div>
+          <h1 class="font-light tracking-tight" style="font-family:var(--font-display);color:#fff;font-size:clamp(2.4rem,6vw,5.2rem);line-height:1.02">
+            What drives human decisions<span style="color:#F4621F">.</span>
+          </h1>
+          <p class="mt-10 text-base sm:text-lg font-light max-w-lg leading-relaxed" style="color:rgba(255,255,255,0.55)">
+            12 Years. 5 Continents. One Obsession.
+          </p>
+          <div class="mt-12 flex flex-wrap items-center gap-8">
+            <a href="#contact" class="inline-block text-sm font-bold tracking-wide pb-2"
+              style="font-family:var(--font-display);color:#fff;border-bottom:2px solid #F4621F">Let's work together &nbsp;→</a>
+            <button onclick="openIntroVideo()" class="flex items-center gap-3 text-sm font-medium" style="font-family: var(--font-display); color: rgba(255,255,255,0.65); background:none; border:none; cursor:pointer; padding:0">
+              <span style="width:34px;height:34px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.28);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              Watch a 55-second intro
+            </button>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <div class="overflow-hidden" style="aspect-ratio:3/4;max-height:52vh;margin-left:auto;width:min(100%,320px)">
+            <img src="/hero.jpg" alt="Arseniy Goldberg" class="w-full h-full object-cover" style="filter:grayscale(1) contrast(1.05);object-position:50% 18%" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-10 border-t w-full" style="border-color:rgba(255,255,255,0.09)">
+      <div class="max-w-7xl mx-auto px-6 sm:px-12 py-6 flex flex-wrap gap-x-10 gap-y-2 text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">
+        <span>IE Business School</span><span>Oregon State University</span><span>Robert W. Baird &amp; Co.</span><span>Santander</span><span>PIF</span><span>Ministry of Finance, Saudi Arabia</span>
+      </div>
+    </div>
+  </section>
+)}

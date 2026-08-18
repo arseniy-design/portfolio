@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+const heroVariant = (Astro.url.searchParams.get('hero') || 'current').toLowerCase();
+const altHero = ['a','b','c'].includes(heroVariant);
+const lightHero = heroVariant === 'b';
 ---
 <Layout>
 
   <!-- NAV -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8">
+  <nav id="navbar" class={`fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8 ${lightHero ? "nav-on-light" : ""}`}>
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <a href="#" class="flex items-center" aria-label="Arseniy Goldberg">
         <svg width="68" height="30" viewBox="0 0 68 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +42,10 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </nav>
 
+
   <!-- HERO -->
+  {altHero && <Hero variant={heroVariant} />}
+  {!altHero && (
   <section class="hero-bg min-h-screen flex items-center overflow-hidden">
     <div class="absolute left-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-orange-500/15 to-transparent hidden lg:block"></div>
     <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-24 sm:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -78,6 +85,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class="absolute bottom-0 left-0 right-0 h-28 pointer-events-none" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
   </section>
+  )}
 
   <!-- STATS BAR -->
   <section class="bg-warm-50 py-16 border-b border-warm-200">
