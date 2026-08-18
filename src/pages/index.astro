@@ -245,12 +245,13 @@ const lightHero = heroVariant === 'b';
               <div class="border-b md:border-b-0 md:border-r border-warm-200 pb-7 md:pb-0 md:pr-8">
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">01</span>
                 <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">BUILD</h3>
-                <p class="text-navy-400 text-sm leading-snug mb-5">Ventures built from scratch in Azerbaijan, Spain, and the US.</p>
+                <div style="width:42px;height:3px;background:#F4621F;border-radius:2px" class="mb-4"></div>
+                <p class="text-navy-400 text-sm leading-snug mb-5">Built from scratch across six countries, from Azerbaijan to Saudi Arabia to Mexico.</p>
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Built</span>
                 <div class="flex flex-col gap-2">
                   {[["5","Innovation programs"],["3","Startups"],["1","Consultancy"],["1","AI in Finance program"]].map(([n, label]) => (
                     <div class="flex items-baseline gap-2.5">
-                      <span class="font-bold text-navy-900 text-base w-4 flex-shrink-0" style="font-family:var(--font-display)">{n}</span>
+                      <span class="font-bold text-orange-500 text-lg w-5 flex-shrink-0" style="font-family:var(--font-display)">{n}</span>
                       <span class="text-sm text-navy-500" style="font-family:var(--font-display)">{label}</span>
                     </div>
                   ))}
@@ -259,16 +260,14 @@ const lightHero = heroVariant === 'b';
               <div class="border-b md:border-b-0 md:border-r border-warm-200 py-7 md:py-0 md:px-8">
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">02</span>
                 <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">ADVISE</h3>
+                <div style="width:42px;height:3px;background:#F4621F;border-radius:2px" class="mb-4"></div>
                 <p class="text-navy-400 text-sm leading-snug mb-5">Strategy to implementation. Built around real company challenges.</p>
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Engagements</span>
                 <div class="flex flex-col gap-2.5">
                   {["AI implementation and change management",
-                    "Operating model and process restructuring",
-                    "Innovation programs, design to growth",
-                    "Digital product development",
+                    "Operating model restructuring",
                     "Strategy, financial modeling, and GTM",
-                    "Market entry research and validation",
-                    "Educational program design and delivery"].map(x => (
+                    "Market entry research and validation"].map(x => (
                     <span class="text-sm text-navy-500 leading-snug" style="font-family:var(--font-display)">{x}</span>
                   ))}
                 </div>
@@ -276,6 +275,7 @@ const lightHero = heroVariant === 'b';
               <div class="pt-7 md:pt-0 md:pl-8">
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">03</span>
                 <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">TEACH</h3>
+                <div style="width:42px;height:3px;background:#F4621F;border-radius:2px" class="mb-4"></div>
                 <p class="text-navy-400 text-sm leading-snug mb-5">Classrooms, boardrooms, briefing rooms. The standard doesn't change.</p>
                 <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Subjects</span>
                 <div class="flex flex-col gap-2.5">
@@ -1168,15 +1168,15 @@ const lightHero = heroVariant === 'b';
     </div>
   </section>
 
-  <!-- CINEMATIC BREAK 3 -->
-  <div class="relative overflow-hidden" style="height: 50vh; min-height: 320px">
-    <img src="/lecture-hall.jpg" alt="Arseniy Goldberg — University Lecture, Azerbaijan" class="w-full h-full object-cover" style="object-position: center 35%" />
-    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.35) 40%, rgba(13,27,42,0.55) 100%)"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #F4F1EC, transparent)"></div>
+  <!-- CINEMATIC BREAK — Athens AI panel -->
+  <div class="relative overflow-hidden" style="height: 52vh; min-height: 340px">
+    <img src="/athens-panel.jpg" alt="Arseniy Goldberg speaking on an AI panel in Athens" class="w-full h-full object-cover" style="object-position: center 38%" />
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.72) 0%, rgba(13,27,42,0.28) 45%, rgba(13,27,42,0.6) 100%)"></div>
     <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #FAFAF8, transparent)"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #F4F1EC, transparent)"></div>
     <div class="absolute inset-0 flex items-end">
       <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Academy of Public Administration · Baku &nbsp;·&nbsp; Entrepreneurship Program</p>
+        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.45)">Panathēnea &nbsp;·&nbsp; Athens &nbsp;·&nbsp; AI in Practice</p>
       </div>
     </div>
   </div>
@@ -1418,6 +1418,19 @@ const lightHero = heroVariant === 'b';
     }
   </script>
 
+  <!-- CINEMATIC BREAK — Baku lecture -->
+  <div class="relative overflow-hidden" style="height: 50vh; min-height: 320px">
+    <img src="/lecture-hall.jpg" alt="Arseniy Goldberg lecturing at the Academy of Public Administration, Baku" class="w-full h-full object-cover" style="object-position: center 35%" />
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.35) 40%, rgba(13,27,42,0.55) 100%)"></div>
+    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #F4F1EC, transparent)"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
+        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Academy of Public Administration · Baku &nbsp;·&nbsp; Entrepreneurship Program</p>
+      </div>
+    </div>
+  </div>
+
   <!-- WORK WITH ME -->
   <section id="work-with-me" class="py-24 bg-warm-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
@@ -1468,19 +1481,6 @@ const lightHero = heroVariant === 'b';
       </div>
     </div>
   </section>
-
-  <!-- CINEMATIC BREAK 4 — Athens AI panel, leads into contact -->
-  <div class="relative overflow-hidden" style="height: 52vh; min-height: 340px">
-    <img src="/athens-panel.jpg" alt="Arseniy Goldberg speaking on an AI panel in Athens" class="w-full h-full object-cover" style="object-position: center 38%" />
-    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.72) 0%, rgba(13,27,42,0.28) 45%, rgba(13,27,42,0.6) 100%)"></div>
-    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #FAFAF8, transparent)"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-40" style="background: linear-gradient(to top, #0D1B2A 0%, rgba(13,27,42,0.7) 40%, transparent 100%)"></div>
-    <div class="absolute inset-0 flex items-end">
-      <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.45)">Panathēnea &nbsp;·&nbsp; Athens &nbsp;·&nbsp; AI in Practice</p>
-      </div>
-    </div>
-  </div>
 
   <!-- CONTACT -->
   <section id="contact" class="py-28" style="background: #0D1B2A">
