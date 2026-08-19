@@ -53,7 +53,7 @@ const FIELD = [
     name: "Innovation Programs",
     line: "Five programs built and run across three continents, from Azerbaijan to Saudi Arabia to Spain.",
     stats: [["5","Programs"],["3","Continents"],["€250k","Pilot funding"]],
-    photo: { src: "/innovation-stage.webp", caption: "BakuID · Startups of Tomorrow" },
+    photo: { src: "/innovation-stage.webp", caption: "SABAH.lab Bootcamp · Azerbaijan" },
     list: { label: "Programs", items: [
       { name: "RCU Scale-up Hub", meta: "Saudi Arabia · 2024", href: "/rcu-scale-up-hub.pdf" },
       { name: "SABAH Hub", meta: "Azerbaijan", href: "https://sabahhub.com/" },
@@ -194,8 +194,8 @@ const FIELD = [
                 )}
 
                 {c.photo && (
-                  <div style="margin-top:-0.9rem">
-                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:16/10">
+                  <div style="margin-top:0.6rem">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:3/2">
                       <img src={c.photo.src} alt={c.photo.caption} class="w-full h-full object-cover" />
                       <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,15,22,0.85) 0%, transparent 55%)"></div>
                       <p class="absolute bottom-0 left-0 right-0 px-3 pb-2.5 text-white" style="font-family:var(--font-display);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase">{c.photo.caption}</p>
