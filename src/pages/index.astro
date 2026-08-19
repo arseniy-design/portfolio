@@ -1,6 +1,94 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+const CLASSROOM = [
+  {
+    name: "Finance",
+    line: "Built on the $1.6B book I managed at Baird, brought straight into the classroom.",
+    stats: [["$1.6B","Real-world AUM"],["300+","Sessions delivered"],["6","Courses"]],
+    courses: [["Capital Markets","25 Sessions"],["Corporate Finance","15 Sessions"],["Financial Consulting","15 Sessions"],["AI-Powered Finance","15 Sessions"],["Financial Markets & Fintech","15 Sessions"],["Advanced Financial Management","15 Sessions"]],
+    links: [
+      { tag: "Interactive Hub", name: "Capital Markets Hub · 22 Activities", href: "https://arseniygoldberg.com/capital-markets" },
+      { tag: "Course Portfolio", name: "Finance Modules · 50 Video Lessons", href: "https://arseniyportfolio.my.canva.site/arseniy-goldberg-finance-mba-portfolio" },
+    ],
+    videos: [
+      { vid: "1175592384", title: "Time Value of Money" },
+      { vid: "1175592624", title: "Dynamic Valuation" },
+    ],
+  },
+  {
+    name: "Entrepreneurship & AI",
+    line: "Five ventures built from scratch across six countries. Founder experience, taught first-hand.",
+    stats: [["5","Ventures built"],["5","Innovation programs"],["3","Continents"]],
+    courses: [["Entrepreneurial Journey","15 Sessions"],["Design Thinking","8 Sessions"],["Customer Experience","10 Sessions"],["AI as a Cofounder","3 Sessions"],["Business Applications of AI","12 Sessions"],["AI for Productivity","5 Sessions"]],
+    videos: [
+      { vid: "1175612851", title: "Intro to Entrepreneurship" },
+      { vid: "1175612955", title: "Startup Culture" },
+      { vid: "1175612878", title: "Lean Startup" },
+      { vid: "1175612914", title: "Product Prototyping" },
+    ],
+  },
+  {
+    name: "Behavioral Sciences",
+    line: "How bias shows up in professional decisions. Applied across finance, leadership, and AI adoption.",
+    stats: [["6","Courses"],["3","Live simulations"],["5+","Industries"]],
+    courses: [["Critical Skills for the Modern World","15 Sessions"],["Critical Thinking in the AI Era","8 Sessions"],["Decision Making","8 Sessions"],["Financial Behavior","8 Sessions"],["Complex Problem Solving","5 Sessions"],["AI for Professors","Up to 5 Sessions"]],
+    links: [
+      { tag: "Custom GPT", name: "Telecomm AI Quick Case", href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case" },
+      { tag: "Custom GPT", name: "Telecomm Decision-Making Simulator", href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator" },
+      { tag: "Claude Artifact", name: "The War Room", href: "https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5" },
+      { tag: "Claude Artifact", name: "Decision Making", href: "https://claude.ai/public/artifacts/21a50228-9db5-4de6-b0f5-3d231f9159ee" },
+    ],
+  },
+];
+
+const FIELD = [
+  {
+    name: "Innovation Programs",
+    line: "Five programs built and run across three continents, from Azerbaijan to Saudi Arabia to Spain.",
+    stats: [["5","Programs"],["3","Continents"],["€250k","Pilot funding"]],
+    photo: { src: "/innovation-stage.webp", caption: "SABAH.lab Bootcamp · Azerbaijan" },
+    list: { label: "Programs", items: [
+      { name: "RCU Scale-up Hub", meta: "Saudi Arabia · 2024", href: "/rcu-scale-up-hub.pdf" },
+      { name: "SABAH Hub", meta: "Azerbaijan", href: "https://sabahhub.com/" },
+      { name: "Changemakers Program", meta: "Switzerland", href: "https://www.wyssacademy.org/en/changemakers-program" },
+      { name: "Science Connexion & Blue Lab", meta: "Mexico", href: "https://scienceconnexion.com/Convocatorias/SobreReto/6" },
+      { name: "Santander Innovators 90", meta: "Spain · 2026", href: "https://app.santanderopenacademy.com/en/program/innovation-and-ai-experience-in-madrid" },
+    ]},
+
+  },
+  {
+    name: "AI in Practice",
+    line: "GenAI tools built for real professional contexts, from classroom simulations to client intelligence.",
+    stats: [["8","Client deliverables"],["4","Walkthroughs"],["5","Platforms"]],
+    videos: [
+      { vid: "1175529346", title: "AI + Excel" },
+      { vid: "1175529293", title: "Claude + Excel" },
+      { vid: "1175530353", title: "Perplexity + Finance" },
+      { vid: "1175532671", title: "NotebookLM" },
+    ],
+    links: [
+      { tag: "Program", name: "Santander Innovation AI Experience", href: "https://flow-ag.notion.site/santander-innovation-ai-experience" },
+      { tag: "Web App", name: "Gate Check", href: "https://si90-gate-check.onrender.com/" },
+      { tag: "Sales Tool", name: "Finance Academy Navigator", href: "https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73" },
+      { tag: "Perplexity", name: "Taif Market Entry", href: "https://taifmarketentry.pplx.app" },
+      { tag: "Perplexity", name: "Hormuz Shock", href: "https://hormuzshock.pplx.app" },
+      { tag: "Perplexity", name: "Portfolio Risk Analysis", href: "https://portfolioanalysis.pplx.app" },
+      { tag: "Perplexity", name: "Macro Risk Intelligence", href: "https://macrorisks.pplx.app" },
+      { tag: "Client Bundle", name: "Delta Dossier", href: "/delta-dossier/" },
+    ],
+  },
+  {
+    name: "Digital Courses",
+    line: "Three fully-produced courses built for Rebundle's WhatsApp platform, delivered as conversational micro-lessons.",
+    stats: [["3","Courses produced"],["100%","Mobile-native"],["1","Platform"]],
+    phones: [
+      { vid: "1175515603", tag: "AI", name: "Generative AI for Business Professionals" },
+      { vid: "1175515477", tag: "Analytics", name: "Digital Analytics for Business Professionals" },
+      { vid: "1175515542", tag: "Wellbeing", name: "Mental Health in the Digital Era" },
+    ],
+  },
+];
 ---
 <Layout>
 
@@ -262,626 +350,267 @@ import Hero from '../components/Hero.astro';
       </div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-8 pt-14"><!-- reopen max-w container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 pt-14"><!-- reopen max-w container -->
 
       <!-- THE WORK -->
       <div class="section-label reveal">
         <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">The Work</span>
       </div>
+      <h2 class="font-bold text-navy-900 leading-tight mb-10 reveal" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">
+        Everything, on one page.
+      </h2>
 
-      <!-- Main toggle -->
-      <div class="flex gap-3 mb-10 reveal">
-        <button id="work-btn-classroom" onclick="switchWork('classroom')"
-          class="px-6 py-3 rounded-xl text-sm font-bold transition-all"
-          style="font-family:var(--font-display);background:#0D1B2A;color:#fff;border:1px solid #0D1B2A">
-          In the Classroom
-        </button>
-        <button id="work-btn-field" onclick="switchWork('field')"
-          class="px-6 py-3 rounded-xl text-sm font-bold transition-all"
-          style="font-family:var(--font-display);background:#F4F1EC;color:#5B7494;border:1px solid #EDE8DF">
-          In the Field
-        </button>
+      <div class="flex flex-wrap gap-2 mb-10">
+        <button type="button" id="tg-classroom" class="wtoggle px-6 py-3 rounded-xl text-sm font-bold transition-all"
+          style="font-family:var(--font-display);background:#0D1B2A;color:#fff;border:1px solid #0D1B2A;cursor:pointer">In the Classroom</button>
+        <button type="button" id="tg-field" class="wtoggle px-6 py-3 rounded-xl text-sm font-bold transition-all"
+          style="font-family:var(--font-display);background:#F4F1EC;color:#5B7494;border:1px solid #EDE8DF;cursor:pointer">In the Field</button>
       </div>
 
-      <!-- CLASSROOM PANEL -->
-      <div id="work-panel-classroom">
+      {[["In the Classroom", CLASSROOM, "classroom"], ["In the Field", FIELD, "field"]].map(([groupName, cards, tone]) => (
+        <div class={`wgroup ${tone === "field" ? "hidden" : ""}`} data-group={tone}>
 
-        <!-- Classroom sub-toggles -->
-        <div class="flex gap-0 border-b border-warm-300 mb-8">
-          <button id="classroom-btn-finance" onclick="switchClassroomSub('finance')"
-            class="px-5 pb-3 pt-1 text-sm font-bold transition-all border-b-2 -mb-px"
-            style="font-family:var(--font-display);color:#0D1B2A;border-bottom-color:#F4621F">
-            Finance
-          </button>
-          <button id="classroom-btn-entrepreneurship" onclick="switchClassroomSub('entrepreneurship')"
-            class="px-5 pb-3 pt-1 text-sm font-medium transition-all border-b-2 -mb-px"
-            style="font-family:var(--font-display);color:#5B7494;border-bottom-color:transparent">
-            Entrepreneurship
-          </button>
-          <button id="classroom-btn-behavioral" onclick="switchClassroomSub('behavioral')"
-            class="px-5 pb-3 pt-1 text-sm font-medium transition-all border-b-2 -mb-px"
-            style="font-family:var(--font-display);color:#5B7494;border-bottom-color:transparent">
-            Behavioral Sciences
-          </button>
-        </div>
-
-        <div id="classroom-sub-finance">
-        <!-- Finance Group -->
-        <div>
-          <div class="grid md:grid-cols-3 gap-6">
-
-            <!-- Box 1: Subject Identity -->
-            <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
-              <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
-                <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Classroom</span>
-                <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">FINANCE</h2>
-                <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Built on the $1.6B book I managed at Baird, brought straight into the classroom.</p>
-                <div class="flex gap-5 mb-6">
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">$1.6B</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Real-world AUM</p></div>
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">300+</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Sessions delivered</p></div>
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">6</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Courses</p></div>
-                </div>
-                <div class="flex flex-wrap gap-1.5 mt-auto">
-                  {["IE Business School", "Oregon State", "Executive Ed", "Online"].map(i => (
-                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <!-- Box 2: Courses -->
-            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-              <div class="flex items-center justify-between mb-6">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Courses</span>
-                <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">6 Topics</span>
-              </div>
-              <div class="flex flex-col flex-1 divide-y divide-warm-100">
-                {[
-                  { name: "Capital Markets", count: "Flagship" },
-                  { name: "Corporate Finance", count: "15 Sessions" },
-                  { name: "Financial Consulting", count: "15 Sessions" },
-                  { name: "AI-Powered Finance", count: "15 Sessions" },
-                  { name: "Financial Markets & Fintech", count: "15 Sessions" },
-                  { name: "Advanced Financial Management", count: "15 Sessions" },
-                ].map(c => (
-                  <div class="flex items-center justify-between py-3.5">
-                    <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">{c.name}</span>
-                    <span class="text-xs text-navy-400 flex-shrink-0 ml-3" style="font-family:var(--font-display)">{c.count}</span>
-                  </div>
-                ))}
-              </div>
-              <p class="text-xs text-navy-300 mt-5 italic">And growing.</p>
-            </div>
-
-            <!-- Box 3: Digital Assets -->
-            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-5" style="font-family:var(--font-display)">Digital Assets</span>
-              <a href="https://arseniygoldberg.com/capital-markets" target="_blank" rel="noopener"
-                class="flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group mb-4">
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
+            {cards.map((c, ci) => (
+              <div class={`wcard ${ci === 0 ? "wcard-dark" : ""}`}>
+                {/* identity */}
                 <div>
-                  <p class="text-xs text-orange-500 font-semibold mb-0.5" style="font-family:var(--font-display)">Interactive Hub</p>
-                  <p class="text-sm text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">Capital Markets Hub · 22 Activities</p>
+                  <span class="wlabel block mb-2">{groupName}</span>
+                  <h3 class="text-navy-900 mb-3" style="font-family:var(--font-display);font-size:clamp(1.35rem,2vw,1.7rem);font-weight:700;line-height:1.08;letter-spacing:-0.01em">{c.name}</h3>
+                  <p class="text-navy-500" style="font-size:0.92rem;line-height:1.55">{c.line}</p>
                 </div>
-                <span class="text-orange-500 text-sm font-bold flex-shrink-0 group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-              <a href="https://arseniyportfolio.my.canva.site/arseniy-goldberg-finance-mba-portfolio" target="_blank" rel="noopener"
-                class="flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group mb-4">
-                <div>
-                  <p class="text-xs text-orange-500 font-semibold mb-0.5" style="font-family:var(--font-display)">Course Portfolio</p>
-                  <p class="text-sm text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">Finance Modules · 50 Video Lessons</p>
-                </div>
-                <span class="text-orange-500 text-sm font-bold flex-shrink-0 group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-              <div class="grid grid-cols-2 gap-2 mb-5">
-                {[
-                  { href: "https://vimeo.com/1175592384", vid: "1175592384", title: "Time Value of Money" },
-                  { href: "https://vimeo.com/1175592202", vid: "1175592202", title: "Working Capital" },
-                  { href: "https://vimeo.com/1175592624", vid: "1175592624", title: "Dynamic Valuation" },
-                  { href: "https://vimeo.com/1175592738", vid: "1175592738", title: "Sources of Corporate Financing" },
-                ].map(v => (
-                  <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-                    <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-                    <div class="absolute inset-0 flex items-center justify-center">
-                      <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px)">
-                        <svg class="w-3 h-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                      </div>
+
+                {/* numbers */}
+                <div class="flex flex-wrap pb-1" style="column-gap:1.9rem;row-gap:0.75rem">
+                  {c.stats.map(([n, l]) => (
+                    <div class="flex-shrink-0">
+                      <p class="font-bold text-navy-900 text-xl leading-none" style="font-family:var(--font-display)">{n}</p>
+                      <p class="text-navy-400 text-[0.7rem] mt-1 whitespace-nowrap" style="font-family:var(--font-display)">{l}</p>
                     </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-1.5" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent)">
-                      <p class="text-white text-[9px] font-medium leading-tight" style="font-family: var(--font-display)">{v.title}</p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-              <div class="border-t border-warm-100 pt-4">
-                <p class="text-xs font-semibold uppercase tracking-widest text-navy-300 mb-3" style="font-family:var(--font-display)">Valuation Tutors</p>
-                <div class="flex flex-wrap gap-2">
-                  {[
-                    { name: "DCF Valuation", href: "https://claude.ai/public/artifacts/98996521-1957-4911-b45a-b67fe336f5d0" },
-                    { name: "PVGO Model", href: "https://claude.ai/public/artifacts/fbfb82ab-e4cf-4cd4-b843-82b5775112a2" },
-                    { name: "Dividend Discount", href: "https://claude.ai/public/artifacts/38df1612-3558-4f98-a4e3-8e40fce514fa" },
-                    { name: "Book Value", href: "https://claude.ai/public/artifacts/2cceef54-0d52-4ae2-a4bb-33f0638739b8" },
-                  ].map(t => (
-                    <a href={t.href} target="_blank" rel="noopener"
-                      class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors"
-                      style="background:#FFF3EE;color:#F4621F;border:1px solid rgba(244,98,31,0.2);font-family:var(--font-display)">
-                      <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                      {t.name}
-                    </a>
                   ))}
                 </div>
-              </div>
-            </div>
 
-          </div>
-        </div>
-        </div><!-- /classroom-sub-finance -->
-
-        <div id="classroom-sub-entrepreneurship" class="hidden">
-        <!-- Entrepreneurship Group -->
-        <div>
-          <div class="grid md:grid-cols-3 gap-6">
-
-            <!-- Box 1: Subject Identity -->
-            <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
-              <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
-                <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Classroom</span>
-                <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">ENTREPRENEURSHIP</h2>
-                <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Built 5 ventures from scratch across six countries.</p>
-                <div class="flex gap-5 mb-6">
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Ventures built</p></div>
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">4</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Innovation programs</p></div>
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">3</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Continents</p></div>
-                </div>
-                <div class="flex flex-wrap gap-1.5 mt-auto">
-                  {["IE Business School", "Oregon State", "Wyss Academy", "TEC de Monterrey"].map(i => (
-                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <!-- Box 2: Courses -->
-            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-              <div class="flex items-center justify-between mb-6">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Courses</span>
-                <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">6 Topics</span>
-              </div>
-              <div class="flex flex-col flex-1 divide-y divide-warm-100">
-                {[
-                  { name: "Entrepreneurial Journey", count: "Flagship" },
-                  { name: "Design Thinking", count: "8 Sessions" },
-                  { name: "Customer Experience", count: "10 Sessions" },
-                  { name: "Ideation & Validation", count: "3 Sessions" },
-                  { name: "AI as a Cofounder", count: "3 Sessions" },
-                  { name: "Business & Financial Model Design", count: "6 Sessions" },
-                ].map(c => (
-                  <div class="flex items-center justify-between py-3.5">
-                    <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">{c.name}</span>
-                    <span class="text-xs text-navy-400 flex-shrink-0 ml-3" style="font-family:var(--font-display)">{c.count}</span>
-                  </div>
-                ))}
-              </div>
-              <p class="text-xs text-navy-300 mt-5 italic">And growing.</p>
-            </div>
-
-            <!-- Box 3: Digital Assets -->
-            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-5" style="font-family:var(--font-display)">Digital Assets</span>
-              <div class="grid grid-cols-2 gap-2">
-                {[
-                  { href: "https://vimeo.com/1175612851", vid: "1175612851", title: "Intro to Entrepreneurship" },
-                  { href: "https://vimeo.com/1175612955", vid: "1175612955", title: "Startup Culture" },
-                  { href: "https://vimeo.com/1175612878", vid: "1175612878", title: "Lean Startup" },
-                  { href: "https://vimeo.com/1175612914", vid: "1175612914", title: "Product Prototyping" },
-                ].map(v => (
-                  <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-                    <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                      <div class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                        <svg class="w-3 h-3 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                      </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-1.5" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
-                      <p class="text-white font-semibold text-[9px] leading-tight" style="font-family: var(--font-display)">{v.title}</p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </div>
-        </div><!-- /classroom-sub-entrepreneurship -->
-
-        <div id="classroom-sub-behavioral" class="hidden">
-        <!-- Behavioral Group -->
-        <div>
-          <div class="grid md:grid-cols-3 gap-6">
-
-            <!-- Box 1: Subject Identity -->
-            <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
-              <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
-                <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Classroom</span>
-                <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">BEHAVIORAL SCIENCES</h2>
-                <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">How bias shows up in professional decisions. Applied across finance, leadership, and AI adoption.</p>
-                <div class="flex gap-5 mb-6">
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">6</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Courses</p></div>
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">3</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Live simulations</p></div>
-                  <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5+</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Industries</p></div>
-                </div>
-                <div class="flex flex-wrap gap-1.5 mt-auto">
-                  {["IE Business School", "Oregon State", "PIF Saudi Arabia", "STC"].map(i => (
-                    <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <!-- Box 2: Courses -->
-            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-              <div class="flex items-center justify-between mb-6">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Courses</span>
-                <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">6 Topics</span>
-              </div>
-              <div class="flex flex-col flex-1 divide-y divide-warm-100">
-                {[
-                  { name: "Critical Skills for the Modern World", count: "Flagship" },
-                  { name: "Critical Thinking", count: "8 Sessions" },
-                  { name: "Decision Making", count: "8 Sessions" },
-                  { name: "Financial Behavior", count: "8 Sessions" },
-                  { name: "Human & Machine Intelligence", count: "Research" },
-                  { name: "Flow Financial Behavior Series", count: "Content" },
-                ].map(c => (
-                  <div class="flex items-center justify-between py-3.5">
-                    <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">{c.name}</span>
-                    <span class="text-xs text-navy-400 flex-shrink-0 ml-3" style="font-family:var(--font-display)">{c.count}</span>
-                  </div>
-                ))}
-              </div>
-              <p class="text-xs text-navy-300 mt-5 italic">And growing.</p>
-            </div>
-
-            <!-- Box 3: Digital Assets -->
-            <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-5" style="font-family:var(--font-display)">Digital Assets</span>
-              <div class="flex flex-col gap-3">
-                {[
-                  {
-                    tag: "Custom GPT",
-                    name: "Telecomm AI Quick Case",
-                    href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case",
-                  },
-                  {
-                    tag: "Custom GPT",
-                    name: "Telecomm Decision-Making Simulator",
-                    href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator",
-                  },
-                  {
-                    tag: "Claude Artifact",
-                    name: "The War Room",
-                    href: "https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5",
-                  },
-                ].map(s => (
-                  <a href={s.href} target="_blank" rel="noopener"
-                    class="flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group">
-                    <div>
-                      <p class="text-xs text-orange-500 font-semibold mb-0.5" style="font-family:var(--font-display)">{s.tag}</p>
-                      <p class="text-sm text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">{s.name}</p>
-                    </div>
-                    <span class="text-orange-500 text-sm font-bold flex-shrink-0 group-hover:translate-x-1 transition-transform">→</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </div>
-        </div><!-- /classroom-sub-behavioral -->
-
-      </div>
-
-      <!-- FIELD PANEL -->
-      <div id="work-panel-field" class="hidden">
-
-        <!-- Field sub-toggles -->
-        <div class="flex gap-0 border-b border-warm-300 mb-8">
-          <button id="field-btn-innovation" onclick="switchFieldSub('innovation')"
-            class="px-5 pb-3 pt-1 text-sm font-bold transition-all border-b-2 -mb-px"
-            style="font-family:var(--font-display);color:#0D1B2A;border-bottom-color:#F4621F">
-            Innovation Programs
-          </button>
-          <button id="field-btn-ai" onclick="switchFieldSub('ai')"
-            class="px-5 pb-3 pt-1 text-sm font-medium transition-all border-b-2 -mb-px"
-            style="font-family:var(--font-display);color:#5B7494;border-bottom-color:transparent">
-            AI
-          </button>
-          <button id="field-btn-digital" onclick="switchFieldSub('digital')"
-            class="px-5 pb-3 pt-1 text-sm font-medium transition-all border-b-2 -mb-px"
-            style="font-family:var(--font-display);color:#5B7494;border-bottom-color:transparent">
-            Digital Courses
-          </button>
-        </div>
-
-        <div id="field-sub-innovation">
-        <!-- Innovation Programs Group -->
-        <div class="grid md:grid-cols-3 gap-6">
-
-          <!-- Box 1: Identity -->
-          <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
-            <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
-              <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Field</span>
-              <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">INNOVATION PROGRAMS</h2>
-              <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">Five programs built and run across three continents, from Azerbaijan to Saudi Arabia to Spain.</p>
-              <div class="flex gap-5 mb-6">
-                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Programs</p></div>
-                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">3</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Continents</p></div>
-                <div><p class="font-bold text-orange-400 text-xl" style="font-family:var(--font-display)">€250k</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Pilot funding</p></div>
-              </div>
-              <div class="flex flex-wrap gap-1.5 mt-auto">
-                {["RCU AlUla", "SABAH Hub", "Wyss Academy", "TEC de Monterrey"].map(i => (
-                  <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <!-- Box 2: Programs List -->
-          <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-            <div class="flex items-center justify-between mb-6">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Programs</span>
-              <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">5 Total</span>
-            </div>
-            <div class="flex flex-col flex-1 divide-y divide-warm-100">
-              {[
-                { name: "RCU Scale-up Hub", location: "Saudi Arabia · 2024", href: "https://www.zawya.com/en/business/travel-and-tourism/rcu-launches-scale-up-hub-program-to-enhance-tourism-in-alula-ptpmy2hr" },
-                { name: "SABAH Hub", location: "Azerbaijan", href: "https://sabahhub.com/" },
-                { name: "Changemakers Program", location: "Switzerland", href: "https://www.wyssacademy.org/en/changemakers-program" },
-                { name: "Science Connexion & Blue Lab", location: "Mexico", href: "https://scienceconnexion.com/Convocatorias/SobreReto/6" },
-                { name: "Santander Innovators 90", location: "Spain · 2026", href: "https://app.santanderopenacademy.com/en/program/innovation-and-ai-experience-in-madrid" },
-              ].map(p => (
-                <a href={p.href} target="_blank" rel="noopener"
-                  class="flex items-center justify-between py-3.5 group">
-                  <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">{p.name}</span>
-                  <div class="flex items-center gap-2 flex-shrink-0 ml-3">
-                    <span class="text-xs text-navy-400" style="font-family:var(--font-display)">{p.location}</span>
-                    <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <!-- Box 3: Digital Assets -->
-          <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-            <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-5" style="font-family:var(--font-display)">Digital Assets</span>
-            <div class="flex flex-col gap-3">
-              {[
-                { tag: "Article", name: "RCU Scale-up Hub, Zawya", href: "https://www.zawya.com/en/business/travel-and-tourism/rcu-launches-scale-up-hub-program-to-enhance-tourism-in-alula-ptpmy2hr" },
-                { tag: "Deck (PDF)", name: "RCU Scale-up Hub", href: "/rcu-scale-up-hub.pdf" },
-                { tag: "Deck (PDF)", name: "TEC Venture Builder", href: "/tec-venture-builder.pdf" },
-              ].map(s => (
-                <a href={s.href} target="_blank" rel="noopener"
-                  class="flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group">
+                {c.courses && (
                   <div>
-                    <p class="text-xs text-orange-500 font-semibold mb-0.5" style="font-family:var(--font-display)">{s.tag}</p>
-                    <p class="text-sm text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">{s.name}</p>
-                  </div>
-                  <span class="text-orange-500 text-sm font-bold flex-shrink-0 group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-        </div>
-        </div><!-- /field-sub-innovation -->
-
-
-        <div id="field-sub-ai" class="hidden">
-        <!-- AI Group -->
-        <div class="grid md:grid-cols-3 gap-6">
-
-          <!-- Box 1: Identity -->
-          <div class="rounded-2xl flex flex-col" style="background:#0D1B2A">
-            <div class="p-7 flex flex-col flex-1" style="background: linear-gradient(135deg, rgba(244,98,31,0.08) 0%, transparent 60%)">
-              <span class="text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">In the Field</span>
-              <h2 class="font-black leading-tight text-white mb-4" style="font-family:var(--font-display);font-size:clamp(1.4rem,2vw,1.85rem)">AI IN PRACTICE</h2>
-              <p class="text-sm leading-relaxed mb-6" style="font-family:var(--font-display);color:rgba(255,255,255,0.55)">GenAI tools built for real professional contexts, from classroom simulations to client intelligence.</p>
-              <div class="flex gap-5 mb-6">
-                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">6</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Tools built</p></div>
-                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">5</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Deliverables</p></div>
-                <div><p class="font-bold text-white text-xl" style="font-family:var(--font-display)">4</p><p class="text-xs" style="font-family:var(--font-display);color:rgba(255,255,255,0.4)">Videos</p></div>
-              </div>
-              <div class="flex flex-wrap gap-1.5 mt-auto">
-                {["IE Business School", "Kyowa Kirin", "STC", "Executive Ed"].map(i => (
-                  <span class="text-xs px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.55);font-family:var(--font-display)">{i}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <!-- Box 2: Tools List -->
-          <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-            <div class="flex items-center justify-between mb-6">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500" style="font-family:var(--font-display)">Tools Built</span>
-              <span class="text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#5B7494;font-family:var(--font-display)">6 Tools</span>
-            </div>
-            <div class="flex flex-col flex-1 divide-y divide-warm-100">
-              <div class="flex items-center justify-between py-3.5">
-                <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">GenAI Workflow Library</span>
-                <span class="text-xs text-navy-400 flex-shrink-0 ml-3" style="font-family:var(--font-display)">24 Walkthroughs</span>
-              </div>
-              <div class="flex items-center justify-between py-3.5 gap-2">
-                <span class="text-sm text-navy-700 font-medium" style="font-family:var(--font-display)">Stock Options Tutor 1–3</span>
-                <div class="flex items-center gap-2 flex-shrink-0">
-                  <a href="https://chatgpt.com/g/g-67e66b83b1288191afef1bfa8c2fb089-stock-option-tutor-1" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500 hover:underline" style="font-family:var(--font-display)">L1 →</a>
-                  <a href="https://chatgpt.com/g/g-67e665aa53dc81918763a71569557dcc-stock-option-tutor-2" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500 hover:underline" style="font-family:var(--font-display)">L2 →</a>
-                  <a href="https://chatgpt.com/g/g-67ed6f19e8d08191ac2f4fdacb34adbe-stock-option-tutor-3" target="_blank" rel="noopener" class="text-xs font-bold text-orange-500 hover:underline" style="font-family:var(--font-display)">L3 →</a>
-                </div>
-              </div>
-              <a href="https://chatgpt.com/g/g-67f17440919481918ec80d0593f8f218-futures-trader-pro" target="_blank" rel="noopener"
-                class="flex items-center justify-between py-3.5 group">
-                <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">Futures Trader Pro</span>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-3">
-                  <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Custom GPT</span>
-                  <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
-                </div>
-              </a>
-              <a href="https://chatgpt.com/g/g-67ab3edec99881918e280a7f42de0e27-macro-finance-world" target="_blank" rel="noopener"
-                class="flex items-center justify-between py-3.5 group">
-                <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">Macro Finance World</span>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-3">
-                  <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Custom GPT</span>
-                  <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
-                </div>
-              </a>
-              <a href="https://claude.ai/public/artifacts/3a156b7f-e05b-4e72-b6f0-788f28870b41" target="_blank" rel="noopener"
-                class="flex items-center justify-between py-3.5 group">
-                <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">Valuation Tutor</span>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-3">
-                  <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Claude Artifact</span>
-                  <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
-                </div>
-              </a>
-              <a href="https://www.perplexity.ai/computer/tasks/global-macro-risk-dashboard-re-1AHm8gjISKuHhrH6tN.ORA?view=thread" target="_blank" rel="noopener"
-                class="flex items-center justify-between py-3.5 group">
-                <span class="text-sm text-navy-700 font-medium group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display)">Global Macro Risk</span>
-                <div class="flex items-center gap-2 flex-shrink-0 ml-3">
-                  <span class="text-xs text-navy-400" style="font-family:var(--font-display)">Perplexity</span>
-                  <span class="text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Box 3: Digital Assets -->
-          <div class="bg-white rounded-2xl border border-warm-200 p-7 flex flex-col">
-            <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-4" style="font-family:var(--font-display)">Digital Assets</span>
-            <div class="grid grid-cols-2 gap-2 mb-5">
-              {[
-                { href: "https://vimeo.com/1175529346", vid: "1175529346", title: "AI + Excel" },
-                { href: "https://vimeo.com/1175529293", vid: "1175529293", title: "Claude + Excel" },
-                { href: "https://vimeo.com/1175530353", vid: "1175530353", title: "Perplexity + Finance" },
-                { href: "https://vimeo.com/1175532671", vid: "1175532671", title: "NotebookLM" },
-              ].map(v => (
-                <a href={v.href} target="_blank" class="group relative block rounded-xl overflow-hidden bg-navy-800 aspect-video">
-                  <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors"></div>
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                      <svg class="w-3 h-3 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <span class="wsub block mb-3">Courses</span>
+                    <div class="flex flex-col divide-y divide-warm-100">
+                      {c.courses.map(([n, meta]) => (
+                        <div class="flex items-start justify-between gap-4 py-2.5">
+                          <span class="text-navy-800" style="font-family:var(--font-display);font-size:0.98rem;font-weight:500;line-height:1.35">{n}</span>
+                          <span class="text-navy-300 flex-shrink-0" style="font-family:var(--font-display);font-size:0.75rem;line-height:1.35;padding-top:0.08rem">{meta}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                  <div class="absolute bottom-0 left-0 right-0 p-1.5" style="background: linear-gradient(to top, rgba(0,0,0,0.75), transparent)">
-                    <p class="text-white font-semibold text-[9px] leading-tight" style="font-family: var(--font-display)">{v.title}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-            <div class="border-t border-warm-100 pt-4">
-              <p class="text-xs font-semibold uppercase tracking-widest text-navy-300 mb-3" style="font-family:var(--font-display)">Client Deliverables</p>
-              <div class="flex flex-col gap-2">
-                {[
-                  { tag: "Program Experience", name: "Santander Innovation AI Experience", href: "https://flow-ag.notion.site/santander-innovation-ai-experience" },
-                  { tag: "Sales Enablement", name: "Finance Academy Navigator", href: "https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73" },
-                  { tag: "Web App", name: "Gate Check", href: "https://si90-gate-check.onrender.com/" },
-                  { tag: "Perplexity Computer", name: "Taif Market Entry", href: "https://taifmarketentry.pplx.app" },
-                  { tag: "Perplexity Computer", name: "Hormuz Shock", href: "https://hormuzshock.pplx.app" },
-                  { tag: "Perplexity Computer", name: "Portfolio Risk Analysis", href: "https://portfolioanalysis.pplx.app" },
-                  { tag: "Perplexity Computer", name: "Macro Risk Intelligence", href: "https://macrorisks.pplx.app" },
-                  { tag: "Client Asset Bundle", name: "Delta Dossier", href: "/delta-dossier/" },
-                ].map(d => (
-                  <a href={d.href} target="_blank" rel="noopener"
-                    class="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg border border-warm-200 hover:border-orange-300 transition-colors group">
-                    <div class="min-w-0">
-                      <p class="text-[10px] text-orange-500 font-semibold" style="font-family:var(--font-display)">{d.tag}</p>
-                      <p class="text-xs text-navy-800 font-medium leading-snug" style="font-family:var(--font-display)">{d.name}</p>
+                )}
+
+                {c.list && (
+                  <div>
+                    <span class="wsub block mb-3">{c.list.label}</span>
+                    <div class="flex flex-col divide-y divide-warm-100">
+                      {c.list.items.map(p => (
+                        <a href={p.href} target="_blank" rel="noopener" class="flex items-start justify-between gap-4 py-2.5 group">
+                          <span class="text-navy-800 group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display);font-size:0.98rem;font-weight:500;line-height:1.35">{p.name}</span>
+                          <span class="text-navy-300 flex-shrink-0" style="font-family:var(--font-display);font-size:0.75rem;line-height:1.35;padding-top:0.08rem">{p.meta}</span>
+                        </a>
+                      ))}
                     </div>
-                    <span class="text-orange-500 text-xs font-bold flex-shrink-0 group-hover:translate-x-0.5 transition-transform">→</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
+                  </div>
+                )}
 
-        </div>
-        </div><!-- /field-sub-ai -->
+                {(c.videos || c.pills || c.links || c.phones) && (
+                  <div>
+                    <span class="wsub block mb-3">Digital Assets</span>
+                  </div>
+                )}
 
+                {c.photo && (
+                  <div style="margin-top:0.6rem">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:3/2">
+                      <img src={c.photo.src} alt={c.photo.caption} class="w-full h-full object-cover" />
+                      <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,15,22,0.85) 0%, transparent 55%)"></div>
+                      <p class="absolute bottom-0 left-0 right-0 px-3 pb-2.5 text-white" style="font-family:var(--font-display);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase">{c.photo.caption}</p>
+                    </div>
+                  </div>
+                )}
 
+                {c.videos && (
+                  <div style="margin-top:-0.9rem">
+                    <div class="grid grid-cols-2 gap-2">
+                      {c.videos.map(v => (
+                        <a href={`https://vimeo.com/${v.vid}`} target="_blank" rel="noopener" class="group relative block rounded-lg overflow-hidden bg-navy-800 aspect-video">
+                          <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors"></div>
+                          <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-7 h-7 rounded-full bg-white/90 flex items-center justify-center">
+                              <svg class="w-2.5 h-2.5 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </span>
+                          </div>
+                          <p class="absolute bottom-0 left-0 right-0 px-1.5 pb-1 text-white text-[0.6rem] font-semibold leading-tight" style="font-family:var(--font-display);text-shadow:0 1px 3px rgba(0,0,0,0.8)">{v.title}</p>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-        <div id="field-sub-digital" class="hidden">
-        <!-- Digital Courses Group -->
-        <div>
-          <div class="py-6">
-            <p class="text-navy-400 text-sm leading-relaxed mb-12">Three fully-produced digital courses built for Rebundle's WhatsApp platform, delivered as conversational micro-lessons directly on mobile.</p>
-            <div class="flex flex-col sm:flex-row items-start justify-center gap-10 lg:gap-20">
-              {[
-                { vid: "1175515603", key: "maia",  tag: "AI",        name: "Generative AI for Business Professionals",     desc: "Start with AI basics and learn from the best." },
-                { vid: "1175515477", key: "diana", tag: "Analytics", name: "Digital Analytics for Business Professionals", desc: "Conquer the fundamentals of Google Analytics." },
-                { vid: "1175515542", key: "eliza", tag: "Wellbeing", name: "Mental Health in the Digital Era",             desc: "Battle social dynamics in disorder development." },
-              ].map(c => (
-                <div class="flex flex-col items-center gap-5 flex-1 max-w-[220px] mx-auto">
-                  <div style="position:relative;width:200px;padding:0 8px">
-                    <div style="position:absolute;left:0;top:72px;width:3px;height:28px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
-                    <div style="position:absolute;left:0;top:112px;width:3px;height:44px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
-                    <div style="position:absolute;left:0;top:164px;width:3px;height:44px;background:#3A3A3C;border-radius:2px 0 0 2px"></div>
-                    <div style="position:absolute;right:0;top:110px;width:3px;height:56px;background:#3A3A3C;border-radius:0 2px 2px 0"></div>
-                    <div style="width:184px;aspect-ratio:9/19.5;background:#1C1C1E;border-radius:44px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15),0 0 0 1.5px #000,0 0 0 2.5px #2C2C2E,0 32px 64px rgba(0,0,0,0.5);position:relative;overflow:hidden">
-                      <div style="position:absolute;inset:0;border-radius:42px;overflow:hidden;background:#000">
-                        <div style="position:absolute;top:0;left:0;right:0;height:44px;z-index:30;display:flex;align-items:flex-end;justify-content:space-between;padding:0 18px 6px">
-                          <span style="font-size:11px;font-weight:600;color:#fff;letter-spacing:-0.3px">9:41</span>
-                          <div style="display:flex;align-items:center;gap:5px">
-                            <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><rect x="0" y="6" width="3" height="5" rx="0.5"/><rect x="4" y="4" width="3" height="7" rx="0.5"/><rect x="8" y="2" width="3" height="9" rx="0.5"/><rect x="12" y="0" width="3" height="11" rx="0.5"/></svg>
-                            <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><path d="M7.5 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3.5a4.5 4.5 0 0 1 3.18 1.32l1.06-1.06A6 6 0 0 0 7.5 4a6 6 0 0 0-4.24 1.76l1.06 1.06A4.5 4.5 0 0 1 7.5 5.5zm0-3.5a7.5 7.5 0 0 1 5.3 2.2L13.86 3.14A9 9 0 0 0 7.5 1a9 9 0 0 0-6.36 2.64L2.2 4.7A7.5 7.5 0 0 1 7.5 2.5z" opacity="0.9"/></svg>
-                            <svg width="24" height="12" viewBox="0 0 24 12" fill="white"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="white" stroke-width="1.2" fill="none"/><rect x="21.5" y="4" width="2" height="4" rx="1" fill="white" opacity="0.4"/><rect x="1.5" y="2.5" width="16" height="7" rx="1.5" fill="white"/></svg>
+                {c.phones && (
+                  <div style="margin-top:-0.9rem">
+                    <div class="flex flex-col items-center gap-4">
+                      {/* one handset, the course inside it switches */}
+                      <div class="relative" style="width:212px">
+                        <span style="position:absolute;left:-2.5px;top:100px;width:3px;height:22px;background:linear-gradient(90deg,#4a5f78,#2a3a4d);border-radius:2px 0 0 2px"></span>
+                        <span style="position:absolute;left:-2.5px;top:136px;width:3px;height:40px;background:linear-gradient(90deg,#4a5f78,#2a3a4d);border-radius:2px 0 0 2px"></span>
+                        <span style="position:absolute;left:-2.5px;top:188px;width:3px;height:40px;background:linear-gradient(90deg,#4a5f78,#2a3a4d);border-radius:2px 0 0 2px"></span>
+                        <span style="position:absolute;right:-2.5px;top:160px;width:3px;height:58px;background:linear-gradient(270deg,#4a5f78,#2a3a4d);border-radius:0 2px 2px 0"></span>
+
+                        {/* titanium frame */}
+                        <div class="relative" style="aspect-ratio:9/19.5;border-radius:2.5rem;padding:3.5px;background:linear-gradient(145deg,#8fa3ba 0%,#3d4f64 12%,#1a2531 42%,#141d27 70%,#6b8299 100%);box-shadow:0 26px 60px rgba(13,27,42,0.45), 0 4px 10px rgba(13,27,42,0.4)">
+                          <div style="position:absolute;inset:3.5px;border-radius:2.35rem;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.16);pointer-events:none;z-index:50"></div>
+
+                          <div class="relative w-full h-full overflow-hidden" style="border-radius:2.32rem;background:#0B141A">
+
+                            {/* dynamic island */}
+                            <div style="position:absolute;left:50%;transform:translateX(-50%);top:9px;width:66px;height:19px;background:#000;border-radius:999px;z-index:45"></div>
+
+                            {/* status bar */}
+                            <div style="position:absolute;inset-inline:0;top:0;height:30px;z-index:44;display:flex;align-items:center;justify-content:space-between;padding:9px 15px 0">
+                              <span style="color:#fff;font-size:0.52rem;font-weight:700;font-family:var(--font-display);letter-spacing:0.01em">9:41</span>
+                              <span style="display:flex;align-items:center;gap:3px">
+                                <svg width="11" height="8" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity="0.45"/></svg>
+                                <svg width="10" height="8" viewBox="0 0 16 12" fill="#fff"><path d="M8 11.2 5.6 8.6a3.6 3.6 0 0 1 4.8 0L8 11.2Zm0-5.1a6.6 6.6 0 0 0-4.7 1.9L1.6 6.3a9 9 0 0 1 12.8 0l-1.7 1.7A6.6 6.6 0 0 0 8 6.1Z"/></svg>
+                                <span style="display:inline-flex;align-items:center;gap:1px">
+                                  <span style="width:13px;height:7px;border:1px solid rgba(255,255,255,0.6);border-radius:2px;padding:1px;display:inline-flex"><span style="flex:1;background:#fff;border-radius:1px"></span></span>
+                                  <span style="width:1px;height:3px;background:rgba(255,255,255,0.6);border-radius:0 1px 1px 0"></span>
+                                </span>
+                              </span>
+                            </div>
+
+                            {/* chat header */}
+                            <div style="position:absolute;inset-inline:0;top:30px;height:44px;z-index:40;display:flex;align-items:center;gap:7px;padding:0 11px;background:rgba(17,27,34,0.98);border-bottom:1px solid rgba(255,255,255,0.06)">
+                              <span style="width:25px;height:25px;border-radius:50%;background:linear-gradient(140deg,#F4621F,#D4521A);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-display);font-size:0.5rem;font-weight:700;color:#fff">AG</span>
+                              <div style="min-width:0;flex:1">
+                                <p class="phone-title" style="color:#E9EDEF;font-size:0.58rem;font-weight:600;line-height:1.15;font-family:var(--font-display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Course</p>
+                                <p style="color:#8696A0;font-size:0.47rem;line-height:1.2;font-family:var(--font-display)">online</p>
+                              </div>
+                            </div>
+
+                            <div style="position:absolute;inset:0;background:#0B141A;background-image:radial-gradient(rgba(255,255,255,0.022) 1px, transparent 1px);background-size:13px 13px"></div>
+
+                            {c.phones.map((p, i) => (
+                              <div class={`phone-screen absolute inset-0 ${i === 0 ? '' : 'hidden'}`} data-screen={i} data-name={p.name} data-vid={p.vid}>
+                                <div style="position:absolute;inset-inline:0;top:74px;bottom:0;padding:11px 9px;display:flex;flex-direction:column;gap:7px">
+                                  <div style="align-self:flex-start;max-width:88%;background:#202C33;border-radius:8px 8px 8px 2px;padding:6px 8px 4px">
+                                    <p style="color:#E9EDEF;font-size:0.56rem;line-height:1.35;font-family:var(--font-body)">{p.name}</p>
+                                    <p style="color:#8696A0;font-size:0.42rem;text-align:right;margin-top:1px;font-family:var(--font-body)">09:41</p>
+                                  </div>
+
+                                  <button type="button" class="phone-play group" data-vid={p.vid} style="align-self:flex-start;max-width:92%;background:#202C33;border-radius:8px;padding:4px;border:none;cursor:pointer;text-align:left">
+                                    <span style="position:relative;display:block;border-radius:6px;overflow:hidden;aspect-ratio:16/11">
+                                      <img src={`https://vumbnail.com/${p.vid}.jpg`} alt={p.name} style="width:100%;height:100%;object-fit:cover" />
+                                      <span style="position:absolute;inset:0;background:rgba(8,15,22,0.3)"></span>
+                                      <span class="transition-transform group-hover:scale-110" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="#0B141A" style="margin-left:2px"><path d="M8 5v14l11-7z"/></svg>
+                                      </span>
+                                    </span>
+                                    <span style="display:flex;align-items:center;justify-content:space-between;padding:4px 3px 1px">
+                                      <span style="display:inline-block;font-size:0.42rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:1px 5px;border-radius:999px;background:rgba(244,98,31,0.9);color:#fff;font-family:var(--font-display)">{p.tag}</span>
+                                      <span style="color:#8696A0;font-size:0.42rem;font-family:var(--font-body)">09:41</span>
+                                    </span>
+                                  </button>
+
+                                  <div style="align-self:flex-end;max-width:70%;background:#005C4B;border-radius:8px 8px 2px 8px;padding:6px 8px 4px">
+                                    <p style="color:#E9EDEF;font-size:0.56rem;line-height:1.35;font-family:var(--font-body)">Ready when you are</p>
+                                    <p style="color:rgba(233,237,239,0.55);font-size:0.42rem;text-align:right;margin-top:1px;font-family:var(--font-body)">09:42</p>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+
+                            {/* in-place player */}
+                            <div id="phone-player" class="hidden" style="position:absolute;inset:0;z-index:46;background:#000">
+                              <div id="phone-player-slot" style="position:absolute;inset:0"></div>
+                              <button type="button" id="phone-close" aria-label="Close video"
+                                style="position:absolute;top:36px;right:10px;z-index:48;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.25);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                              </button>
+                            </div>
+
+                            {/* screen gloss + home indicator */}
+                            <div style="position:absolute;inset:0;z-index:47;pointer-events:none;background:linear-gradient(122deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.03) 18%, transparent 38%)"></div>
+                            <div style="position:absolute;left:50%;transform:translateX(-50%);bottom:6px;width:80px;height:4px;border-radius:999px;background:rgba(255,255,255,0.75);z-index:48;pointer-events:none"></div>
                           </div>
                         </div>
-                        <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:28px;background:#000;border-radius:20px;z-index:40;box-shadow:0 0 0 1px #1C1C1E"></div>
-                        <iframe
-                          id={`vimeo-${c.key}`}
-                          src={`https://player.vimeo.com/video/${c.vid}?controls=0&title=0&byline=0&portrait=0&playsinline=1&dnt=1`}
-                          style="position:absolute;inset:0;width:100%;height:100%;display:block;border:none"
-                          allow="autoplay; fullscreen; picture-in-picture"
-                          allowfullscreen
-                        />
-                        <div id={`controls-${c.key}`} style="display:none;position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:35;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);border-radius:24px;padding:6px 12px;display:none;align-items:center;gap:12px">
-                          <button onclick={`seekVimeo('${c.key}',-15)`} style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;color:#fff;opacity:0.85" title="-15s">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="7.5" y="15.5" font-size="6" font-weight="bold" fill="white" text-anchor="middle">15</text></svg>
-                          </button>
-                          <button id={`playpause-${c.key}`} onclick={`toggleVimeo('${c.key}')`} style="background:rgba(255,255,255,0.15);border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                          </button>
-                          <button onclick={`seekVimeo('${c.key}',15)`} style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;color:#fff;opacity:0.85" title="+15s">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 13c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6v4l5-5-5-5v4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8h-2z"/><text x="16.5" y="15.5" font-size="6" font-weight="bold" fill="white" text-anchor="middle">15</text></svg>
-                          </button>
-                        </div>
-                        <div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:100px;height:4px;background:rgba(255,255,255,0.35);border-radius:3px;z-index:30"></div>
                       </div>
-                    </div>
-                    <div id={`overlay-${c.key}`}
-                      style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;border-radius:44px"
-                      onclick={`playVimeoPhone('${c.key}')`}>
-                      <div style="width:56px;height:56px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.4);backdrop-filter:blur(8px)">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#0D1B2A"><path d="M8 5v14l11-7z"/></svg>
+
+                      <div class="flex items-center gap-2">
+                        {c.phones.map((p, i) => (
+                          <button type="button" class="phone-dot rounded-full transition-all" data-dot={i}
+                            aria-label={p.name}
+                            style={`width:${i === 0 ? '22px' : '8px'};height:8px;background:${i === 0 ? '#F4621F' : '#DDD6CC'};border:none;cursor:pointer;padding:0`}></button>
+                        ))}
                       </div>
+                      <p class="text-navy-400 text-[0.7rem] text-center" style="font-family:var(--font-display)">Tap a dot to switch course</p>
                     </div>
                   </div>
-                  <div class="text-center">
-                    <span class="text-orange-500 text-xs font-bold tracking-[0.15em] uppercase" style="font-family:var(--font-display)">{c.tag}</span>
-                    <h3 class="font-bold text-navy-900 text-sm mt-1.5 leading-snug" style="font-family:var(--font-display)">{c.name}</h3>
-                    <p class="text-navy-400 text-xs mt-1 leading-relaxed">{c.desc}</p>
+                )}
+
+                {c.pills && (
+                  <div style="margin-top:-0.9rem">
+                    <div class="flex flex-wrap gap-1.5">
+                      {c.pills.items.map(t => (
+                        <a href={t.href} target="_blank" rel="noopener" class="text-xs px-2.5 py-1 rounded-full transition-colors" style="background:#FFF3EE;color:#F4621F;border:1px solid rgba(244,98,31,0.22);font-family:var(--font-display)">{t.name}</a>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                )}
+
+                {c.links && (
+                  <div style="margin-top:-0.9rem">
+                    <div class="grid sm:grid-cols-2 gap-2 items-stretch">
+                      {c.links.map(d => (
+                        <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3.5 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group" style="min-height:68px">
+                          <div class="min-w-0">
+                            <p class="text-orange-500 font-bold uppercase" style="font-family:var(--font-display);font-size:0.55rem;letter-spacing:0.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{d.tag}</p>
+                            <p class="text-navy-800 font-medium mt-0.5" style="font-family:var(--font-display);font-size:0.78rem;line-height:1.28;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{d.name}</p>
+                          </div>
+                          <span class="text-orange-500 text-xs font-bold flex-shrink-0 group-hover:translate-x-0.5 transition-transform">→</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {c.note && (
+                  <p class="text-[0.7rem] leading-snug px-3 py-2 rounded-lg" style="background:#FFF3EE;color:#D4521A;font-family:var(--font-display)">{c.note}</p>
+                )}
+              </div>
+            ))}
           </div>
         </div>
-        </div><!-- /field-sub-digital -->
+      ))}
 
       </div>
 
     </div>
   </section>
+
+  <style>
+    .lab-bar { background:#F4621F; color:#fff; font-family:var(--font-display); font-weight:700;
+      font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; padding:10px 20px; }
+    .wcard { background:#fff; border:1px solid #EDE8DF; border-radius:1rem; padding:1.75rem; display:flex; flex-direction:column; gap:1.4rem; }
+    .wcard-dark { background:linear-gradient(158deg,#132133 0%,#0D1B2A 55%,#0A1522 100%); border-color:rgba(255,255,255,0.09); }
+    .wcard-dark .wsub { color:rgba(255,255,255,0.72); }
+    .wcard-dark .text-navy-900 { color:#fff; }
+    .wcard-dark .text-navy-800 { color:#fff; }
+    .wcard-dark .text-navy-500 { color:rgba(255,255,255,0.88); }
+    .wcard-dark .text-navy-400 { color:rgba(255,255,255,0.78); }
+    .wcard-dark .text-navy-300 { color:rgba(255,255,255,0.72); }
+    .wcard-dark .divide-warm-100 > :not([hidden]) ~ :not([hidden]) { border-color:rgba(255,255,255,0.08); }
+    .wcard-dark .border-warm-200 { border-color:rgba(255,255,255,0.13); }
+    .wcard-dark a.border-warm-200:hover { border-color:rgba(244,98,31,0.6); }
+    .wlabel { font-family:var(--font-display); font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#F4621F; }
+    .wsub   { font-family:var(--font-display); font-size:0.62rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#7D99B8; }
+  </style>
 
   <!-- CINEMATIC BREAK -->
   <div class="relative overflow-hidden" style="height: 65vh; min-height: 420px">
@@ -1535,6 +1264,59 @@ import Hero from '../components/Hero.astro';
     </div>
   </footer>
 
+  <script is:inline>
+    (function () {
+      const btns = { classroom: document.getElementById('tg-classroom'), field: document.getElementById('tg-field') };
+      const on  = 'background:#0D1B2A;color:#fff;border:1px solid #0D1B2A;cursor:pointer;font-family:var(--font-display)';
+      const off = 'background:#F4F1EC;color:#5B7494;border:1px solid #EDE8DF;cursor:pointer;font-family:var(--font-display)';
+      function show(which) {
+        document.querySelectorAll('.wgroup').forEach(g => g.classList.toggle('hidden', g.dataset.group !== which));
+        Object.entries(btns).forEach(([k, b]) => { if (b) b.style.cssText = (k === which ? on : off); });
+      }
+      Object.entries(btns).forEach(([k, b]) => b && b.addEventListener('click', () => show(k)));
+    })();
+    (function () {
+      const first = document.querySelector('.phone-screen');
+      const title = document.querySelector('.phone-title');
+      if (first && title) title.textContent = first.dataset.name;
+    })();
+    (function () {
+      const player = document.getElementById('phone-player');
+      const slot   = document.getElementById('phone-player-slot');
+      const close  = document.getElementById('phone-close');
+      function stop() {
+        if (!player) return;
+        player.classList.add('hidden');
+        if (slot) slot.innerHTML = '';
+      }
+      document.querySelectorAll('.phone-play').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (!player || !slot) return;
+          slot.innerHTML = '<iframe src="https://player.vimeo.com/video/' + btn.dataset.vid +
+            '?autoplay=1&title=0&byline=0&portrait=0&playsinline=1&dnt=1" ' +
+            'style="position:absolute;inset:0;width:100%;height:100%;border:none" ' +
+            'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+          player.classList.remove('hidden');
+        });
+      });
+      if (close) close.addEventListener('click', stop);
+      document.querySelectorAll('.phone-dot').forEach(d => d.addEventListener('click', stop));
+    })();
+    document.querySelectorAll('.phone-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const n = dot.dataset.dot;
+        document.querySelectorAll('.phone-screen').forEach(sc => sc.classList.toggle('hidden', sc.dataset.screen !== n));
+        const active = document.querySelector('.phone-screen:not(.hidden)');
+        const title = document.querySelector('.phone-title');
+        if (active && title) title.textContent = active.dataset.name;
+        document.querySelectorAll('.phone-dot').forEach(d => {
+          const on = d.dataset.dot === n;
+          d.style.width = on ? '22px' : '8px';
+          d.style.background = on ? '#F4621F' : '#DDD6CC';
+        });
+      });
+    });
+  </script>
 </Layout>
 
 <script>
@@ -1593,53 +1375,6 @@ import Hero from '../components/Hero.astro';
   (window as any).switchJourney = switchJourney;
 
   // Work toggle
-  function switchWork(panel: string) {
-    const panels = ['classroom', 'field'];
-    panels.forEach(p => {
-      const el = document.getElementById('work-panel-' + p);
-      const btn = document.getElementById('work-btn-' + p) as HTMLElement;
-      if (p === panel) {
-        el?.classList.remove('hidden');
-        if (btn) { btn.style.background = '#0D1B2A'; btn.style.color = '#fff'; btn.style.borderColor = '#0D1B2A'; }
-      } else {
-        el?.classList.add('hidden');
-        if (btn) { btn.style.background = '#F4F1EC'; btn.style.color = '#5B7494'; btn.style.borderColor = '#EDE8DF'; }
-      }
-    });
-  }
-  (window as any).switchWork = switchWork;
-
-  function switchClassroomSub(sub: string) {
-    const subs = ['finance', 'entrepreneurship', 'behavioral'];
-    subs.forEach(s => {
-      const el = document.getElementById('classroom-sub-' + s);
-      const btn = document.getElementById('classroom-btn-' + s) as HTMLElement;
-      if (s === sub) {
-        el?.classList.remove('hidden');
-        if (btn) { btn.style.color = '#0D1B2A'; btn.style.fontWeight = '700'; btn.style.borderBottomColor = '#F4621F'; }
-      } else {
-        el?.classList.add('hidden');
-        if (btn) { btn.style.color = '#5B7494'; btn.style.fontWeight = '500'; btn.style.borderBottomColor = 'transparent'; }
-      }
-    });
-  }
-  (window as any).switchClassroomSub = switchClassroomSub;
-
-  function switchFieldSub(sub: string) {
-    const subs = ['innovation', 'ai', 'digital'];
-    subs.forEach(s => {
-      const el = document.getElementById('field-sub-' + s);
-      const btn = document.getElementById('field-btn-' + s) as HTMLElement;
-      if (s === sub) {
-        el?.classList.remove('hidden');
-        if (btn) { btn.style.color = '#0D1B2A'; btn.style.fontWeight = '700'; btn.style.borderBottomColor = '#F4621F'; }
-      } else {
-        el?.classList.add('hidden');
-        if (btn) { btn.style.color = '#5B7494'; btn.style.fontWeight = '500'; btn.style.borderBottomColor = 'transparent'; }
-      }
-    });
-  }
-  (window as any).switchFieldSub = switchFieldSub;
 
   // Award panel toggle
   (window as any).selectEngagement = function(val: string, btn: HTMLElement) {
