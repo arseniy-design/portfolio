@@ -43,6 +43,7 @@ const CLASSROOM = [
       { tag: "Custom GPT", name: "Telecomm AI Quick Case", href: "https://chatgpt.com/g/g-67583b3565cc819191dadde542a09a5f-telecommunications-ai-quick-case" },
       { tag: "Custom GPT", name: "Telecomm Decision-Making Simulator", href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator" },
       { tag: "Claude Artifact", name: "The War Room", href: "https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5" },
+      { tag: "Claude Artifact", name: "Decision Making", href: "https://claude.ai/public/artifacts/21a50228-9db5-4de6-b0f5-3d231f9159ee" },
     ],
   },
 ];
@@ -52,6 +53,7 @@ const FIELD = [
     name: "Innovation Programs",
     line: "Five programs built and run across three continents, from Azerbaijan to Saudi Arabia to Spain.",
     stats: [["5","Programs"],["3","Continents"],["€250k","Pilot funding"]],
+    photo: { src: "/innovation-stage.webp", caption: "BakuID · Startups of Tomorrow" },
     list: { label: "Programs", items: [
       { name: "RCU Scale-up Hub", meta: "Saudi Arabia · 2024", href: "/rcu-scale-up-hub.pdf" },
       { name: "SABAH Hub", meta: "Azerbaijan", href: "https://sabahhub.com/" },
@@ -64,11 +66,7 @@ const FIELD = [
   {
     name: "AI in Practice",
     line: "GenAI tools built for real professional contexts, from classroom simulations to client intelligence.",
-    stats: [["8","Client deliverables"],["2","Custom GPTs"],["4","Walkthroughs"]],
-    pills: { label: "Custom GPTs", items: [
-      { name: "Futures Trader Pro", href: "https://chatgpt.com/g/g-67f17440919481918ec80d0593f8f218-futures-trader-pro" },
-      { name: "Macro Finance World", href: "https://chatgpt.com/g/g-67ab3edec99881918e280a7f42de0e27-macro-finance-world" },
-    ]},
+    stats: [["8","Client deliverables"],["4","Walkthroughs"],["5","Platforms"]],
     videos: [
       { vid: "1175529346", title: "AI + Excel" },
       { vid: "1175529293", title: "Claude + Excel" },
@@ -76,14 +74,14 @@ const FIELD = [
       { vid: "1175532671", title: "NotebookLM" },
     ],
     links: [
-      { tag: "Program Experience", name: "Santander Innovation AI Experience", href: "https://flow-ag.notion.site/santander-innovation-ai-experience" },
+      { tag: "Program", name: "Santander Innovation AI Experience", href: "https://flow-ag.notion.site/santander-innovation-ai-experience" },
       { tag: "Web App", name: "Gate Check", href: "https://si90-gate-check.onrender.com/" },
-      { tag: "Sales Enablement", name: "Finance Academy Navigator", href: "https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73" },
-      { tag: "Perplexity Computer", name: "Taif Market Entry", href: "https://taifmarketentry.pplx.app" },
-      { tag: "Perplexity Computer", name: "Hormuz Shock", href: "https://hormuzshock.pplx.app" },
-      { tag: "Perplexity Computer", name: "Portfolio Risk Analysis", href: "https://portfolioanalysis.pplx.app" },
-      { tag: "Perplexity Computer", name: "Macro Risk Intelligence", href: "https://macrorisks.pplx.app" },
-      { tag: "Client Asset Bundle", name: "Delta Dossier", href: "/delta-dossier/" },
+      { tag: "Sales Tool", name: "Finance Academy Navigator", href: "https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73" },
+      { tag: "Perplexity", name: "Taif Market Entry", href: "https://taifmarketentry.pplx.app" },
+      { tag: "Perplexity", name: "Hormuz Shock", href: "https://hormuzshock.pplx.app" },
+      { tag: "Perplexity", name: "Portfolio Risk Analysis", href: "https://portfolioanalysis.pplx.app" },
+      { tag: "Perplexity", name: "Macro Risk Intelligence", href: "https://macrorisks.pplx.app" },
+      { tag: "Client Bundle", name: "Delta Dossier", href: "/delta-dossier/" },
     ],
   },
   {
@@ -105,12 +103,12 @@ const FIELD = [
       font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; padding:10px 20px; }
     .wcard { background:#fff; border:1px solid #EDE8DF; border-radius:1rem; padding:1.75rem; display:flex; flex-direction:column; gap:1.4rem; }
     .wcard-dark { background:linear-gradient(158deg,#132133 0%,#0D1B2A 55%,#0A1522 100%); border-color:rgba(255,255,255,0.09); }
-    .wcard-dark .wsub { color:rgba(255,255,255,0.42); }
+    .wcard-dark .wsub { color:rgba(255,255,255,0.72); }
     .wcard-dark .text-navy-900 { color:#fff; }
-    .wcard-dark .text-navy-800 { color:rgba(255,255,255,0.92); }
-    .wcard-dark .text-navy-500 { color:rgba(255,255,255,0.62); }
-    .wcard-dark .text-navy-400 { color:rgba(255,255,255,0.48); }
-    .wcard-dark .text-navy-300 { color:rgba(255,255,255,0.4); }
+    .wcard-dark .text-navy-800 { color:#fff; }
+    .wcard-dark .text-navy-500 { color:rgba(255,255,255,0.88); }
+    .wcard-dark .text-navy-400 { color:rgba(255,255,255,0.78); }
+    .wcard-dark .text-navy-300 { color:rgba(255,255,255,0.72); }
     .wcard-dark .divide-warm-100 > :not([hidden]) ~ :not([hidden]) { border-color:rgba(255,255,255,0.08); }
     .wcard-dark .border-warm-200 { border-color:rgba(255,255,255,0.13); }
     .wcard-dark a.border-warm-200:hover { border-color:rgba(244,98,31,0.6); }
@@ -146,8 +144,9 @@ const FIELD = [
               <div class={`wcard ${ci === 0 ? "wcard-dark" : ""}`}>
                 {/* identity */}
                 <div>
-                  <span class="wlabel block mb-2">{c.name}</span>
-                  <p class="text-navy-500 text-sm leading-relaxed">{c.line}</p>
+                  <span class="wlabel block mb-2">{groupName}</span>
+                  <h3 class="text-navy-900 mb-3" style="font-family:var(--font-display);font-size:clamp(1.35rem,2vw,1.7rem);font-weight:700;line-height:1.08;letter-spacing:-0.01em">{c.name}</h3>
+                  <p class="text-navy-500" style="font-size:0.92rem;line-height:1.55">{c.line}</p>
                 </div>
 
                 {/* numbers */}
@@ -191,6 +190,16 @@ const FIELD = [
                 {(c.videos || c.pills || c.links || c.phones) && (
                   <div>
                     <span class="wsub block mb-3">Digital Assets</span>
+                  </div>
+                )}
+
+                {c.photo && (
+                  <div style="margin-top:-0.9rem">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:16/10">
+                      <img src={c.photo.src} alt={c.photo.caption} class="w-full h-full object-cover" />
+                      <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,15,22,0.85) 0%, transparent 55%)"></div>
+                      <p class="absolute bottom-0 left-0 right-0 px-3 pb-2.5 text-white" style="font-family:var(--font-display);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase">{c.photo.caption}</p>
+                    </div>
                   </div>
                 )}
 
@@ -301,10 +310,10 @@ const FIELD = [
                   <div style="margin-top:-0.9rem">
                     <div class="grid sm:grid-cols-2 gap-2 items-stretch">
                       {c.links.map(d => (
-                        <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3.5 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group" style="min-height:62px">
+                        <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3.5 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group" style="min-height:68px">
                           <div class="min-w-0">
                             <p class="text-orange-500 font-bold uppercase" style="font-family:var(--font-display);font-size:0.55rem;letter-spacing:0.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{d.tag}</p>
-                            <p class="text-navy-800 font-medium mt-0.5" style="font-family:var(--font-display);font-size:0.8rem;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{d.name}</p>
+                            <p class="text-navy-800 font-medium mt-0.5" style="font-family:var(--font-display);font-size:0.78rem;line-height:1.28;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{d.name}</p>
                           </div>
                           <span class="text-orange-500 text-xs font-bold flex-shrink-0 group-hover:translate-x-0.5 transition-transform">→</span>
                         </a>
