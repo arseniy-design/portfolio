@@ -1,6 +1,58 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+
+const DOORS = [
+  { pillar: "ADVISE", label: "Make AI actually pay off", proof: "PIF and Kyowa Kirin: 5 hours a week saved per person through GenAI workflows.", featured: true,
+    tease: "Where AI actually earns.",
+    where: "You've run pilots. A few demoed well. Nobody can say which one moved a number.",
+    does: ["Map one real process decision by decision.","Mark each one keep, automate, or split, and price it.","Track adoption after launch, not just the launch."],
+    walk: "A ranked list of what to automate and what to protect, with a measure your CFO accepts." },
+  { pillar: "ADVISE", label: "Fix how the work gets done", proof: "Missed deadlines and fines down 25%. Project execution time cut in half.",
+    tease: "Fewer loops, clear owners.",
+    where: "The process made sense at half this size. Now approvals loop, nobody owns the call, and everything takes three meetings.",
+    does: ["Trace how work actually moves, not the org chart version.","Find where decisions stall and who really owns them.","Rebuild the operating model around those decision rights."],
+    walk: "A redesigned flow with clear ownership, and a plan your teams run without me." },
+  { pillar: "ADVISE", label: "Prove it before you spend", proof: "Models and go-to-market delivered in half the allotted time. $2.7M secured in year three at SABAH.HUB.",
+    tease: "Evidence before the spend.",
+    where: "You have conviction and a deck. You do not yet have proof anyone will pay.",
+    does: ["Build the financial model and pressure test every assumption.","Validate demand in the target market before the spend.","Shape the go-to-market around what the evidence says."],
+    walk: "A model you can defend, evidence of real demand, and a plan you can fund." },
+  { pillar: "BUILD", label: "Ship a product that works", proof: "Five products at Rebundle. NPS of 70, 15 B2B clients, 6,000+ users.",
+    tease: "In your team's hands.",
+    where: "The idea has been in a document for months. IT has a queue. Nobody has seen it work.",
+    does: ["Take the highest-value candidate and build it.","Finance tools, classroom products, internal agents.","Put it in your team's hands and watch them use it."],
+    walk: "Something running your team can use on Monday, instead of a specification." },
+  { pillar: "BUILD", label: "Build an innovation program", proof: "Scaled one program to five. Santander, Tec de Monterrey, SABAH. $2.7M in year three.",
+    tease: "Built on real problems.",
+    where: "Leadership wants innovation. What exists is a hackathon and a slide.",
+    does: ["Design the program and source the real problems.","Recruit the cohort and set the standard.","Run it, then grow it into the next cycle."],
+    walk: "A program with outcomes you can point at. Built before, inside a bank." },
+  { pillar: "BUILD", label: "A course students can't fake", proof: "GenAI in Finance at IE: rated 5.0 out of 5.0, NPS of 68.",
+    tease: "Curriculum that holds up.",
+    where: "The syllabus was written for a world before AI. Students can finish the assignments without learning anything.",
+    does: ["Rebuild the curriculum and write the cases.","Design assessment AI cannot shortcut.","Brief the faculty who have to teach it."],
+    walk: "A course that runs without me, and faculty who can defend it." },
+  { pillar: "TEACH", label: "Get your team using AI", proof: "300+ educators through the adoption program, 73% completion.",
+    tease: "Habits that stick.",
+    where: "Your people have licenses and no habits. The tools sit unused, or get used badly.",
+    does: ["They bring the work they actually do.","We rebuild part of it live, in their tools, on their files.","They leave with one thing they will use tomorrow."],
+    walk: "A team that has used it on real work once, which is the only thing that changes behavior." },
+  { pillar: "TEACH", label: "Speak at your next event", proof: "Five teaching excellence awards. 70+ institutions across five continents.",
+    tease: "One they quote on Monday.",
+    where: "You need a session people repeat afterward, not one they sit through.",
+    does: ["Build the talk around your audience and the decision they face.","Finance, technology, and how people actually decide.","Leave them the uncomfortable question, not the summary."],
+    walk: "A room that leaves with something to argue about." },
+];
+
+const STATS5 = [
+  { n: "$1.6", suf: "B", label: "AUM Managed" },
+  { n: "70",   suf: "+", label: "Institutions Served" },
+  { n: "9",    suf: "",  label: "Ventures & Programs Built" },
+  { n: "5",    suf: "",  label: "Teaching Excellence Awards" },
+  { n: "5",    suf: "+", label: "Continents" },
+];
+
 const CLASSROOM = [
   {
     name: "Finance",
@@ -107,6 +159,7 @@ const FIELD = [
         <a href="#brands"      class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Brands</a>
         <a href="#recognition" class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Recognition</a>
         <a href="#linkedin"    class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Writing</a>
+        <a href="#work-with-me" class="text-white/60 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Work With Me</a>
         <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors" style="font-family: var(--font-display)">
           Let's Talk
         </a>
@@ -123,6 +176,7 @@ const FIELD = [
       <a href="#clients"     class="text-white/70 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Clients</a>
       <a href="#brands"      class="text-white/70 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Brands</a>
       <a href="#recognition" class="text-white/70 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Recognition</a>
+      <a href="#work-with-me" class="text-white/70 hover:text-white text-sm font-medium transition-colors" style="font-family: var(--font-display)">Work With Me</a>
       <a href="#contact" class="bg-orange-500 text-white text-sm font-semibold px-5 py-3 rounded-full text-center transition-colors" style="font-family: var(--font-display)">Let's Talk</a>
     </div>
   </nav>
@@ -134,52 +188,13 @@ const FIELD = [
   <!-- STATS BAR -->
   <section class="bg-warm-50 py-16 border-b border-warm-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-8">
-      <!-- Row 1: 5 stats -->
-      <div class="grid grid-cols-2 md:grid-cols-5 border-b border-warm-200 mb-0">
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="100">0</span><span class="text-orange-500">+</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Independent Projects</p>
-        </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-1 border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="70">0</span><span class="text-orange-500">+</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Institutions Reached</p>
-        </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-2 border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="300">0</span><span class="text-orange-500">+</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Sessions Delivered</p>
-        </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-3 border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
-        </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-4">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="15">0</span><span class="text-orange-500">+</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Courses Designed</p>
-        </div>
-      </div>
-      <!-- Row 2: 5 stats -->
       <div class="grid grid-cols-2 md:grid-cols-5">
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-5 border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Ventures Launched</p>
-        </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-6 border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Innovation Programs</p>
-        </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-7 border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="5">0</span><span class="text-orange-500">+</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Continents</p>
-        </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-8 border-r border-warm-200">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)"><span class="counter" data-target="3">0</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">Languages</p>
-          <p class="text-navy-300 text-xs mt-1" style="font-family: var(--font-display)">EN · RU · ES</p>
-        </div>
-        <div class="stat-item text-center px-4 md:px-6 py-7 reveal reveal-delay-9">
-          <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)">$1.6<span class="text-orange-500">B</span></p>
-          <p class="text-navy-400 text-sm mt-2" style="font-family: var(--font-display)">AUM Managed</p>
-        </div>
+        {STATS5.map((st, i) => (
+          <div class={`stat-item text-center px-4 md:px-6 py-7 reveal ${i < 4 ? "md:border-r border-warm-200" : ""}`}>
+            <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)">{st.n}<span class="text-orange-500">{st.suf}</span></p>
+            <p class="text-navy-400 text-sm mt-2 leading-snug md:min-h-[2.6em]" style="font-family: var(--font-display)">{st.label}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -694,7 +709,7 @@ const FIELD = [
   </section>
 
   <!-- BRANDS -->
-  <section id="brands" class="py-24 bg-warm-100">
+  <section id="brands" class="py-24 bg-warm-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
       <div class="mb-16 reveal">
         <div class="section-label">
@@ -744,16 +759,16 @@ const FIELD = [
   </div>
 
   <!-- RECOGNITION -->
-  <section id="recognition" class="py-24 bg-warm-50">
+  <section id="recognition" class="py-24" style="background:#0D1B2A">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
       <div class="mb-14 reveal">
         <div class="section-label">
           <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Recognition</span>
         </div>
-        <h2 class="font-bold text-navy-900" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">What people say.</h2>
+        <h2 class="font-bold text-white" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">What people say.</h2>
       </div>
       <div class="grid md:grid-cols-2 gap-5 mb-10">
-        <div class="reveal bg-navy-900 rounded-2xl overflow-hidden">
+        <div class="reveal rounded-2xl overflow-hidden" style="background:#162236;border:1px solid rgba(255,255,255,0.08)">
           <div class="p-8 flex items-center justify-between gap-6">
             <div class="flex items-center gap-6">
               <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
@@ -877,7 +892,7 @@ const FIELD = [
   </div>
 
   <!-- LINKEDIN -->
-  <section id="linkedin" class="py-24 bg-warm-100">
+  <section id="linkedin" class="py-24 bg-warm-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
       <div class="mb-14 reveal">
         <div class="section-label">
@@ -1126,57 +1141,59 @@ const FIELD = [
   </div>
 
   <!-- WORK WITH ME -->
-  <section id="work-with-me" class="py-24 bg-warm-50">
+  <section id="work-with-me" class="py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
-      <div class="mb-14 reveal">
-        <div class="section-label">
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">Work With Me</span>
-        </div>
-        <h2 class="font-bold text-navy-900 leading-tight" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">Who are you?</h2>
-        <p class="text-navy-500 mt-3" style="font-size:clamp(0.95rem,1.4vw,1.05rem)">Different problems. Different engagements. Tell me where you're coming from.</p>
+      <div class="mb-4 reveal">
+        <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">Work With Me</span>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
-        {[
-          {
-            who: "University or Business School",
-            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3.33 1.67 8.67 1.67 12 0v-5"/></svg>`,
-            offer: "Curriculum design, AI integration, executive education, and guest teaching across MBA and undergraduate programs.",
-            cta: "Academic partnership",
-          },
-          {
-            who: "Company or Executive Team",
-            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`,
-            offer: "AI adoption strategy, leadership workshops, organizational change, and decision-making frameworks for senior teams.",
-            cta: "Consulting engagement",
-          },
-          {
-            who: "Startup or Founder",
-            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
-            offer: "Advisory on go-to-market, fundraising narrative, product-market fit, and building high-performing early teams.",
-            cta: "Startup advisory",
-          },
-          {
-            who: "Event or Conference",
-            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-            offer: "Keynotes and workshops on AI, finance, decision-making, and innovation. Delivered to audiences from 30 to 3,000.",
-            cta: "Speaking inquiry",
-          },
-        ].map(c => (
-          <a href="#contact" class="group flex flex-col h-full bg-white rounded-2xl p-7 border border-warm-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300 cursor-pointer">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5 text-navy-700 group-hover:text-orange-500 transition-colors" style="background:rgba(13,27,42,0.06)" set:html={c.icon} />
-            <p class="font-bold text-navy-900 text-sm mb-3 leading-snug min-h-[2.6em]" style="font-family:var(--font-display)">{c.who}</p>
-            <p class="text-navy-400 text-sm leading-relaxed mb-5 flex-1">{c.offer}</p>
-            <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-orange-500 group-hover:gap-2.5 transition-all" style="font-family:var(--font-display)">
-              {c.cta}
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+      <h2 class="wwm-h2 font-bold leading-tight mb-3 reveal" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">What is your team stuck on?</h2>
+      <p class="wwm-sub mb-12 reveal" style="font-size:1.12rem">Pick the one that sounds like your week. Each one opens.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 doorgrid reveal">
+        {DOORS.map((d, i) => (
+          <button type="button" data-door={i} class={`door group relative block text-left p-6 lg:p-7 w-full ${d.featured ? "is-featured" : ""}`}>
+            <span class="doorpill inline-block text-[11px] font-bold tracking-[0.14em] px-2.5 py-1 rounded mb-5" style="font-family:var(--font-display)">{d.pillar}</span>
+            <h3 class="doorlabel font-bold leading-[1.12] mb-2" style="font-family:var(--font-display);font-size:1.32rem;min-height:2.24em">{d.label}</h3>
+            <p class="doortease leading-snug" style="font-size:0.97rem">{d.tease}</p>
+            <span class="doorarrow absolute right-6 bottom-6 opacity-0 transition-all duration-300">
+              <svg width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
             </span>
-          </a>
+          </button>
         ))}
       </div>
+
+      <p class="wwm-sub mt-8 reveal" style="font-size:1rem">
+        Something else on your mind?
+        <button type="button" id="door-other" class="font-bold underline underline-offset-4" style="font-family:var(--font-display);color:#F4621F">Just tell me →</button>
+      </p>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <div id="door-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(4,8,12,0.82);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:2rem 1rem">
+    <div id="door-panel" class="relative w-full max-w-2xl rounded-2xl overflow-hidden" style="background:#0D1B2A;border:1px solid rgba(255,255,255,0.12);max-height:88vh">
+      <button type="button" id="door-close" aria-label="Close"
+        class="absolute top-5 right-5 w-9 h-9 rounded-full flex items-center justify-center text-white/50 hover:text-white transition-colors"
+        style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);z-index:2">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg>
+      </button>
+      <div class="overflow-y-auto p-9 sm:p-11" style="max-height:88vh">
+        <span id="m-pillar" class="inline-block text-[13px] font-bold tracking-[0.14em] px-3 py-1.5 rounded-md mb-6" style="font-family:var(--font-display);background:#F4621F;color:#fff"></span>
+        <h3 id="m-label" class="font-black text-white leading-[1.05] mb-9" style="font-family:var(--font-display);font-size:clamp(1.9rem,3.4vw,2.5rem)"></h3>
+        <p class="text-orange-500 text-[13px] font-bold tracking-[0.16em] uppercase mb-2" style="font-family:var(--font-display)">Where you are</p>
+        <p id="m-where" class="text-white/80 leading-relaxed mb-9" style="font-size:1.12rem"></p>
+        <p class="text-orange-500 text-[13px] font-bold tracking-[0.16em] uppercase mb-3" style="font-family:var(--font-display)">What we do</p>
+        <ol id="m-does" class="mb-9 space-y-3"></ol>
+        <p class="text-orange-500 text-[13px] font-bold tracking-[0.16em] uppercase mb-2" style="font-family:var(--font-display)">What you walk out with</p>
+        <p id="m-walk" class="text-white leading-snug mb-9" style="font-size:1.35rem;font-family:var(--font-display);font-weight:700"></p>
+        <p class="text-orange-500 text-[13px] font-bold tracking-[0.16em] uppercase mb-2" style="font-family:var(--font-display)">Done before</p>
+        <p id="m-proof" class="text-white/70 leading-relaxed mb-9" style="font-size:1.02rem"></p>
+        <button type="button" id="m-cta" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 rounded-xl transition-colors tracking-wide" style="font-family:var(--font-display);font-size:1.05rem">Start here →</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" id="doors-data" set:html={JSON.stringify(DOORS)}></script>
+
   <section id="contact" class="py-28" style="background: #0D1B2A">
     <div class="max-w-2xl mx-auto px-4 sm:px-8">
       <div class="text-center mb-14 reveal">
@@ -1188,48 +1205,36 @@ const FIELD = [
         <h2 class="font-bold text-white leading-tight mb-5" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
           Let's work<br>together.
         </h2>
-        <p class="text-base max-w-sm mx-auto leading-relaxed" style="color: rgba(255,255,255,0.4)">
-          Tell me what you're building. I'll tell you if I can help.
+        <p class="text-base max-w-sm mx-auto leading-relaxed" style="color: rgba(255,255,255,0.6)">
+          Two sentences on the problem is enough. I'll tell you if I can help.
         </p>
       </div>
       <form id="contact-form" class="reveal reveal-delay-1 space-y-4">
-        <!-- Engagement type -->
-        <div class="mb-2">
-          <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35);font-family:var(--font-display)">I'm looking for</p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {[
-              { val: "Teaching & Course Design", label: "Teaching & Course Design" },
-              { val: "Strategy & Consulting",    label: "Strategy & Consulting" },
-              { val: "AI Implementation",        label: "AI Implementation" },
-              { val: "Something else",           label: "Something else" },
-            ].map(opt => (
-              <button type="button" onclick={`selectEngagement('${opt.val}', this)`}
-                class="engagement-btn text-xs font-semibold px-4 py-3 rounded-xl transition-all text-left"
-                style="font-family:var(--font-display);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">
-                {opt.label}
-              </button>
-            ))}
+        <!-- What they picked upstairs -->
+        <div id="door-echo" class="hidden mb-2 rounded-xl px-5 py-4" style="background:rgba(244,98,31,0.12);border:1px solid rgba(244,98,31,0.35)">
+          <p class="text-[10px] font-bold uppercase tracking-widest mb-1" style="color:#F79C6E;font-family:var(--font-display)">You picked</p>
+          <div class="flex items-center justify-between gap-4">
+            <p id="door-echo-text" class="text-white font-semibold" style="font-family:var(--font-display);font-size:1.02rem"></p>
+            <button type="button" id="door-echo-clear" class="text-white/70 hover:text-white text-xs flex-shrink-0" style="font-family:var(--font-display)">change</button>
           </div>
-          <input type="hidden" name="engagement" id="engagement-input" />
         </div>
+        <input type="hidden" name="engagement" id="engagement-input" />
+
         <div class="grid sm:grid-cols-2 gap-4">
-          <input type="text" name="name" placeholder="Your Name" required
-            class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
-            style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)" />
+          <input type="text" name="name" id="contact-name" placeholder="Your Name" required
+            class="w-full text-white placeholder:text-white/50 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
+            style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.18); font-family: var(--font-body)" />
           <input type="email" name="email" placeholder="Your Email" required
-            class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
-            style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)" />
+            class="w-full text-white placeholder:text-white/50 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
+            style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.18); font-family: var(--font-body)" />
         </div>
-        <input type="text" name="organization" placeholder="Your organization or company"
-          class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
-          style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)" />
         <textarea rows="4" name="message" id="contact-message" placeholder="What's the challenge you're trying to solve?"
-          class="w-full text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors resize-none"
-          style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.08); font-family: var(--font-body)"></textarea>
+          class="w-full text-white placeholder:text-white/50 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors resize-none"
+          style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.18); font-family: var(--font-body)"></textarea>
         <button id="submit-btn" type="submit"
           class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl transition-colors text-sm tracking-wide"
           style="font-family: var(--font-display)">
-          Let's work together →
+          Send message →
         </button>
         <div id="form-success" class="hidden text-center py-6">
           <p class="text-white font-semibold mb-1" style="font-family: var(--font-display)">Got it.</p>
@@ -1573,4 +1578,118 @@ const FIELD = [
       submitBtn.disabled = false;
     }
   });
+</script>
+
+<style>
+  /* Work With Me: warm light ground, orange reserved for the one action */
+  #work-with-me {
+    --wwm-bg:#F4F1EC; --wwm-h:#0D1B2A; --wwm-sub:#3D5470;
+    --wwm-rule:#DDD6CC; --wwm-label:#0D1B2A; --wwm-tease:#5B7494;
+    --wwm-pill-bg:rgba(244,98,31,0.13); --wwm-pill:#c44e16; --wwm-accent:#F4621F;
+  }
+  #work-with-me { background: var(--wwm-bg); }
+  #work-with-me .wwm-h2   { color: var(--wwm-h); }
+  #work-with-me .wwm-sub  { color: var(--wwm-sub); }
+
+  .doorgrid {
+  .door {
+    border-right: 1px solid var(--wwm-rule);
+    border-bottom: 1px solid var(--wwm-rule);
+    background: none; cursor: pointer; transition: background 0.3s ease;
+    display: flex; flex-direction: column; align-items: flex-start;
+    justify-content: flex-start; text-align: left;
+  }
+  .door .doorpill  { background: var(--wwm-pill-bg); color: var(--wwm-pill); }
+  .door .doorlabel { color: var(--wwm-label); }
+  .door .doortease { color: var(--wwm-tease); }
+  .door.is-featured { background: var(--wwm-accent); }
+  .door .doorarrow { color: #F4621F; }
+  .door.is-featured .doorpill  { background: rgba(13,27,42,0.20) !important; color: #0D1B2A !important; }
+  .door.is-featured .doorlabel { color: #0D1B2A !important; }
+  .door.is-featured .doortease { color: rgba(13,27,42,0.80) !important; }
+  .door.is-featured .doorarrow { color: #0D1B2A; }
+  .door:hover { background: var(--wwm-accent); }
+  .door:hover .doorpill  { background: rgba(13,27,42,0.20) !important; color: #0D1B2A !important; }
+  .door:hover .doorlabel { color: #0D1B2A !important; }
+  .door:hover .doortease { color: rgba(13,27,42,0.80) !important; }
+  .door:hover .doorarrow { color: #0D1B2A; opacity: 1; transform: translateX(4px); }
+  .door.is-featured:hover { filter: brightness(0.92); }
+  #door-panel { animation: doorpop 0.28s cubic-bezier(0.22,1,0.36,1); }
+  @keyframes doorpop { from { opacity: 0; transform: translateY(14px) scale(0.985); } to { opacity: 1; transform: none; } }
+</style>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById('doors-data');
+    if (!el) return;
+    var DOORS = JSON.parse(el.textContent);
+    var modal = document.getElementById('door-modal');
+    var current = null;
+
+    function openDoor(i) {
+      var d = DOORS[i]; current = d;
+      document.getElementById('m-pillar').textContent = d.pillar;
+      document.getElementById('m-label').textContent = d.label;
+      document.getElementById('m-where').textContent = d.where;
+      document.getElementById('m-walk').textContent = d.walk;
+      document.getElementById('m-proof').textContent = d.proof || '';
+      var ol = document.getElementById('m-does'); ol.innerHTML = '';
+      d.does.forEach(function (step, k) {
+        var li = document.createElement('li');
+        li.className = 'flex gap-3.5 text-white/80 leading-snug';
+        li.style.fontSize = '1.12rem';
+        var num = document.createElement('span');
+        num.textContent = String(k + 1).padStart(2, '0');
+        num.className = 'text-orange-500 text-base font-black flex-shrink-0';
+        num.style.fontFamily = 'var(--font-display)';
+        var txt = document.createElement('span'); txt.textContent = step;
+        li.appendChild(num); li.appendChild(txt); ol.appendChild(li);
+      });
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDoor() { modal.style.display = 'none'; document.body.style.overflow = ''; }
+
+    document.querySelectorAll('[data-door]').forEach(function (btn) {
+      btn.addEventListener('click', function () { openDoor(Number(btn.getAttribute('data-door'))); });
+    });
+    document.getElementById('door-close').addEventListener('click', closeDoor);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeDoor(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDoor(); });
+    var msg = document.getElementById('contact-message');
+    var basePlaceholder = msg ? msg.getAttribute('placeholder') : '';
+
+    function pickDoor(label) {
+      document.getElementById('engagement-input').value = label;
+      document.getElementById('door-echo-text').textContent = label;
+      document.getElementById('door-echo').classList.remove('hidden');
+      if (msg) msg.setAttribute('placeholder', 'A couple more details about "' + label + '"');
+    }
+
+    document.getElementById('door-echo-clear').addEventListener('click', function () {
+      document.getElementById('engagement-input').value = '';
+      document.getElementById('door-echo').classList.add('hidden');
+      if (msg) msg.setAttribute('placeholder', basePlaceholder);
+      document.getElementById('work-with-me').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    var other = document.getElementById('door-other');
+    if (other) other.addEventListener('click', function () {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(function () {
+        var n = document.getElementById('contact-name');
+        if (n) n.focus({ preventScroll: true });
+      }, 650);
+    });
+
+    document.getElementById('m-cta').addEventListener('click', function () {
+      if (current) pickDoor(current.label);
+      closeDoor();
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(function () {
+        var n = document.getElementById('contact-name');
+        if (n) n.focus({ preventScroll: true });
+      }, 650);
+    });
+  })();
 </script>
