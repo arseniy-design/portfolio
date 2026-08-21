@@ -1218,7 +1218,7 @@ const FIELD = [
             <button type="button" id="door-echo-clear" class="text-white/70 hover:text-white text-xs flex-shrink-0" style="font-family:var(--font-display)">change</button>
           </div>
         </div>
-        <input type="hidden" name="engagement" id="engagement-input" />
+        <input type="hidden" name="engagement" id="engagement-input" value="Not specified" />
 
         <div class="grid sm:grid-cols-2 gap-4">
           <input type="text" name="name" id="contact-name" placeholder="Your Name" required
@@ -1674,7 +1674,7 @@ const FIELD = [
     }
 
     document.getElementById('door-echo-clear').addEventListener('click', function () {
-      document.getElementById('engagement-input').value = '';
+      document.getElementById('engagement-input').value = 'Not specified';
       document.getElementById('door-echo').classList.add('hidden');
       if (msg) msg.setAttribute('placeholder', basePlaceholder);
       document.getElementById('work-with-me').scrollIntoView({ behavior: 'smooth' });
