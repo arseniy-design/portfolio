@@ -1591,7 +1591,8 @@ const FIELD = [
   #work-with-me .wwm-h2   { color: var(--wwm-h); }
   #work-with-me .wwm-sub  { color: var(--wwm-sub); }
 
-  .doorgrid {
+  .doorgrid { border-top: 1px solid var(--wwm-rule); border-left: 1px solid var(--wwm-rule); }
+
   .door {
     border-right: 1px solid var(--wwm-rule);
     border-bottom: 1px solid var(--wwm-rule);
@@ -1614,6 +1615,12 @@ const FIELD = [
   .door:hover .doortease { color: rgba(13,27,42,0.80) !important; }
   .door:hover .doorarrow { color: #0D1B2A; opacity: 1; transform: translateX(4px); }
   .door.is-featured:hover { filter: brightness(0.92); }
+
+  /* only ever one lit cell: the lead cell stands down while another is hovered */
+  .doorgrid:has(.door:hover) .door.is-featured:not(:hover) { background: none; }
+  .doorgrid:has(.door:hover) .door.is-featured:not(:hover) .doorpill  { background: var(--wwm-pill-bg) !important; color: var(--wwm-pill) !important; }
+  .doorgrid:has(.door:hover) .door.is-featured:not(:hover) .doorlabel { color: var(--wwm-label) !important; }
+  .doorgrid:has(.door:hover) .door.is-featured:not(:hover) .doortease { color: var(--wwm-tease) !important; }
   #door-panel { animation: doorpop 0.28s cubic-bezier(0.22,1,0.36,1); }
   @keyframes doorpop { from { opacity: 0; transform: translateY(14px) scale(0.985); } to { opacity: 1; transform: none; } }
 </style>
