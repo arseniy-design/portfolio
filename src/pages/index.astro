@@ -583,12 +583,15 @@ const FIELD = [
                   <div style={c.videos ? "margin-top:0.1rem" : "margin-top:-0.9rem"}>
                     <div class="grid sm:grid-cols-2 gap-2 items-stretch">
                       {c.links.map(d => (
-                        <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3.5 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group" style="min-height:68px">
+                        <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3.5 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group" style={d.sell ? "min-height:78px;padding-top:0.75rem;padding-bottom:0.75rem" : "min-height:68px"}>
                           <div class="min-w-0">
-                            <p class="text-orange-500 font-bold uppercase" style="font-family:var(--font-display);font-size:0.55rem;letter-spacing:0.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{d.tag}</p>
-                            <p class="text-navy-800 font-medium mt-0.5" style="font-family:var(--font-display);font-size:0.78rem;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{d.name}</p>
+                            {/* a card carries a label or a pitch, never both */}
+                            {!d.sell && (
+                              <p class="text-orange-500 font-bold uppercase" style="font-family:var(--font-display);font-size:0.55rem;letter-spacing:0.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{d.tag}</p>
+                            )}
+                            <p class="text-navy-800 font-medium mt-0.5" style={`font-family:var(--font-display);font-size:0.82rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:${d.sell ? 2 : 3};-webkit-box-orient:vertical;overflow:hidden`}>{d.name}</p>
                             {d.sell && (
-                              <p class="text-navy-400 mt-0.5 group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display);font-size:0.66rem;line-height:1.3;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{d.sell}</p>
+                              <p class="text-navy-400 mt-1.5 group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display);font-size:0.68rem;line-height:1.35;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{d.sell}</p>
                             )}
                           </div>
                           <span class="text-orange-500 text-xs font-bold flex-shrink-0 group-hover:translate-x-0.5 transition-transform">→</span>
