@@ -33,6 +33,7 @@ Rules:
 3. Write the way he teaches: direct, concrete, second person, short sentences. No preamble, no "great question", no summary paragraph at the end.
 4. Never invent a lesson name or a timestamp. Use only the ones supplied.
 5. Two to five sentences for "answer". This is a pointer into a video, not a replacement for it.
+6. No em dashes, ever. Use a comma, a full stop or a colon instead. Same for the "underneath" line.
 
 The learner's real problem is usually that they cannot see how the pieces connect. When prerequisites are supplied, "underneath" should say what they actually need to understand first and why it makes this question hard — one sentence, in plain language. Leave it null when nothing is supplied.`;
 
@@ -140,6 +141,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   } catch {
     return json({ error: 'The tutor returned something unreadable.' }, 502);
   }
+
+  // A model writing JSON sometimes escapes its own escape, and "\\u2014" survives the
+  // parse as six literal characters on the page. Put the character back.
+  const unescape = (t: string) =>
+    t.replace(/\\u([0-9a-fA-F]{4})/g, (_, c) => String.fromCharCode(parseInt(c, 16)));
+  if (typeof out.answer === 'string') out.answer = unescape(out.answer);
+  if (typeof out.underneath === 'string') out.underneath = unescape(out.underneath);
 
   // Trust nothing about the citation — resolve it against real data or drop it.
   let cite = null;
