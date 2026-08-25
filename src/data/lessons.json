@@ -1,0 +1,1347 @@
+[
+ {
+  "n": 1,
+  "name": "What is accounting?",
+  "section": "1. Introduction to Accounting",
+  "order": 1,
+  "kind": "lesson",
+  "vid": "1220639064",
+  "runtime": 343,
+  "words": 1053,
+  "prereqs": [],
+  "slides": 46,
+  "thumb": "/thumbs/1220639064.jpg"
+ },
+ {
+  "n": 2,
+  "name": "Resources",
+  "section": "1. Introduction to Accounting",
+  "order": 2,
+  "kind": "resource",
+  "vid": null,
+  "runtime": 0,
+  "words": 0,
+  "prereqs": [],
+  "slides": 0
+ },
+ {
+  "n": 3,
+  "name": "Accounting process",
+  "section": "1. Introduction to Accounting",
+  "order": 3,
+  "kind": "lesson",
+  "vid": "1220645055",
+  "runtime": 756,
+  "words": 1974,
+  "prereqs": [],
+  "slides": 35,
+  "thumb": "/thumbs/1220645055.jpg"
+ },
+ {
+  "n": 4,
+  "name": "Debit and Credit",
+  "section": "1. Introduction to Accounting",
+  "order": 4,
+  "kind": "lesson",
+  "vid": "1220645051",
+  "runtime": 666,
+  "words": 1902,
+  "prereqs": [],
+  "slides": 16,
+  "thumb": "/thumbs/1220645051.jpg"
+ },
+ {
+  "n": 5,
+  "name": "Balance Sheet",
+  "section": "1. Introduction to Accounting",
+  "order": 5,
+  "kind": "lesson",
+  "vid": "1220644931",
+  "runtime": 456,
+  "words": 1298,
+  "prereqs": [],
+  "slides": 19,
+  "thumb": "/thumbs/1220644931.jpg"
+ },
+ {
+  "n": 6,
+  "name": "Assets",
+  "section": "1. Introduction to Accounting",
+  "order": 6,
+  "kind": "lesson",
+  "vid": "1220639205",
+  "runtime": 744,
+  "words": 2106,
+  "prereqs": [
+   {
+    "lesson": "Balance Sheet",
+    "concepts": [
+     "assets covered in the balance sheet lesson"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220639205.jpg"
+ },
+ {
+  "n": 7,
+  "name": "Liabilities & Shareholder Equity",
+  "section": "1. Introduction to Accounting",
+  "order": 7,
+  "kind": "lesson",
+  "vid": "1220644612",
+  "runtime": 492,
+  "words": 1360,
+  "prereqs": [
+   {
+    "lesson": "What is accounting?",
+    "concepts": [
+     "owner/investor perspective discussed in first class",
+     "owner or investor starting a project"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Balance Sheet",
+    "concepts": [
+     "assets equals liabilities plus equity"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 33,
+  "thumb": "/thumbs/1220644612.jpg"
+ },
+ {
+  "n": 8,
+  "name": "Balance Sheet exercise",
+  "section": "1. Introduction to Accounting",
+  "order": 8,
+  "kind": "exercise",
+  "vid": "1220644608",
+  "runtime": 522,
+  "words": 1575,
+  "prereqs": [
+   {
+    "lesson": "Debit and Credit",
+    "concepts": [
+     "crediting cash",
+     "every transaction needs a debit and a credit",
+     "accounts receivable decrease with a credit"
+    ],
+    "weight": 3
+   }
+  ],
+  "slides": 31,
+  "thumb": "/thumbs/1220644608.jpg"
+ },
+ {
+  "n": 9,
+  "name": "The income statement",
+  "section": "1. Introduction to Accounting",
+  "order": 9,
+  "kind": "lesson",
+  "vid": "1220644547",
+  "runtime": 989,
+  "words": 2832,
+  "prereqs": [
+   {
+    "lesson": "Balance Sheet",
+    "concepts": [
+     "the balance sheet",
+     "balance sheet: what we own vs what we owe",
+     "concepts from earlier balance sheet lessons"
+    ],
+    "weight": 5
+   }
+  ],
+  "slides": 47,
+  "thumb": "/thumbs/1220644547.jpg"
+ },
+ {
+  "n": 10,
+  "name": "Main income statement aggregates",
+  "section": "1. Introduction to Accounting",
+  "order": 10,
+  "kind": "lesson",
+  "vid": "1220644490",
+  "runtime": 592,
+  "words": 1674,
+  "prereqs": [
+   {
+    "lesson": "The income statement",
+    "concepts": [
+     "basics of the income statement",
+     "cost of goods sold definition",
+     "other operating expenditure"
+    ],
+    "weight": 3
+   }
+  ],
+  "slides": 36,
+  "thumb": "/thumbs/1220644490.jpg"
+ },
+ {
+  "n": 11,
+  "name": "Income Statement Exercise",
+  "section": "1. Introduction to Accounting",
+  "order": 11,
+  "kind": "exercise",
+  "vid": "1220644392",
+  "runtime": 612,
+  "words": 1623,
+  "prereqs": [
+   {
+    "lesson": "Main income statement aggregates",
+    "concepts": [
+     "gross margin as product profitability",
+     "operating vs financial results",
+     "financial income added to operating income"
+    ],
+    "weight": 3
+   },
+   {
+    "lesson": "The income statement",
+    "concepts": [
+     "add income, subtract expenses"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 51,
+  "thumb": "/thumbs/1220644392.jpg"
+ },
+ {
+  "n": 12,
+  "name": "Types of cost",
+  "section": "1. Introduction to Accounting",
+  "order": 12,
+  "kind": "lesson",
+  "vid": "1220644273",
+  "runtime": 410,
+  "words": 1111,
+  "prereqs": [
+   {
+    "lesson": "Main income statement aggregates",
+    "concepts": [
+     "classifying operating costs in the income statement",
+     "cost of goods sold"
+    ],
+    "weight": 2
+   }
+  ],
+  "slides": 35,
+  "thumb": "/thumbs/1220644273.jpg"
+ },
+ {
+  "n": 13,
+  "name": "Inventory",
+  "section": "1. Introduction to Accounting",
+  "order": 13,
+  "kind": "lesson",
+  "vid": "1220644055",
+  "runtime": 575,
+  "words": 1634,
+  "prereqs": [],
+  "slides": 47,
+  "thumb": "/thumbs/1220644055.jpg"
+ },
+ {
+  "n": 14,
+  "name": "Accounting depreciation",
+  "section": "1. Introduction to Accounting",
+  "order": 14,
+  "kind": "lesson",
+  "vid": "1220644049",
+  "runtime": 947,
+  "words": 2418,
+  "prereqs": [],
+  "slides": 63,
+  "thumb": "/thumbs/1220644049.jpg"
+ },
+ {
+  "n": 15,
+  "name": "Cash flow vs Profit",
+  "section": "1. Introduction to Accounting",
+  "order": 15,
+  "kind": "lesson",
+  "vid": "1220644018",
+  "runtime": 573,
+  "words": 1547,
+  "prereqs": [
+   {
+    "lesson": "Income Statement Exercise",
+    "concepts": [
+     "income statement exercise"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 42,
+  "thumb": "/thumbs/1220644018.jpg"
+ },
+ {
+  "n": 16,
+  "name": "Statement of Cash Flows",
+  "section": "1. Introduction to Accounting",
+  "order": 16,
+  "kind": "lesson",
+  "vid": "1220644001",
+  "runtime": 342,
+  "words": 1000,
+  "prereqs": [],
+  "slides": 32,
+  "thumb": "/thumbs/1220644001.jpg"
+ },
+ {
+  "n": 17,
+  "name": "Statement of Cash Flows Exercise",
+  "section": "1. Introduction to Accounting",
+  "order": 17,
+  "kind": "exercise",
+  "vid": "1220639061",
+  "runtime": 558,
+  "words": 1415,
+  "prereqs": [
+   {
+    "lesson": "Statement of Cash Flows",
+    "concepts": [
+     "closing cash balance becomes next opening balance"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 61,
+  "thumb": "/thumbs/1220639061.jpg"
+ },
+ {
+  "n": 18,
+  "name": "Statement of Shareholder Equity",
+  "section": "1. Introduction to Accounting",
+  "order": 18,
+  "kind": "lesson",
+  "vid": "1220643519",
+  "runtime": 442,
+  "words": 1211,
+  "prereqs": [],
+  "slides": 31,
+  "thumb": "/thumbs/1220643519.jpg"
+ },
+ {
+  "n": 19,
+  "name": "Accounting period",
+  "section": "1. Introduction to Accounting",
+  "order": 19,
+  "kind": "lesson",
+  "vid": "1220640560",
+  "runtime": 555,
+  "words": 1679,
+  "prereqs": [],
+  "slides": 88,
+  "thumb": "/thumbs/1220640560.jpg"
+ },
+ {
+  "n": 65,
+  "name": "Accounting period exercise",
+  "section": "1. Introduction to Accounting",
+  "order": 19.5,
+  "kind": "exercise",
+  "vid": "1220643952",
+  "runtime": 905,
+  "words": 2271,
+  "prereqs": [
+   {
+    "lesson": "Accounting depreciation",
+    "concepts": [
+     "how to calculate depreciation",
+     "depreciation basis = purchase price minus residual value",
+     "straight-line depreciation method"
+    ],
+    "weight": 4
+   },
+   {
+    "lesson": "Inventory",
+    "concepts": [
+     "inventory exercise setup"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "The income statement",
+    "concepts": [
+     "income statement accumulates over the period"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 88,
+  "thumb": "/thumbs/1220643952.jpg"
+ },
+ {
+  "n": 20,
+  "name": "Test - Introduction to Accounting",
+  "section": "1. Introduction to Accounting",
+  "order": 20,
+  "kind": "test",
+  "vid": "1220643922",
+  "runtime": 361,
+  "words": 768,
+  "prereqs": [
+   {
+    "lesson": "Inventory",
+    "concepts": [
+     "what inventories are",
+     "inventory turns within a year"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Accounting depreciation",
+    "concepts": [
+     "depreciation process",
+     "depreciation basis = purchase price minus residual value"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Main income statement aggregates",
+    "concepts": [
+     "going line by line in income statement",
+     "order of income statement aggregates"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Balance Sheet exercise",
+    "concepts": [
+     "balance sheet exercise with daily ledger"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220643922.jpg"
+ },
+ {
+  "n": 21,
+  "name": "Accounting and Taxation",
+  "section": "2. From Accounting to Taxation",
+  "order": 1,
+  "kind": "lesson",
+  "vid": "1220643458",
+  "runtime": 548,
+  "words": 1425,
+  "prereqs": [],
+  "slides": 42,
+  "thumb": "/thumbs/1220643458.jpg"
+ },
+ {
+  "n": 22,
+  "name": "Taxation Resources",
+  "section": "2. From Accounting to Taxation",
+  "order": 2,
+  "kind": "resource",
+  "vid": null,
+  "runtime": 0,
+  "words": 0,
+  "prereqs": [],
+  "slides": 0
+ },
+ {
+  "n": 23,
+  "name": "Direct taxes",
+  "section": "2. From Accounting to Taxation",
+  "order": 3,
+  "kind": "lesson",
+  "vid": "1220643449",
+  "runtime": 585,
+  "words": 1710,
+  "prereqs": [
+   {
+    "lesson": "Accounting and Taxation",
+    "concepts": [
+     "direct taxes tax wealth",
+     "progressive income tax"
+    ],
+    "weight": 2
+   }
+  ],
+  "slides": 65,
+  "thumb": "/thumbs/1220643449.jpg"
+ },
+ {
+  "n": 24,
+  "name": "Indirect taxes",
+  "section": "2. From Accounting to Taxation",
+  "order": 4,
+  "kind": "lesson",
+  "vid": "1220643420",
+  "runtime": 456,
+  "words": 1226,
+  "prereqs": [],
+  "slides": 62,
+  "thumb": "/thumbs/1220643420.jpg"
+ },
+ {
+  "n": 25,
+  "name": "Test - From Accounting to Taxation",
+  "section": "2. From Accounting to Taxation",
+  "order": 5,
+  "kind": "test",
+  "vid": "1220643372",
+  "runtime": 259,
+  "words": 696,
+  "prereqs": [
+   {
+    "lesson": "Indirect taxes",
+    "concepts": [
+     "sales tax/VAT is proportional",
+     "proportional nature of sales tax"
+    ],
+    "weight": 2
+   }
+  ],
+  "slides": 42,
+  "thumb": "/thumbs/1220643372.jpg"
+ },
+ {
+  "n": 26,
+  "name": "Intro",
+  "section": "3. Analysis of Financial Statements",
+  "order": 1,
+  "kind": "lesson",
+  "vid": "1220643171",
+  "runtime": 303,
+  "words": 789,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220643171.jpg"
+ },
+ {
+  "n": 27,
+  "name": "Financial Statements Resources",
+  "section": "3. Analysis of Financial Statements",
+  "order": 2,
+  "kind": "resource",
+  "vid": null,
+  "runtime": 0,
+  "words": 0,
+  "prereqs": [],
+  "slides": 51
+ },
+ {
+  "n": 28,
+  "name": "Liquidity Ratios",
+  "section": "3. Analysis of Financial Statements",
+  "order": 3,
+  "kind": "lesson",
+  "vid": "1220643145",
+  "runtime": 259,
+  "words": 730,
+  "prereqs": [
+   {
+    "lesson": "Liabilities & Shareholder Equity",
+    "concepts": [
+     "accounts payable to suppliers",
+     "expenses payable"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Balance Sheet",
+    "concepts": [
+     "structure of the balance sheet: assets and liabilities"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220643145.jpg"
+ },
+ {
+  "n": 29,
+  "name": "Working Capital",
+  "section": "3. Analysis of Financial Statements",
+  "order": 4,
+  "kind": "lesson",
+  "vid": "1220643023",
+  "runtime": 316,
+  "words": 853,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220643023.jpg"
+ },
+ {
+  "n": 30,
+  "name": "Operational Funding Needs",
+  "section": "3. Analysis of Financial Statements",
+  "order": 5,
+  "kind": "lesson",
+  "vid": "1220642903",
+  "runtime": 778,
+  "words": 2178,
+  "prereqs": [
+   {
+    "lesson": "Working Capital",
+    "concepts": [
+     "working capital = current assets minus current liabilities"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 60,
+  "thumb": "/thumbs/1220642903.jpg"
+ },
+ {
+  "n": 31,
+  "name": "Asset Turnover",
+  "section": "3. Analysis of Financial Statements",
+  "order": 6,
+  "kind": "lesson",
+  "vid": "1220642973",
+  "runtime": 204,
+  "words": 536,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220642973.jpg"
+ },
+ {
+  "n": 32,
+  "name": "Debt and Solvency Ratios",
+  "section": "3. Analysis of Financial Statements",
+  "order": 7,
+  "kind": "lesson",
+  "vid": "1220639062",
+  "runtime": 329,
+  "words": 954,
+  "prereqs": [],
+  "slides": 28,
+  "thumb": "/thumbs/1220639062.jpg"
+ },
+ {
+  "n": 33,
+  "name": "Income Statement: Margin Ratios",
+  "section": "3. Analysis of Financial Statements",
+  "order": 8,
+  "kind": "lesson",
+  "vid": "1220642613",
+  "runtime": 497,
+  "words": 1389,
+  "prereqs": [
+   {
+    "lesson": "Main income statement aggregates",
+    "concepts": [
+     "EBITDA as measure of wealth generation",
+     "EBIT/operating income after depreciation and amortization",
+     "financial income and expenses below operating income"
+    ],
+    "weight": 3
+   },
+   {
+    "lesson": "Asset Turnover",
+    "concepts": [
+     "high vs low margin businesses",
+     "jewelry as high margin example"
+    ],
+    "weight": 2
+   }
+  ],
+  "slides": 55,
+  "thumb": "/thumbs/1220642613.jpg"
+ },
+ {
+  "n": 34,
+  "name": "Analysis of Sales and Expenses",
+  "section": "3. Analysis of Financial Statements",
+  "order": 9,
+  "kind": "lesson",
+  "vid": "1220639063",
+  "runtime": 671,
+  "words": 1947,
+  "prereqs": [
+   {
+    "lesson": "Income Statement: Margin Ratios",
+    "concepts": [
+     "margin ratios on income statement items"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220639063.jpg"
+ },
+ {
+  "n": 35,
+  "name": "ROE and ROA",
+  "section": "3. Analysis of Financial Statements",
+  "order": 10,
+  "kind": "lesson",
+  "vid": "1220642286",
+  "runtime": 804,
+  "words": 2200,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220642286.jpg"
+ },
+ {
+  "n": 36,
+  "name": "Interpretation of balance sheet by sector",
+  "section": "3. Analysis of Financial Statements",
+  "order": 11,
+  "kind": "lesson",
+  "vid": "1220642511",
+  "runtime": 344,
+  "words": 1065,
+  "prereqs": [
+   {
+    "lesson": "ROE and ROA",
+    "concepts": [
+     "return on assets"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Asset Turnover",
+    "concepts": [
+     "asset turnover = sales/assets"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220642511.jpg"
+ },
+ {
+  "n": 37,
+  "name": "Test - Analysis of Financial Statements",
+  "section": "3. Analysis of Financial Statements",
+  "order": 12,
+  "kind": "test",
+  "vid": "1220642564",
+  "runtime": 371,
+  "words": 848,
+  "prereqs": [
+   {
+    "lesson": "Working Capital",
+    "concepts": [
+     "definition of working capital",
+     "current operating liabilities breakdown"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Operational Funding Needs",
+    "concepts": [
+     "equation for operational funding needs",
+     "spontaneous financing"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Income Statement: Margin Ratios",
+    "concepts": [
+     "EBITDA margin"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "ROE and ROA",
+    "concepts": [
+     "ROA as EBIT over assets"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220642564.jpg"
+ },
+ {
+  "n": 38,
+  "name": "Business Plan Meets Financial Plan",
+  "section": "4. Investments & Company Assessment",
+  "order": 1,
+  "kind": "lesson",
+  "vid": "1220642279",
+  "runtime": 613,
+  "words": 1704,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220642279.jpg"
+ },
+ {
+  "n": 39,
+  "name": "Valuation of Companies Resources",
+  "section": "4. Investments & Company Assessment",
+  "order": 2,
+  "kind": "resource",
+  "vid": null,
+  "runtime": 0,
+  "words": 0,
+  "prereqs": [],
+  "slides": 0
+ },
+ {
+  "n": 40,
+  "name": "Financial Projections",
+  "section": "4. Investments & Company Assessment",
+  "order": 3,
+  "kind": "lesson",
+  "vid": "1220642065",
+  "runtime": 906,
+  "words": 2494,
+  "prereqs": [
+   {
+    "lesson": "Statement of Cash Flows",
+    "concepts": [
+     "statement of cash flows"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 79,
+  "thumb": "/thumbs/1220642065.jpg"
+ },
+ {
+  "n": 41,
+  "name": "The Time Value of Money",
+  "section": "4. Investments & Company Assessment",
+  "order": 4,
+  "kind": "lesson",
+  "vid": "1220641974",
+  "runtime": 775,
+  "words": 2247,
+  "prereqs": [],
+  "slides": 93,
+  "thumb": "/thumbs/1220641974.jpg"
+ },
+ {
+  "n": 42,
+  "name": "Cost of Capital",
+  "section": "4. Investments & Company Assessment",
+  "order": 5,
+  "kind": "lesson",
+  "vid": "1220641832",
+  "runtime": 834,
+  "words": 2282,
+  "prereqs": [],
+  "slides": 72,
+  "thumb": "/thumbs/1220641832.jpg"
+ },
+ {
+  "n": 43,
+  "name": "Investment Analysis NPV IRR",
+  "section": "4. Investments & Company Assessment",
+  "order": 6,
+  "kind": "lesson",
+  "vid": "1220641395",
+  "runtime": 834,
+  "words": 2691,
+  "prereqs": [
+   {
+    "lesson": "Cost of Capital",
+    "concepts": [
+     "factors determining the required rate of return",
+     "weighted average cost of capital"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "The Time Value of Money",
+    "concepts": [
+     "discounting future cash flows"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "Financial Projections",
+    "concepts": [
+     "how financial projections were created"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220641395.jpg"
+ },
+ {
+  "n": 44,
+  "name": "Valuation of Companies",
+  "section": "4. Investments & Company Assessment",
+  "order": 7,
+  "kind": "lesson",
+  "vid": "1220639362",
+  "runtime": 1038,
+  "words": 2918,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220639362.jpg"
+ },
+ {
+  "n": 45,
+  "name": "Static Methods of Business Valuation",
+  "section": "4. Investments & Company Assessment",
+  "order": 8,
+  "kind": "lesson",
+  "vid": "1220641376",
+  "runtime": 566,
+  "words": 1732,
+  "prereqs": [],
+  "slides": 76,
+  "thumb": "/thumbs/1220641376.jpg"
+ },
+ {
+  "n": 46,
+  "name": "Dynamic Methods of Business Valuation",
+  "section": "4. Investments & Company Assessment",
+  "order": 9,
+  "kind": "lesson",
+  "vid": "1220641325",
+  "runtime": 983,
+  "words": 2927,
+  "prereqs": [
+   {
+    "lesson": "Cost of Capital",
+    "concepts": [
+     "discount rate / cost of capital",
+     "WACC formula"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Financial Projections",
+    "concepts": [
+     "assumptions in projections",
+     "financial projection spreadsheet"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "The Time Value of Money",
+    "concepts": [
+     "time value of money"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 91,
+  "thumb": "/thumbs/1220641325.jpg"
+ },
+ {
+  "n": 47,
+  "name": "Comparative or Multiples Method",
+  "section": "4. Investments & Company Assessment",
+  "order": 10,
+  "kind": "lesson",
+  "vid": "1220639374",
+  "runtime": 719,
+  "words": 2189,
+  "prereqs": [
+   {
+    "lesson": "Static Methods of Business Valuation",
+    "concepts": [
+     "static valuation method"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 73,
+  "thumb": "/thumbs/1220639374.jpg"
+ },
+ {
+  "n": 48,
+  "name": "Business Valuation Analysis Exercise",
+  "section": "4. Investments & Company Assessment",
+  "order": 11,
+  "kind": "exercise",
+  "vid": "1220641297",
+  "runtime": 527,
+  "words": 1418,
+  "prereqs": [
+   {
+    "lesson": "Static Methods of Business Valuation",
+    "concepts": [
+     "Book value method: assets minus liabilities",
+     "Book value equals shareholder equity",
+     "Book value method"
+    ],
+    "weight": 4
+   },
+   {
+    "lesson": "Comparative or Multiples Method",
+    "concepts": [
+     "Company variable times multiple",
+     "Cautions when using multiples"
+    ],
+    "weight": 2
+   }
+  ],
+  "slides": 97,
+  "thumb": "/thumbs/1220641297.jpg"
+ },
+ {
+  "n": 49,
+  "name": "Test - Investments & Company Assessment",
+  "section": "4. Investments & Company Assessment",
+  "order": 12,
+  "kind": "test",
+  "vid": "1220641251",
+  "runtime": 576,
+  "words": 1383,
+  "prereqs": [
+   {
+    "lesson": "The Time Value of Money",
+    "concepts": [
+     "Money now is worth more than later",
+     "Continuous vs simple discounting"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Cost of Capital",
+    "concepts": [
+     "Required return / stock market returns",
+     "WACC equation and cost of equity"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Dynamic Methods of Business Valuation",
+    "concepts": [
+     "Terminal value calculation with no growth",
+     "Discounting terminal value by WACC"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Investment Analysis NPV IRR",
+    "concepts": [
+     "Negative NPV meaning"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "Valuation of Companies",
+    "concepts": [
+     "Different valuation methods give different values"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220641251.jpg"
+ },
+ {
+  "n": 50,
+  "name": "Sources of Corporate Financing",
+  "section": "5. Sources of Financing",
+  "order": 1,
+  "kind": "lesson",
+  "vid": "1220641109",
+  "runtime": 1074,
+  "words": 3284,
+  "prereqs": [
+   {
+    "lesson": "ROE and ROA",
+    "concepts": [
+     "leverage example from prior classes",
+     "debt financing raising ROE",
+     "leverage effect equation"
+    ],
+    "weight": 4
+   },
+   {
+    "lesson": "Liabilities & Shareholder Equity",
+    "concepts": [
+     "debt requires repayment",
+     "equity is not repaid",
+     "permanent resources / long-term liabilities"
+    ],
+    "weight": 3
+   }
+  ],
+  "slides": 99,
+  "thumb": "/thumbs/1220641109.jpg"
+ },
+ {
+  "n": 51,
+  "name": "Resources",
+  "section": "5. Sources of Financing",
+  "order": 2,
+  "kind": "resource",
+  "vid": null,
+  "runtime": 0,
+  "words": 0,
+  "prereqs": [],
+  "slides": 0
+ },
+ {
+  "n": 52,
+  "name": "Sources of Financing for Investment: Equity",
+  "section": "5. Sources of Financing",
+  "order": 3,
+  "kind": "lesson",
+  "vid": "1220641037",
+  "runtime": 706,
+  "words": 2047,
+  "prereqs": [
+   {
+    "lesson": "Sources of Corporate Financing",
+    "concepts": [
+     "family, friends and fools funding stage",
+     "equity holders bear risk for reward",
+     "content from previous lesson"
+    ],
+    "weight": 3
+   },
+   {
+    "lesson": "Balance Sheet",
+    "concepts": [
+     "book value = assets minus liabilities"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 65,
+  "thumb": "/thumbs/1220641037.jpg"
+ },
+ {
+  "n": 53,
+  "name": "Sources of Financing for Investment: Debt",
+  "section": "5. Sources of Financing",
+  "order": 4,
+  "kind": "lesson",
+  "vid": "1220640678",
+  "runtime": 818,
+  "words": 2403,
+  "prereqs": [],
+  "slides": 94,
+  "thumb": "/thumbs/1220640678.jpg"
+ },
+ {
+  "n": 54,
+  "name": "Sources of Financing for Working Capital",
+  "section": "5. Sources of Financing",
+  "order": 5,
+  "kind": "lesson",
+  "vid": "1220640626",
+  "runtime": 612,
+  "words": 1943,
+  "prereqs": [
+   {
+    "lesson": "Operational Funding Needs",
+    "concepts": [
+     "operational funding needs and working capital cycle"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 82,
+  "thumb": "/thumbs/1220640626.jpg"
+ },
+ {
+  "n": 55,
+  "name": "Financing Exercise",
+  "section": "5. Sources of Financing",
+  "order": 6,
+  "kind": "exercise",
+  "vid": null,
+  "runtime": 0,
+  "words": 0,
+  "prereqs": [],
+  "slides": 78
+ },
+ {
+  "n": 56,
+  "name": "Dividends",
+  "section": "5. Sources of Financing",
+  "order": 7,
+  "kind": "lesson",
+  "vid": "1220640548",
+  "runtime": 848,
+  "words": 2724,
+  "prereqs": [],
+  "slides": 117,
+  "thumb": "/thumbs/1220640548.jpg"
+ },
+ {
+  "n": 57,
+  "name": "Test - Sources of Financing",
+  "section": "5. Sources of Financing",
+  "order": 8,
+  "kind": "test",
+  "vid": "1220640528",
+  "runtime": 212,
+  "words": 579,
+  "prereqs": [
+   {
+    "lesson": "Sources of Financing for Working Capital",
+    "concepts": [
+     "trade credit / accounts payable",
+     "paying in cash vs supplier credit",
+     "bill of exchange discounting"
+    ],
+    "weight": 3
+   },
+   {
+    "lesson": "Sources of Financing for Investment: Equity",
+    "concepts": [
+     "dilution of old shareholders in capital increases"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "Sources of Financing for Investment: Debt",
+    "concepts": [
+     "financing lease vs operating lease"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "Dividends",
+    "concepts": [
+     "interim dividend"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 99,
+  "thumb": "/thumbs/1220640528.jpg"
+ },
+ {
+  "n": 58,
+  "name": "Wallbox Chargers Intro I",
+  "section": "6. Wallbox Chargers Case",
+  "order": 1,
+  "kind": "lesson",
+  "vid": "1220640123",
+  "runtime": 400,
+  "words": 878,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220640123.jpg"
+ },
+ {
+  "n": 59,
+  "name": "Wallbox Chargers Intro II",
+  "section": "6. Wallbox Chargers Case",
+  "order": 2,
+  "kind": "lesson",
+  "vid": "1220640121",
+  "runtime": 477,
+  "words": 1031,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220640121.jpg"
+ },
+ {
+  "n": 60,
+  "name": "Wallbox Chargers Deep Dive",
+  "section": "6. Wallbox Chargers Case",
+  "order": 3,
+  "kind": "lesson",
+  "vid": null,
+  "runtime": 0,
+  "words": 0,
+  "prereqs": [],
+  "slides": 0
+ },
+ {
+  "n": 61,
+  "name": "Wallbox Valuation and Analysis",
+  "section": "6. Wallbox Chargers Case",
+  "order": 4,
+  "kind": "lesson",
+  "vid": "1220639948",
+  "runtime": 718,
+  "words": 1623,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220639948.jpg"
+ },
+ {
+  "n": 62,
+  "name": "Wallbox Sources of Funding I",
+  "section": "6. Wallbox Chargers Case",
+  "order": 5,
+  "kind": "lesson",
+  "vid": "1220639962",
+  "runtime": 189,
+  "words": 335,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220639962.jpg"
+ },
+ {
+  "n": 63,
+  "name": "Wallbox Sources of Funding II",
+  "section": "6. Wallbox Chargers Case",
+  "order": 6,
+  "kind": "lesson",
+  "vid": "1220639382",
+  "runtime": 428,
+  "words": 1027,
+  "prereqs": [],
+  "slides": 0,
+  "thumb": "/thumbs/1220639382.jpg"
+ },
+ {
+  "n": 64,
+  "name": "Test Recap",
+  "section": "6. Wallbox Chargers Case",
+  "order": 7,
+  "kind": "test",
+  "vid": "1220639875",
+  "runtime": 616,
+  "words": 1643,
+  "prereqs": [
+   {
+    "lesson": "Direct taxes",
+    "concepts": [
+     "effective tax rate calculation",
+     "taxable income adjustments",
+     "loss carryforward"
+    ],
+    "weight": 3
+   },
+   {
+    "lesson": "Cost of Capital",
+    "concepts": [
+     "WACC definition",
+     "risk-return relationship"
+    ],
+    "weight": 2
+   },
+   {
+    "lesson": "Statement of Shareholder Equity",
+    "concepts": [
+     "net income flows into shareholder equity"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "Operational Funding Needs",
+    "concepts": [
+     "average maturation period"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "Wallbox Chargers Deep Dive",
+    "concepts": [
+     "rent as biggest cost leakage"
+    ],
+    "weight": 1
+   },
+   {
+    "lesson": "Dynamic Methods of Business Valuation",
+    "concepts": [
+     "discounting future cash flows"
+    ],
+    "weight": 1
+   }
+  ],
+  "slides": 0,
+  "thumb": "/thumbs/1220639875.jpg"
+ }
+]

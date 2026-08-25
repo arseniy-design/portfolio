@@ -1,0 +1,363 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { LESSONS, SPINE } from '../lib/course';
+
+// Lessons only: written resources, exercises and tests are cut from the index.
+const videos = LESSONS.filter((l) => l.vid && l.kind === 'lesson');
+const totalMinutes = Math.round(videos.reduce((a, l) => a + l.runtime, 0) / 60);
+const CASE_KEY = '6. Wallbox Chargers Case';
+
+const sections = SPINE.filter((s) => s.key !== CASE_KEY)
+  .map((s) => ({
+    ...s,
+    items: videos.filter((l) => l.section === s.key).sort((a, b) => a.order - b.order),
+  }))
+  .filter((s) => s.items.length);
+
+// An interview with a Wallbox finance executive, worked live. The strongest artifact
+// here, so it is pinned rather than filed as section six.
+const caseItems = videos
+  .filter((l) => l.section === CASE_KEY && !l.name.startsWith('Test'))
+  .sort((a, b) => a.order - b.order);
+const caseMinutes = Math.round(caseItems.reduce((a, l) => a + l.runtime, 0) / 60);
+
+const mm = (s: number) => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
+const mins = (list: typeof videos) => Math.round(list.reduce((a, l) => a + l.runtime, 0) / 60);
+const valuation = LESSONS.find((l) => l.name === 'Valuation of Companies')!;
+---
+
+<Layout
+  title="47 Finance Lessons · Arseniy Goldberg"
+  description="Forty-seven finance lessons filmed for ThePowerMBA. Ask a question, get the minute that answers it."
+  noindex={true}
+>
+  <div class="app text-navy-900">
+    <!-- ══════════ SIDEBAR ══════════ -->
+    <aside id="sidebar" class="sidebar">
+      <div class="px-5 pt-5 pb-4 border-b border-warm-200">
+        <div class="flex items-center gap-2.5 mb-4">
+          <img src="/hero-figure.webp" alt="" class="w-8 h-8 rounded-full object-cover object-top bg-warm-200 shrink-0" />
+          <div class="min-w-0">
+            <a href="/" class="block font-display font-semibold text-[14px] leading-tight hover:text-orange-600 transition-colors truncate">Arseniy Goldberg</a>
+            <span class="block font-body text-[11.5px] text-navy-400 leading-tight tabular-nums">{videos.length} lessons · {(totalMinutes / 60).toFixed(1)} hours</span>
+          </div>
+          <button id="closeNav" class="lg:hidden ml-auto text-navy-400 hover:text-navy-900 text-2xl leading-none px-1" aria-label="Close">&times;</button>
+        </div>
+
+        <button id="caseBtn" class="w-full text-left rounded-xl border border-warm-200 hover:border-orange-400 bg-white p-2.5 transition-colors group">
+          <span class="flex items-center gap-2.5">
+            <span class="relative shrink-0">
+              <img src={caseItems[0]?.thumb} alt="" class="w-[52px] h-[30px] object-cover rounded-md bg-warm-200" />
+              <span class="absolute inset-0 flex items-center justify-center">
+                <span class="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <svg viewBox="0 0 24 24" class="w-2.5 h-2.5 fill-white ml-px"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+              </span>
+            </span>
+            <span class="min-w-0">
+              <span class="block font-body text-[9.5px] uppercase tracking-[0.16em] text-orange-600">Filmed case</span>
+              <span class="block font-display text-[12.5px] font-medium leading-tight mt-0.5 group-hover:text-orange-600 transition-colors">Buying a company</span>
+            </span>
+          </span>
+        </button>
+      </div>
+
+      <nav class="flex-1 overflow-y-auto px-3 py-3">
+        {
+          sections.map((s, si) => (
+            <div class="mb-0.5">
+              <button class="acc w-full flex items-center gap-2.5 px-2 py-2 rounded-lg hover:bg-warm-100 transition-colors text-left" data-acc={si} aria-expanded="false">
+                <span class="font-display text-[11px] font-semibold text-orange-500 tabular-nums w-4 shrink-0">
+                  {String(si + 1).padStart(2, '0')}
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block font-display text-[13.5px] font-medium leading-tight">{s.verb}</span>
+                  <span class="block font-body text-[11px] text-navy-400 leading-tight mt-0.5 tabular-nums">
+                    {s.items.length} · {mins(s.items)} min
+                  </span>
+                </span>
+                <svg class="chev w-3.5 h-3.5 fill-navy-300 shrink-0 transition-transform" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+              </button>
+              <ul class="panel" data-panel={si}>
+                {s.items.map((l) => (
+                  <li>
+                    <button class="row w-full text-left flex items-center gap-2.5 pl-8 pr-2 py-1.5 rounded-lg hover:bg-warm-100 transition-colors group"
+                      data-vid={l.vid} data-name={l.name} data-t="0">
+                      <span class="font-body text-[12.5px] leading-snug flex-1 text-navy-600 group-hover:text-orange-600 transition-colors">{l.name}</span>
+                      <span class="font-body text-[10.5px] text-navy-300 tabular-nums shrink-0">{mm(l.runtime)}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
+
+      <p class="px-5 py-3.5 border-t border-warm-200 font-body text-[10.5px] leading-relaxed text-navy-400">
+        Filmed for <span class="text-navy-600">ThePowerMBA</span>, 2021. Shown as a record of the
+        work; the tutor is a separate project built on the transcripts.
+      </p>
+    </aside>
+
+    <div id="scrim" class="scrim lg:hidden"></div>
+
+    <!-- ══════════ MAIN ══════════ -->
+    <main class="main">
+      <header class="lg:hidden flex items-center gap-3 px-4 h-14 border-b border-warm-200 bg-warm-50/90 backdrop-blur shrink-0">
+        <button id="openNav" class="flex items-center gap-2 font-body text-[13px] text-navy-600" aria-label="Open lessons">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 fill-navy-600"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+          {videos.length} lessons
+        </button>
+      </header>
+
+      <div id="scroll" class="flex-1 overflow-y-auto">
+        <div class="mx-auto w-full max-w-[46rem] px-5 md:px-8">
+          <section class="pt-10 md:pt-16 pb-2">
+            <h1 class="font-display text-[1.75rem] leading-[1.16] md:text-[2.35rem] md:leading-[1.12] font-semibold max-w-[20ch]">
+              Ask a finance question. Get the minute that answers it<span class="text-orange-500">.</span>
+            </h1>
+            <p class="font-body text-navy-500 text-[15px] mt-3.5 max-w-[54ch]">
+              {videos.length} lessons I filmed for ThePowerMBA. This reads every word of them and
+              points you at the exact moment.
+            </p>
+          </section>
+          <div id="thread" class="flex flex-col gap-6 py-6"></div>
+        </div>
+      </div>
+
+      <div class="composer shrink-0">
+        <div class="mx-auto w-full max-w-[46rem] px-5 md:px-8 py-3.5">
+          <form id="ask" class="flex gap-2 items-end bg-white border border-warm-300 rounded-2xl p-1.5 shadow-[0_6px_24px_-14px_rgba(13,27,42,0.22)] focus-within:border-orange-400 transition-colors">
+            <textarea id="q" rows="1" maxlength="400" placeholder="Ask about anything in the course…"
+              class="flex-1 bg-transparent px-3 py-2.5 font-body text-[15px] placeholder:text-navy-300 focus:outline-none resize-none max-h-32"></textarea>
+            <button type="submit" id="askBtn" aria-label="Send"
+              class="shrink-0 w-9 h-9 rounded-xl bg-orange-500 hover:bg-orange-600 disabled:opacity-30 flex items-center justify-center transition-colors">
+              <svg viewBox="0 0 24 24" class="w-4 h-4 fill-white"><path d="M3.4 20.4l17.45-7.48a1 1 0 000-1.84L3.4 3.6a.993.993 0 00-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"/></svg>
+            </button>
+          </form>
+          <div id="chips" class="flex gap-2 mt-2 overflow-x-auto pb-0.5"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ══════════ PLAYER ══════════ -->
+    <div id="modal" class="fixed inset-0 bg-navy-950/92 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+      <div class="w-full max-w-4xl">
+        <div class="flex items-center justify-between mb-3 gap-4">
+          <span id="modalTitle" class="font-display text-white font-medium truncate"></span>
+          <button id="close" aria-label="Close" class="text-white/50 hover:text-white text-3xl leading-none shrink-0">&times;</button>
+        </div>
+        <div class="relative bg-black rounded-xl overflow-hidden" style="padding-top:56.25%">
+          <iframe id="frame" class="absolute inset-0 w-full h-full" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  html, body { height: 100%; overflow: hidden; }
+  .app { display: flex; height: 100svh; background: #fafaf8; }
+
+  .sidebar {
+    width: 288px; flex-shrink: 0; display: flex; flex-direction: column;
+    background: #fff; border-right: 1px solid var(--color-warm-200); height: 100svh;
+  }
+  .main {
+    flex: 1; min-width: 0; display: flex; flex-direction: column; height: 100svh;
+    background:
+      radial-gradient(ellipse 80% 45% at 50% 0%, rgba(244, 98, 31, 0.05) 0%, transparent 70%),
+      #fafaf8;
+  }
+  .composer { border-top: 1px solid var(--color-warm-200); background: rgba(250, 250, 248, 0.92); backdrop-filter: blur(8px); }
+
+  .panel { display: none; padding-bottom: 4px; }
+  .panel.open { display: block; }
+  .acc[aria-expanded='true'] .chev { transform: rotate(180deg); }
+
+  .scrim { position: fixed; inset: 0; background: rgba(13, 27, 42, 0.4); z-index: 39; display: none; }
+  .scrim.show { display: block; }
+
+  @media (max-width: 1023px) {
+    .sidebar {
+      position: fixed; inset: 0 auto 0 0; z-index: 40; width: 300px;
+      transform: translateX(-100%); transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 0 60px rgba(13, 27, 42, 0.18);
+    }
+    .sidebar.open { transform: none; }
+  }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .msg { animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  @keyframes blink { 0%, 60%, 100% { opacity: 0.2; } 30% { opacity: 0.85; } }
+  .dot { animation: blink 1.2s infinite; }
+  .dot:nth-child(2) { animation-delay: 0.18s; }
+  .dot:nth-child(3) { animation-delay: 0.36s; }
+
+  #chips::-webkit-scrollbar { display: none; }
+  #chips { scrollbar-width: none; }
+  nav::-webkit-scrollbar, #scroll::-webkit-scrollbar { width: 6px; }
+  nav::-webkit-scrollbar-thumb, #scroll::-webkit-scrollbar-thumb { background: var(--color-warm-300); border-radius: 3px; }
+
+  @media (prefers-reduced-motion: reduce) { .msg { animation: none; } .dot { animation: none; opacity: 0.5; } }
+</style>
+
+<script define:vars={{ DEMO_VID: valuation.vid, DEMO_THUMB: valuation.thumb, CASE_MIN: caseMinutes }}>
+  const $ = (s) => document.querySelector(s);
+  const thread = $('#thread'), scroll = $('#scroll'), input = $('#q'), btn = $('#askBtn');
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const toBottom = () => scroll.scrollTo({ top: scroll.scrollHeight, behavior: 'smooth' });
+
+  function play(vid, name, t = 0) {
+    $('#frame').src = `https://player.vimeo.com/video/${vid}?autoplay=1&title=0&byline=0&portrait=0&dnt=1#t=${t}s`;
+    $('#modalTitle').textContent = name;
+    $('#modal').classList.replace('hidden', 'flex');
+  }
+  const closeModal = () => { $('#frame').src = ''; $('#modal').classList.replace('flex', 'hidden'); };
+  $('#close').addEventListener('click', closeModal);
+  $('#modal').addEventListener('click', (e) => e.target === $('#modal') && closeModal());
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && closeModal());
+  const bind = (root) => root.querySelectorAll('[data-vid]').forEach((b) =>
+    b.addEventListener('click', () => play(b.dataset.vid, b.dataset.name, Number(b.dataset.t || 0))));
+  bind(document);
+
+  document.querySelectorAll('.acc').forEach((b) =>
+    b.addEventListener('click', () => {
+      const open = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', String(!open));
+      document.querySelector(`[data-panel="${b.dataset.acc}"]`).classList.toggle('open', !open);
+    })
+  );
+  const drawer = (on) => {
+    $('#sidebar').classList.toggle('open', on);
+    $('#scrim').classList.toggle('show', on);
+  };
+  $('#openNav')?.addEventListener('click', () => drawer(true));
+  $('#closeNav')?.addEventListener('click', () => drawer(false));
+  $('#scrim').addEventListener('click', () => drawer(false));
+
+  function add(html) {
+    const el = document.createElement('div');
+    el.className = 'msg';
+    el.innerHTML = html;
+    thread.appendChild(el);
+    bind(el);
+    toBottom();
+    return el;
+  }
+  const asked = (t) => add(`<div class="flex justify-end"><p class="font-display text-[14.5px] font-medium bg-warm-100 border border-warm-200 rounded-2xl rounded-br-md px-4 py-2.5 max-w-[85%]">${esc(t)}</p></div>`);
+  const typing = () => add(`<div class="flex gap-1.5 items-center h-5">
+      <span class="dot w-1.5 h-1.5 rounded-full bg-navy-400 block"></span>
+      <span class="dot w-1.5 h-1.5 rounded-full bg-navy-400 block"></span>
+      <span class="dot w-1.5 h-1.5 rounded-full bg-navy-400 block"></span></div>`);
+
+  const videoCard = (c) => `
+    <button data-vid="${c.vid}" data-name="${esc(c.lesson)}" data-t="${c.seconds}"
+            class="mt-4 w-full text-left flex items-stretch gap-0 bg-white border border-warm-200 hover:border-orange-400 rounded-xl overflow-hidden shadow-[0_3px_16px_-12px_rgba(13,27,42,0.26)] hover:shadow-[0_8px_26px_-14px_rgba(13,27,42,0.32)] transition-all group">
+      <span class="relative shrink-0 w-[38%] max-w-[220px]">
+        <img src="${c.thumb ?? ''}" alt="" class="w-full h-full object-cover aspect-video bg-warm-200"/>
+        <span class="absolute inset-0 bg-navy-950/10 group-hover:bg-navy-950/0 transition-colors"></span>
+        <span class="absolute inset-0 flex items-center justify-center">
+          <span class="w-10 h-10 rounded-full bg-orange-500 shadow-md group-hover:scale-110 transition-transform flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4 fill-white ml-0.5"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </span>
+      </span>
+      <span class="flex-1 min-w-0 px-4 py-3 flex flex-col justify-center">
+        <span class="block font-body text-[9.5px] uppercase tracking-[0.16em] text-navy-300 mb-1">Watch the moment</span>
+        <span class="block font-display text-[14.5px] font-medium leading-snug group-hover:text-orange-600 transition-colors">${esc(c.lesson)}</span>
+        <span class="block font-body text-[12px] text-orange-600 tabular-nums mt-1">starts ${c.clock}</span>
+      </span>
+    </button>`;
+
+  async function renderAnswer(d) {
+    if (d.error) { add(`<p class="font-body text-[15.5px] text-navy-500">${esc(d.error)}</p>`); return; }
+    add(`<div><p class="font-body text-[15.5px] md:text-[16.5px] leading-[1.7] text-navy-800">${esc(d.answer)}</p>${d.cite ? videoCard(d.cite) : ''}</div>`);
+
+    if (d.underneath) {
+      await wait(420);
+      const t = typing(); await wait(520); t.remove();
+      add(`<div class="border-l-2 border-orange-400 pl-4">
+             <p class="font-body text-[9.5px] uppercase tracking-[0.18em] text-orange-600 mb-1.5">What is underneath this</p>
+             <p class="font-body text-[15px] leading-[1.65] text-navy-600">${esc(d.underneath)}</p>
+             <div class="flex flex-wrap gap-2 mt-3">${(d.prereqs ?? []).filter((p) => p.vid).map((p) =>
+               `<button data-vid="${p.vid}" data-name="${esc(p.lesson)}" data-t="0"
+                        class="font-body text-[12px] bg-white hover:bg-warm-100 border border-warm-300 hover:border-orange-400 rounded-full pl-1.5 pr-3 py-1 transition-colors flex items-center gap-2">
+                  <img src="${p.thumb ?? ''}" alt="" class="w-7 h-4 object-cover rounded-sm bg-warm-200"/>${esc(p.lesson)}</button>`).join('')}</div>
+           </div>`);
+    }
+    if (d.sources?.length) {
+      await wait(220);
+      add(`<details class="group">
+             <summary class="font-body text-[11.5px] text-navy-300 hover:text-orange-600 cursor-pointer list-none transition-colors inline-flex items-center gap-1.5">
+               Searched ${d.sources.length} passages across the transcripts
+               <span class="group-open:hidden">▸</span><span class="hidden group-open:inline">▾</span>
+             </summary>
+             <div class="mt-2 pl-3.5 border-l border-warm-300">
+               ${d.sources.map((s) =>
+                 `<button data-vid="${s.vid}" data-name="${esc(s.lesson)}" data-t="${s.seconds}"
+                          class="w-full text-left flex items-baseline gap-2.5 py-1 hover:text-orange-600 transition-colors">
+                    <span class="font-body text-[10.5px] text-orange-500/80 tabular-nums w-9 shrink-0">${s.clock}</span>
+                    <span class="font-body text-[12px] text-navy-400 flex-1 leading-snug">${esc(s.lesson)}</span>
+                  </button>`).join('')}
+             </div>
+           </details>`);
+    }
+    toBottom();
+  }
+
+  let busy = false;
+  async function ask(question) {
+    if (busy || question.trim().length < 3) return;
+    busy = true; btn.disabled = true;
+    input.value = ''; input.style.height = 'auto';
+    asked(question);
+    await wait(240);
+    const t = typing();
+    try {
+      const r = await fetch('/api/tutor', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ question }) });
+      const d = await r.json(); t.remove(); await renderAnswer(d);
+    } catch {
+      t.remove(); add(`<p class="font-body text-[15.5px] text-navy-500">Something broke on the way there. Try again.</p>`);
+    }
+    busy = false; btn.disabled = false;
+  }
+  $('#ask').addEventListener('submit', (e) => { e.preventDefault(); ask(input.value); });
+  input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 128) + 'px'; });
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ask(input.value); } });
+
+  $('#chips').innerHTML = [
+    'Why is profit different from cash flow?', 'What is WACC?', 'Debt or equity?',
+    'What is working capital for?', 'How does depreciation work?',
+  ].map((s) => `<button class="chip shrink-0 font-body text-[12.5px] text-navy-500 hover:text-orange-600 bg-white hover:bg-warm-100 border border-warm-200 hover:border-orange-300 rounded-full px-3 py-1.5 transition-colors whitespace-nowrap">${esc(s)}</button>`).join('');
+  $('#chips').querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => ask(c.textContent)));
+
+  $('#caseBtn').addEventListener('click', () => {
+    add(`<div class="border-l-2 border-orange-400 pl-4">
+           <p class="font-body text-[9.5px] uppercase tracking-[0.18em] text-orange-600 mb-1.5">Filmed case study</p>
+           <p class="font-display text-[17px] font-semibold leading-snug mb-2">Buying a company, argued out with the person who does it</p>
+           <p class="font-body text-[15px] leading-[1.65] text-navy-600">Five videos with Chris, a finance executive at Wallbox Chargers. Three acquisition targets on the table: a battery producer in China, a plant in Finland, a European competitor. We value them, then argue about how to pay for it without diluting the shareholders. ${CASE_MIN} minutes, unscripted.</p>
+         </div>`);
+    drawer(false);
+  });
+
+  const DEMO = {
+    answer: "Start by knowing which question you're answering. Static methods value what a company owns right now, straight off the balance sheet. Dynamic methods value what it will produce, by projecting cash flows and discounting them back. The comparative method skips both and prices it against what similar businesses actually sold for.",
+    cite: { lesson: 'Valuation of Companies', vid: DEMO_VID, thumb: DEMO_THUMB, seconds: 0, clock: '0:00' },
+    underneath: 'Every dynamic method rests on two things you build first: a discount rate, which is the WACC from Cost of Capital, and a set of future cash flows, which is Financial Projections. If those are shaky, the valuation is arithmetic on top of guesses.',
+    prereqs: [],
+  };
+
+  (async () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      asked('How do I value a company?'); await renderAnswer(DEMO); return;
+    }
+    await wait(250);
+    asked('How do I value a company?');
+    await wait(220);
+    const t = typing(); await wait(480); t.remove();
+    await renderAnswer(DEMO);
+  })();
+</script>
