@@ -60,8 +60,8 @@ const CLASSROOM = [
     stats: [["$1.6B","Real-world AUM"],["300+","Sessions delivered"],["6","Courses"]],
     courses: [["Capital Markets","25 Sessions"],["Corporate Finance","15 Sessions"],["Financial Consulting","15 Sessions"],["AI-Powered Finance","15 Sessions"],["Financial Markets & Fintech","15 Sessions"],["Advanced Financial Management","15 Sessions"]],
     links: [
-      { tag: "Interactive Hub", name: "Capital Markets Hub · 22 Activities", href: "https://arseniygoldberg.com/capital-markets" },
-      { tag: "Video Library", name: "47 Finance Lessons · Ask Any Question", href: "https://arseniygoldberg.com/lessons" },
+      { tag: "Interactive Hub", name: "Capital Markets · 22 Activities", sell: "Live market data, built for class.", href: "https://arseniygoldberg.com/capital-markets" },
+      { tag: "Video Library", name: "Finance Lessons · 47 Videos", sell: "Ask anything. It finds the minute.", href: "https://arseniygoldberg.com/lessons" },
     ],
     videos: [
       { vid: "1175592384", title: "Time Value of Money" },
@@ -450,7 +450,7 @@ const FIELD = [
                 )}
 
                 {c.videos && (
-                  <div style="margin-top:-0.9rem">
+                  <div style="margin-top:-1.1rem">
                     <div class="grid grid-cols-2 gap-2">
                       {c.videos.map(v => (
                         <a href={`https://vimeo.com/${v.vid}`} target="_blank" rel="noopener" class="group relative block rounded-lg overflow-hidden bg-navy-800 aspect-video">
@@ -580,13 +580,16 @@ const FIELD = [
                 )}
 
                 {c.links && (
-                  <div style="margin-top:-0.9rem">
+                  <div style={c.videos ? "margin-top:0.1rem" : "margin-top:-0.9rem"}>
                     <div class="grid sm:grid-cols-2 gap-2 items-stretch">
                       {c.links.map(d => (
                         <a href={d.href} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-3.5 rounded-xl border border-warm-200 hover:border-orange-300 transition-colors group" style="min-height:68px">
                           <div class="min-w-0">
                             <p class="text-orange-500 font-bold uppercase" style="font-family:var(--font-display);font-size:0.55rem;letter-spacing:0.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{d.tag}</p>
-                            <p class="text-navy-800 font-medium mt-0.5" style="font-family:var(--font-display);font-size:0.78rem;line-height:1.28;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{d.name}</p>
+                            <p class="text-navy-800 font-medium mt-0.5" style="font-family:var(--font-display);font-size:0.78rem;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{d.name}</p>
+                            {d.sell && (
+                              <p class="text-navy-400 mt-0.5 group-hover:text-orange-500 transition-colors" style="font-family:var(--font-display);font-size:0.66rem;line-height:1.3;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{d.sell}</p>
+                            )}
                           </div>
                           <span class="text-orange-500 text-xs font-bold flex-shrink-0 group-hover:translate-x-0.5 transition-transform">→</span>
                         </a>
