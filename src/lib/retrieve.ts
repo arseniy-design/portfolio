@@ -15,7 +15,8 @@ export type Chunk = {
 
 // Tests and exercises are not listed on the page, so the tutor must not cite them —
 // a citation the visitor cannot find in the index reads as a broken link.
-export const CHUNKS = (chunks as Chunk[]).filter((c) => c.kind === 'lesson');
+const SECTIONS = new Set(SPINE.map((s) => s.key));
+export const CHUNKS = (chunks as Chunk[]).filter((c) => c.kind === 'lesson' && SECTIONS.has(c.section));
 
 // Finance terms that a plain stemmer would split apart or under-weight.
 const SYNONYMS: Record<string, string[]> = {

@@ -23,7 +23,7 @@ function rateLimited(ip: string) {
 
 const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
-const SYSTEM = `You are the tutor for a finance and accounting course taught by Arseniy Goldberg: 47 video lessons recorded for ThePowerMBA, covering accounting through valuation and financing.
+const SYSTEM = `You are the tutor for a finance and accounting course taught by Arseniy Goldberg: 42 video lessons recorded for ThePowerMBA, covering accounting through valuation and financing.
 
 You answer ONLY from the passages given to you. They are transcripts of what Arseniy actually said on camera.
 

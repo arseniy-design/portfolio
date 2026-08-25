@@ -5,21 +5,10 @@ import { LESSONS, SPINE } from '../lib/course';
 // Lessons only: written resources, exercises and tests are cut from the index.
 const videos = LESSONS.filter((l) => l.vid && l.kind === 'lesson');
 const totalMinutes = Math.round(videos.reduce((a, l) => a + l.runtime, 0) / 60);
-const CASE_KEY = '6. Wallbox Chargers Case';
-
-const sections = SPINE.filter((s) => s.key !== CASE_KEY)
-  .map((s) => ({
-    ...s,
-    items: videos.filter((l) => l.section === s.key).sort((a, b) => a.order - b.order),
-  }))
-  .filter((s) => s.items.length);
-
-// An interview with a Wallbox finance executive, worked live. The strongest artifact
-// here, so it is pinned rather than filed as section six.
-const caseItems = videos
-  .filter((l) => l.section === CASE_KEY && !l.name.startsWith('Test'))
-  .sort((a, b) => a.order - b.order);
-const caseMinutes = Math.round(caseItems.reduce((a, l) => a + l.runtime, 0) / 60);
+const sections = SPINE.map((s) => ({
+  ...s,
+  items: videos.filter((l) => l.section === s.key).sort((a, b) => a.order - b.order),
+})).filter((s) => s.items.length);
 
 const mm = (s: number) => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
 const mins = (list: typeof videos) => Math.round(list.reduce((a, l) => a + l.runtime, 0) / 60);
@@ -27,15 +16,15 @@ const valuation = LESSONS.find((l) => l.name === 'Valuation of Companies')!;
 ---
 
 <Layout
-  title="47 Finance Lessons · Arseniy Goldberg"
-  description="Forty-seven finance lessons filmed for ThePowerMBA. Ask a question, get the minute that answers it."
+  title="42 Finance Lessons · Arseniy Goldberg"
+  description="Forty-two finance lessons filmed for ThePowerMBA. Ask a question, get the minute that answers it."
   noindex={true}
 >
   <div class="app text-navy-900">
     <!-- ══════════ SIDEBAR ══════════ -->
     <aside id="sidebar" class="sidebar">
       <div class="px-5 pt-5 pb-4 border-b border-warm-200">
-        <div class="flex items-center gap-2.5 mb-4">
+        <div class="flex items-center gap-2.5">
           <img src="/hero-figure.webp" alt="" class="w-8 h-8 rounded-full object-cover object-top bg-warm-200 shrink-0" />
           <div class="min-w-0">
             <a href="/" class="block font-display font-semibold text-[14px] leading-tight hover:text-orange-600 transition-colors truncate">Arseniy Goldberg</a>
@@ -43,23 +32,6 @@ const valuation = LESSONS.find((l) => l.name === 'Valuation of Companies')!;
           </div>
           <button id="closeNav" class="lg:hidden ml-auto text-navy-400 hover:text-navy-900 text-2xl leading-none px-1" aria-label="Close">&times;</button>
         </div>
-
-        <button id="caseBtn" class="w-full text-left rounded-xl border border-warm-200 hover:border-orange-400 bg-white p-2.5 transition-colors group">
-          <span class="flex items-center gap-2.5">
-            <span class="relative shrink-0">
-              <img src={caseItems[0]?.thumb} alt="" class="w-[52px] h-[30px] object-cover rounded-md bg-warm-200" />
-              <span class="absolute inset-0 flex items-center justify-center">
-                <span class="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <svg viewBox="0 0 24 24" class="w-2.5 h-2.5 fill-white ml-px"><path d="M8 5v14l11-7z"/></svg>
-                </span>
-              </span>
-            </span>
-            <span class="min-w-0">
-              <span class="block font-body text-[9.5px] uppercase tracking-[0.16em] text-orange-600">Filmed case</span>
-              <span class="block font-display text-[12.5px] font-medium leading-tight mt-0.5 group-hover:text-orange-600 transition-colors">Buying a company</span>
-            </span>
-          </span>
-        </button>
       </div>
 
       <nav class="flex-1 overflow-y-auto px-3 py-3">
@@ -203,7 +175,7 @@ const valuation = LESSONS.find((l) => l.name === 'Valuation of Companies')!;
   @media (prefers-reduced-motion: reduce) { .msg { animation: none; } .dot { animation: none; opacity: 0.5; } }
 </style>
 
-<script define:vars={{ DEMO_VID: valuation.vid, DEMO_THUMB: valuation.thumb, CASE_MIN: caseMinutes }}>
+<script define:vars={{ DEMO_VID: valuation.vid, DEMO_THUMB: valuation.thumb }}>
   const $ = (s) => document.querySelector(s);
   const thread = $('#thread'), scroll = $('#scroll'), input = $('#q'), btn = $('#askBtn');
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -333,15 +305,6 @@ const valuation = LESSONS.find((l) => l.name === 'Valuation of Companies')!;
     'What is working capital for?', 'How does depreciation work?',
   ].map((s) => `<button class="chip shrink-0 font-body text-[12.5px] text-navy-500 hover:text-orange-600 bg-white hover:bg-warm-100 border border-warm-200 hover:border-orange-300 rounded-full px-3 py-1.5 transition-colors whitespace-nowrap">${esc(s)}</button>`).join('');
   $('#chips').querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => ask(c.textContent)));
-
-  $('#caseBtn').addEventListener('click', () => {
-    add(`<div class="border-l-2 border-orange-400 pl-4">
-           <p class="font-body text-[9.5px] uppercase tracking-[0.18em] text-orange-600 mb-1.5">Filmed case study</p>
-           <p class="font-display text-[17px] font-semibold leading-snug mb-2">Buying a company, argued out with the person who does it</p>
-           <p class="font-body text-[15px] leading-[1.65] text-navy-600">Five videos with Chris, a finance executive at Wallbox Chargers. Three acquisition targets on the table: a battery producer in China, a plant in Finland, a European competitor. We value them, then argue about how to pay for it without diluting the shareholders. ${CASE_MIN} minutes, unscripted.</p>
-         </div>`);
-    drawer(false);
-  });
 
   const DEMO = {
     answer: "Start by knowing which question you're answering. Static methods value what a company owns right now, straight off the balance sheet. Dynamic methods value what it will produce, by projecting cash flows and discounting them back. The comparative method skips both and prices it against what similar businesses actually sold for.",

@@ -21,7 +21,12 @@ export type Lesson = {
   thumb?: string;
 };
 
-export const LESSONS = lessons as Lesson[];
+// The Wallbox Chargers case is cut from the library: it is a company-specific
+// exercise, not a lesson someone arrives looking for. Dropped here so the index,
+// the counts and the tutor's corpus all agree.
+const CUT_SECTION = '6. Wallbox Chargers Case';
+
+export const LESSONS = (lessons as Lesson[]).filter((l) => l.section !== CUT_SECTION);
 
 const BY_NAME = new Map(LESSONS.map((l) => [l.name, l]));
 export const lessonByName = (n: string) => BY_NAME.get(n);
@@ -32,5 +37,4 @@ export const SPINE = [
   { key: '3. Analysis of Financial Statements', verb: 'Read it', blurb: 'What the numbers say' },
   { key: '4. Investments & Company Assessment', verb: 'Value it', blurb: 'What a business is worth' },
   { key: '5. Sources of Financing', verb: 'Fund it', blurb: 'Where the money comes from' },
-  { key: '6. Wallbox Chargers Case', verb: 'Do it', blurb: 'One real company, end to end' },
 ];
