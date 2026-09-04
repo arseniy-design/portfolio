@@ -1,4 +1,6 @@
 ---
+const chip = "text-xs px-2.5 py-1 rounded-full";
+const chipStyle = "background:#fff;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)";
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 
@@ -217,131 +219,248 @@ const TEACHING = [
 
       <!-- THE JOURNEY -->
       <div class="mb-0 reveal">
+      <div class="mb-14">
+        <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase block mb-3" style="font-family:var(--font-display)">The Journey</span>
+        <h2 class="font-bold text-navy-900 leading-tight" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">Fifteen years. One line.</h2>
+        <p class="text-navy-600 mt-5 max-w-xl leading-relaxed" style="font-size:clamp(1rem,1.4vw,1.1rem)">Four years learning markets. Four years running $1.6B at Baird. One year to rethink it. Five years building, advising, and teaching what came out of that. Now AI in finance, in New York.</p>
+        <p class="text-navy-400 text-xs mt-4 tracking-[0.15em] uppercase" style="font-family:var(--font-display)">Click any era</p>
+      </div>
 
-        <!-- Toggle bar -->
-        <div class="flex items-center gap-3 mb-8">
-          <button id="journey-btn-finance" onclick="switchJourney('finance')"
-            class="flex-1 text-center px-5 py-3 rounded-xl text-sm font-bold transition-all"
-            style="font-family:var(--font-display);background:#0D1B2A;color:#fff;border:1px solid #0D1B2A">
-            2014 – 2019 · Finance
-          </button>
-          <div class="flex-shrink-0 text-center px-4">
-            <p class="text-[9px] font-bold tracking-[0.3em] uppercase mb-0.5" style="font-family:var(--font-display);color:rgba(244,98,31,0.8)">Career Pivot · 2020</p>
-            <p class="text-xs font-medium text-navy-600 whitespace-nowrap" style="font-family:var(--font-display)">IE Business School · MBA</p>
-          </div>
-          <button id="journey-btn-bat" onclick="switchJourney('bat')"
-            class="flex-1 text-center px-5 py-3 rounded-xl text-sm font-bold transition-all"
-            style="font-family:var(--font-display);background:#F4F1EC;color:#5B7494;border:1px solid #EDE8DF">
-            2020 – Now · Entrepreneurship
-          </button>
+      <!-- ============ DESKTOP STAGE ============ -->
+      <div id="journey" class="journey hidden sm:block">
+        <div class="stage">
+          <svg viewBox="0 -20 1000 280" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <!-- OSU 2011–2015 -->
+            <g class="era" data-era="osu">
+              <path class="hit" d="M40 200 Q150 196 271 180"/>
+              <path class="seg" pathLength="1" d="M40 200 Q150 196 271 180" style="--d:.45s;--delay:0s;stroke-width:2"/>
+              <circle class="node" cx="40" cy="200" r="3.5" style="--delay:.05s"/>
+            </g>
+            <!-- Baird 2015–2019 -->
+            <g class="era" data-era="baird">
+              <path class="hit" d="M271 180 L556 152"/>
+              <path class="seg" pathLength="1" d="M271 180 L556 152" style="--d:.55s;--delay:.4s;stroke-width:4.5"/>
+              <circle class="node" cx="271" cy="180" r="4.5" style="--delay:.4s"/>
+            </g>
+            <!-- IE 2020–2021 (the bend) -->
+            <g class="era pivot" data-era="ie">
+              <path class="hit" d="M556 152 C592 152 588 78 617 78"/>
+              <path class="seg" pathLength="1" d="M556 152 C592 152 588 78 617 78" style="--d:.35s;--delay:.9s;stroke-width:3"/>
+              <circle class="node ring" cx="556" cy="152" r="11" style="--delay:1s"/>
+              <circle class="node" cx="556" cy="152" r="5" style="--delay:.95s"/>
+            </g>
+            <!-- Entrepreneurship 2021–2026 (three strands) -->
+            <g class="era" data-era="bat">
+              <path class="hit" d="M617 78 C690 78 700 10 761 10 C822 10 850 44 905 44"/>
+              <path class="hit" d="M617 78 L905 44"/>
+              <path class="hit" d="M617 78 C690 78 700 112 761 112 C822 112 850 44 905 44"/>
+              <path class="seg" pathLength="1" d="M617 78 C690 78 700 10 761 10 C822 10 850 44 905 44" style="--d:.8s;--delay:1.2s;stroke-width:2.5"/>
+              <path class="seg" pathLength="1" d="M617 78 L905 44" style="--d:.8s;--delay:1.2s;stroke-width:2.5"/>
+              <path class="seg" pathLength="1" d="M617 78 C690 78 700 112 761 112 C822 112 850 44 905 44" style="--d:.8s;--delay:1.2s;stroke-width:2.5"/>
+              <circle class="node" cx="617" cy="78" r="4" style="--delay:1.2s"/>
+            </g>
+            <!-- New York 2026 – now -->
+            <g class="era" data-era="ny">
+              <circle class="hit" cx="905" cy="44" r="22" style="stroke:none;fill:transparent;pointer-events:all"/>
+              <circle class="node ring" cx="905" cy="44" r="11" style="--delay:2.05s"/>
+              <circle class="node" cx="905" cy="44" r="5.5" style="--delay:2s"/>
+            </g>
+          </svg>
+
+          <!-- Strand names, along the strands -->
+          <span class="strand" style="left:76.1%;top:5.5%"  data-era="bat">Build</span>
+          <span class="strand" style="left:76.1%;top:24%"   data-era="bat">Advise</span>
+          <span class="strand" style="left:76.1%;top:52.5%" data-era="bat">Teach</span>
+
         </div>
 
-        <!-- Phase 1: Finance -->
-        <div id="journey-panel-finance">
-          <div class="bg-white rounded-2xl p-8 md:p-10 border border-warm-200">
-            <div class="grid md:grid-cols-2">
-              <!-- Left: headline + metrics -->
-              <div class="border-b md:border-b-0 md:border-r border-warm-200 pb-7 md:pb-0 md:pr-10">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Robert W. Baird &amp; Co.</span>
-                <h3 class="font-black text-navy-900 leading-none mb-2" style="font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3rem)">FINANCE</h3>
-                <p class="text-navy-400 text-sm mb-6" style="font-family:var(--font-display)">Senior Financial Consultant &nbsp;·&nbsp; Jul 2015 &ndash; Dec 2019</p>
-                <p class="text-navy-500 text-sm leading-relaxed mb-8 max-w-sm">Private wealth management and corporate investment consulting, across private households, retirement funds, and corporate portfolios. On the investment committee for 4 private and 40+ corporate portfolios.</p>
-                <div class="flex flex-wrap gap-8">
-                  <div>
-                    <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$1.6B</p>
-                    <p class="text-xs text-navy-400 mt-0.5">AUM Managed</p>
-                  </div>
-                  <div>
-                    <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">100+</p>
-                    <p class="text-xs text-navy-400 mt-0.5">Financial Plans · 90% Met</p>
-                  </div>
-                  <div>
-                    <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">50%</p>
-                    <p class="text-xs text-navy-400 mt-0.5">Practice Growth</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Right: client segments + asset classes -->
-              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col justify-center gap-8">
-                <div>
-                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Client Segments</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    {["Private Wealth", "Corporate Retirement", "Institutional", "Endowments & Trusts"].map(c => (
-                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Asset Classes</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    {["Equities", "Fixed Income", "Real Estate", "Annuities", "Alternatives"].map(c => (
-                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">Portfolio Strategies</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    {["Aggressive", "Moderately Aggressive", "Conservative", "ETF Satellite"].map(c => (
-                      <span class="text-xs px-2.5 py-1 rounded-full" style="background:#F4F1EC;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)">{c}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+        <!-- Era labels, below the line -->
+        <div class="labels">
+          <button class="era-label" data-era="osu" style="left:15.5%">
+            <span class="name">Oregon State</span>
+            <span class="years">2011 – 2015</span>
+            <span class="place">Corvallis</span>
+          </button>
+          <button class="era-label" data-era="baird" style="left:41.3%">
+            <span class="name">Robert W. Baird</span>
+            <span class="years">2015 – 2019</span>
+            <span class="place">Portland</span>
+          </button>
+          <button class="era-label" data-era="ie" style="left:57.5%">
+            <span class="name">IE Business School</span>
+            <span class="years">2020 – 2021</span>
+            <span class="place">Madrid</span>
+          </button>
+          <button class="era-label" data-era="bat" style="left:76.5%">
+            <span class="name">Entrepreneurship</span>
+            <span class="years">2021 – 2026</span>
+            <span class="place">Six countries</span>
+          </button>
+          <button class="era-label" data-era="ny" style="left:92%">
+            <span class="name">AI in Finance</span>
+            <span class="years">2026 – Now</span>
+            <span class="place">New York</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ MOBILE RAIL ============ -->
+      <div id="journey-m" class="journey-m sm:hidden">
+        {[
+          ["osu","Oregon State","2011 – 2015 · Corvallis"],
+          ["baird","Robert W. Baird","2015 – 2019 · Portland"],
+          ["ie","IE Business School","2020 – 2021 · Madrid"],
+          ["bat","Entrepreneurship","2021 – 2026 · Six countries"],
+          ["ny","AI in Finance","2026 – Now · New York"],
+        ].map(([id,name,years]) => (
+          <button class="rail-row era-label" data-era={id}>
+            <span class="dot"></span>
+            <span class="name">{name}</span>
+            <span class="years">{years}</span>
+          </button>
+        ))}
+      </div>
+
+      <!-- ============ PANELS ============ -->
+      <div id="journey-drawer" class="drawer">
+        <div class="drawer-inner">
+          <div class="stem" id="journey-stem"></div>
+
+          <!-- OSU -->
+          <div class="panel" data-panel="osu">
+            <span class="eyebrow">Oregon State University</span>
+            <h3 class="big">FINANCE &amp; INTERNATIONAL BUSINESS</h3>
+            <p class="text-navy-400 text-sm mb-5" style="font-family:var(--font-display)">Bachelor of Science &nbsp;·&nbsp; 2011 &ndash; 2015</p>
+            <p class="text-navy-600 text-sm leading-relaxed max-w-md mb-8">Two subjects that never left. How money moves, and how people differ across borders.</p>
+            <div class="roles">
+              <span class="yr">2014</span><span class="org">Robert W. Baird &amp; Co.</span><span class="role">Private Wealth Management Intern</span>
+              <span class="yr">2014</span><span class="org">State Farm Insurance</span><span class="role">Marketing Intern</span>
             </div>
           </div>
-        </div>
 
-        <!-- Phase 2: Build / Advise / Teach -->
-        <div id="journey-panel-bat" class="hidden">
-          <div class="bg-white rounded-2xl p-8 md:p-10 border border-warm-200">
-            <div class="grid md:grid-cols-3">
-              <div class="border-b md:border-b-0 md:border-r border-warm-200 pb-7 md:pb-0 md:pr-8">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">01</span>
-                <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">BUILD</h3>
-                <div style="width:42px;height:3px;background:#F4621F;border-radius:2px" class="mb-4"></div>
-                <p class="text-navy-400 text-sm leading-snug mb-5">Built from scratch across six countries, from Azerbaijan to Saudi Arabia to Mexico.</p>
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Built</span>
-                <div class="flex flex-col gap-2">
-                  {[["5","Innovation programs"],["3","Startups"],["1","Consultancy"],["1","AI in Finance program"]].map(([n, label]) => (
-                    <div class="flex items-baseline gap-2.5">
-                      <span class="font-bold text-orange-500 text-lg w-5 flex-shrink-0" style="font-family:var(--font-display)">{n}</span>
-                      <span class="text-sm text-navy-500" style="font-family:var(--font-display)">{label}</span>
+          <!-- BAIRD (existing panel, box removed) -->
+          <div class="panel" data-panel="baird">
+            <div class="grid md:grid-cols-2">
+              <div class="border-b md:border-b-0 md:border-r border-warm-300 pb-7 md:pb-0 md:pr-10">
+                <span class="eyebrow">Robert W. Baird &amp; Co.</span>
+                <h3 class="big">FINANCE</h3>
+                <p class="text-navy-400 text-sm mb-6" style="font-family:var(--font-display)">Senior Financial Consultant &nbsp;·&nbsp; Jul 2015 &ndash; Dec 2019</p>
+                <p class="text-navy-600 text-sm leading-relaxed mb-8 max-w-sm">Private wealth management and corporate investment consulting, across private households, retirement funds, and corporate portfolios. On the investment committee for 4 private and 40+ corporate portfolios.</p>
+                <div class="flex flex-wrap gap-8">
+                  {[["$1.6B","AUM Managed"],["100+","Financial Plans · 90% Met"],["50%","Practice Growth"]].map(([n,l]) => (
+                    <div>
+                      <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">{n}</p>
+                      <p class="text-xs text-navy-400 mt-0.5">{l}</p>
                     </div>
                   ))}
                 </div>
               </div>
-              <div class="border-b md:border-b-0 md:border-r border-warm-200 py-7 md:py-0 md:px-8">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">02</span>
-                <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">ADVISE</h3>
-                <div style="width:42px;height:3px;background:#F4621F;border-radius:2px" class="mb-4"></div>
-                <p class="text-navy-400 text-sm leading-snug mb-5">Strategy to implementation. Built around real company challenges.</p>
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Engagements</span>
-                <div class="flex flex-col gap-2.5">
-                  {["AI implementation and change management",
-                    "Operating model restructuring",
-                    "Strategy, financial modeling, and GTM",
-                    "Market entry research and validation"].map(x => (
-                    <span class="text-sm text-navy-500 leading-snug" style="font-family:var(--font-display)">{x}</span>
+              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col justify-center gap-8">
+                {[
+                  ["Client Segments",["Private Wealth","Corporate Retirement","Institutional","Endowments & Trusts"]],
+                  ["Asset Classes",["Equities","Fixed Income","Real Estate","Annuities","Alternatives"]],
+                  ["Portfolio Strategies",["Aggressive","Moderately Aggressive","Conservative","ETF Satellite"]],
+                ].map(([title, items]) => (
+                  <div>
+                    <span class="eyebrow mb-2">{title}</span>
+                    <div class="flex flex-wrap gap-1.5">
+                      {(items as string[]).map(c => <span class={chip} style={chipStyle}>{c}</span>)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- IE -->
+          <div class="panel" data-panel="ie">
+            <span class="eyebrow">IE Business School · Madrid</span>
+            <h3 class="big">MBA</h3>
+            <p class="text-navy-400 text-sm mb-5" style="font-family:var(--font-display)">Master in Digital Business &nbsp;·&nbsp; 2020 &ndash; 2021</p>
+            <p class="text-navy-600 text-sm leading-relaxed max-w-md mb-8">Finance stayed. The question changed, from what to invest in to what to build.</p>
+            <div class="roles">
+              <span class="yr">2020</span><span class="org">Consulting project &nbsp;·&nbsp; Johannesburg</span><span class="role">Six months, alongside the MBA</span>
+            </div>
+          </div>
+
+          <!-- BUILD / ADVISE / TEACH (existing panel, box removed) -->
+          <div class="panel" data-panel="bat">
+            <div class="roles roles-top">
+              <span class="yr">2021</span><span class="org">ThePowerMBA</span><span class="role">Product Owner &amp; Professor</span>
+              <span class="yr">2021</span><span class="org">SABAH.HUB Innovation Center &nbsp;·&nbsp; Azerbaijan</span><span class="role">Project Manager &amp; Professor</span>
+              <span class="yr">2022</span><span class="org">Flow Strategy Consulting</span><span class="role">Founding Partner &amp; Director</span>
+              <span class="yr">2024</span><span class="org">Rebundle &nbsp;·&nbsp; AI EdTech</span><span class="role">Chief Operating Officer</span>
+            </div>
+            <div class="grid md:grid-cols-3">
+              <div class="border-b md:border-b-0 md:border-r border-warm-300 pb-7 md:pb-0 md:pr-8">
+                <span class="eyebrow">01</span>
+                <h3 class="mid">BUILD</h3>
+                <div class="rule"></div>
+                <p class="text-navy-600 text-sm leading-snug mb-5">Built from scratch across six countries, from Azerbaijan to Saudi Arabia to Mexico.</p>
+                <span class="eyebrow mb-3">Built</span>
+                <div class="flex flex-col gap-2">
+                  {[["5","Innovation programs"],["3","Startups"],["1","Consultancy"],["1","AI in Finance program"]].map(([n, label]) => (
+                    <div class="flex items-baseline gap-2.5">
+                      <span class="font-bold text-orange-500 text-lg w-5 flex-shrink-0" style="font-family:var(--font-display)">{n}</span>
+                      <span class="text-sm text-navy-700" style="font-family:var(--font-display)">{label}</span>
+                    </div>
                   ))}
+                </div>
+                <div class="mt-7">
+                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$2.7M</p>
+                  <p class="text-xs text-navy-400 mt-0.5">Raised into the SABAH ecosystem by year three, from $200K in year one</p>
+                </div>
+              </div>
+              <div class="border-b md:border-b-0 md:border-r border-warm-300 py-7 md:py-0 md:px-8">
+                <span class="eyebrow">02</span>
+                <h3 class="mid">ADVISE</h3>
+                <div class="rule"></div>
+                <p class="text-navy-600 text-sm leading-snug mb-5">Strategy to implementation. Built around real company challenges.</p>
+                <span class="eyebrow mb-3">Engagements</span>
+                <div class="flex flex-col gap-2.5">
+                  {["AI implementation and change management","Operating model restructuring","Strategy, financial modeling, and GTM","Market entry research and validation"].map(x => (
+                    <span class="text-sm text-navy-700 leading-snug" style="font-family:var(--font-display)">{x}</span>
+                  ))}
+                </div>
+                <div class="mt-7">
+                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$500K</p>
+                  <p class="text-xs text-navy-400 mt-0.5">Closed across 25 agreements</p>
                 </div>
               </div>
               <div class="pt-7 md:pt-0 md:pl-8">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-2" style="font-family:var(--font-display)">03</span>
-                <h3 class="font-black text-navy-900 leading-none mb-3" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem)">TEACH</h3>
-                <div style="width:42px;height:3px;background:#F4621F;border-radius:2px" class="mb-4"></div>
-                <p class="text-navy-400 text-sm leading-snug mb-5">Classrooms, boardrooms, briefing rooms. The standard doesn't change.</p>
-                <span class="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 block mb-3" style="font-family:var(--font-display)">Subjects</span>
+                <span class="eyebrow">03</span>
+                <h3 class="mid">TEACH</h3>
+                <div class="rule"></div>
+                <p class="text-navy-600 text-sm leading-snug mb-5">Classrooms, boardrooms, briefing rooms. The standard doesn't change.</p>
+                <span class="eyebrow mb-3">Subjects</span>
                 <div class="flex flex-col gap-2.5">
-                  {["Finance", "Artificial Intelligence", "Innovation", "Behavioral Sciences"].map(x => (
-                    <span class="text-sm text-navy-500 leading-snug" style="font-family:var(--font-display)">{x}</span>
+                  {["Finance","Artificial Intelligence","Innovation","Behavioral Sciences"].map(x => (
+                    <span class="text-sm text-navy-700 leading-snug" style="font-family:var(--font-display)">{x}</span>
                   ))}
+                </div>
+                <div class="mt-7">
+                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">5.0 / 5.0</p>
+                  <p class="text-xs text-navy-400 mt-0.5">Rating, 68 NPS · IE Executive Programs</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
+          <!-- NEW YORK -->
+          <div class="panel" data-panel="ny">
+            <span class="eyebrow">New York &nbsp;·&nbsp; 2026 &ndash; Now</span>
+            <h3 class="big" style="margin-bottom:1.25rem">AI IN FINANCE</h3>
+            <div class="roles">
+              <span class="yr">2026</span><span class="org">IE New York College</span><span class="role">Academic Director, AI in Finance</span>
+              <span class="yr">2026</span><span class="org">IE New York College</span><span class="role">Professor, Business Applications of AI</span>
+              <span class="yr">2026</span><span class="org">Flow</span><span class="role">AI Consulting &nbsp;·&nbsp; Real Value of AI</span>
+            </div>
+            <p class="text-navy-600 text-sm leading-relaxed max-w-md mt-8 mb-5">Working with companies on the real value of AI, and teaching it at IE New York College.</p>
+            <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-white" style="font-family:var(--font-display);background:#0D1B2A">Start a conversation <span aria-hidden="true">&rarr;</span></a>
+          </div>
+
+        </div>
+      </div>
       </div>
 
     </div><!-- close max-w container -->
@@ -1510,22 +1629,6 @@ const TEACHING = [
   }
   (window as any).switchTab = switchTab;
 
-  // Journey toggle
-  function switchJourney(phase: string) {
-    const phases = ['finance', 'bat'];
-    phases.forEach(p => {
-      const panel = document.getElementById('journey-panel-' + p);
-      const btn = document.getElementById('journey-btn-' + p) as HTMLElement;
-      if (p === phase) {
-        panel?.classList.remove('hidden');
-        if (btn) { btn.style.background = '#0D1B2A'; btn.style.color = '#fff'; btn.style.borderColor = '#0D1B2A'; }
-      } else {
-        panel?.classList.add('hidden');
-        if (btn) { btn.style.background = '#F4F1EC'; btn.style.color = '#5B7494'; btn.style.borderColor = '#EDE8DF'; }
-      }
-    });
-  }
-  (window as any).switchJourney = switchJourney;
 
   // Work toggle
 
@@ -1847,4 +1950,167 @@ const TEACHING = [
       }, 650);
     });
   })();
+</script>
+
+<!-- Journey timeline -->
+<style>
+  /* ---------- stage ---------- */
+  .stage { position: relative; }
+  .stage svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  .era { cursor: pointer; }
+  .era .hit { fill: none; stroke: transparent; stroke-width: 36; pointer-events: stroke; }
+  .era .seg {
+    fill: none; stroke: #0D1B2A; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1;
+    transition: stroke-dashoffset var(--d) cubic-bezier(.4,0,.2,1) var(--delay),
+                stroke .35s ease, opacity .35s ease;
+  }
+  .era .node {
+    fill: #0D1B2A; opacity: 0;
+    transition: opacity .4s ease var(--delay), fill .35s ease;
+  }
+  .era .node.ring { fill: none; stroke: #F4621F; stroke-width: 1; opacity: 0; }
+  .pivot .node { fill: #F4621F; }
+  .era .hit[cx] { stroke: none; }
+  .era[data-era="ny"] .node.ring { stroke: #0D1B2A; }
+  .journey.open .era[data-era="ny"].active .node.ring { stroke: #F4621F; }
+
+  .journey.visible .era .seg { stroke-dashoffset: 0; }
+  .journey.visible .era .node { opacity: 1; }
+  .journey.visible .era .node.ring { opacity: .5; }
+
+  /* hover: this era forward, the rest step back */
+  .journey.visible:hover .era .seg,
+  .journey.visible:hover .era .node { opacity: .35; }
+  .journey.visible .era:hover .seg,
+  .journey.visible .era:hover .node { opacity: 1; }
+
+  /* active: active era in orange, the rest quiet */
+  .journey.visible.open .era .seg,
+  .journey.visible.open .era .node { opacity: .28; }
+  .journey.visible.open .era.active .seg { stroke: #F4621F; opacity: 1; }
+  .journey.visible.open .era.active .node { fill: #F4621F; opacity: 1; }
+  .journey.visible.open .era.active .node.ring { fill: none; opacity: .5; }
+  .journey.visible.open .era:hover .seg,
+  .journey.visible.open .era:hover .node { opacity: .8; }
+
+  .strand {
+    position: absolute; transform: translate(-50%, -50%);
+    font-family: var(--font-display); font-size: 12px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: #1E2E42;
+    opacity: 0; transition: opacity .5s ease 1.7s, color .3s ease;
+  }
+  .journey.visible .strand { opacity: 1; }
+  .journey.open .strand.active { color: #F4621F; }
+
+  /* ---------- labels ---------- */
+  .labels { position: relative; height: 72px; margin-top: -8px; }
+  .era-label {
+    position: absolute; transform: translateX(-50%);
+    background: none; border: none; padding: 6px 10px; cursor: pointer; text-align: center;
+    white-space: nowrap; color: #0D1B2A; transition: color .3s ease, opacity .3s ease;
+  }
+  .era-label .name {
+    display: block; font-family: var(--font-display); font-weight: 600;
+    font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #0D1B2A;
+  }
+  .era-label .years {
+    display: block; font-family: var(--font-display); font-size: 12px; font-weight: 500;
+    color: #5B7494; margin-top: 4px; letter-spacing: .04em;
+  }
+  .era-label .place {
+    display: block; font-family: var(--font-display); font-size: 11px; font-weight: 500;
+    color: #7D99B8; margin-top: 2px; letter-spacing: .06em;
+  }
+  .era-label:hover .name { color: #F4621F; }
+  .journey.open .era-label { opacity: .45; }
+  .journey.open .era-label.active { opacity: 1; }
+  .journey.open .era-label.active .name { color: #F4621F; }
+
+
+  /* ---------- mobile rail ---------- */
+  .journey-m { position: relative; padding-left: 4px; }
+  .journey-m::before {
+    content: ''; position: absolute; left: 9px; top: 12px; bottom: 12px; width: 2px;
+    background: #0D1B2A; opacity: .25;
+  }
+  .rail-row {
+    position: static; transform: none; display: grid; grid-template-columns: 12px 1fr;
+    column-gap: 18px; text-align: left; width: 100%; padding: 12px 0;
+  }
+  .rail-row .dot { width: 12px; height: 12px; border-radius: 50%; background: #0D1B2A; align-self: center; grid-row: span 2; transition: background .3s; }
+  .rail-row[data-era="ie"] .dot { background: #F4621F; }
+  .rail-row .years { margin-top: 1px; }
+  .journey-m.open .rail-row { opacity: .45; }
+  .journey-m.open .rail-row.active { opacity: 1; }
+  .journey-m.open .rail-row.active .name { color: #F4621F; }
+  .journey-m.open .rail-row.active .dot { background: #F4621F; }
+
+  /* ---------- drawer ---------- */
+  .drawer {
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows .55s cubic-bezier(.4,0,.2,1);
+  }
+  .drawer.open { grid-template-rows: 1fr; }
+  .drawer-inner { overflow: hidden; position: relative; min-height: 0; }
+  .stem {
+    position: absolute; top: 0; width: 1px; height: 40px; background: #F4621F;
+    left: var(--x, 50%); opacity: 0; transition: left .5s cubic-bezier(.4,0,.2,1), opacity .3s;
+  }
+  .drawer.open .stem { opacity: 1; }
+  @media (max-width: 767px) { .stem { display: none; } }
+
+  .panel { display: none; padding: 48px 0 24px; opacity: 0; transform: translateY(10px); }
+  .panel.active { display: block; animation: panelIn .5s ease .15s forwards; }
+  @keyframes panelIn { to { opacity: 1; transform: translateY(0); } }
+
+  .eyebrow {
+    display: block; font-family: var(--font-display); font-size: .75rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; color: #F4621F; margin-bottom: .6rem;
+  }
+  .big {
+    font-family: var(--font-display); font-weight: 900; color: #0D1B2A; line-height: 1;
+    font-size: clamp(2rem,4vw,3rem); margin-bottom: .5rem;
+  }
+  .mid {
+    font-family: var(--font-display); font-weight: 900; color: #0D1B2A; line-height: 1;
+    font-size: clamp(1.8rem,3vw,2.4rem); margin-bottom: .75rem;
+  }
+  .roles { display: grid; grid-template-columns: auto auto 1fr; column-gap: 18px; row-gap: 9px; align-items: baseline; font-family: var(--font-display); font-size: .875rem; }
+  .roles .yr { color: #F4621F; font-weight: 700; font-size: .8rem; letter-spacing: .04em; }
+  .roles .org { color: #0D1B2A; font-weight: 600; }
+  .roles .role { color: #3D5470; }
+  .roles-top { padding-bottom: 28px; margin-bottom: 32px; border-bottom: 1px solid #DDD6CC; }
+  .rule { width: 42px; height: 3px; background: #F4621F; border-radius: 2px; margin-bottom: 1rem; }
+</style>
+
+<script>
+  const journey = document.getElementById('journey')!;
+  const journeyM = document.getElementById('journey-m')!;
+  const drawer = document.getElementById('journey-drawer')!;
+  const stem = document.getElementById('journey-stem')!;
+  const stemX: Record<string,string> = { osu: '15.5%', baird: '41.3%', ie: '57.5%', bat: '76.5%', ny: '92%' };
+  let current: string | null = null;
+
+  function setActive(era: string | null) {
+    current = era;
+    document.querySelectorAll('[data-era]').forEach(el => el.classList.toggle('active', el.getAttribute('data-era') === era));
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === era));
+    [journey, journeyM, drawer].forEach(el => el.classList.toggle('open', !!era));
+    if (era) stem.style.setProperty('--x', stemX[era]);
+  }
+
+  document.querySelectorAll('.era, .era-label, .strand').forEach(el => {
+    el.addEventListener('click', () => {
+      const era = el.getAttribute('data-era')!;
+      setActive(current === era ? null : era);
+    });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setActive(null); });
+
+  // draw the line when it scrolls into view
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(en => { if (en.isIntersecting) { journey.classList.add('visible'); obs.disconnect(); } });
+  }, { threshold: 0.4 }).observe(journey);
 </script>
