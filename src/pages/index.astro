@@ -323,8 +323,8 @@ const TEACHING = [
         ].map(([id,name,years]) => (
           <button class="rail-row era-label" data-era={id}>
             <span class="dot"></span>
-            <span class="name">{name}</span>
             <span class="years">{years}</span>
+            <span class="name">{name}</span>
           </button>
         ))}
       </div>
@@ -2078,6 +2078,7 @@ const TEACHING = [
 
   /* ---------- mobile rail ---------- */
   .journey-m { position: relative; padding-left: 4px; }
+  .journey-m .era-label { opacity: 1; position: static; transform: none; transition: opacity .3s ease, color .3s ease; }
   .journey-m::before {
     content: ''; position: absolute; left: 9px; top: 12px; bottom: 12px; width: 2px;
     background: #0D1B2A; opacity: .25;
@@ -2088,7 +2089,8 @@ const TEACHING = [
   }
   .rail-row .dot { width: 12px; height: 12px; border-radius: 50%; background: #0D1B2A; align-self: center; grid-row: span 2; transition: background .3s; }
   .rail-row[data-era="ie"] .dot { background: #F4621F; }
-  .rail-row .years { margin-top: 1px; }
+  .rail-row .years { margin-top: 0; margin-bottom: 3px; color: #F4621F; font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+  .rail-row .name { font-size: 14px; letter-spacing: .06em; }
   .journey-m.open .rail-row { opacity: .45; }
   .journey-m.open .rail-row.active { opacity: 1; }
   .journey-m.open .rail-row.active .name { color: #F4621F; }
@@ -2148,6 +2150,7 @@ const TEACHING = [
     document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === era));
     [journey, journeyM, drawer].forEach(el => el.classList.toggle('open', !!era));
     if (era) stem.style.setProperty('--x', stemX[era]);
+    if (era && window.innerWidth < 640) setTimeout(() => drawer.scrollIntoView({ behavior: 'smooth', block: 'start' }), 600);
   }
 
   document.querySelectorAll('.era, .era-label, .strand').forEach(el => {
