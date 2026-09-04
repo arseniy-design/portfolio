@@ -223,80 +223,88 @@ const TEACHING = [
         <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase block mb-3" style="font-family:var(--font-display)">The Journey</span>
         <h2 class="font-bold text-navy-900 leading-tight" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">Fifteen years. One line.</h2>
         <p class="text-navy-600 mt-5 max-w-xl leading-relaxed" style="font-size:clamp(1rem,1.4vw,1.1rem)">Four years learning markets. Four years running $1.6B at Baird. One year to rethink it. Five years building, advising, and teaching what came out of that. Now AI in finance, in New York.</p>
-        <p class="text-navy-400 text-xs mt-4 tracking-[0.15em] uppercase" style="font-family:var(--font-display)">Click any era</p>
       </div>
 
       <!-- ============ DESKTOP STAGE ============ -->
       <div id="journey" class="journey hidden sm:block">
         <div class="stage">
           <svg viewBox="0 -20 1000 280" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <!-- the whole route, for the traveling dot -->
+            <path id="journey-route" d="M40 230 Q150 226 271 212 L556 176 C596 176 588 96 617 96 L905 30" fill="none" stroke="none"/>
             <!-- OSU 2011–2015 -->
             <g class="era" data-era="osu">
-              <path class="hit" d="M40 200 Q150 196 271 180"/>
-              <path class="seg" pathLength="1" d="M40 200 Q150 196 271 180" style="--d:.45s;--delay:0s;stroke-width:2"/>
-              <circle class="node" cx="40" cy="200" r="3.5" style="--delay:.05s"/>
+              <path class="hit" d="M40 230 Q150 226 271 212"/>
+              <path class="seg" pathLength="1" d="M40 230 Q150 226 271 212" style="--d:.45s;--delay:0s;stroke-width:1.75"/>
+              <circle class="node" cx="40" cy="230" r="3" style="--delay:0s"/>
             </g>
             <!-- Baird 2015–2019 -->
             <g class="era" data-era="baird">
-              <path class="hit" d="M271 180 L556 152"/>
-              <path class="seg" pathLength="1" d="M271 180 L556 152" style="--d:.55s;--delay:.4s;stroke-width:4.5"/>
-              <circle class="node" cx="271" cy="180" r="4.5" style="--delay:.4s"/>
+              <path class="hit" d="M271 212 L556 176"/>
+              <path class="seg" pathLength="1" d="M271 212 L556 176" style="--d:.5s;--delay:.45s;stroke-width:3.25"/>
+              <circle class="node" cx="271" cy="212" r="4" style="--delay:.45s"/>
             </g>
             <!-- IE 2020–2021 (the bend) -->
             <g class="era pivot" data-era="ie">
-              <path class="hit" d="M556 152 C592 152 588 78 617 78"/>
-              <path class="seg" pathLength="1" d="M556 152 C592 152 588 78 617 78" style="--d:.35s;--delay:.9s;stroke-width:3"/>
-              <circle class="node ring" cx="556" cy="152" r="11" style="--delay:1s"/>
-              <circle class="node" cx="556" cy="152" r="5" style="--delay:.95s"/>
+              <path class="hit" d="M556 176 C596 176 588 96 617 96"/>
+              <path class="seg" pathLength="1" d="M556 176 C596 176 588 96 617 96" style="--d:.3s;--delay:.95s;stroke-width:3.5"/>
+              <circle class="node ring" cx="556" cy="176" r="11" style="--delay:1s"/>
+              <circle class="node" cx="556" cy="176" r="5" style="--delay:.95s"/>
             </g>
             <!-- Entrepreneurship 2021–2026 (three strands) -->
             <g class="era" data-era="bat">
-              <path class="hit" d="M617 78 C690 78 700 10 761 10 C822 10 850 44 905 44"/>
-              <path class="hit" d="M617 78 L905 44"/>
-              <path class="hit" d="M617 78 C690 78 700 112 761 112 C822 112 850 44 905 44"/>
-              <path class="seg" pathLength="1" d="M617 78 C690 78 700 10 761 10 C822 10 850 44 905 44" style="--d:.8s;--delay:1.2s;stroke-width:2.5"/>
-              <path class="seg" pathLength="1" d="M617 78 L905 44" style="--d:.8s;--delay:1.2s;stroke-width:2.5"/>
-              <path class="seg" pathLength="1" d="M617 78 C690 78 700 112 761 112 C822 112 850 44 905 44" style="--d:.8s;--delay:1.2s;stroke-width:2.5"/>
-              <circle class="node" cx="617" cy="78" r="4" style="--delay:1.2s"/>
+              <path class="hit" d="M617 96 C690 96 700 15 761 15 C822 15 850 30 905 30"/>
+              <path class="hit" d="M617 96 L905 30"/>
+              <path class="hit" d="M617 96 C690 96 700 125 761 125 C822 125 850 30 905 30"/>
+              <path class="seg" pathLength="1" d="M617 96 C690 96 700 15 761 15 C822 15 850 30 905 30" style="--d:.75s;--delay:1.25s;stroke-width:2.75"/>
+              <path class="seg" pathLength="1" d="M617 96 L905 30" style="--d:.75s;--delay:1.25s;stroke-width:2.75"/>
+              <path class="seg" pathLength="1" d="M617 96 C690 96 700 125 761 125 C822 125 850 30 905 30" style="--d:.75s;--delay:1.25s;stroke-width:2.75"/>
+              <circle class="node" cx="617" cy="96" r="4.5" style="--delay:1.25s"/>
             </g>
             <!-- New York 2026 – now -->
             <g class="era" data-era="ny">
-              <circle class="hit" cx="905" cy="44" r="22" style="stroke:none;fill:transparent;pointer-events:all"/>
-              <circle class="node ring" cx="905" cy="44" r="11" style="--delay:2.05s"/>
-              <circle class="node" cx="905" cy="44" r="5.5" style="--delay:2s"/>
+              <circle class="hit" cx="905" cy="30" r="24" style="stroke:none;fill:transparent;pointer-events:all"/>
+              <circle class="node pulse" cx="905" cy="30" r="7" style="--delay:2s"/>
+              <circle class="node" cx="905" cy="30" r="7" style="--delay:2s"/>
             </g>
+            <!-- the traveling dot -->
+            <circle class="rider" r="5" fill="#F4621F">
+              <animateMotion id="journey-ride" dur="2s" begin="indefinite" fill="freeze" calcMode="linear"
+                keyPoints="0;0.252;0.564;0.678;1" keyTimes="0;0.225;0.475;0.625;1">
+                <mpath href="#journey-route"/>
+              </animateMotion>
+            </circle>
           </svg>
 
           <!-- Strand names, along the strands -->
-          <span class="strand" style="left:76.1%;top:5.5%"  data-era="bat">Build</span>
-          <span class="strand" style="left:76.1%;top:24%"   data-era="bat">Advise</span>
-          <span class="strand" style="left:76.1%;top:52.5%" data-era="bat">Teach</span>
+          <span class="strand" style="left:76.1%;top:5%"    data-era="bat">Build</span>
+          <span class="strand" style="left:76.1%;top:24.5%" data-era="bat">Advise</span>
+          <span class="strand" style="left:76.1%;top:58%"   data-era="bat">Teach</span>
 
         </div>
 
         <!-- Era labels, below the line -->
         <div class="labels">
-          <button class="era-label" data-era="osu" style="left:15.5%">
+          <button class="era-label" data-era="osu" style="left:15.5%;--at:.15s">
             <span class="name">Oregon State</span>
             <span class="years">2011 – 2015</span>
             <span class="place">Corvallis</span>
           </button>
-          <button class="era-label" data-era="baird" style="left:41.3%">
+          <button class="era-label" data-era="baird" style="left:41.3%;--at:.55s">
             <span class="name">Robert W. Baird</span>
             <span class="years">2015 – 2019</span>
             <span class="place">Portland</span>
           </button>
-          <button class="era-label" data-era="ie" style="left:57.5%">
+          <button class="era-label" data-era="ie" style="left:57.5%;--at:1s">
             <span class="name">IE Business School</span>
             <span class="years">2020 – 2021</span>
             <span class="place">Madrid</span>
           </button>
-          <button class="era-label" data-era="bat" style="left:76.5%">
+          <button class="era-label" data-era="bat" style="left:76.5%;--at:1.35s">
             <span class="name">Entrepreneurship</span>
             <span class="years">2021 – 2026</span>
             <span class="place">Six countries</span>
           </button>
-          <button class="era-label" data-era="ny" style="left:92%">
+          <button class="era-label" data-era="ny" style="left:92%;--at:2s">
             <span class="name">AI in Finance</span>
             <span class="years">2026 – Now</span>
             <span class="place">New York</span>
@@ -392,7 +400,7 @@ const TEACHING = [
                 <span class="eyebrow mb-4">Alongside the MBA</span>
                 <div class="roles">
                   <span class="yr">2020</span><span class="org">Consulting project &nbsp;·&nbsp; Johannesburg</span><span class="role">Six months, South Africa</span>
-                  <span class="yr">2021</span><span class="org">Two MVP-stage startups</span><span class="role">Founder</span>
+                  <span class="yr">2021</span><span class="org">Two MVP-stage startups</span><span class="role">Founding team</span>
                 </div>
               </div>
             </div>
@@ -401,11 +409,17 @@ const TEACHING = [
           <!-- BUILD / ADVISE / TEACH (existing panel, box removed) -->
           <div class="panel" data-panel="bat">
             <span class="eyebrow mb-4">Roles</span>
-            <div class="roles roles-top">
-              <span class="yr">2021</span><span class="org">ThePowerMBA</span><span class="role">Product Owner &amp; Professor</span>
-              <span class="yr">2021</span><span class="org">SABAH.HUB Innovation Center &nbsp;·&nbsp; Azerbaijan</span><span class="role">Project Manager &amp; Professor</span>
-              <span class="yr">2022</span><span class="org">Flow Strategy Consulting</span><span class="role">Founding Partner &amp; Director</span>
-              <span class="yr">2024</span><span class="org">Rebundle &nbsp;·&nbsp; AI EdTech</span><span class="role">Chief Operating Officer</span>
+            <div class="roles-top grid md:grid-cols-2 gap-x-10 gap-y-2">
+              <div class="roles">
+                <span class="yr">2021</span><span class="org">ThePowerMBA</span><span class="role">Product Owner &amp; Professor</span>
+                <span class="yr">2021</span><span class="org">SABAH.HUB &nbsp;·&nbsp; Azerbaijan</span><span class="role">Project Manager &amp; Professor</span>
+                <span class="yr">2022</span><span class="org">Flow Strategy Consulting</span><span class="role">Founding Partner &amp; Director</span>
+              </div>
+              <div class="roles">
+                <span class="yr">2022</span><span class="org">Emzingo</span><span class="role">Director of Strategy</span>
+                <span class="yr">2023</span><span class="org">Opinno</span><span class="role">Innovation Strategy Manager</span>
+                <span class="yr">2024</span><span class="org">Rebundle &nbsp;·&nbsp; AI EdTech</span><span class="role">Chief Operating Officer</span>
+              </div>
             </div>
             <div class="grid md:grid-cols-3">
               <div class="flex flex-col border-b md:border-b-0 md:border-r border-warm-300 pb-7 md:pb-0 md:pr-8">
@@ -1987,7 +2001,7 @@ const TEACHING = [
   .era .seg {
     fill: none; stroke: #0D1B2A; stroke-linecap: round; stroke-linejoin: round;
     stroke-dasharray: 1; stroke-dashoffset: 1;
-    transition: stroke-dashoffset var(--d) cubic-bezier(.4,0,.2,1) var(--delay),
+    transition: stroke-dashoffset var(--d) linear var(--delay),
                 stroke .35s ease, opacity .35s ease;
   }
   .era .node {
@@ -1997,8 +2011,13 @@ const TEACHING = [
   .era .node.ring { fill: none; stroke: #F4621F; stroke-width: 1; opacity: 0; }
   .pivot .node { fill: #F4621F; }
   .era .hit[cx] { stroke: none; }
-  .era[data-era="ny"] .node.ring { stroke: #0D1B2A; }
-  .journey.open .era[data-era="ny"].active .node.ring { stroke: #F4621F; }
+  .era .node.pulse { fill: #0D1B2A; transform-box: fill-box; transform-origin: center; }
+  .journey.visible .era .node.pulse { animation: nodePulse 2.8s ease-out 2.4s infinite; }
+  .journey.open .era[data-era="ny"].active .node.pulse { fill: #F4621F; }
+  @keyframes nodePulse { 0% { transform: scale(1); opacity: .55; } 70%, 100% { transform: scale(2.4); opacity: 0; } }
+  .rider { opacity: 0; transition: opacity .25s ease; }
+  .journey.visible .rider { opacity: 1; transition-delay: .05s; }
+  .journey.visible.arrived .rider { opacity: 0; transition-delay: 0s; }
 
   .journey.visible .era .seg { stroke-dashoffset: 0; }
   .journey.visible .era .node { opacity: 1; }
@@ -2023,9 +2042,12 @@ const TEACHING = [
     position: absolute; transform: translate(-50%, -50%);
     font-family: var(--font-display); font-size: 12px; font-weight: 700;
     letter-spacing: .18em; text-transform: uppercase; color: #1E2E42;
-    opacity: 0; transition: opacity .5s ease 1.7s, color .3s ease;
+    opacity: 0; transition: opacity .5s ease 1.5s, color .3s ease;
   }
   .journey.visible .strand { opacity: 1; }
+  .era-label { opacity: 0; transition: opacity .45s ease var(--at, 0s), color .3s ease; }
+  .journey.visible .era-label { opacity: 1; }
+  .journey.visible.open .era-label { transition-delay: 0s; }
   .journey.open .strand.active { color: #F4621F; }
 
   /* ---------- labels ---------- */
@@ -2048,7 +2070,7 @@ const TEACHING = [
     color: #7D99B8; margin-top: 2px; letter-spacing: .06em;
   }
   .era-label:hover .name { color: #F4621F; }
-  .journey.open .era-label { opacity: .45; }
+  .journey.visible.open .era-label { opacity: .45; }
   .journey.open .era-label.active { opacity: 1; }
   .journey.open .era-label.active .name { color: #F4621F; }
 
@@ -2137,6 +2159,13 @@ const TEACHING = [
 
   // draw the line when it scrolls into view
   new IntersectionObserver((entries, obs) => {
-    entries.forEach(en => { if (en.isIntersecting) { journey.classList.add('visible'); obs.disconnect(); } });
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      journey.classList.add('visible');
+      const ride = document.getElementById('journey-ride') as any;
+      try { ride?.beginElement(); } catch (_) {}
+      setTimeout(() => journey.classList.add('arrived'), 2000);
+      obs.disconnect();
+    });
   }, { threshold: 0.4 }).observe(journey);
 </script>
