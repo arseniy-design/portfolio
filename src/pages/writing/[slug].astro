@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PIECES from '../../data/writing.json';
+
+export const prerender = true;
+
+type Block = { k: string; t: string };
+type Piece = {
+  slug: string; title: string; date: string; topic: string;
+  words: number; mins: number; standalone: boolean; excerpt: string; blocks: Block[];
+};
+
+// Only the pieces long enough to stand on their own get a URL. A hundred
+// 130-word pages would read to a crawler as a content farm.
+export function getStaticPaths() {
+  const all = (PIECES as Piece[]).filter((p) => p.standalone)
+    .sort((a, b) => b.date.localeCompare(a.date));
+  return all.map((p, i) => ({
+    params: { slug: p.slug },
+    props: { piece: p, prev: all[i + 1] ?? null, next: all[i - 1] ?? null },
+  }));
+}
+
+const { piece, prev, next } = Astro.props as { piece: Piece; prev: Piece | null; next: Piece | null };
+
+const longDate = new Date(piece.date + 'T12:00:00Z').toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+});
+const url = `https://arseniygoldberg.com/writing/${piece.slug}`;
+const description = piece.excerpt.replace(/…$/, '').slice(0, 155);
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: piece.title,
+  description,
+  datePublished: piece.date,
+  wordCount: piece.words,
+  articleSection: piece.topic,
+  inLanguage: 'en',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  author: { '@type': 'Person', name: 'Arseniy Goldberg', url: 'https://arseniygoldberg.com' },
+  publisher: { '@type': 'Person', name: 'Arseniy Goldberg' },
+};
+---
+
+<Layout title={`${piece.title} · Arseniy Goldberg`} description={description} ogType="article">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonld)} />
+
+  <div class="paper">
+    <article class="wrap">
+      <header class="head">
+        <a href="/writing" class="back">← All writing</a>
+        <p class="kicker"><span>{piece.topic}</span><span>{longDate}</span><span>{piece.mins} min</span></p>
+        <h1>{piece.title}</h1>
+      </header>
+
+      <div class="prose">
+        {piece.blocks.map((b) =>
+          b.k === 'h' ? <h2>{b.t}</h2> : b.k === 'li' ? <p class="li">{b.t}</p> : <p>{b.t}</p>
+        )}
+      </div>
+
+      <nav class="pager">
+        {prev ? <a href={`/writing/${prev.slug}`} class="pg"><span>Earlier</span><b>{prev.title}</b></a> : <span></span>}
+        {next ? <a href={`/writing/${next.slug}`} class="pg pg-r"><span>Later</span><b>{next.title}</b></a> : <span></span>}
+      </nav>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .paper { background: #F4F1EC; color: #0D1B2A; min-height: 100vh; }
+  .wrap { max-width: 760px; margin: 0 auto; padding-inline: clamp(1.25rem, 5vw, 3rem);
+    padding-block: clamp(2.5rem, 6vw, 4.5rem) 5rem; }
+
+  .back { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: #5B7494; }
+  .back:hover { color: #F4621F; }
+
+  .kicker { display: flex; flex-wrap: wrap; gap: 0 1.5rem; margin-top: 2.75rem;
+    font-family: var(--font-display); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #7D99B8; }
+  .kicker span:first-child { color: #F4621F; }
+
+  .head h1 { font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(2rem, 5.5vw, 3.4rem); line-height: 1.06; letter-spacing: -0.03em;
+    margin: 0.9rem 0 0; max-width: 20ch; }
+
+  .prose { margin-top: 3rem; border-top: 1px solid #DDD6CC; padding-top: 2.5rem; }
+  .prose p { font-size: 1.12rem; line-height: 1.75; color: #22364C; margin: 0 0 1.15em; max-width: 64ch; }
+  .prose > p:first-child::first-letter { font-family: var(--font-display); font-weight: 600;
+    float: left; font-size: 3.1em; line-height: 0.78; padding: 0.06em 0.1em 0 0; color: #0D1B2A; }
+  .prose h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600;
+    letter-spacing: -0.015em; margin: 2.4em 0 0.9em; max-width: 28ch; }
+  .prose > h2:first-child { margin-top: 0; }
+  .prose .li { position: relative; padding-left: 1.35rem; margin-bottom: 0.7em; }
+  .prose .li::before { content: ''; position: absolute; left: 0; top: 0.85em;
+    width: 7px; height: 1px; background: #F4621F; }
+
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4.5rem;
+    border-top: 1px solid #DDD6CC; padding-top: 2rem; }
+  .pg { display: block; }
+  .pg-r { text-align: right; }
+  .pg span { display: block; font-family: var(--font-display); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #9AAEC4; margin-bottom: 0.5rem; }
+  .pg b { font-family: var(--font-display); font-size: 0.98rem; font-weight: 500; line-height: 1.35;
+    color: #0D1B2A; transition: color .2s ease; }
+  .pg:hover b { color: #F4621F; }
+
+  @media (max-width: 620px) {
+    .pager { grid-template-columns: 1fr; gap: 1.75rem; }
+    .pg-r { text-align: left; }
+  }
+</style>

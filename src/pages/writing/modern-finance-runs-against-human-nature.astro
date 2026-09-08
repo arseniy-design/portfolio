@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ART from '../../data/ie-insights.json';
+
+export const prerender = true;
+
+type Block = { k: string; t: string; n?: string };
+const blocks = ART.blocks as Block[];
+
+// Published first by IE Insights. The canonical points back at them, so their
+// copy keeps the ranking and this page exists for the reader who is already here.
+const url = 'https://arseniygoldberg.com/writing/modern-finance-runs-against-human-nature';
+const longDate = new Date(ART.date + 'T12:00:00Z').toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+});
+
+let numI = 0, stepI = 0, archI = 0;
+const archetypes = blocks.filter((b) => b.k === 'arch').length;
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: ART.title,
+  description: ART.standfirst,
+  datePublished: ART.date,
+  wordCount: ART.words,
+  articleSection: 'Finance',
+  inLanguage: 'en',
+  isBasedOn: ART.sourceUrl,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': ART.sourceUrl },
+  author: { '@type': 'Person', name: 'Arseniy Goldberg', url: 'https://arseniygoldberg.com' },
+  publisher: { '@type': 'Organization', name: 'IE Insights', url: 'https://www.ie.edu/insights/' },
+};
+---
+
+<Layout
+  title={`${ART.title} · Arseniy Goldberg`}
+  description={ART.standfirst}
+  canonical={ART.sourceUrl}
+  ogType="article"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonld)} />
+
+  <div class="paper">
+    <article>
+      <header class="head">
+        <div class="col">
+          <a href="/writing" class="back">← All writing</a>
+          <p class="kicker">
+            <span class="src">{ART.source}</span><span>{longDate}</span><span>7 min</span>
+          </p>
+          <h1>{ART.title}</h1>
+          <p class="stand">{ART.standfirst}</p>
+        </div>
+      </header>
+
+      <div class="col body">
+        {blocks.map((b) => {
+          if (b.k === 'h') return <h2>{b.t}</h2>;
+          if (b.k === 'li') return <p class="bullet">{b.t}</p>;
+          if (b.k === 'num') { numI++; return <p class="num"><i>{numI}</i>{b.t}</p>; }
+          if (b.k === 'arch') {
+            archI++;
+            return (
+              <section class="arch">
+                <span class="arch-n">{String(archI).padStart(2, '0')} <i>/ {String(archetypes).padStart(2, '0')}</i></span>
+                <p><b>{b.n}</b> {b.t}</p>
+              </section>
+            );
+          }
+          if (b.k === 'step') {
+            stepI++;
+            return (
+              <div class="step">
+                <span class="step-n">{stepI}</span>
+                <p><b>{b.n}</b> {b.t}</p>
+              </div>
+            );
+          }
+          return <p>{b.t}</p>;
+        })}
+      </div>
+
+      <footer class="col src-note">
+        <p>
+          First published by <a href={ART.sourceUrl} target="_blank" rel="noopener">IE Insights</a>,
+          {' '}{longDate}. Reproduced here in full.
+        </p>
+        <a href="/writing" class="more">More writing <span aria-hidden="true">→</span></a>
+      </footer>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .paper { background:#F4F1EC; color:#0D1B2A; min-height:100vh; padding-bottom:6rem; }
+  .col { max-width:720px; margin:0 auto; padding-inline:clamp(1.25rem,5vw,2rem); }
+
+  .head { padding-block:clamp(2.5rem,6vw,4.5rem) 0; }
+  .back { font-family:var(--font-display); font-size:0.78rem; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; color:#5B7494; }
+  .back:hover { color:#F4621F; }
+  .kicker { display:flex; flex-wrap:wrap; gap:0 1.5rem; margin-top:2.75rem;
+    font-family:var(--font-display); font-size:0.72rem; font-weight:600;
+    letter-spacing:0.11em; text-transform:uppercase; color:#7D99B8; }
+  .kicker .src { color:#F4621F; }
+  h1 { font-family:var(--font-display); font-weight:600; margin:1rem 0 0;
+    font-size:clamp(2.15rem,6vw,3.75rem); line-height:1.02; letter-spacing:-0.035em; }
+  .stand { margin-top:1.5rem; font-size:clamp(1.1rem,2vw,1.32rem); line-height:1.5;
+    color:#2A3E56; max-width:34ch; }
+
+  .body { margin-top:3rem; border-top:1px solid #DDD6CC; padding-top:2.75rem; }
+  .body p { font-size:1.13rem; line-height:1.76; color:#22364C; margin:0 0 1.2em; }
+  .body > p:first-child::first-letter { font-family:var(--font-display); font-weight:600;
+    float:left; font-size:3.05em; line-height:0.8; padding:0.06em 0.11em 0 0; color:#0D1B2A; }
+  h2 { font-family:var(--font-display); font-weight:600; font-size:clamp(1.4rem,3vw,1.9rem);
+    letter-spacing:-0.025em; line-height:1.12; margin:3.2rem 0 1.4rem; max-width:20ch;
+    padding-top:1.6rem; border-top:1px solid #DDD6CC; }
+
+  .bullet { position:relative; padding-left:1.4rem; margin-bottom:0.75em; }
+  .bullet::before { content:''; position:absolute; left:0; top:0.88em; width:8px; height:1px; background:#F4621F; }
+  .num { position:relative; padding-left:2.4rem; margin-bottom:0.5em; }
+  .num i { position:absolute; left:0; font-style:normal; font-family:var(--font-display);
+    font-weight:600; color:#F4621F; font-variant-numeric:tabular-nums; }
+
+  /* The five archetypes are the memorable spine of the piece, so they get to be
+     objects on the page rather than five more paragraphs. */
+  .arch { border-left:2px solid #0D1B2A; padding:0.1rem 0 0.1rem 1.6rem; margin:2.4rem 0; }
+  .arch-n { font-family:var(--font-display); font-size:0.7rem; font-weight:600;
+    letter-spacing:0.14em; color:#F4621F; font-variant-numeric:tabular-nums; }
+  .arch-n i { font-style:normal; color:#9AAEC4; }
+  /* The name is the grammatical subject of the sentence, so it stays inline and
+     earns its prominence from the type rather than from being cut into a heading. */
+  .arch p { margin:0.5rem 0 0; }
+  .arch b { font-family:var(--font-display); font-size:1.16em; font-weight:600;
+    letter-spacing:-0.02em; color:#0D1B2A; }
+
+  .step { display:grid; grid-template-columns:2.4rem 1fr; gap:0 0.75rem; margin-bottom:1.5rem; }
+  .step-n { font-family:var(--font-display); font-size:0.95rem; font-weight:600; color:#F4621F;
+    font-variant-numeric:tabular-nums; padding-top:0.28rem;
+    border-top:2px solid #F4621F; align-self:start; }
+  .step p { margin-bottom:0; }
+  .step b { font-weight:600; color:#0D1B2A; }
+
+  .src-note { margin-top:4rem; border-top:1px solid #DDD6CC; padding-top:1.75rem;
+    display:flex; flex-wrap:wrap; gap:1rem 2rem; align-items:baseline;
+    justify-content:space-between; }
+  .src-note p { font-size:0.88rem; color:#5B7494; margin:0; }
+  .src-note a { color:#0D1B2A; border-bottom:1px solid #C6BCAE; }
+  .src-note a:hover { color:#F4621F; border-bottom-color:#F4621F; }
+  .more { font-family:var(--font-display); font-size:0.85rem; font-weight:600;
+    color:#F4621F; border-bottom:0 !important; white-space:nowrap; }
+
+  @media (max-width:620px) {
+    .step { grid-template-columns:1.9rem 1fr; }
+    .arch { padding-left:1.15rem; }
+  }
+</style>

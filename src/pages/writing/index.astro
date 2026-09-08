@@ -1,0 +1,298 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PIECES from '../../data/writing.json';
+
+export const prerender = true;
+
+type Block = { k: string; t: string };
+type Piece = {
+  slug: string; title: string; date: string; topic: string;
+  words: number; mins: number; standalone: boolean; excerpt: string; blocks: Block[];
+};
+
+const pieces = (PIECES as Piece[]).slice().sort((a, b) => b.date.localeCompare(a.date));
+const totalWords = pieces.reduce((a, p) => a + p.words, 0);
+const years = [...new Set(pieces.map((p) => p.date.slice(0, 4)))].sort().reverse();
+const topics = [...new Set(pieces.map((p) => p.topic))].sort();
+const firstYear = years[years.length - 1];
+const lastYear = years[0];
+
+const byYear = years.map((y) => ({ year: y, items: pieces.filter((p) => p.date.slice(0, 4) === y) }));
+
+const MONTH = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const day = (d: string) => `${MONTH[Number(d.slice(5, 7)) - 1]} ${Number(d.slice(8, 10))}`;
+
+const title = `Writing · Arseniy Goldberg`;
+const description = `${pieces.length} pieces on finance, human behaviour, teaching and AI, written between ${firstYear} and ${lastYear}. The full archive, read in place.`;
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Writing — Arseniy Goldberg',
+  description,
+  url: 'https://arseniygoldberg.com/writing',
+  author: { '@type': 'Person', name: 'Arseniy Goldberg', url: 'https://arseniygoldberg.com' },
+  hasPart: pieces.filter((p) => p.standalone).map((p) => ({
+    '@type': 'Article',
+    headline: p.title,
+    datePublished: p.date,
+    url: `https://arseniygoldberg.com/writing/${p.slug}`,
+  })),
+};
+---
+
+<Layout title={title} description={description} ogType="website">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonld)} />
+
+  <div class="paper">
+    <!-- ─────────── MASTHEAD ─────────── -->
+    <header class="wrap mast">
+      <a href="/" class="back">← Arseniy Goldberg</a>
+      <h1>Writing</h1>
+      <p class="standfirst">
+        Everything I have published on finance, human behaviour, teaching and the arrival of AI.
+        No summaries and no links away. The pieces are here, in full, in the order they were written.
+      </p>
+      <p class="ledger">
+        <span><b>{pieces.length}</b> pieces</span>
+        <span><b>{firstYear}–{lastYear}</b></span>
+        <span><b>{(totalWords / 1000).toFixed(0)}k</b> words</span>
+      </p>
+    </header>
+
+    <!-- ─────────── CONTROLS ─────────── -->
+    <div class="ctrl-wrap">
+      <div class="wrap ctrl">
+        <label class="find">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <input id="q" type="search" placeholder={`Search ${pieces.length} pieces`} autocomplete="off" spellcheck="false" />
+        </label>
+        <nav class="topics" aria-label="Filter by topic">
+          <button class="tp on" data-topic="">All</button>
+          {topics.map((t) => <button class="tp" data-topic={t}>{t}</button>)}
+        </nav>
+        <p class="count" id="count" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <!-- ─────────── ARCHIVE ─────────── -->
+    <main class="wrap archive" id="archive">
+      <!-- The one piece published somewhere else. It sits above the archive
+           because it is the longest thing here and the best entry point. -->
+      <a class="pinned" href="/writing/modern-finance-runs-against-human-nature">
+        <span class="pinned-src">IE Insights · 11 June 2026 · 7 min</span>
+        <h2>Modern Finance Runs Against Human Nature</h2>
+        <p>Our psychology, not our knowledge, determines our financial outcomes.</p>
+        <span class="pinned-go">Read it <span aria-hidden="true">→</span></span>
+      </a>
+
+      {byYear.map(({ year, items }) => (
+        <section class="yr" data-year={year}>
+          <div class="yr-mark"><span>{year}</span></div>
+          <div class="yr-list">
+            {items.map((p) => (
+              <article class="row" data-topic={p.topic} data-find={(p.title + ' ' + p.blocks.map((b) => b.t).join(' ')).toLowerCase()}>
+                <h2 class="row-head">
+                  <button type="button" aria-expanded="false">
+                    <time datetime={p.date}>{day(p.date)}</time>
+                    <span class="row-title">{p.title}</span>
+                    <span class="row-meta">
+                      <span class="row-topic">{p.topic}</span>
+                      <span class="mark" aria-hidden="true"></span>
+                    </span>
+                  </button>
+                </h2>
+                <div class="row-body">
+                  <div class="prose">
+                    {p.blocks.map((b) =>
+                      b.k === 'h' ? <h3>{b.t}</h3> : b.k === 'li' ? <p class="li">{b.t}</p> : <p>{b.t}</p>
+                    )}
+                    {p.standalone && (
+                      <p class="perma"><a href={`/writing/${p.slug}`}>Open as a page →</a></p>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+      <p class="empty" id="empty" hidden>Nothing here by that name. Try a shorter word.</p>
+    </main>
+
+    <footer class="wrap foot">
+      <p>Written between {firstYear} and {lastYear}. <a href="/">Back to the portfolio</a>.</p>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  /* Printed archive, not a blog template: no cards, no radius, no shadow.
+     Structure comes from rules and margins. */
+  .paper { background: #F4F1EC; color: #0D1B2A; min-height: 100vh; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-inline: clamp(1.25rem, 5vw, 3rem); }
+
+  /* ── masthead ── */
+  .mast { padding-top: clamp(2.5rem, 6vw, 5rem); padding-bottom: clamp(2rem, 4vw, 3rem); }
+  .back { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: #5B7494; }
+  .back:hover { color: #F4621F; }
+  .mast h1 { font-family: var(--font-display); font-weight: 600; line-height: 0.9;
+    font-size: clamp(3.5rem, 13vw, 8.5rem); letter-spacing: -0.035em; margin: 1.5rem 0 0; }
+  .standfirst { font-size: clamp(1rem, 1.6vw, 1.18rem); line-height: 1.6; color: #2A3E56;
+    max-width: 46ch; margin-top: 1.75rem; }
+  .ledger { display: flex; flex-wrap: wrap; gap: 0 2.25rem; margin-top: 2rem;
+    font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #5B7494; }
+  .ledger b { font-weight: 600; color: #0D1B2A; font-variant-numeric: tabular-nums; }
+
+  /* ── controls ── */
+  .ctrl-wrap { position: sticky; top: 0; z-index: 20; background: rgba(244,241,236,0.94);
+    backdrop-filter: blur(8px); border-block: 1px solid #DDD6CC; }
+  .ctrl { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding-block: 0.85rem; }
+  .find { display: flex; align-items: center; gap: 0.55rem; flex: 0 0 auto; }
+  .find svg { width: 15px; height: 15px; fill: none; stroke: #7D99B8; stroke-width: 2; stroke-linecap: round; }
+  .find input { border: 0; background: none; outline: none; font-family: var(--font-body);
+    font-size: 0.92rem; color: #0D1B2A; width: 15ch; transition: width .3s ease; }
+  .find input::placeholder { color: #7D99B8; }
+  .find:focus-within input { width: 24ch; }
+  .topics { display: flex; gap: 1.15rem; flex-wrap: wrap; margin-right: auto; }
+  .tp { font-family: var(--font-display); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; color: #5B7494; background: none; border: 0; padding: 0.15rem 0;
+    cursor: pointer; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+  .tp:hover { color: #0D1B2A; }
+  .tp.on { color: #0D1B2A; border-bottom-color: #F4621F; }
+  .count { font-family: var(--font-display); font-size: 0.72rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #7D99B8; font-variant-numeric: tabular-nums; }
+
+  /* ── archive ── */
+  .pinned { display:block; padding:2rem 0 2.2rem; border-bottom:1px solid #DDD6CC; }
+  .pinned-src { font-family:var(--font-display); font-size:0.7rem; font-weight:600;
+    letter-spacing:0.14em; text-transform:uppercase; color:#F4621F; }
+  .pinned h2 { font-family:var(--font-display); font-weight:600; color:#0D1B2A;
+    font-size:clamp(1.5rem,3.4vw,2.35rem); line-height:1.1; letter-spacing:-0.028em;
+    margin:0.75rem 0 0.55rem; max-width:22ch; transition:color .2s ease; }
+  .pinned:hover h2 { color:#F4621F; }
+  .pinned p { color:#2A3E56; font-size:1.02rem; line-height:1.6; max-width:48ch; }
+  .pinned-go { display:inline-block; margin-top:1rem; font-family:var(--font-display);
+    font-size:0.82rem; font-weight:600; color:#F4621F; }
+
+  .archive { padding-bottom: 5rem; }
+  .yr { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0 2rem;
+    border-bottom: 1px solid #DDD6CC; }
+  .yr:last-of-type { border-bottom: 0; }
+  .yr-mark { position: relative; }
+  .yr-mark span { position: sticky; top: 4.5rem; display: block; padding-top: 2.4rem;
+    font-family: var(--font-display); font-size: 1.65rem; font-weight: 600; letter-spacing: -0.02em;
+    color: #C6BCAE; font-variant-numeric: tabular-nums; }
+  .yr-list { padding-block: 1rem; min-width: 0; }
+
+  .row { border-bottom: 1px solid #E4DED4; }
+  .yr-list .row:last-child { border-bottom: 0; }
+  .row-head { margin: 0; font-size: inherit; font-weight: inherit; }
+  .row-head button { width: 100%; display: grid; grid-template-columns: 4.5rem 1fr auto;
+    align-items: baseline; gap: 0 1.25rem; text-align: left; background: none; border: 0;
+    padding: 1.05rem 0; cursor: pointer; color: inherit; font: inherit; }
+  .row-head time { font-family: var(--font-display); font-size: 0.74rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; color: #7D99B8;
+    font-variant-numeric: tabular-nums; }
+  .row-title { font-family: var(--font-display); font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+    font-weight: 500; line-height: 1.32; letter-spacing: -0.012em;
+    transition: color .2s ease; }
+  .row-head button:hover .row-title { color: #F4621F; }
+  .row-meta { display: flex; align-items: center; gap: 0.9rem; }
+  .row-topic { font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.09em;
+    text-transform: uppercase; color: #9AAEC4; white-space: nowrap; }
+  .mark { width: 9px; height: 9px; position: relative; flex: none; }
+  .mark::before, .mark::after { content: ''; position: absolute; background: #7D99B8;
+    transition: transform .25s ease, background .2s ease; }
+  .mark::before { inset: 4px 0; height: 1px; }
+  .mark::after { inset: 0 4px; width: 1px; }
+  .row.open .mark::after { transform: scaleY(0); }
+  .row.open .mark::before { background: #F4621F; }
+
+  .row-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .38s cubic-bezier(.22,.61,.36,1); }
+  .row.open .row-body { grid-template-rows: 1fr; }
+  .row-body > .prose { overflow: hidden; }
+  .prose { padding-left: 5.75rem; }
+  .row.open .prose { padding-bottom: 2.25rem; }
+  .prose p, .prose h3 { max-width: 62ch; }
+  .prose p { font-size: 1.03rem; line-height: 1.72; color: #22364C; margin: 0 0 1.05em; }
+  .prose h3 { font-family: var(--font-display); font-size: 1.02rem; font-weight: 600;
+    color: #0D1B2A; margin: 1.9em 0 0.85em; letter-spacing: -0.01em; }
+  .prose > h3:first-child { margin-top: 0.35em; }
+  .prose .li { position: relative; padding-left: 1.15rem; margin-bottom: 0.6em; }
+  .prose .li::before { content: ''; position: absolute; left: 0; top: 0.78em;
+    width: 5px; height: 1px; background: #F4621F; }
+  .perma a { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.04em; color: #F4621F; border-bottom: 1px solid rgba(244,98,31,0.35); }
+  .perma a:hover { border-bottom-color: #F4621F; }
+
+  .row[hidden], .yr[hidden] { display: none; }
+  .empty { padding: 4rem 0; color: #5B7494; font-size: 1rem; }
+
+  .foot { padding-block: 2.5rem 4rem; border-top: 1px solid #DDD6CC;
+    font-size: 0.86rem; color: #5B7494; }
+  .foot a { color: #0D1B2A; border-bottom: 1px solid #C6BCAE; }
+  .foot a:hover { color: #F4621F; border-bottom-color: #F4621F; }
+
+  @media (max-width: 720px) {
+    .yr { grid-template-columns: 1fr; gap: 0; }
+    .yr-mark span { position: static; padding: 2rem 0 0.25rem; font-size: 1.35rem; }
+    .row-head button { grid-template-columns: 1fr auto; gap: 0.25rem 1rem; padding: 0.95rem 0; }
+    .row-head time { grid-column: 1 / -1; }
+    .row-topic { display: none; }
+    .prose { padding-left: 0; }
+    .ctrl { gap: 0.85rem 1.25rem; }
+    .count { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .row-body, .mark::before, .mark::after, .find input { transition: none; }
+  }
+</style>
+
+<script>
+  const rows = [...document.querySelectorAll<HTMLElement>('.row')];
+  const yrs = [...document.querySelectorAll<HTMLElement>('.yr')];
+  const q = document.getElementById('q') as HTMLInputElement;
+  const count = document.getElementById('count')!;
+  const empty = document.getElementById('empty') as HTMLElement;
+  const tps = [...document.querySelectorAll<HTMLButtonElement>('.tp')];
+  let topic = '';
+
+  // Expand in place. The text is already in the document, so a reader never
+  // leaves the page and a crawler never has to run anything to find it.
+  rows.forEach((row) => {
+    const btn = row.querySelector('button')!;
+    btn.addEventListener('click', () => {
+      const open = row.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+
+  const apply = () => {
+    const term = q.value.trim().toLowerCase();
+    let n = 0;
+    rows.forEach((row) => {
+      const okT = !topic || row.dataset.topic === topic;
+      const okQ = !term || (row.dataset.find || '').includes(term);
+      const show = okT && okQ;
+      row.hidden = !show;
+      if (show) n++;
+      else { row.classList.remove('open'); row.querySelector('button')!.setAttribute('aria-expanded', 'false'); }
+    });
+    yrs.forEach((y) => {
+      y.hidden = ![...y.querySelectorAll<HTMLElement>('.row')].some((r) => !r.hidden);
+    });
+    empty.hidden = n > 0;
+    count.textContent = n === rows.length ? `${n} pieces` : `${n} of ${rows.length}`;
+  };
+
+  tps.forEach((b) => b.addEventListener('click', () => {
+    tps.forEach((x) => x.classList.toggle('on', x === b));
+    topic = b.dataset.topic || '';
+    apply();
+  }));
+  q.addEventListener('input', apply);
+  apply();
+</script>
