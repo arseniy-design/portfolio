@@ -105,7 +105,10 @@ const jsonld = {
                 <div class="row-body">
                   <div class="prose">
                     {p.blocks.map((b) =>
-                      b.k === 'h' ? <h3>{b.t}</h3> : b.k === 'li' ? <p class="li">{b.t}</p> : <p>{b.t}</p>
+                      b.k === 'h' ? <h3>{b.t}</h3>
+                      : b.k === 'li' ? <p class="li">{b.t}</p>
+                      : b.k === 'q' ? <blockquote>{b.t.split(' / ').map((l) => <span>{l}</span>)}</blockquote>
+                      : <p>{b.t}</p>
                     )}
                     {p.standalone && (
                       <p class="perma"><a href={`/writing/${p.slug}`}>Open as a page →</a></p>
@@ -224,6 +227,11 @@ const jsonld = {
   .prose .li { position: relative; padding-left: 1.15rem; margin-bottom: 0.6em; }
   .prose .li::before { content: ''; position: absolute; left: 0; top: 0.78em;
     width: 5px; height: 1px; background: #F4621F; }
+  /* A quoted passage he did not write: set apart, not styled as his own prose. */
+  .prose blockquote { margin: 0 0 1.15em; padding-left: 1.1rem; border-left: 2px solid #DDD6CC;
+    max-width: 56ch; }
+  .prose blockquote span { display: block; font-size: 1rem; line-height: 1.62; color: #5B7494; }
+
   .perma a { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
     letter-spacing: 0.04em; color: #F4621F; border-bottom: 1px solid rgba(244,98,31,0.35); }
   .perma a:hover { border-bottom-color: #F4621F; }

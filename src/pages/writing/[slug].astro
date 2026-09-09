@@ -57,7 +57,10 @@ const jsonld = {
 
       <div class="prose">
         {piece.blocks.map((b) =>
-          b.k === 'h' ? <h2>{b.t}</h2> : b.k === 'li' ? <p class="li">{b.t}</p> : <p>{b.t}</p>
+          b.k === 'h' ? <h2>{b.t}</h2>
+          : b.k === 'li' ? <p class="li">{b.t}</p>
+          : b.k === 'q' ? <blockquote>{b.t.split(' / ').map((l) => <span>{l}</span>)}</blockquote>
+          : <p>{b.t}</p>
         )}
       </div>
 
@@ -97,6 +100,11 @@ const jsonld = {
   .prose .li { position: relative; padding-left: 1.35rem; margin-bottom: 0.7em; }
   .prose .li::before { content: ''; position: absolute; left: 0; top: 0.85em;
     width: 7px; height: 1px; background: #F4621F; }
+
+  /* A quoted passage he did not write: set apart, not styled as his own prose. */
+  .prose blockquote { margin: 0 0 1.3em; padding-left: 1.4rem; border-left: 2px solid #DDD6CC;
+    max-width: 52ch; }
+  .prose blockquote span { display: block; font-size: 1.06rem; line-height: 1.66; color: #5B7494; }
 
   .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4.5rem;
     border-top: 1px solid #DDD6CC; padding-top: 2rem; }
