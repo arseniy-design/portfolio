@@ -12,9 +12,10 @@ import WRITING from '../data/writing.json';
 // to change the front page. The six titles below it stay on recency, because
 // their only job is to show he is still writing.
 const FEATURED = [
-  'the-brain-running-our-investment-decisions-was-not-built',
-  'are-we-really-incapable-of-paying-attention-or-are-we',
-  'a-simple-ai-workflow-may-have-just-saved-me-months-of',
+  // One claim each: the audience nobody serves, research only he has, and who he is.
+  'whats-the-one-money-question-youve-been-too-embarrassed',
+  'what-are-the-skills-of-the-future-better-yet-what-are-the',
+  'dreams-do-come-true-if-you-chase-them',
 ];
 
 const wAll = [...WRITING].sort((a, b) => b.date.localeCompare(a.date));
@@ -1214,7 +1215,7 @@ const TEACHING = [
       <div class="wb-lead">
         {wLead.map((p) => (
           <article class="wb-piece reveal">
-            <a href={p.standalone ? `/writing/${p.slug}` : '/writing'}>
+            <a href={p.standalone ? `/writing/${p.slug}` : `/writing#${p.slug}`}>
               <span class="wb-meta">{p.topic} · {wYear(p.date)}</span>
               <h3>{p.title}</h3>
               <p>{p.excerpt}</p>

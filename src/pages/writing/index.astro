@@ -91,7 +91,7 @@ const jsonld = {
           <div class="yr-mark"><span>{year}</span></div>
           <div class="yr-list">
             {items.map((p) => (
-              <article class="row" data-topic={p.topic} data-find={(p.title + ' ' + p.blocks.map((b) => b.t).join(' ')).toLowerCase()}>
+              <article class="row" id={p.slug} data-topic={p.topic} data-find={(p.title + ' ' + p.blocks.map((b) => b.t).join(' ')).toLowerCase()}>
                 <h2 class="row-head">
                   <button type="button" aria-expanded="false">
                     <time datetime={p.date}>{day(p.date)}</time>
@@ -303,4 +303,18 @@ const jsonld = {
   }));
   q.addEventListener('input', apply);
   apply();
+
+  // Arriving at /writing#some-slug opens that piece and scrolls to it, so a short
+  // piece featured on the homepage still lands the reader on the writing itself.
+  const openFromHash = () => {
+    const slug = decodeURIComponent(location.hash.slice(1));
+    if (!slug) return;
+    const row = document.getElementById(slug);
+    if (!row || !row.classList.contains('row')) return;
+    row.classList.add('open');
+    row.querySelector('button')!.setAttribute('aria-expanded', 'true');
+    row.scrollIntoView({ block: 'center', behavior: 'instant' as ScrollBehavior });
+  };
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 </script>
