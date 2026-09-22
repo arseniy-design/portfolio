@@ -1,0 +1,337 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WRITING from '../data/writing.json';
+
+export const prerender = true;
+
+// One page to send to a stranger. Nine bands, one scroll, every band opens
+// something real. Copy is lifted from the homepage so the facts stay in sync.
+
+const writing = [...WRITING].sort((a, b) => b.date.localeCompare(a.date));
+const latest = writing.slice(0, 3);
+
+const BRIEFS = [
+  { name: 'Delta Dossier',      meta: 'Pre-earnings deep dive',  href: '/delta-dossier/',     thumb: '/shots/t-delta.webp' },
+  { name: 'Portfolio Risk',     meta: 'Scenario testing',        href: '/portfolio-risk/',    thumb: '/shots/t-portfoliorisk.webp' },
+  { name: 'Macro Risks',        meta: 'Five risks, one page',    href: '/macro-risks/',       thumb: '/shots/t-macro.webp' },
+  { name: 'Hormuz Shock',       meta: 'Commodity markets',       href: '/hormuz-shock/',      thumb: '/shots/t-hormuz.webp' },
+  { name: 'Taif Market Entry',  meta: 'Wellness tourism',        href: '/taif-market-entry/', thumb: '/shots/t-taif.webp' },
+];
+
+const VIDEOS = [
+  { vid: '1175515603', tag: 'AI',        name: 'Generative AI for Business Professionals' },
+  { vid: '1175515477', tag: 'Analytics', name: 'Digital Analytics for Business Professionals' },
+  { vid: '1175515542', tag: 'Wellbeing', name: 'Mental Health in the Digital Era' },
+];
+
+const PROGRAMS = [
+  { name: 'RCU Scale-up Hub',            place: 'Saudi Arabia', year: '2024', href: '/rcu-scale-up-hub.pdf' },
+  { name: 'SABAH Hub',                   place: 'Azerbaijan',   year: '',     href: 'https://sabahhub.com/' },
+  { name: 'Changemakers Program',        place: 'Switzerland',  year: '',     href: 'https://www.wyssacademy.org/en/changemakers-program' },
+  { name: 'Science Connexion & Blue Lab', place: 'Mexico',      year: '',     href: 'https://scienceconnexion.com/Convocatorias/SobreReto/6' },
+  { name: 'Santander Innovators 90',     place: 'Spain',        year: '2026', href: 'https://app.santanderopenacademy.com/en/program/innovation-and-ai-experience-in-madrid' },
+];
+
+const ext = { target: '_blank', rel: 'noopener' };
+---
+
+<Layout
+  title="Work · Arseniy Goldberg"
+  description="Nine things Arseniy Goldberg built or runs: a finance tutor, a live capital markets hub, the AI-Powered Finance program at IE, prototypes, courses, programs, writing."
+  ogImage="/shots/capital-markets.webp"
+>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/">Arseniy Goldberg</a>
+      <h1>Nine things I built.<br /><em>Every one opens.</em></h1>
+      <p class="lede">Finance professor at IE Business School, formerly at Baird. If we just met, this is the fastest way to see what I do. Click anything.</p>
+      <a class="mail" href="mailto:arseniygoldberg1@gmail.com">arseniygoldberg1@gmail.com</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01 Lessons -->
+    <section class="band">
+      <div class="wrap grid">
+        <div class="text">
+          <span class="num">01</span>
+          <span class="tag">AI tutor · 42 filmed lessons</span>
+          <h2>Finance Lessons</h2>
+          <p>Ask a finance question. It finds the exact minute across 42 filmed lessons that answers it.</p>
+          <a class="btn" href="/lessons">Ask it something</a>
+        </div>
+        <a class="shot" href="/lessons"><img src="/shots/lessons.webp" alt="The Finance Lessons tutor" loading="lazy" /></a>
+      </div>
+    </section>
+
+    <!-- 02 Capital Markets -->
+    <section class="band alt">
+      <div class="wrap grid flip">
+        <div class="text">
+          <span class="num">02</span>
+          <span class="tag">Live tool · classroom</span>
+          <h2>Capital Markets Hub</h2>
+          <p>22 activities, zero lectures. Live market data, wired into every exercise.</p>
+          <a class="btn" href="/capital-markets">Try it live</a>
+        </div>
+        <a class="shot" href="/capital-markets"><img src="/shots/capital-markets.webp" alt="The Capital Markets Hub" loading="lazy" /></a>
+      </div>
+      <div class="wrap strip">
+        <p class="strip-label">Five market briefs, built the same way</p>
+        <ul>
+          {BRIEFS.map(b => (
+            <li><a href={b.href}>
+              <img src={b.thumb} alt="" loading="lazy" />
+              <span class="s-name">{b.name}</span>
+              <span class="s-meta">{b.meta}</span>
+            </a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 03 IE -->
+    <section class="band">
+      <div class="wrap grid">
+        <div class="text">
+          <span class="num">03</span>
+          <span class="tag">IE Business School · Academic Director</span>
+          <h2>AI-Powered Finance</h2>
+          <p>Four days in Madrid where finance executives rebuild their own workflows with AI, on their own numbers. I direct the program.</p>
+          <a class="btn" href="https://www.ie.edu/lifelong-learning/programs/ai-powered-finance/" {...ext}>See the program</a>
+          <a class="more" href="https://finance-lab-pearl.vercel.app/" {...ext}>The lab prototype, in progress →</a>
+        </div>
+        <a class="shot" href="https://www.ie.edu/lifelong-learning/programs/ai-powered-finance/" {...ext}><img src="/shots/ie-ai-finance.webp" alt="AI-Powered Finance at IE" loading="lazy" /></a>
+      </div>
+    </section>
+
+    <!-- 04 Navigator -->
+    <section class="band alt">
+      <div class="wrap grid flip">
+        <div class="text">
+          <span class="num">04</span>
+          <span class="tag">Prototype · client project · sample data</span>
+          <h2>Finance Academy Navigator</h2>
+          <p>A sales-enablement map for an executive-education academy. Client data stays private, so it runs on sample data by design.</p>
+          <a class="btn" href="https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73" {...ext}>Open the prototype</a>
+        </div>
+        <a class="shot" href="https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73" {...ext}><img src="/shots/navigator.webp" alt="Finance Academy Navigator" loading="lazy" /></a>
+      </div>
+    </section>
+
+    <!-- 05 Gate Check + War Room -->
+    <section class="band">
+      <div class="wrap">
+        <span class="num">05</span>
+        <div class="pair">
+          <a class="half" href="https://si90-gate-check.onrender.com/" {...ext}>
+            <img src="/shots/gatecheck.webp" alt="Gate Check" loading="lazy" />
+            <span class="tag">Web app · Santander</span>
+            <h2>Gate Check</h2>
+            <p>Team logins, access codes, five gates, two languages. Built for 90 innovation-program participants.</p>
+            <span class="btn">See the app</span>
+          </a>
+          <a class="half" href="https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5" {...ext}>
+            <img src="/shots/warroom.webp" alt="The War Room" loading="lazy" />
+            <span class="tag">Simulation · 20 screens</span>
+            <h2>The War Room</h2>
+            <p>A decision-making simulation on autonomous weapons. English and Arabic.</p>
+            <span class="btn">Enter the room</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Videos -->
+    <section class="band alt">
+      <div class="wrap">
+        <div class="text wide">
+          <span class="num">06</span>
+          <span class="tag">WhatsApp courses · Rebundle</span>
+          <h2>Courses that live in a chat</h2>
+          <p>Three fully produced courses delivered as WhatsApp micro-lessons. Play one.</p>
+        </div>
+        <ul class="videos">
+          {VIDEOS.map(v => (
+            <li><a href={`https://vimeo.com/${v.vid}`} {...ext}>
+              <span class="frame">
+                <img src={`https://vumbnail.com/${v.vid}.jpg`} alt={v.name} loading="lazy" />
+                <span class="play"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+              </span>
+              <span class="v-tag">{v.tag}</span>
+              <span class="v-name">{v.name}</span>
+            </a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 07 Programs -->
+    <section class="band">
+      <div class="wrap grid">
+        <div class="text">
+          <span class="num">07</span>
+          <span class="tag">Innovation programs · 3 continents</span>
+          <h2>Programs I built or ran</h2>
+          <p>Scaled one program to five. Each one has its own public page.</p>
+        </div>
+        <ol class="programs">
+          {PROGRAMS.map(p => (
+            <li><a href={p.href} {...ext}>
+              <span class="p-name">{p.name}</span>
+              <span class="p-meta">{p.place}{p.year ? ` · ${p.year}` : ''}</span>
+              <span class="p-arrow" aria-hidden="true">→</span>
+            </a></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- 08 Writing -->
+    <section class="band alt">
+      <div class="wrap grid flip">
+        <div class="text">
+          <span class="num">08</span>
+          <span class="tag">{writing.length} pieces · since 2020</span>
+          <h2>Six years of thinking out loud</h2>
+          <p>On finance, AI, and the way people actually decide. Everything I have written that still holds up.</p>
+          <a class="btn" href="/writing">All {writing.length} pieces</a>
+        </div>
+        <ul class="titles">
+          {latest.map(w => (
+            <li><a href={`/writing/${w.slug}`}>
+              <span class="t-date">{w.date}</span>
+              <span class="t-title">{w.title}</span>
+            </a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 09 Services -->
+    <section class="band dark">
+      <div class="wrap grid">
+        <div class="text">
+          <span class="num">09</span>
+          <span class="tag">Work with me</span>
+          <h2>Two kinds of clients.<br />Opposite problems.</h2>
+          <p>Finance teams that want AI and do not know where to start. Tech teams that built it and want to know if it is paying off.</p>
+          <a class="btn" href="/services">See how I work</a>
+        </div>
+        <div class="sides">
+          <div><span class="tag">For finance teams</span><p>I take your team from the first session to a working tool, in seven steps.</p></div>
+          <div><span class="tag">For tech teams</span><p>I put a money figure on what your AI is worth, and tell you what to scale and what to switch off.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a href="mailto:arseniygoldberg1@gmail.com">arseniygoldberg1@gmail.com</a>
+      <a href="https://www.linkedin.com/in/arseniygoldberg/" {...ext}>LinkedIn</a>
+      <a href="/">arseniygoldberg.com</a>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  :global(body) { background: var(--color-warm-50); color: var(--color-navy-900); }
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; }
+  @media (min-width: 768px) { .wrap { padding: 0 2.5rem; } }
+
+  /* header */
+  .top { background: var(--color-navy-900); color: #fff; padding: 3.5rem 0 4rem; }
+  .brand { font-family: var(--font-display); font-weight: 600; font-size: .95rem; letter-spacing: .02em; color: rgba(255,255,255,.7); text-decoration: none; }
+  .brand:hover { color: #fff; }
+  .top h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.4rem, 6vw, 4.5rem); line-height: 1.02; margin: 2.5rem 0 1.25rem; letter-spacing: -.01em; }
+  .top h1 em { font-style: normal; color: var(--color-orange-500); }
+  .lede { max-width: 38rem; font-size: 1.1rem; line-height: 1.55; color: rgba(255,255,255,.78); }
+  .mail { display: inline-block; margin-top: 1.5rem; color: var(--color-orange-400); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(244,98,31,.4); }
+  .mail:hover { color: #fff; border-color: #fff; }
+
+  /* bands */
+  .band { padding: 4.5rem 0; background: #fff; }
+  .band.alt { background: var(--color-warm-100); }
+  .band.dark { background: var(--color-navy-900); color: #fff; }
+  .grid { display: grid; gap: 2.25rem; align-items: center; }
+  @media (min-width: 900px) {
+    .grid { grid-template-columns: 5fr 7fr; gap: 4rem; }
+    .grid.flip .text { order: 2; }
+    .grid.flip > :not(.text) { order: 1; }
+  }
+  .num { display: block; font-family: var(--font-display); font-weight: 600; font-size: .9rem; color: var(--color-orange-500); letter-spacing: .08em; margin-bottom: 1.25rem; }
+  .tag { display: block; font-family: var(--font-display); font-weight: 500; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--color-navy-400); margin-bottom: .6rem; }
+  .dark .tag { color: rgba(255,255,255,.55); }
+  .band h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.08; letter-spacing: -.01em; margin: 0 0 1rem; }
+  .band p { font-size: 1.05rem; line-height: 1.6; color: var(--color-navy-600); max-width: 34rem; }
+  .dark p { color: rgba(255,255,255,.75); }
+  .text.wide { max-width: 40rem; margin-bottom: 2rem; }
+
+  .btn { display: inline-block; margin-top: 1.5rem; padding: .8rem 1.35rem; border-radius: 999px; background: var(--color-orange-500); color: #fff; font-family: var(--font-display); font-weight: 600; font-size: .95rem; text-decoration: none; transition: background .2s, transform .2s; }
+  .btn:hover { background: var(--color-orange-600); transform: translateY(-1px); }
+  .more { display: block; margin-top: .9rem; color: var(--color-navy-500); font-size: .92rem; text-decoration: none; }
+  .more:hover { color: var(--color-orange-600); }
+
+  .shot { display: block; border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px -24px rgba(13,27,42,.35), 0 0 0 1px rgba(13,27,42,.06); background: var(--color-warm-200); transition: transform .3s; }
+  .shot:hover { transform: translateY(-3px); }
+  .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; }
+
+  /* briefs strip */
+  .strip { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-warm-300); }
+  .strip-label { font-family: var(--font-display); font-size: .85rem; font-weight: 500; color: var(--color-navy-400); margin-bottom: 1rem; }
+  .strip ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  @media (min-width: 720px) { .strip ul { grid-template-columns: repeat(5, 1fr); } }
+  .strip a { display: block; text-decoration: none; color: inherit; }
+  .strip img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid var(--color-warm-300); background: #fff; transition: transform .2s; }
+  .strip a:hover img { transform: translateY(-2px); }
+  .s-name { display: block; margin-top: .55rem; font-family: var(--font-display); font-weight: 600; font-size: .9rem; }
+  .s-meta { display: block; font-size: .78rem; color: var(--color-navy-400); }
+
+  /* pair */
+  .pair { display: grid; gap: 2rem; }
+  @media (min-width: 800px) { .pair { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+  .half { display: block; text-decoration: none; color: inherit; }
+  .half img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 14px; box-shadow: 0 24px 60px -24px rgba(13,27,42,.35), 0 0 0 1px rgba(13,27,42,.06); margin-bottom: 1.5rem; transition: transform .3s; }
+  .half:hover img { transform: translateY(-3px); }
+  .half h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+
+  /* videos */
+  .videos { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
+  @media (min-width: 720px) { .videos { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+  .videos a { display: block; text-decoration: none; color: inherit; }
+  .frame { position: relative; display: block; border-radius: 12px; overflow: hidden; aspect-ratio: 16 / 9; background: var(--color-navy-800); }
+  .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.95); color: var(--color-navy-900); display: flex; align-items: center; justify-content: center; padding-left: 3px; transition: transform .2s; }
+  .videos a:hover .play { transform: translate(-50%, -50%) scale(1.08); }
+  .v-tag { display: inline-block; margin-top: .8rem; font-family: var(--font-display); font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--color-orange-500); }
+  .v-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1rem; margin-top: .2rem; }
+
+  /* programs */
+  .programs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-warm-300); }
+  .programs a { display: grid; grid-template-columns: 1fr auto auto; gap: 1rem; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--color-warm-300); text-decoration: none; color: inherit; transition: padding-left .2s; }
+  .programs a:hover { padding-left: .5rem; }
+  .p-name { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; }
+  .p-meta { font-size: .85rem; color: var(--color-navy-400); }
+  .p-arrow { color: var(--color-orange-500); font-weight: 600; }
+
+  /* writing titles */
+  .titles { list-style: none; margin: 0; padding: 0; }
+  .titles a { display: block; padding: 1.25rem 0; border-top: 1px solid var(--color-warm-300); text-decoration: none; color: inherit; }
+  .titles li:last-child a { border-bottom: 1px solid var(--color-warm-300); }
+  .t-date { display: block; font-family: var(--font-display); font-size: .75rem; letter-spacing: .06em; color: var(--color-navy-400); margin-bottom: .3rem; }
+  .t-title { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; line-height: 1.25; }
+  .titles a:hover .t-title { color: var(--color-orange-600); }
+
+  /* services sides */
+  .sides { display: grid; gap: 1.25rem; }
+  @media (min-width: 640px) { .sides { grid-template-columns: 1fr 1fr; } }
+  .sides > div { padding: 1.5rem; border-radius: 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+  .sides p { font-size: .98rem; color: rgba(255,255,255,.85); }
+
+  /* footer */
+  .foot { background: var(--color-navy-950); padding: 2rem 0; }
+  .foot .wrap { display: flex; flex-wrap: wrap; gap: 1.5rem; font-family: var(--font-display); font-size: .9rem; }
+  .foot a { color: rgba(255,255,255,.65); text-decoration: none; }
+  .foot a:hover { color: #fff; }
+</style>

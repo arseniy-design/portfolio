@@ -1,0 +1,425 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// One page he can send to anyone. The gate at the top splits the visitor into
+// organization or individual; picking a side hides the other. Deep links:
+// /services#organization and /services#individual.
+const FORM = 'https://formspree.io/f/mgonnqob';
+// Paste his Calendly link here and every "Start here" becomes "Book 20 minutes"; empty keeps the form.
+const CALENDLY = '';
+const CTA = CALENDLY ? 'Book 20 minutes' : 'Start here';
+
+// The same eight he chose for the workshop page.
+const LOGOS = [
+  { src: '/logos/ie-university.png', alt: 'IE University' },
+  { src: '/logos/santander.png', alt: 'Santander' },
+  { src: '/logos/pif.png', alt: 'PIF' },
+  { src: '/logos/kyowa-kirin.png', alt: 'Kyowa Kirin' },
+  { src: '/logos/stc.png', alt: 'stc' },
+  { src: '/logos/ministry-of-finance.png', alt: 'Saudi Ministry of Finance' },
+  { src: '/logos/oregon-state.png', alt: 'Oregon State University' },
+  { src: '/logos/tec-de-monterrey.webp', alt: 'Tec de Monterrey' },
+];
+
+// Two clients on opposite sides of the same table. The tech side is the featured one and goes first.
+const SIDES = [
+  { key: 'finance', tag: 'For finance teams', title: 'You want AI. Where do you start?',
+    line: 'I take your team from the first session to a working tool, in seven steps.',
+    proof: 'PIF and Kyowa Kirin: 5 hours a week saved per person.' },
+  { key: 'tech', tag: 'For tech teams', featured: true, title: 'You built it. Is it paying off?',
+    line: 'I put a money figure on what your AI is worth, and tell you what to scale and what to switch off.',
+    proof: 'Five years at Baird, in a practice of four with $1.6B under management by the final year.' },
+];
+
+const ALSO = [
+  { key: 'build', tag: 'Build', title: 'Build the product or the program',
+    line: 'Products, programs and courses, built and handed to your team.',
+    proof: 'Five products at Rebundle. 6,000+ users.' },
+  { key: 'speak', tag: 'Speak', title: 'Speak at your event',
+    line: 'Talks on finance, AI and how people decide.',
+    proof: 'Five teaching awards. 70+ institutions.' },
+];
+
+const STEPS = [
+  { n: '01', name: 'Inspire', line: 'Show everyone what AI can do today.' },
+  { n: '02', name: 'Educate', line: 'Hands on the tools, on their own files.' },
+  { n: '03', name: 'Map', line: 'What stays human, what goes to the machine.' },
+  { n: '04', name: 'Rebuild', line: 'Fix the process before automating it.' },
+  { n: '05', name: 'Build', line: 'Build the tool for the new process.' },
+  { n: '06', name: 'Implement', line: 'Put it in the team’s hands.' },
+  { n: '07', name: 'Track', line: 'Measure the number until it moves.' },
+];
+
+const PERSONAL = [
+  { key: 'ai', tag: '1:1 AI', title: 'Set up AI for your work',
+    line: 'On your own laptop, with your own files.',
+    proof: '38 students, 38 live sites shipped in my IE New York course.' },
+  { key: 'career', tag: 'Career', title: 'Work out the next move',
+    line: 'I read your profile like a hiring manager. Then we plan the move.',
+    proof: '“In two weeks, through just two Zoom meetings, Arseniy helped me reframe my CV and career story.” Slobodan Marković, OneTrust' },
+  { key: 'money', tag: 'Personal finance', title: 'Understand your own money',
+    line: 'Learn to manage your own money. Education only, no investment advice.',
+    proof: 'Five years in private wealth at Baird.', href: '/lessons', hrefLabel: '42 free lessons' },
+];
+
+// Pixel icons for the seven steps, in his own palette (navy, orange, shirt blue): the only colour on the page. Each row is a string,
+// each character a colour from PAL, "." is empty.
+const PAL: Record<string, string> = { k: '#0B0B0B', o: '#F4621F', y: '#F9B48F', w: '#FFFFFF', g: '#1E2E42', b: '#1E2E42', s: '#B8BEC7', r: '#F4621F', n: '#1E2E42', l: '#BFD4EE', p: '#F2C9A0', h: '#5A3B22', t: '#C99F7A' };
+const ICONS: string[][] = [
+  ['....kkkk....','...kyyyyk...','..kyywyyyk..','..kyyyyyyk..','..kyyyyyyk..','...kyyyyk...','....kyyk....','....kssk....','....kssk....','.....kk.....'],
+  ['............','............','.kkkkk.kkkkk','kwwwwkkwwwwk','kwsswkkwsswk','kwwwwkkwwwwk','kwsswkkwsswk','kwwwwkkwwwwk','kbbbbkkbbbbk','.kkkkkkkkkk.'],
+  ['.....oo.....','....oooo....','....owwo....','.....oo.....','.kkk.oo.kkk.','kgggk..kgggk','kgwggkkggwgk','kggwggggwggk','kgggwwwwgggk','.kkkkkkkkkk.'],
+  ['..kkkkkk....','.kssssssk...','.kssssssk...','..kkkrkk....','.....rk.....','.....rk.....','.....rk.....','.....rk.....','.....rk.....','.....kk.....'],
+  ['.....kk.....','.....ok.....','..kkkkkkkk..','.kbbbbbbbbk.','.kbwkbbwkbk.','.kbbbbbbbbk.','.kbbkkkkbbk.','.kbbbbbbbbk.','..kkkkkkkk..','...kk..kk...'],
+  ['..kkkkkkk...','..kooooook..','..koooook...','..kooooook..','..kkkkkkk...','..k.........','..k.........','..k.........','..k.........','.kkk........'],
+  ['............','.........oo.','.........oo.','......nn.oo.','......nn.oo.','...nn.nn.oo.','...nn.nn.oo.','nn.nn.nn.oo.','nn.nn.nn.oo.','kkkkkkkkkkkk'],
+];
+// The walker is him: brown hair, light stubble, navy blazer, blue shirt, orange coffee. Two frames.
+const WALKER: string[][] = [
+  ['...hhhh...','..hhhhhh..','..pppppp..','..pkppkp..','..pppppp..','..tppppt..','...tttt...','.nnnllnnn.o','nnnnllnnnpo','.nnnllnnn..','..kk..kk..','.kk....kk.'],
+  ['...hhhh...','..hhhhhh..','..pppppp..','..pkppkp..','..pppppp..','..tppppt..','...tttt...','.nnnllnnn.o','nnnnllnnnpo','.nnnllnnn..','...kkkk...','...kkkk...'],
+];
+const ORDERED = [...SIDES].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
+
+---
+
+<Layout
+  title="Services · Arseniy Goldberg"
+  description="AI implementation for finance teams, AI measurement for tech teams, products, programs and speaking. One-to-one work on AI, career and personal finance."
+>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  </Fragment>
+
+  <div class="sv">
+    <header class="sv-top">
+      <a class="sv-name" href="/">Arseniy Goldberg</a>
+      <nav class="sv-nav">
+        <a href="/#work">Work</a>
+        <a href="/writing">Writing</a>
+        <a href="#talk">Contact</a>
+      </nav>
+    </header>
+
+    <!-- THE GATE -->
+    <section class="gate">
+      <p class="gate-eyebrow">Arseniy Goldberg · Services</p>
+      <h1>Put AI <em>to work.</em></h1>
+      <p class="gate-sub">Consulting, training and speaking for organizations. One to one sessions for individuals.</p>
+      <p class="gate-ask">Who are you here for?</p>
+      <div class="gate-picks">
+        <button type="button" class="pill is-solid" data-pick="organization">My organization</button>
+        <button type="button" class="pill" data-pick="individual">Myself</button>
+      </div>
+      <p class="gate-note"><span>Implement AI · Measure AI · Build · Speak</span><span>1:1 AI · Career · Personal finance</span></p>
+      <div class="gate-walk" aria-hidden="true">
+        {ICONS.map((icon) => (
+          <svg viewBox="0 0 12 10" shape-rendering="crispEdges">
+            {icon.flatMap((row, y) => [...row.padEnd(12, '.')].map((c, x) => c === '.' ? null : <rect x={x} y={y} width="1" height="1" fill={PAL[c]} />))}
+          </svg>
+        ))}
+      </div>
+    </section>
+
+    <section class="logos" aria-label="Organizations I have worked with">
+      <p>Worked with</p>
+      <div>{LOGOS.map((l) => <img src={l.src} alt={l.alt} loading="lazy" />)}</div>
+    </section>
+
+    <!-- ORGANIZATION -->
+    <div id="organization" data-side="organization">
+      <section class="sec">
+        <h2>Two kinds of clients.<br /><em>Opposite problems.</em></h2>
+        <p class="lede">Most teams are strong on one side and need the other.</p>
+
+        <div class="cols cols-2">
+          {ORDERED.map((s) => (
+            <article class="offer">
+              <p class="label">{s.tag}</p>
+              <h3>{s.title}</h3>
+              <p>{s.line}</p>
+              <p class="proof">{s.proof}</p>
+              <a class={`pill ${s.featured ? 'is-solid' : ''}`} href={CALENDLY || "#talk"} target={CALENDLY ? "_blank" : undefined} data-engage={s.title}>{CTA}</a>
+            </article>
+          ))}
+        </div>
+
+        <div class="cols cols-2 cols-quiet">
+          {ALSO.map((a) => (
+            <article class="offer">
+              <p class="label">{a.tag}</p>
+              <h3>{a.title}</h3>
+              <p>{a.line}</p>
+              <p class="proof">{a.proof}</p>
+              <a class="pill" href={CALENDLY || "#talk"} target={CALENDLY ? "_blank" : undefined} data-engage={a.title}>{CTA}</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="sec sec-quote">
+        <blockquote>“He was an indispensable source of information as well as a connector. He's smart, organized, competent, a proactive problem solver.”</blockquote>
+        <p class="cite"><strong>Mike Grandinetti</strong> · Faculty at MIT, Harvard and Hult · ex-McKinsey</p>
+      </section>
+
+      <section class="sec">
+        <h2>People first.<br /><em>The build comes fifth.</em></h2>
+        <p class="lede">Seven steps, in this order.</p>
+        <ol class="walkline" id="walkline">
+          <span class="wl-progress" aria-hidden="true"></span>
+          <svg class="wl-walker" viewBox="0 0 10 12" shape-rendering="crispEdges" aria-hidden="true">
+            {WALKER.map((frame, f) => (
+              <g class={`wf wf-${f}`}>
+                {frame.flatMap((row, y) => [...row.padEnd(10, '.')].map((c, x) => c === '.' ? null : <rect x={x} y={y} width="1" height="1" fill={PAL[c]} />))}
+              </g>
+            ))}
+          </svg>
+          {STEPS.map((s, i) => (
+            <li>
+              <span class="wl-name">{s.name}</span>
+              <svg class="wl-icon" viewBox="0 0 12 10" shape-rendering="crispEdges" aria-hidden="true">
+                {ICONS[i].flatMap((row, y) => [...row.padEnd(12, '.')].map((c, x) => c === '.' ? null : <rect x={x} y={y} width="1" height="1" fill={PAL[c]} />))}
+              </svg>
+              <span class="wl-n">Step {i + 1}</span>
+              <span class="wl-line">{s.line}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </div>
+
+    <!-- INDIVIDUAL -->
+    <div id="individual" data-side="individual">
+      <section class="sec">
+        <h2>One to one,<br /><em>on your own situation.</em></h2>
+        <p class="lede">The subjects I teach, applied to one person.</p>
+        <div class="cols cols-3">
+          {PERSONAL.map((p) => (
+            <article class="offer">
+              <p class="label">{p.tag}</p>
+              <h3>{p.title}</h3>
+              <p>{p.line}</p>
+              <p class="proof">{p.proof} {p.href && <a href={p.href}>{p.hrefLabel}</a>}</p>
+              <a class="pill" href={CALENDLY || "#talk"} target={CALENDLY ? "_blank" : undefined} data-engage={p.title}>{CTA}</a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+
+    <!-- TALK -->
+    <section id="talk" class="sec sec-form">
+      <h2>Two sentences<br /><em>is enough.</em></h2>
+      <p class="lede">Tell me what is going on. I'll tell you if I can help.</p>
+      <form id="sv-form">
+        <div id="sv-echo" hidden><span>You picked</span><strong id="sv-echo-text"></strong><button type="button" id="sv-echo-clear">change</button></div>
+        <input type="hidden" name="engagement" id="sv-engage" value="Not specified" />
+        <input type="hidden" name="side" id="sv-side" value="Not specified" />
+        <input type="hidden" name="_subject" value="Services page enquiry" />
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" rows="4" placeholder="What are you trying to solve?"></textarea>
+        <button type="submit" id="sv-submit" class="pill is-solid">Send message</button>
+        <p id="sv-done" hidden>Got it. I'll be in touch soon.</p>
+      </form>
+    </section>
+
+    <footer class="sv-foot">
+      <span>© 2026 Arseniy Goldberg</span>
+      <span><a href="/">Home</a><a href="https://www.linkedin.com/in/arseniygoldberg/" target="_blank" rel="noopener">LinkedIn</a></span>
+    </footer>
+  </div>
+</Layout>
+
+<script define:vars={{ FORM }}>
+  const sides = document.querySelectorAll('[data-side]');
+  function pick(side, scroll) {
+    sides.forEach((el) => { el.hidden = el.dataset.side !== side; });
+    document.querySelectorAll('.gate [data-pick]').forEach((b) => { b.classList.remove('is-solid'); b.classList.toggle('is-picked', b.dataset.pick === side); b.blur(); });
+    document.getElementById('sv-side').value = side;
+    if (scroll) document.getElementById(side).scrollIntoView({ behavior: 'smooth' });
+  }
+  document.querySelectorAll('.gate [data-pick]').forEach((b) => b.addEventListener('click', () => {
+    history.replaceState(null, '', '#' + b.dataset.pick);
+    pick(b.dataset.pick, true);
+  }));
+  function fromHash() {
+    const hash = location.hash.slice(1);
+    if (hash === 'organization' || hash === 'individual') pick(hash, false);
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+
+  // Picking an offer fills the form, the same way the homepage doors do.
+  const echo = document.getElementById('sv-echo');
+  const engage = document.getElementById('sv-engage');
+  document.querySelectorAll('[data-engage]').forEach((a) => a.addEventListener('click', () => {
+    engage.value = a.dataset.engage;
+    document.getElementById('sv-echo-text').textContent = a.dataset.engage;
+    echo.hidden = false;
+  }));
+  document.getElementById('sv-echo-clear').addEventListener('click', () => { engage.value = 'Not specified'; echo.hidden = true; });
+
+  // The walk follows the scroll: the ink line grows, the walker rides its tip,
+  // and each step wakes up as he reaches it.
+  const wl = document.getElementById('walkline');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (wl && !still) {
+    wl.classList.add('is-live');
+    const items = [...wl.querySelectorAll('li')];
+    let last = -1, ticking = false;
+    const update = () => {
+      ticking = false;
+      const r = wl.getBoundingClientRect(), vh = innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.7)));
+      wl.style.setProperty('--p', p.toFixed(4));
+      wl.classList.toggle('is-walking', p > 0 && p < 1);
+      const reached = Math.floor(p * (items.length + 0.001) + 0.15);
+      if (reached !== last) { items.forEach((li, i) => li.classList.toggle('is-on', i < reached)); last = reached; }
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+
+  const form = document.getElementById('sv-form');
+  const btn = document.getElementById('sv-submit');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    try {
+      const res = await fetch(FORM, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+      if (!res.ok) throw new Error();
+      form.querySelectorAll('input, textarea, button, #sv-echo').forEach((el) => { el.style.display = 'none'; });
+      document.getElementById('sv-done').hidden = false;
+    } catch {
+      btn.textContent = 'Send message'; btn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  /* One ground, one ink, one serif. The pixel icons carry the only colour. */
+  [hidden] { display: none !important; }
+  .sv { --ink: #0B0B0B; --grey: #6A6F76; --rule: #E4E6E9; --field: #F5F6F7; background: #fff; color: var(--ink); font-family: var(--font-body); min-height: 100vh; }
+  .sv h1, .sv h2, .sv h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 400; letter-spacing: -0.02em; }
+  .sv h1 em, .sv h2 em { font-style: italic; letter-spacing: -0.025em; }
+
+  .sv-top { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem clamp(1.25rem, 4vw, 3rem); font-size: 0.95rem; }
+  .sv-name { font-weight: 700; }
+  .sv-nav { display: flex; gap: 1.75rem; color: var(--grey); }
+  .sv-nav a:hover { color: var(--ink); }
+
+  .pill { display: inline-flex; justify-content: center; align-items: center; min-width: 11rem; padding: 1rem 2rem; border-radius: 999px; border: 0; background: var(--field); color: var(--ink); font-family: var(--font-body); font-weight: 700; font-size: 0.98rem; cursor: pointer; transition: background 0.2s, color 0.2s, transform 0.2s; }
+  .pill:hover, .pill.is-solid, .pill.is-picked { background: var(--ink); color: #fff; }
+  .pill.is-solid:hover { transform: translateY(-1px); background: #2a2a2a; }
+  .pill:focus { outline: none; } .pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  a.pill::after { content: '→'; display: inline-block; width: 0; opacity: 0; overflow: hidden; transition: width 0.25s, opacity 0.25s, margin 0.25s; }
+  a.pill:hover::after { width: 1em; opacity: 1; margin-left: 0.5rem; }
+
+  .gate { position: relative; min-height: calc(100svh - 5rem); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1.25rem 11rem; }
+  .gate-walk { position: absolute; left: clamp(1.25rem, 6vw, 6rem); right: clamp(1.25rem, 6vw, 6rem); bottom: 3.5rem; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #CBCFD4; }
+  .gate-walk svg { width: clamp(38px, 4.6vw, 66px); height: auto; aspect-ratio: 12 / 10; display: block; }
+  /* The figures drop onto the line one after another, then the line is theirs */
+  @media (prefers-reduced-motion: no-preference) {
+    .gate-walk { border-bottom-color: transparent; background: linear-gradient(#CBCFD4, #CBCFD4) left bottom / 0% 1px no-repeat; animation: wl-draw 1.1s 0.2s cubic-bezier(0.65, 0, 0.35, 1) forwards; margin-bottom: -1px; padding-bottom: 1px; }
+    .gate-walk svg { opacity: 0; animation: wl-drop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .gate-walk svg:nth-child(1) { animation-delay: 0.35s; } .gate-walk svg:nth-child(2) { animation-delay: 0.5s; } .gate-walk svg:nth-child(3) { animation-delay: 0.65s; }
+    .gate-walk svg:nth-child(4) { animation-delay: 0.8s; } .gate-walk svg:nth-child(5) { animation-delay: 0.95s; } .gate-walk svg:nth-child(6) { animation-delay: 1.1s; } .gate-walk svg:nth-child(7) { animation-delay: 1.25s; }
+    .gate-walk svg:hover { transform: translateY(-8px); transition: transform 0.2s; }
+  }
+  @keyframes wl-draw { to { background-size: 100% 1px; } }
+  @keyframes wl-drop { from { opacity: 0; transform: translateY(-26px); } to { opacity: 1; transform: none; } }
+  .gate-face { display: block; width: 96px; height: 96px; border-radius: 999px; background: url('/workshop-portrait.jpg') 47% 30% / 230% auto no-repeat; margin-bottom: 1.25rem; }
+  .gate-eyebrow { font-size: 0.95rem; color: var(--grey); margin-bottom: 1.5rem; }
+  .gate h1 { font-size: clamp(3.2rem, 8vw, 6.5rem); line-height: 1.03; margin-bottom: 1.6rem; }
+  .gate-ask { font-weight: 700; margin-bottom: 1rem; }
+  .gate-sub { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.55; max-width: 40rem; margin-bottom: 2.5rem; }
+  .gate-picks { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; width: min(100%, 32rem); }
+  .gate-picks .pill { min-width: 0; width: 100%; }
+  .gate-note { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; width: min(100%, 32rem); margin-top: 1rem; font-size: 0.82rem; line-height: 1.5; color: var(--grey); }
+  @media (max-width: 479px) { .gate-picks, .gate-note { grid-template-columns: 1fr; } .gate-note span:last-child { display: none; } .gate-note span:first-child { display: none; } }
+
+  .logos { max-width: 68rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2rem) clamp(3rem, 6vw, 4.5rem); text-align: center; }
+  .logos p { font-size: 0.85rem; color: var(--grey); margin-bottom: 1.5rem; }
+  .logos div { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem 2rem; }
+  .logos img { height: 30px; width: auto; max-width: 120px; object-fit: contain; filter: grayscale(1) contrast(1.1); mix-blend-mode: multiply; opacity: 0.7; transition: opacity 0.2s; }
+  .logos img:hover { opacity: 1; }
+  .logos img[alt="IE University"] { height: 48px; }
+  .logos img[alt="PIF"] { height: 40px; filter: grayscale(1) contrast(2.2) brightness(0.55); }
+  @media (max-width: 767px) { .logos div { justify-content: center; } .logos img { height: 22px; } }
+  .sec-quote blockquote { font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: clamp(1.6rem, 3.2vw, 2.6rem); line-height: 1.25; letter-spacing: -0.015em; max-width: 52rem; margin: 0 auto 1.75rem; }
+  .cite { font-size: 0.95rem; color: var(--grey); } .cite strong { color: var(--ink); }
+
+  .sec { max-width: 68rem; margin: 0 auto; padding: clamp(4.5rem, 10vw, 8rem) clamp(1.25rem, 4vw, 2rem); border-top: 1px solid var(--rule); text-align: center; }
+  .sec h2 { font-size: clamp(2.4rem, 5.4vw, 4.25rem); line-height: 1.05; margin-bottom: 1.5rem; }
+  .lede { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.55; max-width: 38rem; margin: 0 auto; }
+
+  .cols { display: grid; gap: 0; margin-top: clamp(3.5rem, 7vw, 5.5rem); text-align: left; }
+  .cols-2 { grid-template-columns: 1fr 1fr; } .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .offer { display: flex; flex-direction: column; padding: 0 clamp(1.5rem, 3.5vw, 3.25rem); border-left: 1px solid var(--rule); }
+  .offer:first-child { border-left: 0; padding-left: 0; } .offer:last-child { padding-right: 0; }
+  .label { font-size: 0.85rem; color: var(--grey); margin-bottom: 1rem; }
+  .offer h3 { font-size: clamp(1.7rem, 2.8vw, 2.35rem); line-height: 1.1; margin-bottom: 1.4rem; }
+  .offer p, .offer li { line-height: 1.6; }
+  .offer > p { margin-bottom: 1.1rem; }
+  .who { font-weight: 700; margin-bottom: 0.3rem !important; }
+  .offer ol { margin: 0.4rem 0 1.5rem; counter-reset: n; }
+  .offer li { counter-increment: n; display: flex; gap: 0.9rem; padding: 0.7rem 0; border-top: 1px solid var(--rule); }
+  .offer li::before { content: counter(n); color: var(--grey); font-variant-numeric: tabular-nums; }
+  .walk { font-family: 'Newsreader', Georgia, serif; font-size: 1.35rem; line-height: 1.3 !important; }
+  .proof { font-size: 0.9rem; color: var(--grey); margin-bottom: 2rem !important; }
+  .proof a { color: var(--ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .offer .pill { margin-top: auto; align-self: flex-start; }
+  .cols-quiet { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: clamp(3rem, 6vw, 4.5rem); border-top: 1px solid var(--rule); }
+  .cols-quiet h3 { font-size: clamp(1.45rem, 2.2vw, 1.85rem); }
+  @media (max-width: 859px) {
+    .cols-2, .cols-3 { grid-template-columns: 1fr; }
+    .offer, .offer:first-child, .offer:last-child { border-left: 0; padding: 0 0 3rem; margin-bottom: 3rem; border-bottom: 1px solid var(--rule); }
+    .offer:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+  }
+
+  /* The walk: seven pixel figures standing on one hairline, name above, step below */
+  .walkline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1.25rem; margin-top: clamp(4rem, 8vw, 6rem); text-align: left; position: relative; }
+  .walkline::before { content: ''; position: absolute; left: -2rem; right: -2rem; top: calc(1.6rem + 1.1rem + 60px); height: 1px; background: #CBCFD4; }
+  .walkline li { display: flex; flex-direction: column; position: relative; z-index: 1; }
+  .wl-progress, .wl-walker { display: none; }
+  @media (min-width: 960px) {
+    .walkline.is-live .wl-progress { display: block; position: absolute; left: -2rem; top: calc(1.6rem + 1.1rem + 60px - 1px); height: 2px; width: calc((100% + 4rem) * var(--p, 0)); background: var(--ink); }
+    .walkline.is-live .wl-walker { display: block; position: absolute; z-index: 0; width: 45px; height: 54px; top: calc(1.6rem + 1.1rem + 60px - 54px); left: calc(-2rem + (100% + 4rem) * var(--p, 0) - 30px); }
+    .wl-walker .wf-1 { visibility: hidden; }
+    .walkline.is-walking .wf-0 { animation: wl-step 0.36s steps(1) infinite; }
+    .walkline.is-walking .wf-1 { animation: wl-step 0.36s steps(1) infinite reverse; visibility: visible; }
+    .walkline.is-live li { opacity: 0.32; transition: opacity 0.45s; }
+    .walkline.is-live li.is-on { opacity: 1; }
+    .walkline.is-live li.is-on .wl-icon { animation: wl-hop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  }
+  @keyframes wl-step { 0%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes wl-hop { 0% { transform: none; } 40% { transform: translateY(-14px); } 100% { transform: none; } }
+  .wl-name { font-weight: 700; font-size: 1.1rem; height: 1.6rem; margin-bottom: 1.1rem; }
+  .wl-icon { width: 66px; height: 55px; margin-top: 5px; display: block; transition: transform 0.25s; transform-origin: bottom center; }
+  .walkline li:hover .wl-icon { transform: translateY(-6px); }
+  .wl-n { color: var(--grey); font-size: 0.85rem; margin: 1rem 0 0.5rem; }
+  .wl-line { font-size: 0.93rem; line-height: 1.55; }
+  @media (max-width: 959px) {
+    .walkline { grid-template-columns: 1fr 1fr; gap: 3rem 2rem; }
+    .walkline::before { display: none; }
+    .wl-icon { border-bottom: 1px solid #CBCFD4; width: 100%; height: 60px; }
+    .wl-icon { object-position: left; }
+  }
+
+  .sec-form form { display: grid; gap: 0.8rem; max-width: 27rem; margin: 3rem auto 0; text-align: left; }
+  .sec-form input:not([type=hidden]), .sec-form textarea { width: 100%; background: var(--field); border: 1px solid transparent; border-radius: 0.9rem; padding: 1.05rem 1.25rem; font: inherit; font-size: 0.98rem; color: var(--ink); resize: none; }
+  .sec-form input:focus, .sec-form textarea:focus { outline: none; border-color: var(--ink); background: #fff; }
+  .sec-form ::placeholder { color: var(--grey); }
+  #sv-submit { width: 100%; margin-top: 0.4rem; padding: 1.15rem; }
+  #sv-echo { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; font-size: 0.9rem; padding: 0 0.25rem 0.4rem; }
+  #sv-echo span { color: var(--grey); } #sv-echo strong { flex: 1; }
+  #sv-echo button { color: var(--grey); text-decoration: underline; cursor: pointer; }
+  #sv-done { text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 1.5rem; padding: 1rem 0; }
+
+  .sv-foot { border-top: 1px solid var(--rule); padding: 2rem clamp(1.25rem, 4vw, 3rem); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--grey); }
+  .sv-foot a { margin-left: 1.5rem; } .sv-foot a:hover { color: var(--ink); }
+</style>
