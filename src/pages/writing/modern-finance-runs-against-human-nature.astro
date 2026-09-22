@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
 import ART from '../../data/ie-insights.json';
 
 export const prerender = true;
@@ -42,6 +43,7 @@ const jsonld = {
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonld)} />
 
   <div class="paper">
+    <Nav current="writing" tone="light" />
     <article>
       <header class="head">
         <div class="col">

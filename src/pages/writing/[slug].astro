@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
 import PIECES from '../../data/writing.json';
 
 export const prerender = true;
@@ -48,6 +49,7 @@ const jsonld = {
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonld)} />
 
   <div class="paper">
+    <Nav current="writing" tone="light" />
     <article class="wrap">
       <header class="head">
         <a href="/writing" class="back">← All writing</a>

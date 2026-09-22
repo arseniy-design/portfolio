@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
 import WRITING from '../data/writing.json';
 
 export const prerender = true;
@@ -88,8 +89,8 @@ const total = MAIN.length + 2 + BRIEFS.length + PROGRAMS.length;
   ogImage="/shots/capital-markets.webp"
 >
   <div class="page">
+    <Nav current="work" tone="dark" />
     <header class="top">
-      <a class="brand" href="/">Arseniy Goldberg</a>
       <h1>{total} things I built.<br /><em>Click any of them.</em></h1>
       <p>Finance professor at IE Business School, formerly at Baird. Every tile opens something real.</p>
     </header>
@@ -217,10 +218,11 @@ const total = MAIN.length + 2 + BRIEFS.length + PROGRAMS.length;
 
 <style>
   :global(body) { background: #080F16; }
-  .page { min-height: 100vh; background: #080F16; color: #fff; padding: 0 1rem 3rem; }
+  .page { min-height: 100vh; background: #080F16; color: #fff; padding: 0 0 3rem; }
+  .top, main, .foot { padding-left: 1rem; padding-right: 1rem; }
   .top, main, .foot { max-width: 76rem; margin: 0 auto; }
 
-  .top { text-align: center; padding: 3rem 0 2.75rem; }
+  .top { text-align: center; padding: 2rem 1rem 2.75rem; }
   .brand { font-family: var(--font-display); font-weight: 500; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); text-decoration: none; }
   a.brand:hover { color: #fff; }
   dialog .brand { color: var(--color-navy-400); }

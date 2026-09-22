@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
 
 // One page he can send to anyone. The gate at the top splits the visitor into
 // organization or individual; picking a side hides the other. Deep links:
@@ -94,14 +95,7 @@ const ORDERED = [...SIDES].sort((a, b) => Number(!!b.featured) - Number(!!a.feat
   </Fragment>
 
   <div class="sv">
-    <header class="sv-top">
-      <a class="sv-name" href="/">Arseniy Goldberg</a>
-      <nav class="sv-nav">
-        <a href="/#work">Work</a>
-        <a href="/writing">Writing</a>
-        <a href="#talk">Contact</a>
-      </nav>
-    </header>
+    <Nav current="services" tone="light" cta="#talk" />
 
     <!-- THE GATE -->
     <section class="gate">
@@ -307,10 +301,6 @@ const ORDERED = [...SIDES].sort((a, b) => Number(!!b.featured) - Number(!!a.feat
   .sv h1, .sv h2, .sv h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 400; letter-spacing: -0.02em; }
   .sv h1 em, .sv h2 em { font-style: italic; letter-spacing: -0.025em; }
 
-  .sv-top { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem clamp(1.25rem, 4vw, 3rem); font-size: 0.95rem; }
-  .sv-name { font-weight: 700; }
-  .sv-nav { display: flex; gap: 1.75rem; color: var(--grey); }
-  .sv-nav a:hover { color: var(--ink); }
 
   .pill { display: inline-flex; justify-content: center; align-items: center; min-width: 11rem; padding: 1rem 2rem; border-radius: 999px; border: 0; background: var(--field); color: var(--ink); font-family: var(--font-body); font-weight: 700; font-size: 0.98rem; cursor: pointer; transition: background 0.2s, color 0.2s, transform 0.2s; }
   .pill:hover, .pill.is-solid, .pill.is-picked { background: var(--ink); color: #fff; }
