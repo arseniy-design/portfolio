@@ -30,7 +30,7 @@ const CHAT = [
 
 // The teaching stack, copied from the homepage's last work card. Each
 // description is one line drawn from that course's syllabus in ~/IE Syllabi.
-// Three courses have no syllabus on disk and carry no description yet.
+// Advanced Financial Management is FIN 342 at OSU; the last two lines are his own wording.
 type Course = { n: string; s: string; d?: string };
 const TEACHING: { name: string; line: string; courses: Course[] }[] = [
   { name: 'Finance', line: 'Built on the $1.6B book I managed at Baird, brought straight into the classroom.',
@@ -40,11 +40,11 @@ const TEACHING: { name: string; line: string; courses: Course[] }[] = [
       { n: 'Financial Consulting', s: '15 sessions', d: 'Students form consulting firms and solve a new client challenge every session, ending in a final recommendation.' },
       { n: 'AI-Powered Finance', s: '15 sessions', d: 'Executive program taking finance professionals from GenAI foundations to hands-on use cases and an action plan for their own organization.' },
       { n: 'Financial Markets & Fintech', s: '15 sessions', d: 'Macro, asset classes and portfolio construction alongside digital payments, robo-advisors and DeFi, with a trading simulation.' },
-      { n: 'Advanced Financial Management', s: '15 sessions' },
+      { n: 'Advanced Financial Management', s: '15 sessions', d: 'Capital budgeting, cost of capital, capital structure and dividend policy, at the depth an entry-level corporate finance role expects. FIN 342 at Oregon State.' },
     ] },
   { name: 'Entrepreneurship & AI', line: 'Five ventures built from scratch across six countries. Founder experience, taught first-hand.',
     courses: [
-      { n: 'Entrepreneurial Journey', s: '15 sessions' },
+      { n: 'Entrepreneurial Journey', s: '15 sessions', d: 'Fifteen sessions from idea to pitch: the problem, the customer, the business model, the numbers, and the deck to defend them.' },
       { n: 'Design Thinking', s: '8 sessions', d: 'Empathize, define, ideate, prototype, test: teams take a real pain point from their own department to a tested solution.' },
       { n: 'Customer Experience', s: '10 sessions', d: 'Human-centered design applied to customer experience, from empathy maps and personas to prototyped journeys.' },
       { n: 'AI as a Cofounder', s: '3 sessions', d: 'A design sprint where participants use AI to go from a problem they care about to an investor pitch deck.' },
@@ -56,7 +56,7 @@ const TEACHING: { name: string; line: string; courses: Course[] }[] = [
       { n: 'Critical Skills for the Modern World', s: '15 sessions', d: 'Think clearly, decide on purpose, convince others and manage your emotions, trained through simulations and debate before the capstone.' },
       { n: 'Critical Thinking in the AI Era', s: '8 sessions', d: 'Ten days of debate, simulation and bias audits, stress-testing AI output and defending your thinking in front of a live panel.' },
       { n: 'Decision Making', s: '8 sessions', d: 'Frameworks for deciding under uncertainty, the cognitive biases that get in the way, and how to counter them.' },
-      { n: 'Financial Behavior', s: '8 sessions' },
+      { n: 'Financial Behavior', s: '8 sessions', d: 'How your own brain and habits shape money decisions, then applied to budgeting, planning and automating your finances.' },
       { n: 'Complex Problem Solving', s: '5 sessions', d: 'Cross-functional teams take one real challenge from the first trend scan to a pitched transformation plan.' },
       { n: 'AI for Professors', s: 'Up to 5 sessions', d: 'AI tools as teaching assistants: professors build their own use cases for lesson design, feedback and student support.' },
     ] },
@@ -223,6 +223,7 @@ const total = MAIN.length + 2 + BRIEFS.length + PROGRAMS.length;
   .top { text-align: center; padding: 3rem 0 2.75rem; }
   .brand { font-family: var(--font-display); font-weight: 500; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); text-decoration: none; }
   a.brand:hover { color: #fff; }
+  dialog .brand { color: var(--color-navy-400); }
   .top h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.05; letter-spacing: -.01em; margin: 1.5rem 0 .9rem; }
   .top h1 em { font-style: normal; color: var(--color-orange-500); }
   .top p { color: rgba(255,255,255,.55); font-size: 1rem; }
@@ -276,12 +277,12 @@ const total = MAIN.length + 2 + BRIEFS.length + PROGRAMS.length;
   .chat-close { position: absolute; top: .5rem; right: .5rem; z-index: 4; width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.3); color: #fff; font-size: 1.1rem; line-height: 1; cursor: pointer; }
 
   /* teaching dialog */
-  dialog { margin: auto; width: min(64rem, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; background: #0D1B2A; color: #fff; padding: 0; overflow: auto; }
-  dialog::backdrop { background: rgba(8,15,22,.85); }
+  dialog { margin: auto; width: min(64rem, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); border: 0; border-radius: 14px; background: var(--color-warm-50); color: var(--color-navy-900); padding: 0; overflow: auto; box-shadow: 0 40px 100px rgba(0,0,0,.6); }
+  dialog::backdrop { background: rgba(8,15,22,.8); }
   .dlg-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.75rem 2rem 0; }
   .dlg-head h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.9rem; line-height: 1.1; margin: .5rem 0 0; }
-  .dlg-close { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer; flex-shrink: 0; }
-  .dlg-close:hover { background: rgba(255,255,255,.16); }
+  .dlg-close { width: 36px; height: 36px; border-radius: 50%; background: var(--color-warm-200); border: 1px solid var(--color-warm-300); color: var(--color-navy-900); font-size: 1.3rem; line-height: 1; cursor: pointer; flex-shrink: 0; }
+  .dlg-close:hover { background: var(--color-warm-300); }
   .domains { display: grid; gap: 0 2rem; padding: 1.5rem 2rem 2rem; }
   .domains section { display: grid; grid-row: span 8; }
   @media (min-width: 800px) {
@@ -290,14 +291,14 @@ const total = MAIN.length + 2 + BRIEFS.length + PROGRAMS.length;
   }
   .domains section + section { margin-top: 2rem; }
   @media (min-width: 800px) { .domains section + section { margin-top: 0; } }
-  .domains h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--color-orange-400); margin: 0 0 .4rem; }
-  .domains p { font-size: .88rem; line-height: 1.5; color: rgba(255,255,255,.6); margin: 0 0 1rem; }
+  .domains h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--color-orange-600); margin: 0 0 .4rem; }
+  .domains p { font-size: .88rem; line-height: 1.5; color: var(--color-navy-500); margin: 0 0 1rem; }
   .domains ul { display: contents; }
-  .domains li { display: flex; flex-direction: column; gap: .3rem; padding: .7rem 0; border-top: 1px solid rgba(255,255,255,.1); }
-  .domains li:last-child { border-bottom: 1px solid rgba(255,255,255,.1); }
+  .domains li { display: flex; flex-direction: column; gap: .3rem; padding: .7rem 0; border-top: 1px solid var(--color-warm-300); }
+  .domains li:last-child { border-bottom: 1px solid var(--color-warm-300); }
   .crow { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; font-family: var(--font-display); font-weight: 500; font-size: .95rem; }
-  .cdesc { font-size: .8rem; line-height: 1.45; color: rgba(255,255,255,.55); }
-  .sess { font-size: .72rem; color: rgba(255,255,255,.45); white-space: nowrap; }
+  .cdesc { font-size: .82rem; line-height: 1.45; color: var(--color-navy-600); }
+  .sess { font-size: .72rem; color: var(--color-navy-400); white-space: nowrap; }
   @media (max-width: 639px) { .dlg-head, .domains { padding-left: 1.25rem; padding-right: 1.25rem; } }
 
   .foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 4rem; font-family: var(--font-display); font-size: .9rem; }
