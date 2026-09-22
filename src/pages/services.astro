@@ -206,7 +206,7 @@ const ORDERED = [...SIDES].sort((a, b) => Number(!!b.featured) - Number(!!a.feat
     <!-- TALK -->
     <section id="talk" class="sec sec-form">
       <h2>Two sentences<br /><em>is enough.</em></h2>
-      <p class="lede">Tell me what is going on. I'll tell you if I can help.</p>
+      <p class="lede">Tell me what is going on and two times that suit you. I'll confirm one.</p>
       <form id="sv-form">
         <div id="sv-echo" hidden><span>You picked</span><strong id="sv-echo-text"></strong><button type="button" id="sv-echo-clear">change</button></div>
         <input type="hidden" name="engagement" id="sv-engage" value="Not specified" />
@@ -215,6 +215,7 @@ const ORDERED = [...SIDES].sort((a, b) => Number(!!b.featured) - Number(!!a.feat
         <input type="text" name="name" placeholder="Your name" required />
         <input type="email" name="email" placeholder="Your email" required />
         <textarea name="message" rows="4" placeholder="What are you trying to solve?"></textarea>
+        <input type="text" name="times" placeholder="Two times that suit you, with your time zone" />
         <button type="submit" id="sv-submit" class="pill is-solid">Send message</button>
         <p id="sv-done" hidden>Got it. I'll be in touch soon.</p>
       </form>
