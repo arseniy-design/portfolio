@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: 'Clash Display', sans-serif;
+  --font-display: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --font-body: 'Satoshi', sans-serif;
 
   /* Navy palette */
@@ -15,10 +15,11 @@
   --color-navy-300: #7D99B8;
 
   /* Orange palette */
-  --color-orange-600: #D4521A;
-  --color-orange-500: #F4621F;
-  --color-orange-400: #F57B42;
-  --color-orange-300: #F79C6E;
+  /* Accent: deep red since 2026-09-23 (kept under the old 'orange' names so every page follows) */
+  --color-orange-600: #8E2A26;
+  --color-orange-500: #A8322D;
+  --color-orange-400: #E5484D;
+  --color-orange-300: #EC7A70;
 
   /* Warm neutrals */
   --color-warm-50: #FAFAF8;

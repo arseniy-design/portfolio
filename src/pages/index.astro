@@ -1,1859 +1,230 @@
 ---
-const chip = "text-xs px-2.5 py-1 rounded-full";
-const chipStyle = "background:#fff;color:#2a3f55;border:1px solid #e8e4dc;font-family:var(--font-display)";
+// Homepage, rebuilt 2026-09-23 from the approved prototype (~/site-unify-prototype/site.html).
+// Rhythm: hero, numbers, about, Baird, journey, what I built, logos, Ministry, quotes, Athens, writing, the ask.
+// Photos only where they prove the section after them; breaks are black and white, the hero is the one colour photo.
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
 import Nav from '../components/Nav.astro';
-import WRITING from '../data/writing.json';
+import Hero from '../components/Hero.astro';
+import '../styles/site.css';
+import PIECES from '../data/writing.json';
+import { ART, JOURNEY, QUOTES } from '../data/site';
 
-// Homepage writing block.
-// FEATURED is hand-picked, not automatic. One piece per claim a stranger has to
-// accept: he thinks originally about money and behaviour, he reads the room on
-// attention, he uses AI rather than commenting on it. Reorder or swap the slugs
-// to change the front page. The six titles below it stay on recency, because
-// their only job is to show he is still writing.
-const FEATURED = [
-  // One claim each: the audience nobody serves, research only he has, and who he is.
-  'whats-the-one-money-question-youve-been-too-embarrassed',
-  'what-are-the-skills-of-the-future-better-yet-what-are-the',
-  'dreams-do-come-true-if-you-chase-them',
+const FORM = 'https://formspree.io/f/mgonnqob';
+
+const BUILT = [
+  { name: 'Finance Lessons',           meta: 'AI tutor · 42 filmed lessons',          shot: '/shots/lessons.webp',         href: '/lessons' },
+  { name: 'Capital Markets Hub',       meta: 'Live tool · 22 activities',             shot: '/shots/capital-markets.webp', href: '/capital-markets' },
+  { name: 'AI-Powered Finance',        meta: 'IE Business School · Academic Director', shot: '/shots/ie-ai-finance.webp',  href: 'https://www.ie.edu/lifelong-learning/programs/ai-powered-finance/', ext: true },
+  { name: 'Finance Academy Navigator', meta: 'Client prototype · sample data',        shot: '/shots/navigator.webp',       href: 'https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73', ext: true },
+  { name: 'Gate Check',                meta: 'Web app · Santander · try the demo',    shot: '/shots/gatecheck.webp',       href: 'https://si90-gate-check.vercel.app/demo', ext: true },
+  { name: 'The War Room',              meta: 'Simulation · English and Arabic',       shot: '/shots/warroom.webp',         href: 'https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5', ext: true },
+  { name: 'Writing',                   meta: '64 pieces · since 2020',                shot: '/shots/writing.webp',         href: '/writing' },
+  { name: 'Courses in a chat',         meta: 'Three WhatsApp courses · Rebundle',     art: 'chat',                         href: '/work#chat' },
+  { name: 'The Teaching Stack',        meta: '3 domains · 300+ sessions',             art: 'stack',                        href: '/work' },
 ];
 
-const wAll = [...WRITING].sort((a, b) => b.date.localeCompare(a.date));
-const wFirstYear = wAll[wAll.length - 1].date.slice(0, 4);
-const wLastYear = wAll[0].date.slice(0, 4);
-const wYear = (d: string) => d.slice(0, 4);
-const wLead = FEATURED.map((slug) => wAll.find((p) => p.slug === slug)).filter(Boolean) as typeof wAll;
-const wRecent = wAll.filter((p) => !FEATURED.includes(p.slug)).slice(0, 6);
-
-
-const STATS5 = [
-  { n: "$1.6", suf: "B", label: "AUM Managed" },
-  { n: "70",   suf: "+", label: "Institutions Served" },
-  { n: "9",    suf: "",  label: "Ventures & Programs Built" },
-  { n: "5",    suf: "",  label: "Teaching Excellence Awards" },
-  { n: "5",    suf: "+", label: "Continents" },
+const LOGOS = [
+  ['ie-university.png', 'IE University'], ['santander.png', 'Santander'], ['pif-mono.png', 'PIF'], ['nissan.png', 'Nissan'],
+  ['stc.png', 'stc'], ['kyowa-kirin.png', 'Kyowa Kirin'], ['ministry-of-finance.png', 'Saudi Ministry of Finance'], ['zatca.png', 'ZATCA'],
+  ['flir.png', 'FLIR'], ['texas-medical-center.png', 'Texas Medical Center'], ['elm.png', 'Elm'], ['virginia-tech.png', 'Virginia Tech'],
+  ['oregon-state.png', 'Oregon State University'], ['tec-de-monterrey.webp', 'Tec de Monterrey'], ['wyss-academy.png', 'Wyss Academy'],
 ];
 
-// The slider: every card is a real, openable piece of work.
-// Ordered by impressiveness. slice(0,3) renders before the phone card, slice(3) after.
-const SHOTS = [
-  { shot: "/shots/ie-ai-finance.webp", tag: "IE Business School · Academic Director", title: "AI-Powered Finance",
-    hook: "Four days in Madrid where finance executives rebuild their own workflows with AI, on their own numbers. I direct the program.",
-    cta: "See the program", href: "https://www.ie.edu/lifelong-learning/programs/ai-powered-finance/",
-    domain: "ie.edu", pos: "top center" },
-  { shot: "/shots/capital-markets.webp", tag: "Live Tool", title: "Capital Markets Hub",
-    hook: "22 activities, zero lectures. Live market data, wired into every exercise.",
-    cta: "Try it live", href: "https://arseniygoldberg.com/capital-markets",
-    domain: "arseniygoldberg.com", pos: "top center" },
-  { shot: "/shots/lessons.webp", tag: "AI Chatbot · 42 Videos", title: "Finance Lessons Chatbot",
-    hook: "Ask a finance question, it finds the exact minute across 42 filmed lessons that answers it.",
-    cta: "Ask it something", href: "https://arseniygoldberg.com/lessons",
-    domain: "arseniygoldberg.com", pos: "top center" },
-  { shot: "/shots/navigator.webp", tag: "Prototype · Synthetic Data", title: "Finance Academy Navigator",
-    hook: "A sales-enablement map for an executive-education academy. Client data stays private, so it runs on sample data by design.",
-    cta: "Open the prototype", href: "https://claude.ai/code/artifact/baf9a827-77cd-4045-8950-6fa5e8720d73",
-    domain: "claude.ai", pos: "top left" },
-  { shot: "/shots/warroom.webp", tag: "Simulation · Claude Artifact", title: "The War Room",
-    hook: "A decision-making simulation on autonomous weapons. English and Arabic, 20 screens.",
-    cta: "Enter the room", href: "https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5",
-    domain: "claude.ai", pos: "top center" },
-  { shot: "/shots/gatecheck.webp", tag: "Web App · Santander", title: "Gate Check",
-    hook: "Team logins, access codes, five gates, two languages. Built for 90 innovation-program participants.",
-    cta: "See the app", href: "https://si90-gate-check.vercel.app/demo",
-    domain: "si90-gate-check.vercel.app", pos: "center" },
-];
-
-const PHONES = [
-  { vid: "1175515603", tag: "AI", name: "Generative AI for Business Professionals" },
-  { vid: "1175515477", tag: "Analytics", name: "Digital Analytics for Business Professionals" },
-  { vid: "1175515542", tag: "Wellbeing", name: "Mental Health in the Digital Era" },
-];
-
-const PROGRAMS = [
-  { name: "RCU Scale-up Hub", meta: "Saudi Arabia · 2024", href: "/rcu-scale-up-hub.pdf" },
-  { name: "SABAH Hub", meta: "Azerbaijan", href: "https://sabahhub.com/" },
-  { name: "Changemakers Program", meta: "Switzerland", href: "https://www.wyssacademy.org/en/changemakers-program" },
-  { name: "Science Connexion & Blue Lab", meta: "Mexico", href: "https://scienceconnexion.com/Convocatorias/SobreReto/6" },
-  { name: "Santander Innovators 90", meta: "Spain · 2026", href: "https://app.santanderopenacademy.com/en/program/innovation-and-ai-experience-in-madrid" },
-];
-
-const DASHBOARDS = [
-  { name: "Delta Dossier", meta: "Pre-earnings deep dive", href: "/delta-dossier/", thumb: "/shots/t-delta.webp" },
-  { name: "Portfolio Risk Analysis", meta: "Scenario testing", href: "/portfolio-risk/", thumb: "/shots/t-portfoliorisk.webp" },
-  { name: "Macro Risk Intelligence", meta: "5 macro risks", href: "/macro-risks/", thumb: "/shots/t-macro.webp" },
-  { name: "Hormuz Shock", meta: "Commodity markets", href: "/hormuz-shock/", thumb: "/shots/t-hormuz.webp" },
-  { name: "Taif Market Entry", meta: "Wellness tourism · Saudi Arabia", href: "/taif-market-entry/", thumb: "/shots/t-taif.webp" },
-];
-
-const TEACHING = [
-  {
-    name: "Finance",
-    line: "Built on the $1.6B book I managed at Baird, brought straight into the classroom.",
-    stat: "300+ sessions",
-    courses: [["Capital Markets","25 Sessions"],["Corporate Finance","15 Sessions"],["Financial Consulting","15 Sessions"],["AI-Powered Finance","15 Sessions"],["Financial Markets & Fintech","15 Sessions"],["Advanced Financial Management","15 Sessions"]],
-    videos: [
-      { vid: "1175592384", title: "Time Value of Money" },
-      { vid: "1175592624", title: "Dynamic Valuation" },
-      { vid: "1220639362", title: "Valuation of Companies", thumb: "/thumbs/1220639362.jpg" },
-      { vid: "1220641832", title: "Cost of Capital", thumb: "/thumbs/1220641832.jpg" },
-    ],
-  },
-  {
-    name: "Entrepreneurship & AI",
-    line: "Five ventures built from scratch across six countries. Founder experience, taught first-hand.",
-    stat: "6 courses",
-    courses: [["Entrepreneurial Journey","15 Sessions"],["Design Thinking","8 Sessions"],["Customer Experience","10 Sessions"],["AI as a Cofounder","3 Sessions"],["Business Applications of AI","12 Sessions"],["AI for Productivity","5 Sessions"]],
-    videos: [
-      { vid: "1175612851", title: "Intro to Entrepreneurship" },
-      { vid: "1175612955", title: "Startup Culture" },
-      { vid: "1175612878", title: "Lean Startup" },
-      { vid: "1175612914", title: "Product Prototyping" },
-    ],
-  },
-  {
-    name: "Behavioral Sciences",
-    line: "How bias shows up in professional decisions. Applied across finance, leadership, and AI adoption.",
-    stat: "3 live simulations",
-    courses: [["Critical Skills for the Modern World","15 Sessions"],["Critical Thinking in the AI Era","8 Sessions"],["Decision Making","8 Sessions"],["Financial Behavior","8 Sessions"],["Complex Problem Solving","5 Sessions"],["AI for Professors","Up to 5 Sessions"]],
-    links: [
-      { name: "STC Decision-Making Assessment", tag: "Claude Artifact", href: "https://claude.ai/public/artifacts/21a50228-9db5-4de6-b0f5-3d231f9159ee", thumb: "/shots/t-decision.webp" },
-      { name: "Decision-Making Simulator", tag: "Custom GPT", href: "https://chatgpt.com/g/g-67581efa33bc8191ad199d44d44cd04f-telecommunications-decision-making-simulator", thumb: "/shots/t-simulator.webp" },
-    ],
-  },
-];
+type Piece = { slug: string; title: string; date: string; topic: string; standalone: boolean };
+const latest = (PIECES as Piece[]).slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
+const fmt = (d: string) => new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const cut = (s: string, n: number) => (s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '…' : s);
+const ext = { target: '_blank', rel: 'noopener' };
 ---
 <Layout>
+  <div class="site">
+    <Nav current="home" tone="dark" cta="#contact" />
+    <Hero />
 
-  <Nav current="home" tone="dark" fixed cta="#contact" />
+    <section class="statband"><div class="wrap"><div class="stats5">
+      <div><b>$1.6B</b><span>AUM managed</span></div>
+      <div><b>70+</b><span>Institutions served</span></div>
+      <div><b>9</b><span>Ventures and programs built</span></div>
+      <div><b>5</b><span>Teaching excellence awards</span></div>
+      <div><b>5+</b><span>Continents</span></div>
+    </div></div></section>
 
+    <section class="wrap aboutc">
+      <span class="label">About</span>
+      <h2>The through line is decision-making <span>under pressure.</span></h2>
+      <p>I'm a Founding Partner at Flow Strategy Consulting and Academic Director of AI-Powered Finance at IE Business School. It looks the same in a boardroom as it does in a lecture hall.</p>
+      <a class="more" href="/writing/modern-finance-runs-against-human-nature">Read: Modern Finance Runs Against Human Nature</a>
+    </section>
 
-  <!-- HERO -->
-  <Hero />
+    <div class="cb"><img src="/baird-team.jpg" alt="The Baird practice, 2019" style="object-position:center 4%" loading="lazy" /><p>The practice, 2019 · Robert W. Baird &amp; Co. · $1.6B under management</p></div>
 
-  <!-- STATS BAR -->
-  <section class="bg-warm-50 py-16 border-b border-warm-200">
-    <div class="max-w-5xl mx-auto px-4 sm:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-5">
-        {STATS5.map((st, i) => (
-          <div class={`stat-item text-center px-4 md:px-6 py-7 reveal ${i < 4 ? "md:border-r border-warm-200" : ""}`}>
-            <p class="font-bold text-[2.5rem] text-navy-900 leading-none" style="font-family: var(--font-display)">{st.n}<span class="text-orange-500">{st.suf}</span></p>
-            <p class="text-navy-400 text-sm mt-2 leading-snug md:min-h-[2.6em]" style="font-family: var(--font-display)">{st.label}</p>
-          </div>
+    <section class="journeyband"><div class="wrap">
+      <div class="sec-head"><h2>Fifteen years.<br /><span>One line.</span></h2></div>
+      <div class="jline">
+        {JOURNEY.map((j, i) => (
+          <button type="button" class="jstop" data-journey={i}><small>{j.y}</small><b>{j.t}</b><span class="n">{j.n}</span></button>
         ))}
       </div>
-    </div>
-  </section>
+      <p class="jnote">Click a stop to open it.</p>
+    </div></section>
 
-  <style>
-    .bio-read { display:inline-flex; align-items:baseline; gap:0.6rem; margin-top:1.6rem;
-      font-family:var(--font-display); text-decoration:none; }
-    .bio-read-tag { font-size:0.66rem; font-weight:600; letter-spacing:0.18em;
-      text-transform:uppercase; color:#F4621F; flex-shrink:0; }
-    .bio-read-title { font-size:0.97rem; font-weight:600; color:#0D1B2A;
-      border-bottom:1px solid rgba(13,27,42,0.22); padding-bottom:2px;
-      transition:color .2s ease, border-color .2s ease; }
-    .bio-read-arrow { font-size:0.9rem; color:#0D1B2A; transition:transform .2s ease, color .2s ease; }
-    .bio-read:hover .bio-read-title { color:#F4621F; border-color:#F4621F; }
-    .bio-read:hover .bio-read-arrow { color:#F4621F; transform:translateX(3px); }
-  </style>
-
-  <!-- WORK -->
-  <section id="work" class="pt-16 pb-24 bg-warm-100">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8">
-
-      <!-- Bio -->
-      <div class="mb-16 reveal">
-        <div class="max-w-2xl">
-          <div class="section-label">
-            <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">About</span>
-          </div>
-          <p class="text-navy-600 leading-relaxed mb-5" style="font-size:clamp(1rem,1.45vw,1.08rem)">
-            I'm a Founding Partner at Flow Strategy Consulting and Academic Director of AI-Powered Finance at IE Business School. My career runs across capital markets, venture building, and organizational consulting. The teaching came out of that work.
-          </p>
-          <p class="text-navy-600 leading-relaxed mb-5" style="font-size:clamp(1rem,1.45vw,1.08rem)">
-            At Robert W. Baird I was a Senior Financial Consultant in private wealth management and corporate investment consulting, on the investment committee for 4 private and 40+ corporate portfolios, before moving into innovation and advisory work. Since then I've built and led programs in six countries, advised startups through growth and fundraising, and helped organizations from Fortune 500 firms to government ministries put AI to work, from strategy through implementation.
-          </p>
-          <p class="text-navy-600 leading-relaxed" style="font-size:clamp(1rem,1.45vw,1.08rem)">
-            The through line is decision-making under pressure. It looks the same in a boardroom as it does in a lecture hall.
-          </p>
-          <!-- The long version of the line above, published by IE Insights.
-               One line on purpose: the archive already lives further down at /writing. -->
-          <a class="bio-read" href="/writing/modern-finance-runs-against-human-nature">
-            <span class="bio-read-tag">IE Insights</span>
-            <span class="bio-read-title">Modern Finance Runs Against Human Nature</span>
-            <span class="bio-read-arrow" aria-hidden="true">&rarr;</span>
+    <section class="dk hscroll"><div class="hs-sticky">
+      <div class="wrap hs-head">
+        <h2>What I built.<br /><span>Click any of them.</span></h2>
+        <div class="hs-ctl">
+          <button type="button" class="hs-btn" id="hs-prev" aria-label="Previous projects">←</button>
+          <button type="button" class="hs-btn" id="hs-next" aria-label="Next projects">→</button>
+          <a class="ulink" href="/work">See all 19</a>
+        </div>
+      </div>
+      <div class="hs-track" id="home-work">
+        {BUILT.map(t => (
+          <a class="wt" href={t.href} {...(t.ext ? ext : {})}>
+            <div class="shot">{t.shot ? <img src={t.shot} alt="" loading="lazy" /> : <Fragment set:html={ART[t.art!]} />}</div>
+            <div><b>{t.name}</b><small>{t.meta}</small></div>
           </a>
-        </div>
-      </div>
-
-      <!-- THE JOURNEY -->
-      <div id="journey-section" class="mb-0 reveal" style="scroll-margin-top:5rem">
-      <div class="mb-14">
-        <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase block mb-3" style="font-family:var(--font-display)">The Journey</span>
-        <h2 class="font-bold text-navy-900 leading-tight" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">Fifteen years. One line.</h2>
-        <p class="text-navy-600 mt-5 max-w-xl leading-relaxed" style="font-size:clamp(1rem,1.4vw,1.1rem)">Four years learning markets. Four years running $1.6B at Baird. One year to rethink it. Five years building, advising, and teaching what came out of that. Now AI in finance, in New York. The question never changed: what drives behavior and decisions.</p>
-      </div>
-
-      <!-- ============ DESKTOP STAGE ============ -->
-      <div id="journey" class="journey hidden sm:block">
-        <div class="stage">
-          <svg viewBox="0 -20 1000 280" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-            <!-- the whole route, for the traveling dot -->
-            <path id="journey-route" d="M40 230 Q150 226 271 212 L556 176 C596 176 588 96 617 96 L905 30" fill="none" stroke="none"/>
-            <!-- OSU 2011–2015 -->
-            <g class="era" data-era="osu">
-              <path class="hit" d="M40 230 Q150 226 271 212"/>
-              <path class="seg" pathLength="1" d="M40 230 Q150 226 271 212" style="--d:.45s;--delay:0s;stroke-width:1.75"/>
-              <circle class="node" cx="40" cy="230" r="3" style="--delay:0s"/>
-            </g>
-            <!-- Baird 2015–2020 -->
-            <g class="era" data-era="baird">
-              <path class="hit" d="M271 212 L556 176"/>
-              <path class="seg" pathLength="1" d="M271 212 L556 176" style="--d:.5s;--delay:.45s;stroke-width:3.25"/>
-              <circle class="node" cx="271" cy="212" r="4" style="--delay:.45s"/>
-            </g>
-            <!-- IE 2020–2021 (the bend) -->
-            <g class="era pivot" data-era="ie">
-              <path class="hit" d="M556 176 C596 176 588 96 617 96"/>
-              <path class="seg" pathLength="1" d="M556 176 C596 176 588 96 617 96" style="--d:.3s;--delay:.95s;stroke-width:3.5"/>
-              <circle class="node ring" cx="556" cy="176" r="11" style="--delay:1s"/>
-              <circle class="node" cx="556" cy="176" r="5" style="--delay:.95s"/>
-            </g>
-            <!-- Entrepreneurship 2021–2026 (three strands) -->
-            <g class="era" data-era="bat">
-              <path class="hit" d="M617 96 C690 96 700 15 761 15 C822 15 850 30 905 30"/>
-              <path class="hit" d="M617 96 L905 30"/>
-              <path class="hit" d="M617 96 C690 96 700 125 761 125 C822 125 850 30 905 30"/>
-              <path class="seg" pathLength="1" d="M617 96 C690 96 700 15 761 15 C822 15 850 30 905 30" style="--d:.75s;--delay:1.25s;stroke-width:2.75"/>
-              <path class="seg" pathLength="1" d="M617 96 L905 30" style="--d:.75s;--delay:1.25s;stroke-width:2.75"/>
-              <path class="seg" pathLength="1" d="M617 96 C690 96 700 125 761 125 C822 125 850 30 905 30" style="--d:.75s;--delay:1.25s;stroke-width:2.75"/>
-              <circle class="node" cx="617" cy="96" r="4.5" style="--delay:1.25s"/>
-            </g>
-            <!-- New York 2026 – now -->
-            <g class="era" data-era="ny">
-              <circle class="hit" cx="905" cy="30" r="24" style="stroke:none;fill:transparent;pointer-events:all"/>
-              <circle class="node pulse" cx="905" cy="30" r="7" style="--delay:2s"/>
-              <circle class="node" cx="905" cy="30" r="7" style="--delay:2s"/>
-            </g>
-            <!-- the traveling dot -->
-            <circle class="rider" r="5" fill="#F4621F">
-              <animateMotion id="journey-ride" dur="2s" begin="indefinite" fill="freeze" calcMode="linear"
-                keyPoints="0;0.252;0.564;0.678;1" keyTimes="0;0.225;0.475;0.625;1">
-                <mpath href="#journey-route"/>
-              </animateMotion>
-            </circle>
-          </svg>
-
-          <!-- Strand names, along the strands -->
-          <span class="strand" style="left:76.1%;top:5%"    data-era="bat">Build</span>
-          <span class="strand" style="left:76.1%;top:24.5%" data-era="bat">Advise</span>
-          <span class="strand" style="left:76.1%;top:58%"   data-era="bat">Teach</span>
-
-        </div>
-
-        <!-- Era labels, below the line -->
-        <div class="labels">
-          <button class="era-label" data-era="osu" style="left:15.5%;--at:.15s">
-            <span class="name">Oregon State</span>
-            <span class="years">2011 – 2015</span>
-            <span class="place">Corvallis</span>
-          </button>
-          <button class="era-label" data-era="baird" style="left:41.3%;--at:.55s">
-            <span class="name">Robert W. Baird</span>
-            <span class="years">2015 – 2020</span>
-            <span class="place">Portland</span>
-          </button>
-          <button class="era-label" data-era="ie" style="left:57.5%;--at:1s">
-            <span class="name">IE Business School</span>
-            <span class="years">2020 – 2021</span>
-            <span class="place">Madrid</span>
-          </button>
-          <button class="era-label" data-era="bat" style="left:76.5%;--at:1.35s">
-            <span class="name">Entrepreneurship</span>
-            <span class="years">2021 – 2026</span>
-            <span class="place">Six countries</span>
-          </button>
-          <button class="era-label" data-era="ny" style="left:92%;--at:2s">
-            <span class="name">AI in Finance</span>
-            <span class="years">2026 – Now</span>
-            <span class="place">New York</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- ============ MOBILE RAIL ============ -->
-      <div id="journey-m" class="journey-m sm:hidden">
-        {[
-          ["osu","Oregon State","2011 – 2015 · Corvallis"],
-          ["baird","Robert W. Baird","2015 – 2020 · Portland"],
-          ["ie","IE Business School","2020 – 2021 · Madrid"],
-          ["bat","Entrepreneurship","2021 – 2026 · Six countries"],
-          ["ny","AI in Finance","2026 – Now · New York"],
-        ].map(([id,name,years]) => (
-          <button class="rail-row era-label" data-era={id}>
-            <span class="dot"></span>
-            <span class="years">{years}</span>
-            <span class="name">{name}</span>
-          </button>
         ))}
       </div>
+    </div></section>
 
-      <!-- ============ PANELS ============ -->
-      <div id="journey-drawer" class="drawer">
-        <div class="drawer-inner">
-          <div class="stem" id="journey-stem"></div>
+    <section class="logoband" aria-label="Organizations I have worked with">
+      <p class="label" style="text-align:center;color:var(--mute)">Trusted in classrooms and boardrooms on 5 continents</p>
+      <div class="marquee"><div class="mq-track">
+        {LOGOS.map(([f, n]) => <img src={`/logos/${f}`} alt={n} />)}
+        {LOGOS.map(([f, n]) => <img src={`/logos/${f}`} alt="" aria-hidden="true" />)}
+      </div></div>
+    </section>
 
-          <!-- OSU -->
-          <div class="panel" data-panel="osu">
-            <div class="grid md:grid-cols-2">
-              <div class="border-b md:border-b-0 md:border-r border-warm-300 pb-7 md:pb-0 md:pr-10">
-                <span class="eyebrow">Oregon State University</span>
-                <h3 class="big big-long">FINANCE &amp;<br/>INTERNATIONAL BUSINESS</h3>
-                <p class="text-navy-400 text-sm mb-5" style="font-family:var(--font-display)">Bachelor of Science &nbsp;·&nbsp; 2011 &ndash; 2015</p>
-                <p class="text-navy-600 text-sm leading-relaxed max-w-sm">Two subjects that never left. How money moves, and how people differ across borders.</p>
-              </div>
-              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col justify-center">
-                <span class="eyebrow mb-4">Internships</span>
-                <div class="roles">
-                  <span class="yr">2014</span><span class="org">Robert W. Baird &amp; Co.</span><span class="role">Private Wealth Management Intern</span>
-                  <span class="yr">2014</span><span class="org">State Farm Insurance</span><span class="role">Marketing Intern</span>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="cb"><img src="/speaking.jpg" alt="Financial Leaders Program, Ministry of Finance, Saudi Arabia" style="object-position:62% 40%" loading="lazy" /><p>Ministry of Finance · Saudi Arabia · Financial Leaders Program</p></div>
 
-          <!-- BAIRD (existing panel, box removed) -->
-          <div class="panel" data-panel="baird">
-            <div class="grid md:grid-cols-2">
-              <div class="border-b md:border-b-0 md:border-r border-warm-300 pb-7 md:pb-0 md:pr-10">
-                <span class="eyebrow">Robert W. Baird &amp; Co.</span>
-                <h3 class="big">FINANCE</h3>
-                <p class="text-navy-400 text-sm mb-6" style="font-family:var(--font-display)">Senior Financial Consultant &nbsp;·&nbsp; Jul 2015 &ndash; Jan 2020</p>
-                <p class="text-navy-600 text-sm leading-relaxed mb-8 max-w-sm">Private wealth management and corporate investment consulting, across private households, retirement funds, and corporate portfolios. On the investment committee for 4 private and 40+ corporate portfolios, in a practice of four.</p>
-                <div class="flex flex-wrap gap-8">
-                  {[["$1.6B","AUM, final year"],["100+","Financial Plans · 90% Met"],["50%","Practice Growth"]].map(([n,l]) => (
-                    <div>
-                      <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">{n}</p>
-                      <p class="text-xs text-navy-400 mt-0.5">{l}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col justify-center gap-8">
-                {[
-                  ["Client Segments",["Private Wealth","Corporate Retirement","Institutional","Endowments & Trusts"]],
-                  ["Asset Classes",["Equities","Fixed Income","Real Estate","Annuities","Alternatives"]],
-                  ["Portfolio Strategies",["Aggressive","Moderately Aggressive","Conservative","ETF Satellite"]],
-                ].map(([title, items]) => (
-                  <div>
-                    <span class="eyebrow mb-2">{title}</span>
-                    <div class="flex flex-wrap gap-1.5">
-                      {(items as string[]).map(c => <span class={chip} style={chipStyle}>{c}</span>)}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+    <section class="dk band-pad"><div class="wrap qwrap">
+      <span class="label">What people say</span>
+      <blockquote id="q-text">{QUOTES[0][0]}</blockquote>
+      <div class="qmeta">
+        <p id="q-who"><b>{QUOTES[0][1]}</b> · {QUOTES[0][2]}</p>
+        <div class="qnav"><button type="button" id="q-prev" aria-label="Previous quote">‹</button><span id="q-n">1 / {QUOTES.length}</span><button type="button" id="q-next" aria-label="Next quote">›</button></div>
+      </div>
+      <p class="awards"><b>5 Teaching Excellence Awards</b> · IE University · 2023–24 and 2024–25</p>
+    </div></section>
 
-          <!-- IE -->
-          <div class="panel" data-panel="ie">
-            <div class="grid md:grid-cols-2">
-              <div class="border-b md:border-b-0 md:border-r border-warm-300 pb-7 md:pb-0 md:pr-10">
-                <span class="eyebrow">IE Business School · Madrid</span>
-                <h3 class="big">MBA</h3>
-                <p class="text-navy-400 text-sm mb-5" style="font-family:var(--font-display)">Master in Digital Business &nbsp;·&nbsp; 2020 &ndash; 2021</p>
-                <p class="text-navy-600 text-sm leading-relaxed max-w-sm">Finance stayed. The question changed, from what to invest in to what to build.</p>
-              </div>
-              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col justify-center">
-                <span class="eyebrow mb-4">Alongside the MBA</span>
-                <div class="roles">
-                  <span class="yr">2020</span><span class="org">Consulting project &nbsp;·&nbsp; Johannesburg</span><span class="role">Six months, South Africa</span>
-                  <span class="yr">2021</span><span class="org">Two MVP-stage startups</span><span class="role">Founding team</span>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="cb"><img src="/athens-panel.jpg" alt="AI panel at Panathēnea, Athens" style="object-position:center 38%" loading="lazy" /><p>Panathēnea · Athens · AI in Practice</p></div>
 
-          <!-- BUILD / ADVISE / TEACH (existing panel, box removed) -->
-          <div class="panel" data-panel="bat">
-            <span class="eyebrow mb-4">Roles</span>
-            <div class="roles-top grid md:grid-cols-2 gap-x-10 gap-y-2">
-              <div class="roles">
-                <span class="yr">2021</span><span class="org">ThePowerMBA</span><span class="role">Product Owner &amp; Professor</span>
-                <span class="yr">2021</span><span class="org">SABAH.HUB &nbsp;·&nbsp; Azerbaijan</span><span class="role">Project Manager &amp; Professor</span>
-                <span class="yr">2022</span><span class="org">Flow Strategy Consulting</span><span class="role">Founding Partner &amp; Director</span>
-              </div>
-              <div class="roles">
-                <span class="yr">2022</span><span class="org">Emzingo</span><span class="role">Director of Strategy</span>
-                <span class="yr">2023</span><span class="org">Opinno</span><span class="role">Innovation Strategy Manager</span>
-                <span class="yr">2024</span><span class="org">Rebundle &nbsp;·&nbsp; AI EdTech</span><span class="role">Chief Operating Officer</span>
-              </div>
-            </div>
-            <div class="grid md:grid-cols-3">
-              <div class="flex flex-col border-b md:border-b-0 md:border-r border-warm-300 pb-7 md:pb-0 md:pr-8">
-                <span class="eyebrow">01</span>
-                <h3 class="mid">BUILD</h3>
-                <div class="rule"></div>
-                <p class="text-navy-600 text-sm leading-snug mb-5">Built from scratch across six countries, from Azerbaijan to Saudi Arabia to Mexico.</p>
-                <span class="eyebrow mb-3">Built</span>
-                <div class="flex flex-col gap-2">
-                  {[["5","Innovation programs"],["3","Startups"],["1","Consultancy"],["1","AI in Finance program"]].map(([n, label]) => (
-                    <div class="flex items-baseline gap-2.5">
-                      <span class="font-bold text-orange-500 text-lg w-5 flex-shrink-0" style="font-family:var(--font-display)">{n}</span>
-                      <span class="text-sm text-navy-700" style="font-family:var(--font-display)">{label}</span>
-                    </div>
-                  ))}
-                </div>
-                <div class="mt-auto pt-7">
-                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$2.7M</p>
-                  <p class="text-xs text-navy-400 mt-0.5">Raised into SABAH.HUB by year three</p>
-                </div>
-              </div>
-              <div class="flex flex-col border-b md:border-b-0 md:border-r border-warm-300 py-7 md:py-0 md:px-8">
-                <span class="eyebrow">02</span>
-                <h3 class="mid">ADVISE</h3>
-                <div class="rule"></div>
-                <p class="text-navy-600 text-sm leading-snug mb-5">Strategy to implementation. Built around real company challenges.</p>
-                <span class="eyebrow mb-3">Engagements</span>
-                <div class="flex flex-col gap-2.5">
-                  {["AI implementation and change management","Operating model restructuring","Strategy, financial modeling, and GTM","Market entry research and validation"].map(x => (
-                    <span class="text-sm text-navy-700 leading-snug" style="font-family:var(--font-display)">{x}</span>
-                  ))}
-                </div>
-                <div class="mt-auto pt-7">
-                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">$500K</p>
-                  <p class="text-xs text-navy-400 mt-0.5">Closed across 25 agreements</p>
-                </div>
-              </div>
-              <div class="flex flex-col pt-7 md:pt-0 md:pl-8">
-                <span class="eyebrow">03</span>
-                <h3 class="mid">TEACH</h3>
-                <div class="rule"></div>
-                <p class="text-navy-600 text-sm leading-snug mb-5">Classrooms, boardrooms, briefing rooms. The standard doesn't change.</p>
-                <span class="eyebrow mb-3">Subjects</span>
-                <div class="flex flex-col gap-2.5">
-                  {["Finance","Artificial Intelligence","Innovation","Behavioral Sciences"].map(x => (
-                    <span class="text-sm text-navy-700 leading-snug" style="font-family:var(--font-display)">{x}</span>
-                  ))}
-                </div>
-                <div class="mt-auto pt-7">
-                  <p class="font-bold text-2xl text-navy-900" style="font-family:var(--font-display)">5.0 / 5.0</p>
-                  <p class="text-xs text-navy-400 mt-0.5">Rating · 68 NPS · IE Executive Programs</p>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section class="wrap sec" style="padding-top:104px">
+      <div class="sec-head"><h2>Six years<br /><span>of thinking out loud.</span></h2></div>
+      {latest.map(p => (
+        <a class="wrow" href={p.standalone ? `/writing/${p.slug}` : `/writing#${p.slug}`}>
+          <small>{p.topic} · {fmt(p.date)}</small><b>{cut(p.title, 110)}</b><i>Read</i>
+        </a>
+      ))}
+      <div class="seeall"><a class="ulink" href="/writing" style="border-color:var(--acc)">All {PIECES.length} pieces →</a></div>
+    </section>
 
-          <!-- NEW YORK -->
-          <div class="panel" data-panel="ny">
-            <div class="grid md:grid-cols-2">
-              <div class="border-b md:border-b-0 md:border-r border-warm-300 pb-7 md:pb-0 md:pr-10">
-                <span class="eyebrow">New York</span>
-                <h3 class="big">AI IN FINANCE</h3>
-                <p class="text-navy-400 text-sm mb-5" style="font-family:var(--font-display)">Academic Director &amp; Professor &nbsp;·&nbsp; 2026 &ndash; Now</p>
-                <p class="text-navy-600 text-sm leading-relaxed max-w-sm mb-7">Working with companies on the real value of AI. Teaching it at IE. Speaking on what drives behavior and decisions.</p>
-                <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-white" style="font-family:var(--font-display);background:#0D1B2A">Start a conversation <span aria-hidden="true">&rarr;</span></a>
-                <p class="text-navy-400 text-xs mt-5" style="font-family:var(--font-display)">The work below is what this looks like in practice.</p>
-              </div>
-              <div class="pt-7 md:pt-0 md:pl-10 flex flex-col justify-center">
-                <span class="eyebrow mb-4">Roles</span>
-                <div class="roles">
-                  <span class="yr">2026</span><span class="org">IE Business School</span><span class="role">Academic Director, AI in Finance</span>
-                  <span class="yr">2026</span><span class="org">IE New York College</span><span class="role">Professor, Business Applications of AI</span>
-                  <span class="yr">2026</span><span class="org">Flow</span><span class="role">AI Consulting &nbsp;·&nbsp; Real Value of AI</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
+    <section class="dk band-pad" id="contact" style="margin-top:120px"><div class="wrap ending">
+      <div class="gate" style="padding:0 0 88px;border-bottom:1px solid var(--hair)">
+        <h2>Who are you here for?</h2>
+        <div class="doors">
+          <div class="door"><a class="btn" href="/services#organization">My team or company</a><small>Implement AI · Measure AI · Build · Speak</small></div>
+          <div class="door"><a class="btn ghost" href="/services#individual">Just me</a><small>1:1 AI · Career · Personal brand · Money</small></div>
         </div>
       </div>
-      </div>
-
-    </div><!-- close max-w container -->
-
-    <!-- CINEMATIC BREAK — Baird team photo, full width -->
-    <div class="relative overflow-hidden" style="height:65vh;min-height:420px">
-      <img src="/baird-team.jpg" alt="Arseniy Goldberg at Robert W. Baird & Co." class="w-full h-full object-cover object-top" />
-      <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.3) 50%, rgba(13,27,42,0.5) 100%)"></div>
-      <div class="absolute bottom-0 left-0 right-0 h-28" style="background:linear-gradient(to top, #F4F1EC, transparent)"></div>
-      <div class="absolute top-0 left-0 right-0 h-20" style="background:linear-gradient(to bottom, #F4F1EC, transparent)"></div>
-      <div class="absolute inset-0 flex items-end">
-        <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-          <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family:var(--font-display);color:rgba(255,255,255,0.45)">The practice, 2019 &nbsp;·&nbsp; Robert W. Baird &amp; Co. &nbsp;·&nbsp; Portland, Oregon</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 pt-14"><!-- reopen max-w container -->
-
-      <!-- THE WORK -->
-      <div id="featured" class="flex items-end justify-between gap-6 mb-8 reveal" style="scroll-margin-top:5rem">
-        <div>
-          <div class="section-label">
-            <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">The Work</span>
+      <div class="talk" style="padding-top:88px">
+        <div class="sec-head" style="margin:0"><h2>Or just<br /><span>write to me.</span></h2><p class="lede" style="margin-top:16px">Two sentences on the problem is enough. Add two times that suit you and I'll confirm one.</p></div>
+        <form id="contact-form">
+          <input type="hidden" name="_subject" value="Homepage enquiry" />
+          <div class="pair">
+            <div class="field"><label for="h-name">Your name</label><input id="h-name" name="name" required /></div>
+            <div class="field"><label for="h-email">Your email</label><input id="h-email" name="email" type="email" required /></div>
           </div>
-          <h2 class="font-bold text-navy-900 leading-tight" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">
-            Built to be clicked.
-          </h2>
-          <p class="text-navy-500 mt-3 max-w-2xl" style="font-size:0.98rem;line-height:1.55;text-wrap:balance">Live tools, simulations, and AI products. Every card opens.</p>
-        </div>
-        <div class="hidden sm:flex items-center gap-2 flex-shrink-0 pb-1">
-          <button type="button" id="wprev" aria-label="Previous" class="warrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button type="button" id="wnext" aria-label="Next" class="warrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
-        </div>
+          <div class="field"><label for="h-msg">What is going on, in two sentences</label><textarea id="h-msg" name="message" rows="3"></textarea></div>
+          <div class="field"><label for="h-times">Two times that suit you, with your time zone</label><input id="h-times" name="times" /></div>
+          <button class="btn" type="submit" id="submit-btn">Send</button>
+          <p class="done" id="form-success" hidden>Got it. I'll be in touch soon.</p>
+        </form>
       </div>
+    </div></section>
 
-      <!-- SHOWCASE SLIDER -->
-      <div class="relative reveal">
-        <div id="wtrack" class="wtrack" aria-label="Featured work">
-
-          <!-- Top tools -->
-          {SHOTS.slice(0, 3).map(s => (
-            <a class="scard scard-link" href={s.href} target="_blank" rel="noopener">
-              <span class="scard-img">
-                <span class="sframe">
-                  <span class="sframe-bar">
-                    <span class="sframe-dot"></span><span class="sframe-dot"></span><span class="sframe-dot"></span>
-                    <span class="sframe-url">{s.domain}</span>
-                  </span>
-                  <img src={s.shot} alt={s.title} loading="lazy" style={`object-position:${s.pos}`} />
-                </span>
-              </span>
-              <span class="scard-head">
-                <span class="stag">{s.tag}</span>
-                <span class="stitle block">{s.title}</span>
-                <span class="shook block">{s.hook}</span>
-              </span>
-              <span class="scta">{s.cta}<span class="scta-arrow">→</span></span>
-            </a>
-          ))}
-
-          <!-- WhatsApp courses (phone demo) -->
-          <div class="scard">
-            <div class="scard-img">
-            <div class="flex flex-col items-center" style="gap:0.55rem;padding:1rem 0">
-              <div class="relative" style="width:178px">
-                <span style="position:absolute;left:-2.5px;top:100px;width:3px;height:22px;background:linear-gradient(90deg,#4a5f78,#2a3a4d);border-radius:2px 0 0 2px"></span>
-                <span style="position:absolute;left:-2.5px;top:136px;width:3px;height:40px;background:linear-gradient(90deg,#4a5f78,#2a3a4d);border-radius:2px 0 0 2px"></span>
-                <span style="position:absolute;left:-2.5px;top:188px;width:3px;height:40px;background:linear-gradient(90deg,#4a5f78,#2a3a4d);border-radius:2px 0 0 2px"></span>
-                <span style="position:absolute;right:-2.5px;top:160px;width:3px;height:58px;background:linear-gradient(270deg,#4a5f78,#2a3a4d);border-radius:0 2px 2px 0"></span>
-
-                {/* titanium frame */}
-                <div class="relative" style="aspect-ratio:9/19.5;border-radius:2.5rem;padding:3.5px;background:linear-gradient(145deg,#8fa3ba 0%,#3d4f64 12%,#1a2531 42%,#141d27 70%,#6b8299 100%);box-shadow:0 26px 60px rgba(13,27,42,0.45), 0 4px 10px rgba(13,27,42,0.4)">
-                  <div style="position:absolute;inset:3.5px;border-radius:2.35rem;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.16);pointer-events:none;z-index:50"></div>
-
-                  <div class="relative w-full h-full overflow-hidden" style="border-radius:2.32rem;background:#0B141A">
-
-                    {/* dynamic island */}
-                    <div style="position:absolute;left:50%;transform:translateX(-50%);top:9px;width:66px;height:19px;background:#000;border-radius:999px;z-index:45"></div>
-
-                    {/* status bar */}
-                    <div style="position:absolute;inset-inline:0;top:0;height:30px;z-index:44;display:flex;align-items:center;justify-content:space-between;padding:9px 15px 0">
-                      <span style="color:#fff;font-size:0.52rem;font-weight:700;font-family:var(--font-display);letter-spacing:0.01em">9:41</span>
-                      <span style="display:flex;align-items:center;gap:3px">
-                        <svg width="11" height="8" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity="0.45"/></svg>
-                        <svg width="10" height="8" viewBox="0 0 16 12" fill="#fff"><path d="M8 11.2 5.6 8.6a3.6 3.6 0 0 1 4.8 0L8 11.2Zm0-5.1a6.6 6.6 0 0 0-4.7 1.9L1.6 6.3a9 9 0 0 1 12.8 0l-1.7 1.7A6.6 6.6 0 0 0 8 6.1Z"/></svg>
-                        <span style="display:inline-flex;align-items:center;gap:1px">
-                          <span style="width:13px;height:7px;border:1px solid rgba(255,255,255,0.6);border-radius:2px;padding:1px;display:inline-flex"><span style="flex:1;background:#fff;border-radius:1px"></span></span>
-                          <span style="width:1px;height:3px;background:rgba(255,255,255,0.6);border-radius:0 1px 1px 0"></span>
-                        </span>
-                      </span>
-                    </div>
-
-                    {/* chat header */}
-                    <div style="position:absolute;inset-inline:0;top:30px;height:44px;z-index:40;display:flex;align-items:center;gap:7px;padding:0 11px;background:rgba(17,27,34,0.98);border-bottom:1px solid rgba(255,255,255,0.06)">
-                      <span style="width:25px;height:25px;border-radius:50%;background:linear-gradient(140deg,#F4621F,#D4521A);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-display);font-size:0.5rem;font-weight:700;color:#fff">AG</span>
-                      <div style="min-width:0;flex:1">
-                        <p class="phone-title" style="color:#E9EDEF;font-size:0.58rem;font-weight:600;line-height:1.15;font-family:var(--font-display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Course</p>
-                        <p style="color:#8696A0;font-size:0.47rem;line-height:1.2;font-family:var(--font-display)">online</p>
-                      </div>
-                    </div>
-
-                    <div style="position:absolute;inset:0;background:#0B141A;background-image:radial-gradient(rgba(255,255,255,0.022) 1px, transparent 1px);background-size:13px 13px"></div>
-
-                    {PHONES.map((p, i) => (
-                      <div class={`phone-screen absolute inset-0 ${i === 0 ? '' : 'hidden'}`} data-screen={i} data-name={p.name} data-vid={p.vid}>
-                        <div style="position:absolute;inset-inline:0;top:74px;bottom:0;padding:11px 9px;display:flex;flex-direction:column;gap:7px">
-                          <div style="align-self:flex-start;max-width:88%;background:#202C33;border-radius:8px 8px 8px 2px;padding:6px 8px 4px">
-                            <p style="color:#E9EDEF;font-size:0.56rem;line-height:1.35;font-family:var(--font-body)">{p.name}</p>
-                            <p style="color:#8696A0;font-size:0.42rem;text-align:right;margin-top:1px;font-family:var(--font-body)">09:41</p>
-                          </div>
-
-                          <button type="button" class="phone-play group" data-vid={p.vid} style="align-self:flex-start;max-width:92%;background:#202C33;border-radius:8px;padding:4px;border:none;cursor:pointer;text-align:left">
-                            <span style="position:relative;display:block;border-radius:6px;overflow:hidden;aspect-ratio:16/11">
-                              <img src={`https://vumbnail.com/${p.vid}.jpg`} alt={p.name} style="width:100%;height:100%;object-fit:cover" />
-                              <span style="position:absolute;inset:0;background:rgba(8,15,22,0.3)"></span>
-                              <span class="transition-transform group-hover:scale-110" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center">
-                                <svg width="11" height="11" viewBox="0 0 24 24" fill="#0B141A" style="margin-left:2px"><path d="M8 5v14l11-7z"/></svg>
-                              </span>
-                            </span>
-                            <span style="display:flex;align-items:center;justify-content:space-between;padding:4px 3px 1px">
-                              <span style="display:inline-block;font-size:0.42rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:1px 5px;border-radius:999px;background:rgba(244,98,31,0.9);color:#fff;font-family:var(--font-display)">{p.tag}</span>
-                              <span style="color:#8696A0;font-size:0.42rem;font-family:var(--font-body)">09:41</span>
-                            </span>
-                          </button>
-
-                          <div style="align-self:flex-end;max-width:70%;background:#005C4B;border-radius:8px 8px 2px 8px;padding:6px 8px 4px">
-                            <p style="color:#E9EDEF;font-size:0.56rem;line-height:1.35;font-family:var(--font-body)">Ready when you are</p>
-                            <p style="color:rgba(233,237,239,0.55);font-size:0.42rem;text-align:right;margin-top:1px;font-family:var(--font-body)">09:42</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-
-                    {/* in-place player */}
-                    <div id="phone-player" class="hidden" style="position:absolute;inset:0;z-index:46;background:#000">
-                      <div id="phone-player-slot" style="position:absolute;inset:0"></div>
-                      <button type="button" id="phone-close" aria-label="Close video"
-                        style="position:absolute;top:36px;right:10px;z-index:48;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.25);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0">
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-                      </button>
-                    </div>
-
-                    {/* screen gloss + home indicator */}
-                    <div style="position:absolute;inset:0;z-index:47;pointer-events:none;background:linear-gradient(122deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.03) 18%, transparent 38%)"></div>
-                    <div style="position:absolute;left:50%;transform:translateX(-50%);bottom:6px;width:80px;height:4px;border-radius:999px;background:rgba(255,255,255,0.75);z-index:48;pointer-events:none"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-1.5">
-                {PHONES.map((p, i) => (
-                  <button type="button" class="phone-dot" data-dot={i} aria-label={p.name}
-                    style={`font-family:var(--font-display);font-size:0.62rem;font-weight:700;padding:0.34rem 0.75rem;border-radius:999px;border:none;cursor:pointer;transition:all .25s ease;white-space:nowrap;background:${i === 0 ? '#F4621F' : '#EDE8DF'};color:${i === 0 ? '#fff' : '#5B7494'}`}>{p.tag}</button>
-                ))}
-              </div>
-            </div>
-            </div>
-            <div class="scard-head">
-              <span class="stag">WhatsApp Courses · Rebundle</span>
-              <h3 class="stitle">Courses that live in a chat</h3>
-              <p class="shook">Three fully-produced courses delivered as WhatsApp micro-lessons. Play one right here.</p>
-            </div>
-          </div>
-
-          <!-- Remaining tools & simulations -->
-          {SHOTS.slice(3).map(s => (
-            <a class="scard scard-link" href={s.href} target="_blank" rel="noopener">
-              <span class="scard-img">
-                <span class="sframe">
-                  <span class="sframe-bar">
-                    <span class="sframe-dot"></span><span class="sframe-dot"></span><span class="sframe-dot"></span>
-                    <span class="sframe-url">{s.domain}</span>
-                  </span>
-                  <img src={s.shot} alt={s.title} loading="lazy" style={`object-position:${s.pos}`} />
-                </span>
-              </span>
-              <span class="scard-head">
-                <span class="stag">{s.tag}</span>
-                <span class="stitle block">{s.title}</span>
-                <span class="shook block">{s.hook}</span>
-              </span>
-              <span class="scta">{s.cta}<span class="scta-arrow">→</span></span>
-            </a>
-          ))}
-
-          <!-- Card 8 · innovation programs -->
-          <div class="scard">
-            <span class="scard-img">
-              <img src="/innovation-stage.webp" alt="SABAH.lab Bootcamp, Azerbaijan" loading="lazy" />
-            </span>
-            <div class="scard-head">
-              <span class="stag">Programs · 3 Continents</span>
-              <span class="stitle block">Innovation Programs</span>
-            </div>
-            <div class="flex flex-col divide-y divide-warm-100" style="margin-top:-0.4rem">
-              {PROGRAMS.map(p => (
-                <a href={p.href} target="_blank" rel="noopener" class="flex items-baseline justify-between gap-3 py-2 group/prog">
-                  <span class="text-navy-800 group-hover/prog:text-orange-500 transition-colors" style="font-family:var(--font-display);font-size:0.85rem;font-weight:500;line-height:1.3">{p.name}</span>
-                  <span class="text-navy-300 flex-shrink-0" style="font-family:var(--font-display);font-size:0.68rem">{p.meta}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <!-- Card 10 · intelligence dashboards -->
-          <div class="scard">
-            <div class="scard-img" style="padding:0.9rem">
-              <div class="grid grid-cols-2 grid-rows-2 gap-2 w-full h-full" style="min-height:0">
-                {DASHBOARDS.map(d => (
-                  <a href={d.href} target="_blank" rel="noopener" class="dtile group/tile">
-                    <img src={d.thumb} alt={d.name} loading="lazy" />
-                    <span class="dtile-scrim"></span>
-                    <span class="dtile-text">
-                      <span class="block" style="font-family:var(--font-display);font-size:0.74rem;font-weight:700;line-height:1.2;color:#fff">{d.name}</span>
-                      <span class="block mt-0.5" style="font-family:var(--font-display);font-size:0.56rem;color:rgba(255,255,255,0.65)">{d.meta}</span>
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div class="scard-head">
-              <span class="stag">Perplexity · 5 Dashboards</span>
-              <span class="stitle block">Intelligence Dashboards</span>
-              <span class="shook block">Market and risk research built for clients and class. All five open.</span>
-            </div>
-          </div>
-
-          <!-- Card 11 · teaching panel: domain tabs + in-panel course views -->
-          <div class="scard" id="teach-card">
-            <div class="scard-head">
-              <span class="stag">18 Courses · 3 Domains · 300+ Sessions</span>
-              <span class="stitle block">The Teaching Stack</span>
-            </div>
-
-            <div id="teach-home" class="sfill" style="justify-content:flex-start;gap:1.1rem">
-              <div class="flex flex-wrap gap-1.5">
-                {TEACHING.map((t, di) => (
-                  <button type="button" class={`ttab ${di === 0 ? "ttab-on" : ""}`} data-dom={di}>{t.name}</button>
-                ))}
-              </div>
-              {TEACHING.map((t, di) => (
-                <div class={`tdomain ${di === 0 ? "" : "hidden"}`} data-domain={di}>
-                  <div class="flex flex-col divide-y divide-warm-100">
-                    {t.courses.map(([n, meta], ci) => (
-                      <button type="button" class="tcourse group/course" data-c={`${di}-${ci}`}>
-                        <span class="flex-1 text-navy-800 group-hover/course:text-orange-500 transition-colors" style="font-family:var(--font-display);font-size:0.86rem;font-weight:500;line-height:1.3;text-align:left">{n}</span>
-                        <span class="text-navy-300 flex-shrink-0" style="font-family:var(--font-display);font-size:0.64rem">{meta}</span>
-                        <span class="tcourse-go">→</span>
-                      </button>
-                    ))}
-                  </div>
-                  {t.videos && (
-                    <div class="grid grid-cols-2 gap-2 mt-4">
-                      {t.videos.map(v => (
-                        <a href={`https://vimeo.com/${v.vid}`} target="_blank" rel="noopener" class="group relative block rounded-lg overflow-hidden bg-navy-800 aspect-video">
-                          <img src={v.thumb || `https://vumbnail.com/${v.vid}.jpg`} alt={v.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors"></div>
-                          <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="w-7 h-7 rounded-full bg-white/90 flex items-center justify-center">
-                              <svg class="w-2.5 h-2.5 text-navy-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </span>
-                          </div>
-                          <p class="absolute bottom-0 left-0 right-0 px-1.5 pb-1 text-white text-[0.62rem] font-semibold leading-tight" style="font-family:var(--font-display);text-shadow:0 1px 3px rgba(0,0,0,0.8)">{v.title}</p>
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                  {t.links && (
-                    <div class="grid grid-cols-2 gap-2 mt-4">
-                      {t.links.map(l => (
-                        <a href={l.href} target="_blank" rel="noopener" class="group relative block rounded-lg overflow-hidden bg-navy-800 aspect-video">
-                          <img src={l.thumb} alt={l.name} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                          <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,15,22,0.88) 0%, rgba(8,15,22,0.3) 55%, rgba(8,15,22,0.1) 100%)"></div>
-                          <p class="absolute top-0 left-0 px-1.5 pt-1 text-[0.5rem] font-bold uppercase" style="font-family:var(--font-display);letter-spacing:0.08em;color:rgba(255,255,255,0.75)">{l.tag}</p>
-                          <span class="absolute top-1 right-1.5 text-orange-500 text-xs font-bold group-hover:translate-x-0.5 transition-transform">→</span>
-                          <p class="absolute bottom-0 left-0 right-0 px-1.5 pb-1 text-white text-[0.62rem] font-semibold leading-tight" style="font-family:var(--font-display);text-shadow:0 1px 3px rgba(0,0,0,0.8)">{l.name}</p>
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {TEACHING.map((t, di) => t.courses.map(([n, meta], ci) => (
-              <div class="teach-detail sfill hidden" data-detail={`${di}-${ci}`}>
-                <div>
-                  <button type="button" class="tback">← All courses</button>
-                  <span class="stag" style="margin-top:1.2rem">{t.name} · {meta}</span>
-                  <span class="stitle block" style="font-size:1.4rem">{n}</span>
-                  <span class="shook block">{t.line}</span>
-                </div>
-              </div>
-            )))}
-          </div>
-
-        </div>
-
-        <div class="wprog-rail mt-6"><span id="wprog" class="wprog-fill"></span></div>
-        <p class="mt-10 reveal">
-          <a href="/work" class="inline-block text-sm font-bold tracking-wide pb-1" style="font-family:var(--font-display);color:#0D1B2A;border-bottom:2px solid #F4621F">See what I built &nbsp;&rarr;</a>
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <style>
-    /* slider track */
-    .wtrack { display:flex; gap:1rem; overflow-x:auto;
-      padding:4px 4px 20px; margin:0 -4px; scrollbar-width:none; }
-    @media (max-width:640px) { .wtrack { scroll-snap-type:x proximity; } }
-    .wtrack::-webkit-scrollbar { display:none; }
-
-    /* cards */
-    .scard { scroll-snap-align:start; flex:none; width:min(84vw, 380px);
-      background:#fff; border:1px solid #EDE8DF; border-radius:1.1rem; padding:1.4rem;
-      display:flex; flex-direction:column; gap:1.1rem;
-      transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
-    .scard-link { text-decoration:none; cursor:pointer; }
-    .scard-link:hover { transform:translateY(-5px); box-shadow:0 22px 44px rgba(13,27,42,0.12); border-color:#F4621F44; }
-
-    /* image stage: branded backdrop + floating browser frame */
-    .scard-img { display:flex; align-items:center; justify-content:center; position:relative;
-      border-radius:0.7rem; overflow:hidden;
-      flex:1; min-height:230px; border:1px solid #EDE8DF;
-      background:
-        radial-gradient(130% 95% at 88% -12%, rgba(244,98,31,0.16), transparent 55%),
-        radial-gradient(rgba(13,27,42,0.05) 1px, transparent 1px) 0 0 / 14px 14px,
-        linear-gradient(150deg,#F2EEE7 0%,#E9E2D6 100%); }
-    .scard-img > img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      transition:transform .6s ease; }
-    .scard-link:hover .scard-img > img { transform:scale(1.045); }
-
-    .sframe { position:relative; width:87%; aspect-ratio:4/3.2; flex:none;
-      display:flex; flex-direction:column; border-radius:10px; overflow:hidden;
-      background:#fff; box-shadow:0 20px 44px rgba(13,27,42,0.28), 0 3px 10px rgba(13,27,42,0.16);
-      transition:transform .45s ease; }
-    .scard-link:hover .sframe { transform:translateY(-6px); }
-    .sframe-bar { flex:none; height:27px; background:#1B2A3C; display:flex; align-items:center;
-      gap:5px; padding:0 10px; }
-    .sframe-dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.22); }
-    .sframe-url { margin-left:6px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-      font-family:var(--font-display); font-size:0.56rem; font-weight:500; letter-spacing:0.04em;
-      color:rgba(255,255,255,0.55); background:rgba(255,255,255,0.08); border-radius:999px;
-      padding:2.5px 9px; }
-    .sframe img { flex:1; min-height:0; width:100%; height:100%; object-fit:cover; }
-
-    .stag { display:block; font-family:var(--font-display); font-size:0.62rem; font-weight:700;
-      letter-spacing:0.18em; text-transform:uppercase; color:#F4621F; margin-bottom:0.5rem; }
-    .stitle { font-family:var(--font-display); font-size:1.45rem; font-weight:700; line-height:1.06;
-      letter-spacing:-0.015em; color:#0D1B2A; }
-    .shook { font-size:0.86rem; line-height:1.55; color:#5B7494; margin-top:0.55rem; }
-
-    .sfill { flex:1; display:flex; flex-direction:column; justify-content:center; }
-    .sfill.hidden { display:none; }
-
-    /* dashboard tiles */
-    .dtile { position:relative; display:block; border-radius:0.6rem;
-      overflow:hidden; background:#0D1B2A; min-height:120px; }
-    .dtile img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      object-position:top center; transition:transform .5s ease; }
-    .dtile:hover img { transform:scale(1.06); }
-    .dtile-scrim { position:absolute; inset:0;
-      background:linear-gradient(to top, rgba(8,15,22,0.88) 0%, rgba(8,15,22,0.25) 55%, rgba(8,15,22,0.05) 100%); }
-    .dtile-text { position:absolute; left:0; right:0; bottom:0; padding:0.6rem 0.7rem; }
-
-    /* teaching panel: domain tabs, course list, in-panel detail */
-    .ttab { font-family:var(--font-display); font-size:0.62rem; font-weight:700;
-      padding:0.35rem 0.55rem; border-radius:999px; cursor:pointer; white-space:nowrap;
-      background:#F4F1EC; color:#5B7494; border:1px solid #EDE8DF;
-      transition:all .25s ease; }
-    .ttab-on { background:#0D1B2A; color:#fff; border-color:#0D1B2A; }
-    .tcourse { display:flex; align-items:center; justify-content:space-between; gap:0.6rem;
-      width:100%; padding:0.55rem 0; background:none; border:none; cursor:pointer; }
-    .tcourse-go { flex:none; font-size:0.75rem; font-weight:700; color:#F4621F; opacity:0;
-      transform:translateX(-4px); transition:opacity .25s ease, transform .25s ease; }
-    .tcourse:hover .tcourse-go { opacity:1; transform:translateX(0); }
-    .tback { align-self:flex-start; background:none; border:none; cursor:pointer;
-      font-family:var(--font-display); font-size:0.78rem; font-weight:700; color:#F4621F;
-      padding:0; }
-    .tback:hover { text-decoration:underline; }
-
-    .scta { margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center;
-      gap:0.5rem; font-family:var(--font-display); font-size:0.84rem; font-weight:700;
-      color:#fff; background:#0D1B2A; border-radius:999px; padding:0.6rem 1.15rem;
-      transition:background .25s ease; }
-    .scta-arrow { transition:transform .3s ease; }
-    .scard-link:hover .scta { background:#F4621F; }
-    .scard-link:hover .scta-arrow { transform:translateX(4px); }
-
-    /* arrows + progress */
-    .warrow { width:42px; height:42px; border-radius:50%; border:1px solid #EDE8DF; background:#fff;
-      color:#0D1B2A; cursor:pointer; display:flex; align-items:center; justify-content:center;
-      transition:all .25s ease; }
-    .warrow:hover { background:#0D1B2A; color:#fff; border-color:#0D1B2A; }
-    .warrow:disabled { opacity:0.35; cursor:default; }
-    .warrow:disabled:hover { background:#fff; color:#0D1B2A; border-color:#EDE8DF; }
-    .wprog-rail { height:3px; border-radius:2px; background:#E8E4DC; overflow:hidden; }
-    .wprog-fill { display:block; height:100%; width:12%; border-radius:2px; background:#F4621F;
-      transition:width .2s ease; }
-  </style>
-
-  <!-- CINEMATIC BREAK -->
-  <div class="relative overflow-hidden" style="height: 65vh; min-height: 420px">
-    <img src="/speaking.jpg" alt="Arseniy Goldberg — Ministry of Finance, Saudi Arabia" class="w-full h-full object-cover" style="object-position: 62% 30%" />
-    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.35) 40%, rgba(13,27,42,0.55) 100%)"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
-    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #F4F1EC, transparent)"></div>
-    <div class="absolute inset-0 flex items-end">
-      <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Ministry of Finance · Saudi Arabia &nbsp;·&nbsp; Financial Leaders Program</p>
-      </div>
-    </div>
+    <footer class="foot"><div class="wrap"><span>© 2026 Arseniy Goldberg</span><span><a href="/services">Services</a><a href="/writing">Writing</a><a href="https://www.linkedin.com/in/arseniygoldberg/" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
   </div>
 
-  <!-- CLIENTS -->
-  <section id="clients" class="py-24 bg-warm-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8">
-      <div class="mb-14 reveal">
-        <div class="section-label">
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Trusted By</span>
-        </div>
-        <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
-          From classrooms to boardrooms.<br>
-          <span class="text-navy-400 font-light">Across 5 continents.</span>
-        </h2>
-      </div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-3 sm:gap-4 reveal">
-        {[
-          { name: "FLIR",                                local: "/logos/flir.png" },
-          { name: "Blount International",               local: "/logos/blount.png" },
-          { name: "Confederated Tribes of Grand Ronde", local: "/logos/confederated-tribes.webp" },
-          { name: "SABAH Hub",                          local: "/logos/sabah-hub.png" },
-          { name: "Khazar University",                  local: "/logos/khazar.png" },
-          { name: "IE University",                      local: "/logos/ie-law-school.png" },
-          { name: "Franklin University Switzerland",    local: "/logos/franklin.png" },
-          { name: "CIEE",                               local: "/logos/ciee.png" },
-          { name: "ZATCA",                              local: "/logos/zatca.png" },
-          { name: "Badael",                             local: "/logos/badael.jpg" },
-          { name: "CST Commission",                     local: "/logos/cst.png" },
-          { name: "Baku Higher Oil School",             local: "/logos/baku-higher-oil-school.svg" },
-          { name: "Wyss Academy",                       local: "/logos/wyss-academy.png" },
-          { name: "The Global College",                 local: "/logos/the-global-college.webp" },
-          { name: "Oregon State University",            local: "/logos/oregon-state.png" },
-          { name: "Alturki Group",                      local: "/logos/alturki.png" },
-          { name: "Heritage Commission",                local: "/logos/heritage-commission.png" },
-          { name: "Nissan",                             local: "/logos/nissan.png" },
-          { name: "ThePower Business School",           local: "/logos/thepower.png" },
-          { name: "Elm",                                local: "/logos/elm.png" },
-          { name: "Altamayyuz",                         local: "/logos/altamayyuz.webp" },
-          { name: "PIF",                                local: "/logos/pif.png" },
-          { name: "Western University Azerbaijan",      local: "/logos/western.png" },
-          { name: "UNEC",                               local: "/logos/unec.png" },
-          { name: "Virginia Tech",                      local: "/logos/virginia-tech.png" },
-          { name: "Qatar Police Academy",               local: "/logos/police-academy.jpg" },
-          { name: "Ministry of Finance Saudi",          local: "/logos/ministry-of-finance.png" },
-          { name: "STC",                                local: "/logos/stc.png" },
-          { name: "ADNSU",                              local: "/logos/adnsu.png" },
-          { name: "Azerbaijan Technical University",    local: "/logos/aztu.png" },
-          { name: "Baku State University",              local: "/logos/baku-state-university.png" },
-          { name: "Kyowa Kirin",                        local: "/logos/kyowa-kirin.png" },
-          { name: "IE Law School",                      local: "/logos/ie-law-school.png" },
-          { name: "Westview High School",               local: "/logos/westview.png" },
-          { name: "Public Administration Academy",      local: "/logos/azerbaijan-pa.png" },
-          { name: "Tec de Monterrey",                   local: "/logos/tec-de-monterrey.webp" },
-          { name: "Opinno",                             local: "/logos/opinno.png" },
-          { name: "BMU",                                local: "/logos/bmu.png" },
-          { name: "Pasha Holding",                      local: "/logos/pasha-holding.png" },
-          { name: "Santander",                           local: "/logos/santander.png" },
-          { name: "Texas Medical Center",               local: "/logos/texas-medical-center.png" },
-          { name: "RCU",                                local: "/logos/rcu.png" },
-        ].map(({ name, local }) => (
-          <div class="logo-item flex items-center justify-center p-3 rounded-xl bg-white shadow-sm h-14 sm:h-16">
-            {local
-              ? <img src={local} alt={name} class="max-h-8 max-w-full object-contain" />
-              : <span class="font-semibold text-navy-500 text-xs text-center leading-tight" style="font-family: var(--font-display)">{name}</span>
-            }
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <div class="scrim" id="scrim" hidden></div>
 
-  <!-- BRANDS -->
-  <section id="brands" class="py-24 bg-warm-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8">
-      <div class="mb-16 reveal">
-        <div class="section-label">
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">What I'm Building</span>
-        </div>
-        <h2 class="font-bold text-navy-900 leading-tight" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
-          Two projects.<br>
-          <span class="text-navy-400 font-light">Finance and education, made accessible.</span>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-2 gap-6 max-w-3xl">
-        <div class="brand-card bg-white rounded-2xl p-8 reveal flex flex-col">
-          <div class="mb-5">
-            <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">Flow</h3>
-          </div>
-          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">Flow is a strategic consultancy for corporates, educational institutions, and startups. AI only works when the operating model underneath it does. Flow builds that first.</p>
-          <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">Strategy · Operations · AI Implementation</p>
-          <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="flex items-center gap-2 text-orange-500 text-sm font-semibold" style="font-family: var(--font-display)">
-            <span>Visit Flow</span><span class="brand-arrow">→</span>
-          </a>
-        </div>
-        <div class="brand-card bg-white rounded-2xl p-8 reveal reveal-delay-1 flex flex-col">
-          <div class="mb-5">
-            <h3 class="font-bold text-2xl text-navy-900" style="font-family: var(--font-display)">North</h3>
-          </div>
-          <p class="text-navy-400 text-sm leading-relaxed mb-4 flex-1">A financial education platform built around behavioral change. For people who want to actually do something different with their money.</p>
-          <p class="text-xs text-navy-300 mb-6" style="font-family:var(--font-display)">Personal Finance · Behavioral Change</p>
-          <a href="https://findyournorth.net/" target="_blank" class="flex items-center gap-2 text-orange-500 text-sm font-semibold" style="font-family: var(--font-display)">
-            <span>Visit North</span><span class="brand-arrow">→</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CINEMATIC BREAK — BAKU -->
-  <div class="relative overflow-hidden" style="height: 60vh; min-height: 380px">
-    <img src="/baku-stage.jpg" alt="Arseniy Goldberg — on stage, Baku, Azerbaijan" class="w-full h-full object-cover" style="object-position: center 30%" />
-    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.3) 50%, rgba(13,27,42,0.55) 100%)"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
-    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #F4F1EC, transparent)"></div>
-    <div class="absolute inset-0 flex items-end">
-      <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Baku, Azerbaijan &nbsp;·&nbsp; SABAH Hub</p>
-      </div>
-    </div>
+  <div id="intro-modal" class="vmodal" hidden>
+    <div class="vframe"><iframe id="intro-iframe" title="55-second intro" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+    <button type="button" class="vclose" id="intro-close" aria-label="Close video">×</button>
   </div>
-
-  <!-- RECOGNITION -->
-  <section id="recognition" class="py-24" style="background:#0D1B2A">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8">
-      <div class="mb-14 reveal">
-        <div class="section-label">
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Recognition</span>
-        </div>
-        <h2 class="font-bold text-white" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">What people say.</h2>
-      </div>
-      <div class="grid md:grid-cols-2 gap-5 mb-10">
-        <div class="reveal rounded-2xl overflow-hidden" style="background:#162236;border:1px solid rgba(255,255,255,0.08)">
-          <div class="p-8 flex items-center justify-between gap-6">
-            <div class="flex items-center gap-6">
-              <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
-                <span class="text-white font-bold text-xl" style="font-family: var(--font-display)">2</span>
-              </div>
-              <div>
-                <p class="text-white font-bold text-base" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
-                <p class="text-sm mt-1" style="color: rgba(255,255,255,0.5)">IE University · Academic Year 2023–24</p>
-                <p class="text-xs mt-1" style="color: rgba(255,255,255,0.3)">Recognized by students across 2 courses</p>
-              </div>
-            </div>
-            <button onclick="toggleAward('2024')" class="flex-shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors" style="font-family:var(--font-display);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)" id="award-btn-2024">
-              View Awards
-            </button>
-          </div>
-          <div id="award-panel-2024" style="display:none;border-top:1px solid rgba(255,255,255,0.08)">
-            <div class="px-8 py-5 flex flex-wrap gap-3">
-              <a href="/recognition/award-2024.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3);font-family:var(--font-display)">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
-                Premio Excelencia Docente 2024
-              </a>
-              <a href="/recognition/diploma-2024.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3);font-family:var(--font-display)">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
-                Diploma Lifelong Learning 2024
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="reveal reveal-delay-1 bg-navy-900 rounded-2xl overflow-hidden">
-          <div class="p-8 flex items-center justify-between gap-6">
-            <div class="flex items-center gap-6">
-              <div class="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center">
-                <span class="text-white font-bold text-xl" style="font-family: var(--font-display)">3</span>
-              </div>
-              <div>
-                <p class="text-white font-bold text-base" style="font-family: var(--font-display)">Teaching Excellence Awards</p>
-                <p class="text-sm mt-1" style="color: rgba(255,255,255,0.5)">IE University · Academic Year 2024–25</p>
-                <p class="text-xs mt-1" style="color: rgba(255,255,255,0.3)">Recognized by students across 3 courses</p>
-              </div>
-            </div>
-            <button onclick="toggleAward('2025')" class="flex-shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors" style="font-family:var(--font-display);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)" id="award-btn-2025">
-              View Awards
-            </button>
-          </div>
-          <div id="award-panel-2025" style="display:none;border-top:1px solid rgba(255,255,255,0.08)">
-            <div class="px-8 py-5 flex flex-wrap gap-3">
-              <a href="/recognition/award-2025.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3);font-family:var(--font-display)">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
-                Premio Excelencia Docente 2025
-              </a>
-              <a href="/recognition/diploma-2025.pdf" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full" style="background:rgba(244,98,31,0.15);color:#F4621F;border:1px solid rgba(244,98,31,0.3);font-family:var(--font-display)">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
-                Diploma Lifelong Learning 2025
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial carousel -->
-      <div class="reveal relative">
-        <div class="overflow-hidden" id="carousel-viewport">
-          <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
-            {[
-              { tag: "Teaching", quote: `"Arseniy was my instructor during the Finance & Accounting module at ThePowerMBA and I can't recommend him enough. He managed to put all the content in a structured, thorough and in-depth package — not less than 70 F&A lessons presented in an easy, understandable, and extremely practical way. By far the best finance course I've ever had."`, name: "Marta Morillo Rodríguez", role: "CEO · INNCISO · ThePowerMBA" },
-              { tag: "Teaching", quote: `"Arseniy Goldberg takes the win for best professor — I didn't think I would enjoy Accounting so much! My favorite modules were Business Model Innovation, Testing Business Ideas & Lean Startup."`, name: "Astrid Thornberry", role: "Amazon · ThePowerMBA · Rolls-Royce" },
-              { tag: "Consulting", quote: `"Arseniy served as the Project Lead for a major initiative on the Azerbaijani entrepreneurial ecosystem, coordinating faculty from IE Business School and Stanford. He was an indispensable source of information as well as a connector. He's smart, organized, competent, a proactive problem solver."`, name: "Mike Grandinetti", role: "Faculty · MIT, Harvard, Hult · ex-McKinsey" },
-              { tag: "Teaching", quote: `"Thanks for making Finance & Accounting so easy. You made a dry subject really engaging and interactive — I even enjoyed the Excel challenges. Thank you so much!"`, name: "Anuja Bhatnagar Tapkir", role: "VP · J.P. Morgan" },
-              { tag: "Consulting", quote: `"I have been fortunate to work and learn from Arseniy as a Manager during a startup development project. His clarity in conveying the vision and expectations facilitated an effective and timely deployment. A truly inspiring leader."`, name: "Gabriela Olivera", role: "TEC Venture Builder · Mexico" },
-              { tag: "Teaching", quote: `"While I was a bit worried about finance, Arseniy's teaching was amazing. He made even complex concepts easy to understand — budgeting, company financing, taxation and valuation."`, name: "Dmytro Strelchyn", role: "Chief Digital Officer · E-commerce & AI" },
-              { tag: "Advisory", quote: `"Arseniy gave the best possible advice to us during and after the SABAH.lab Acceleration Program. He is a very talented and energetic person who understood the startup world from every angle and helped me increase my productivity significantly."`, name: "Ulvi Damirli", role: "Full Stack Engineer · SABAH.lab" },
-              { tag: "Teaching", quote: `"The financial modules in particular were a huge eye-opener for me. Thank you Arseniy Goldberg for making money, accountancy and taxes fun."`, name: "Claudio Fray", role: "B2B Sales · High-Ticket Closer" },
-              { tag: "Mentorship", quote: `"Arseniy especially had one of the greatest impacts on me — he taught me how to form a team, develop ideas, pitch, and how to go through hard times. He's the ultimate motivator and man of discipline."`, name: "Huseyn Abizadeh", role: "PASHA Financial Holding · SABAH.lab" },
-              { tag: "Teaching", quote: `"Professor Arseniy was one of the most memorable speakers I've ever met. His knowledge and experience were excellent. He provided me with valuable time to discuss my decisions in my personal and professional life."`, name: "IE Business School Student", role: "IE University" },
-              { tag: "Advisory", quote: `"In two weeks, through just two Zoom meetings, Arseniy helped me reframe my CV and career story. I was noticed immediately by the first company I applied to after working with him, and successfully landed an internship."`, name: "Slobodan Marković", role: "Data & Privacy · OneTrust" },
-              { tag: "Teaching", quote: `"I'm in the final month of my MBA journey. The wonderfully crafted Accounting module really engaged me — from taxation and financial statements to investment and company valuations. Fantastically delivered."`, name: "Frans J. van Aardt", role: "MBA · Business Strategy & Marketing" },
-              { tag: "Mentorship", quote: `"Arseniy is passionate about helping young people succeed in building a meaningful career and life. He is patient, humble, a good listener, and a kind soul."`, name: "Ngoh Rodney Amah", role: "Quantitative Researcher · Emzingo" },
-              { tag: "Teaching", quote: `"Among all the people I've met, Arseniy shines due to his remarkable ability to communicate with compassion, conviction, and elegance. His way of communication has left a lasting impression on me."`, name: "Agil Zakariya", role: "Brand Management · Procter & Gamble" },
-              { tag: "Teaching", quote: `"Arseniy Goldberg, your Finance and Accounting modules were the highlight of this course! You made a dry subject really engaging and interactive. I even enjoyed all your Excel challenges. Thank you so much!"`, name: "Shirlayne Dunwoodie", role: "Director, Specialist Sales & Contract Management" },
-              { tag: "Teaching", quote: `"Thanks to Arseniy Goldberg for my all time favorite business case and for the Finance & Accounting module — love the way you did it."`, name: "Svetlana Bekker-Thamm", role: "Advisory Board · Investor · Mentor" },
-              { tag: "Teaching", quote: `"Special thanks to Arseniy Goldberg for introducing us to Mundi Game Experiences — gamification made the course even more exciting. Finance and Accounting was challenging at first, but the concepts were easy to pick up thanks to his relatable analogies."`, name: "Andrew Ho", role: "Territory Manager · Revizto · CPSP MBA" },
-              { tag: "Teaching", quote: `"And special thanks to Arseniy Goldberg for making accounting more fun than I thought it would be!"`, name: "Megan Mulholland", role: "Board Member · Product & Education Executive" },
-            ].map(t => (
-              <div class="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-3">
-                <div class="testimonial-card bg-white rounded-2xl p-7 h-full flex flex-col">
-                  <div class="mb-4">
-                    <span class="text-[10px] font-bold tracking-[0.15em] uppercase px-2.5 py-1 rounded-full" style={`font-family:var(--font-display);background:${t.tag==='Teaching'?'rgba(13,27,42,0.07);color:#0D1B2A':t.tag==='Consulting'?'rgba(244,98,31,0.12);color:#c44e16':t.tag==='Advisory'?'rgba(13,27,42,0.07);color:#0D1B2A':'rgba(13,27,42,0.07);color:#0D1B2A'}`}>{t.tag}</span>
-                  </div>
-                  <p class="text-navy-500 text-sm leading-relaxed italic mb-5 flex-1">{t.quote}</p>
-                  <div>
-                    <p class="font-semibold text-navy-900 text-sm" style="font-family: var(--font-display)">{t.name}</p>
-                    <p class="text-navy-400 text-xs mt-0.5">{t.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div class="flex items-center justify-between mt-8">
-          <div class="flex gap-2" id="carousel-dots"></div>
-          <div class="flex gap-3">
-            <button onclick="carouselPrev()" class="w-10 h-10 rounded-full border border-warm-200 hover:border-orange-500 flex items-center justify-center text-navy-400 hover:text-orange-500 transition-colors text-lg">‹</button>
-            <button onclick="carouselNext()" class="w-10 h-10 rounded-full border border-warm-200 hover:border-orange-500 flex items-center justify-center text-navy-400 hover:text-orange-500 transition-colors text-lg">›</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CINEMATIC BREAK — Athens AI panel -->
-  <div class="relative overflow-hidden" style="height: 52vh; min-height: 340px">
-    <img src="/athens-panel.jpg" alt="Arseniy Goldberg speaking on an AI panel in Athens" class="w-full h-full object-cover" style="object-position: center 38%" />
-    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.72) 0%, rgba(13,27,42,0.28) 45%, rgba(13,27,42,0.6) 100%)"></div>
-    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #FAFAF8, transparent)"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #F4F1EC, transparent)"></div>
-    <div class="absolute inset-0 flex items-end">
-      <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.45)">Panathēnea &nbsp;·&nbsp; Athens &nbsp;·&nbsp; AI in Practice</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- LINKEDIN -->
-  <!-- ══════════════ WRITING ══════════════
-       The archive lives at /writing. This is the doorway: three pieces opened
-       in his own words, then the shelf. Nothing here links to LinkedIn. -->
-  <section id="writing" class="writing-band" style="scroll-margin-top:4rem">
-    <div class="wb-wrap">
-      <header class="wb-head reveal">
-        <span class="wb-label">Writing</span>
-        <h2 class="wb-title">Six years of thinking out loud.</h2>
-        <p class="wb-sub">
-          {wLead.length} pieces on finance, human behaviour, teaching and AI, written between
-          {wFirstYear} and {wLastYear}. All of it is here, in full.
-        </p>
-      </header>
-
-      <a href="/writing/modern-finance-runs-against-human-nature" class="wb-feature reveal">
-        <span class="wb-kicker">Published · IE Insights</span>
-        <h3>Modern Finance Runs Against Human Nature</h3>
-        <p>Our psychology, not our knowledge, decides our financial outcomes. Fifteen hundred words on the five ways a 300,000-year-old brain loses money.</p>
-        <span class="wb-go">Read it here <span aria-hidden="true">→</span></span>
-      </a>
-
-      <div class="wb-lead">
-        {wLead.map((p) => (
-          <article class="wb-piece reveal">
-            <a href={p.standalone ? `/writing/${p.slug}` : `/writing#${p.slug}`}>
-              <span class="wb-meta">{p.topic} · {wYear(p.date)}</span>
-              <h3>{p.title}</h3>
-              <p>{p.excerpt}</p>
-            </a>
-          </article>
-        ))}
-      </div>
-
-      <ul class="wb-recent reveal">
-        {wRecent.map((p) => (
-          <li>
-            <a href="/writing">
-              <time datetime={p.date}>{wYear(p.date)}</time>
-              <span>{p.title}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <a href="/writing" class="wb-all reveal">All {wAll.length} pieces <span aria-hidden="true">→</span></a>
-    </div>
-
-    <style>
-      .writing-band { background:#F4F1EC; padding-block:clamp(4.5rem,9vw,7.5rem); }
-      .wb-wrap { max-width:1100px; margin:0 auto; padding-inline:clamp(1.25rem,5vw,2rem); }
-      .wb-label { font-family:var(--font-display); font-size:0.72rem; font-weight:600;
-        letter-spacing:0.22em; text-transform:uppercase; color:#F4621F; }
-      .wb-title { font-family:var(--font-display); font-weight:600; color:#0D1B2A;
-        font-size:clamp(2rem,4.4vw,3.1rem); line-height:1.04; letter-spacing:-0.03em; margin:1rem 0 0; }
-      .wb-sub { max-width:42ch; margin-top:1.15rem; font-size:1.02rem; line-height:1.6; color:#2A3E56; }
-
-      .wb-feature { display:block; margin-top:3.25rem; padding:1.75rem 0 1.9rem;
-        border-top:1px solid #0D1B2A; border-bottom:1px solid #DDD6CC; }
-      .wb-kicker { font-family:var(--font-display); font-size:0.68rem; font-weight:600;
-        letter-spacing:0.16em; text-transform:uppercase; color:#F4621F; }
-      .wb-feature h3 { font-family:var(--font-display); font-weight:600; color:#0D1B2A;
-        font-size:clamp(1.45rem,3vw,2.15rem); line-height:1.12; letter-spacing:-0.025em;
-        margin:0.7rem 0 0.6rem; max-width:22ch; transition:color .2s ease; }
-      .wb-feature:hover h3 { color:#F4621F; }
-      .wb-feature p { max-width:52ch; color:#2A3E56; line-height:1.62; font-size:0.99rem; }
-      .wb-go { display:inline-block; margin-top:1.1rem; font-family:var(--font-display);
-        font-size:0.82rem; font-weight:600; color:#F4621F; }
-
-      .wb-lead { display:grid; grid-template-columns:repeat(3,1fr); gap:0 2.5rem; margin-top:3.25rem; }
-      .wb-piece { border-top:1px solid #DDD6CC; padding-top:1.4rem; }
-      .wb-meta { font-family:var(--font-display); font-size:0.67rem; font-weight:500;
-        letter-spacing:0.13em; text-transform:uppercase; color:#9AAEC4; }
-      .wb-piece h3 { font-family:var(--font-display); font-size:1.12rem; font-weight:500;
-        line-height:1.28; letter-spacing:-0.015em; color:#0D1B2A; margin:0.6rem 0 0.7rem;
-        transition:color .2s ease; }
-      .wb-piece a:hover h3 { color:#F4621F; }
-      .wb-piece p { font-size:0.92rem; line-height:1.62; color:#5B7494; }
-
-      .wb-recent { margin-top:3.5rem; border-top:1px solid #DDD6CC; }
-      .wb-recent li { border-bottom:1px solid #E4DED4; }
-      .wb-recent a { display:grid; grid-template-columns:4.5rem 1fr; align-items:baseline;
-        gap:1rem; padding:0.85rem 0; }
-      .wb-recent time { font-family:var(--font-display); font-size:0.72rem; font-weight:500;
-        letter-spacing:0.08em; color:#9AAEC4; font-variant-numeric:tabular-nums; }
-      .wb-recent span { font-family:var(--font-display); font-size:1rem; font-weight:500;
-        line-height:1.35; color:#0D1B2A; transition:color .2s ease; }
-      .wb-recent a:hover span { color:#F4621F; }
-
-      .wb-all { display:inline-block; margin-top:2.5rem; font-family:var(--font-display);
-        font-size:0.9rem; font-weight:600; color:#0D1B2A;
-        border-bottom:2px solid #F4621F; padding-bottom:2px; }
-      .wb-all:hover { color:#F4621F; }
-
-      @media (max-width:860px) {
-        .wb-lead { grid-template-columns:1fr; gap:0; }
-        .wb-piece { margin-top:1.75rem; }
-        .wb-recent a { grid-template-columns:3.5rem 1fr; gap:0.75rem; }
-      }
-    </style>
-  </section>
-
-
-  <!-- CINEMATIC BREAK — Baku lecture -->
-  <div class="relative overflow-hidden" style="height: 50vh; min-height: 320px">
-    <img src="/lecture-hall.jpg" alt="Arseniy Goldberg lecturing at the Academy of Public Administration, Baku" class="w-full h-full object-cover" style="object-position: center 35%" />
-    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.35) 40%, rgba(13,27,42,0.55) 100%)"></div>
-    <div class="absolute top-0 left-0 right-0 h-24" style="background: linear-gradient(to bottom, #F4F1EC, transparent)"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32" style="background: linear-gradient(to top, #FAFAF8, transparent)"></div>
-    <div class="absolute inset-0 flex items-end">
-      <div class="max-w-6xl mx-auto px-4 sm:px-8 pb-12 w-full">
-        <p class="text-xs font-medium tracking-[0.2em] uppercase" style="font-family: var(--font-display); color: rgba(255,255,255,0.4)">Academy of Public Administration · Baku &nbsp;·&nbsp; Entrepreneurship Program</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- WORK WITH ME: the doorway into /services -->
-  <section id="work-with-me" class="py-24">
-    <div class="max-w-3xl mx-auto px-4 sm:px-8 text-center">
-      <div class="mb-4 reveal">
-        <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family:var(--font-display)">Work With Me</span>
-      </div>
-      <h2 class="wwm-h2 font-bold leading-tight mb-4 reveal" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">Who are you here for?</h2>
-      <p class="wwm-sub mb-10 reveal" style="font-size:1.12rem">Consulting, training and speaking for organizations. One to one sessions for individuals.</p>
-      <div class="flex flex-wrap justify-center gap-4 reveal">
-        <a href="/services#organization" class="wwm-pill is-solid">For my organization</a>
-        <a href="/services#individual" class="wwm-pill">For myself</a>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="contact" class="py-28" style="background: #0D1B2A">
-    <div class="max-w-2xl mx-auto px-4 sm:px-8">
-      <div class="text-center mb-14 reveal">
-        <div class="flex items-center justify-center gap-3 mb-5">
-          <div class="w-8 h-px bg-orange-500"></div>
-          <span class="text-orange-500 text-xs font-semibold tracking-[0.2em] uppercase" style="font-family: var(--font-display)">Get In Touch</span>
-          <div class="w-8 h-px bg-orange-500"></div>
-        </div>
-        <h2 class="font-bold text-white leading-tight mb-5" style="font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem)">
-          Let's work<br>together.
-        </h2>
-        <p class="text-base max-w-sm mx-auto leading-relaxed" style="color: rgba(255,255,255,0.6)">
-          Two sentences on the problem is enough. Add two times that suit you and I'll confirm one.
-        </p>
-      </div>
-      <form id="contact-form" class="reveal reveal-delay-1 space-y-4">
-        <input type="hidden" name="engagement" id="engagement-input" value="Not specified" />
-
-        <div class="grid sm:grid-cols-2 gap-4">
-          <input type="text" name="name" id="contact-name" placeholder="Your Name" required
-            class="w-full text-white placeholder:text-white/50 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
-            style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.18); font-family: var(--font-body)" />
-          <input type="email" name="email" placeholder="Your Email" required
-            class="w-full text-white placeholder:text-white/50 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
-            style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.18); font-family: var(--font-body)" />
-        </div>
-        <textarea rows="4" name="message" id="contact-message" placeholder="What's the challenge you're trying to solve?"
-          class="w-full text-white placeholder:text-white/50 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors resize-none"
-          style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.18); font-family: var(--font-body)"></textarea>
-        <input type="text" name="times" placeholder="Two times that suit you, with your time zone"
-          class="w-full text-white placeholder:text-white/50 rounded-xl px-5 py-4 text-sm focus:outline-none transition-colors"
-          style="background: #1E2E42; border: 1px solid rgba(255,255,255,0.18); font-family: var(--font-body)" />
-        <button id="submit-btn" type="submit"
-          class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl transition-colors text-sm tracking-wide"
-          style="font-family: var(--font-display)">
-          Send message →
-        </button>
-        <div id="form-success" class="hidden text-center py-6">
-          <p class="text-white font-semibold mb-1" style="font-family: var(--font-display)">Got it.</p>
-          <p class="text-sm" style="color: rgba(255,255,255,0.45)">I'll be in touch soon.</p>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- INTRO VIDEO LIGHTBOX -->
-  <div id="intro-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.92);backdrop-filter:blur(8px);align-items:center;justify-content:center" onclick="closeIntroVideo(event)">
-    <div style="position:relative;width:min(900px,92vw);aspect-ratio:16/9;border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.6)">
-      <iframe id="intro-iframe"
-        src=""
-        style="width:100%;height:100%;display:block;border:none"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <button onclick="closeIntroVideo()" style="position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:1.4rem;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">✕</button>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="border-t py-8" style="background: #0D1B2A; border-color: rgba(255,255,255,0.05)">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="text-sm" style="font-family: var(--font-display); color: rgba(255,255,255,0.25)">© 2026 Arseniy Goldberg</span>
-      <div class="flex items-center gap-6">
-        <a href="https://www.linkedin.com/in/arseniygoldberg/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">LinkedIn</a>
-        <a href="https://udsskdlk.gensparkspace.com/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">Flow</a>
-        <a href="https://findyournorth.net/" target="_blank" class="text-xs uppercase tracking-wide transition-colors hover:text-white/60" style="font-family: var(--font-display); color: rgba(255,255,255,0.3)">North</a>
-      </div>
-    </div>
-  </footer>
-
-  <script is:inline>
-    (function () {
-      const track = document.getElementById('wtrack');
-      const prev = document.getElementById('wprev');
-      const next = document.getElementById('wnext');
-      const prog = document.getElementById('wprog');
-      if (!track) return;
-      function step() {
-        const card = track.querySelector('.scard');
-        const cardW = card ? card.getBoundingClientRect().width + 16 : 400;
-        return Math.max(cardW, Math.floor((track.clientWidth - 40) / cardW) * cardW);
-      }
-      function update() {
-        const max = track.scrollWidth - track.clientWidth;
-        if (prog) prog.style.width = Math.max(12, (max ? track.scrollLeft / max : 1) * 100) + '%';
-        if (prev) prev.disabled = track.scrollLeft <= 4;
-        if (next) next.disabled = track.scrollLeft >= max - 4;
-      }
-      if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-      if (next) next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
-      track.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      update();
-    })();
-    (function () {
-      const card = document.getElementById('teach-card');
-      if (!card) return;
-      const home = document.getElementById('teach-home');
-      function show(id) {
-        home.classList.toggle('hidden', !!id);
-        card.querySelectorAll('.teach-detail').forEach(d => d.classList.toggle('hidden', d.dataset.detail !== id));
-      }
-      card.querySelectorAll('.tcourse').forEach(b => b.addEventListener('click', () => show(b.dataset.c)));
-      card.querySelectorAll('.tback').forEach(b => b.addEventListener('click', () => show(null)));
-      card.querySelectorAll('.ttab').forEach(b => b.addEventListener('click', () => {
-        card.querySelectorAll('.ttab').forEach(x => x.classList.toggle('ttab-on', x === b));
-        card.querySelectorAll('.tdomain').forEach(d => d.classList.toggle('hidden', d.dataset.domain !== b.dataset.dom));
-      }));
-    })();
-    (function () {
-      const first = document.querySelector('.phone-screen');
-      const title = document.querySelector('.phone-title');
-      if (first && title) title.textContent = first.dataset.name;
-    })();
-    (function () {
-      const player = document.getElementById('phone-player');
-      const slot   = document.getElementById('phone-player-slot');
-      const close  = document.getElementById('phone-close');
-      function stop() {
-        if (!player) return;
-        player.classList.add('hidden');
-        if (slot) slot.innerHTML = '';
-      }
-      document.querySelectorAll('.phone-play').forEach(btn => {
-        btn.addEventListener('click', () => {
-          if (!player || !slot) return;
-          slot.innerHTML = '<iframe src="https://player.vimeo.com/video/' + btn.dataset.vid +
-            '?autoplay=1&title=0&byline=0&portrait=0&playsinline=1&dnt=1" ' +
-            'style="position:absolute;inset:0;width:100%;height:100%;border:none" ' +
-            'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-          player.classList.remove('hidden');
-        });
-      });
-      if (close) close.addEventListener('click', stop);
-      document.querySelectorAll('.phone-dot').forEach(d => d.addEventListener('click', stop));
-    })();
-    document.querySelectorAll('.phone-dot').forEach(dot => {
-      dot.addEventListener('click', () => {
-        const n = dot.dataset.dot;
-        document.querySelectorAll('.phone-screen').forEach(sc => sc.classList.toggle('hidden', sc.dataset.screen !== n));
-        const active = document.querySelector('.phone-screen:not(.hidden)');
-        const title = document.querySelector('.phone-title');
-        if (active && title) title.textContent = active.dataset.name;
-        document.querySelectorAll('.phone-dot').forEach(d => {
-          const on = d.dataset.dot === n;
-          d.style.background = on ? '#F4621F' : '#EDE8DF';
-          d.style.color = on ? '#fff' : '#5B7494';
-        });
-      });
-    });
-  </script>
 </Layout>
 
-<script>
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  // Counter animation
-  const counters = document.querySelectorAll('.counter');
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target as HTMLElement;
-      const target = parseInt(el.dataset.target || '0');
-      const steps = 40;
-      const increment = target / steps;
-      let current = 0;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) { el.textContent = String(target); clearInterval(timer); }
-        else { el.textContent = String(Math.floor(current)); }
-      }, 1000 / steps);
-      counterObserver.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  counters.forEach(c => counterObserver.observe(c));
-
-  // Tab switching
-  function switchTab(tab: string) {
-    document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    const panel = document.getElementById('tab-' + tab);
-    if (panel) { panel.classList.remove('hidden'); panel.classList.add('tab-panel'); }
-    document.querySelector(`[data-tab="${tab}"]`)?.classList.add('active');
+<script define:vars={{ JOURNEY, QUOTES, FORM }}>
+  // Journey stops open a pop-up with the photo and the story of those years.
+  const scrim = document.getElementById('scrim');
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function openStop(i) {
+    const j = JOURNEY[i];
+    scrim.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(j.t)}">${j.img ? `<div class="ph"><img src="${j.img}" alt="${esc(j.cap || '')}"></div>` : ''}<div class="in">${j.cap ? `<small style="color:var(--mute);font-size:12.5px">${esc(j.cap)}</small>` : ''}<span class="label">${esc(j.y)}</span><h3>${esc(j.t)}</h3><p>${esc(j.d)}</p><p class="proof">${esc(j.p)}</p><div class="row"><button type="button" class="x" id="sheet-x">Close</button></div></div></div>`;
+    scrim.hidden = false;
+    document.getElementById('sheet-x').focus();
   }
-  (window as any).switchTab = switchTab;
+  const closeSheet = () => { scrim.hidden = true; };
+  document.querySelectorAll('[data-journey]').forEach((b) => b.addEventListener('click', () => openStop(+b.dataset.journey)));
+  scrim.addEventListener('click', (e) => { if (e.target === scrim || e.target.id === 'sheet-x') closeSheet(); });
 
+  // What I built: arrows move one tile; no scroll hijack.
+  const track = document.getElementById('home-work');
+  const prev = document.getElementById('hs-prev');
+  const next = document.getElementById('hs-next');
+  const state = () => { prev.disabled = track.scrollLeft <= 4; next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4; };
+  const move = (d) => { const w = track.querySelector('.wt'); track.scrollBy({ left: d * ((w ? w.getBoundingClientRect().width : 400) + 28), behavior: 'smooth' }); };
+  prev.addEventListener('click', () => move(-1));
+  next.addEventListener('click', () => move(1));
+  track.addEventListener('scroll', state, { passive: true });
+  addEventListener('resize', state);
+  state();
 
-  // Work toggle
-
-  // Award panel toggle
-  (window as any).selectEngagement = function(val: string, btn: HTMLElement) {
-    (document.getElementById('engagement-input') as HTMLInputElement).value = val;
-    document.querySelectorAll('.engagement-btn').forEach((b: Element) => {
-      (b as HTMLElement).style.background = 'rgba(255,255,255,0.06)';
-      (b as HTMLElement).style.color = 'rgba(255,255,255,0.5)';
-      (b as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)';
-    });
-    btn.style.background = 'rgba(244,98,31,0.15)';
-    btn.style.color = '#F4621F';
-    btn.style.borderColor = 'rgba(244,98,31,0.4)';
+  // Quotes, one at a time.
+  let qi = 0;
+  const showQ = () => {
+    const [t, n, r] = QUOTES[qi];
+    document.getElementById('q-text').textContent = t;
+    document.getElementById('q-who').innerHTML = `<b>${esc(n)}</b> · ${esc(r)}`;
+    document.getElementById('q-n').textContent = `${qi + 1} / ${QUOTES.length}`;
   };
+  document.getElementById('q-next').addEventListener('click', () => { qi = (qi + 1) % QUOTES.length; showQ(); });
+  document.getElementById('q-prev').addEventListener('click', () => { qi = (qi - 1 + QUOTES.length) % QUOTES.length; showQ(); });
 
-  (window as any).toggleAward = function(year: string) {
-    const panel = document.getElementById('award-panel-' + year);
-    const btn = document.getElementById('award-btn-' + year);
-    if (!panel || !btn) return;
-    const isOpen = panel.style.display !== 'none';
-    panel.style.display = isOpen ? 'none' : 'block';
-    btn.textContent = isOpen ? 'View Awards' : 'Hide Awards';
-  };
-
-  // Capital Markets Journey accordion
-  (window as any).toggleJourney = function(id: string) {
-    const panel = document.getElementById(id);
-    const idx = id.replace('cm-', '');
-    const arrow = document.getElementById('cm-arrow-' + idx);
-    if (!panel) return;
-    const isOpen = panel.style.display !== 'none';
-    panel.style.display = isOpen ? 'none' : 'block';
-    if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
-  };
-
-  // Vimeo phone player
-  const vimeoScript = document.createElement('script');
-  vimeoScript.src = 'https://player.vimeo.com/api/player.js';
-  document.head.appendChild(vimeoScript);
-
-  const vimeoPlayers: Record<string, any> = {};
-
-  (window as any).playVimeoPhone = function(key: string) {
-    const iframe = document.getElementById('vimeo-' + key) as HTMLIFrameElement;
-    const overlay = document.getElementById('overlay-' + key) as HTMLElement;
-    const controls = document.getElementById('controls-' + key) as HTMLElement;
-    if (!iframe || !overlay) return;
-    overlay.style.display = 'none';
-    const tryPlay = () => {
-      if ((window as any).Vimeo) {
-        const player = new (window as any).Vimeo.Player(iframe);
-        vimeoPlayers[key] = player;
-        player.play();
-        if (controls) controls.style.display = 'flex';
-      } else {
-        setTimeout(tryPlay, 100);
-      }
-    };
-    tryPlay();
-  };
-
-  (window as any).seekVimeo = function(key: string, seconds: number) {
-    const player = vimeoPlayers[key];
-    if (!player) return;
-    player.getCurrentTime().then((t: number) => {
-      player.setCurrentTime(Math.max(0, t + seconds));
-    });
-  };
-
-  (window as any).toggleVimeo = function(key: string) {
-    const player = vimeoPlayers[key];
-    const btn = document.getElementById('playpause-' + key);
-    if (!player || !btn) return;
-    player.getPaused().then((paused: boolean) => {
-      if (paused) {
-        player.play();
-        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-      } else {
-        player.pause();
-        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-      }
-    });
-  };
-
-  // AI walkthrough videos (inline, native controls)
-  (window as any).playAiVideo = function(key: string, vid: string) {
-    const frame = document.getElementById('aivid-frame-' + key) as HTMLElement;
-    if (!frame) return;
-    // Replace entire card contents with iframe
-    frame.onclick = null;
-    frame.style.cursor = 'default';
-    frame.innerHTML = `<iframe src="https://player.vimeo.com/video/${vid}?autoplay=1&title=0&byline=0&portrait=0&dnt=1" style="position:absolute;inset:0;width:100%;height:100%;border:none" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-  };
-
-  // Intro video lightbox
-  (window as any).openIntroVideo = function() {
-    const modal = document.getElementById('intro-modal') as HTMLElement;
-    const iframe = document.getElementById('intro-iframe') as HTMLIFrameElement;
-    if (!modal || !iframe) return;
+  // Intro video.
+  const modal = document.getElementById('intro-modal');
+  const iframe = document.getElementById('intro-iframe');
+  const closeVideo = () => { modal.hidden = true; iframe.src = ''; document.body.style.overflow = ''; };
+  document.getElementById('intro-open')?.addEventListener('click', () => {
     iframe.src = 'https://player.vimeo.com/video/1138054609?autoplay=1&title=0&byline=0&portrait=0&dnt=1';
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  };
-  (window as any).closeIntroVideo = function(e?: MouseEvent) {
-    if (e && (e.target as HTMLElement).closest('iframe')) return;
-    const modal = document.getElementById('intro-modal') as HTMLElement;
-    const iframe = document.getElementById('intro-iframe') as HTMLIFrameElement;
-    if (!modal) return;
-    modal.style.display = 'none';
-    if (iframe) iframe.src = '';
-    document.body.style.overflow = '';
-  };
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') (window as any).closeIntroVideo();
+    modal.hidden = false; document.body.style.overflow = 'hidden';
   });
+  document.getElementById('intro-close').addEventListener('click', closeVideo);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeVideo(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeVideo(); closeSheet(); } });
 
-
-  // Testimonial carousel
-  (function() {
-    const track = document.getElementById('carousel-track');
-    const dotsContainer = document.getElementById('carousel-dots');
-    if (!track || !dotsContainer) return;
-    const slides = track.children;
-    const total = slides.length;
-    let current = 0;
-    let perView = 3;
-    let autoTimer: ReturnType<typeof setInterval>;
-
-    function getPerView() {
-      if (window.innerWidth < 768) return 1;
-      if (window.innerWidth < 1024) return 2;
-      return 3;
-    }
-    function buildDots() {
-      dotsContainer.innerHTML = '';
-      const pages = Math.ceil(total / perView);
-      for (let i = 0; i < pages; i++) {
-        const d = document.createElement('button');
-        d.className = 'w-2 h-2 rounded-full transition-colors ' + (i === 0 ? 'bg-orange-500' : 'bg-warm-200');
-        d.onclick = () => goTo(i * perView);
-        dotsContainer.appendChild(d);
-      }
-    }
-    function updateDots() {
-      const dots = dotsContainer.querySelectorAll('button');
-      const page = Math.floor(current / perView);
-      dots.forEach((d, i) => { d.className = 'w-2 h-2 rounded-full transition-colors ' + (i === page ? 'bg-orange-500' : 'bg-warm-200'); });
-    }
-    function goTo(index: number) {
-      perView = getPerView();
-      const max = total - perView;
-      current = Math.max(0, Math.min(index, max));
-      const pct = (100 / perView) * current;
-      (track as HTMLElement).style.transform = `translateX(-${pct}%)`;
-      Array.from(slides).forEach(s => { (s as HTMLElement).style.minWidth = (100 / perView) + '%'; });
-      updateDots();
-    }
-    (window as any).carouselNext = () => { clearInterval(autoTimer); goTo(current + 1 < total - perView + 1 ? current + 1 : 0); autoTimer = setInterval((window as any).carouselNext, 5000); };
-    (window as any).carouselPrev = () => { clearInterval(autoTimer); goTo(current > 0 ? current - 1 : total - perView); autoTimer = setInterval((window as any).carouselNext, 5000); };
-    window.addEventListener('resize', () => { perView = getPerView(); buildDots(); goTo(0); });
-    perView = getPerView(); buildDots(); goTo(0);
-    autoTimer = setInterval((window as any).carouselNext, 5000);
-  })();
-
-  // Contact form — AJAX, stays on page
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-  const formSuccess = document.getElementById('form-success');
-  form?.addEventListener('submit', async (e) => {
+  // Contact form: posts to Formspree and stays on the page.
+  const form = document.getElementById('contact-form');
+  const btn = document.getElementById('submit-btn');
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
+    btn.textContent = 'Sending...'; btn.disabled = true;
     try {
-      const res = await fetch('https://formspree.io/f/mgonnqob', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      });
-      if (res.ok) {
-        form.querySelectorAll('input, textarea, button').forEach(el => (el as HTMLElement).style.display = 'none');
-        formSuccess?.classList.remove('hidden');
-      } else {
-        submitBtn.textContent = 'Let\'s work together →';
-        submitBtn.disabled = false;
-      }
-    } catch {
-      submitBtn.textContent = 'Send Message →';
-      submitBtn.disabled = false;
-    }
+      const res = await fetch(FORM, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+      if (!res.ok) throw new Error();
+      form.querySelectorAll('.field, .pair, button').forEach((el) => (el.style.display = 'none'));
+      document.getElementById('form-success').hidden = false;
+    } catch { btn.textContent = 'Send'; btn.disabled = false; }
   });
 </script>
 
-<style>
-  /* Work With Me: warm light ground, one solid pill, one outlined */
-  #work-with-me { background: #F4F1EC; }
-  #work-with-me .wwm-h2 { color: #0D1B2A; }
-  #work-with-me .wwm-sub { color: #3D5470; }
-  .wwm-pill {
-    display: inline-flex; align-items: center; justify-content: center; min-width: 13rem;
-    padding: 1rem 2rem; border-radius: 999px; border: 2px solid #0D1B2A;
-    font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: #0D1B2A;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
-  }
-  .wwm-pill:hover { background: #0D1B2A; color: #fff; transform: translateY(-1px); }
-  .wwm-pill.is-solid { background: #0D1B2A; color: #fff; }
-  .wwm-pill.is-solid:hover { background: #F4621F; border-color: #F4621F; }
+<style is:global>
+  body { background: #1E1F22; }
+  .vmodal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.92); display: grid; place-items: center; padding: 16px; }
+  .vmodal[hidden] { display: none; }
+  .vframe { width: min(900px, 92vw); aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; }
+  .vframe iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .vclose { position: absolute; top: 20px; right: 24px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.12); color: #fff; font-size: 1.4rem; cursor: pointer; }
+  a.wrow { color: inherit; text-decoration: none; }
+  .door a.btn { width: 100%; }
 </style>
-
-
-<!-- Journey timeline -->
-<style>
-  /* ---------- stage ---------- */
-  .stage { position: relative; }
-  .stage svg { width: 100%; height: auto; display: block; overflow: visible; }
-
-  .era { cursor: pointer; }
-  .era .hit { fill: none; stroke: transparent; stroke-width: 36; pointer-events: stroke; }
-  .era .seg {
-    fill: none; stroke: #0D1B2A; stroke-linecap: round; stroke-linejoin: round;
-    stroke-dasharray: 1; stroke-dashoffset: 1;
-    transition: stroke-dashoffset var(--d) linear var(--delay),
-                stroke .35s ease, opacity .35s ease;
-  }
-  .era .node {
-    fill: #0D1B2A; opacity: 0;
-    transition: opacity .4s ease var(--delay), fill .35s ease;
-  }
-  .era .node.ring { fill: none; stroke: #F4621F; stroke-width: 1; opacity: 0; }
-  .pivot .node { fill: #F4621F; }
-  .era .hit[cx] { stroke: none; }
-  .era .node.pulse { fill: #0D1B2A; transform-box: fill-box; transform-origin: center; }
-  .journey.visible .era .node.pulse { animation: nodePulse 2.8s ease-out 2.4s infinite; }
-  .journey.open .era[data-era="ny"].active .node.pulse { fill: #F4621F; }
-  @keyframes nodePulse { 0% { transform: scale(1); opacity: .55; } 70%, 100% { transform: scale(2.4); opacity: 0; } }
-  .rider { opacity: 0; transition: opacity .25s ease; }
-  .journey.visible .rider { opacity: 1; transition-delay: .05s; }
-  .journey.visible.arrived .rider { opacity: 0; transition-delay: 0s; }
-
-  .journey.visible .era .seg { stroke-dashoffset: 0; }
-  .journey.visible .era .node { opacity: 1; }
-  .journey.visible .era .node.ring { opacity: .5; }
-
-  /* hover: this era forward, the rest step back */
-  .journey.visible:hover .era .seg,
-  .journey.visible:hover .era .node { opacity: .35; }
-  .journey.visible .era:hover .seg,
-  .journey.visible .era:hover .node { opacity: 1; }
-
-  /* active: active era in orange, the rest quiet */
-  .journey.visible.open .era .seg,
-  .journey.visible.open .era .node { opacity: .28; }
-  .journey.visible.open .era.active .seg { stroke: #F4621F; opacity: 1; }
-  .journey.visible.open .era.active .node { fill: #F4621F; opacity: 1; }
-  .journey.visible.open .era.active .node.ring { fill: none; opacity: .5; }
-  .journey.visible.open .era:hover .seg,
-  .journey.visible.open .era:hover .node { opacity: .8; }
-
-  .strand {
-    position: absolute; transform: translate(-50%, -50%);
-    font-family: var(--font-display); font-size: 12px; font-weight: 700;
-    letter-spacing: .18em; text-transform: uppercase; color: #1E2E42;
-    opacity: 0; transition: opacity .5s ease 1.5s, color .3s ease;
-  }
-  .journey.visible .strand { opacity: 1; }
-  .era-label { opacity: 0; transition: opacity .45s ease var(--at, 0s), color .3s ease; }
-  .journey.visible .era-label { opacity: 1; }
-  .journey.visible.open .era-label { transition-delay: 0s; }
-  .journey.open .strand.active { color: #F4621F; }
-
-  /* ---------- labels ---------- */
-  .labels { position: relative; height: 72px; margin-top: -8px; }
-  .era-label {
-    position: absolute; transform: translateX(-50%);
-    background: none; border: none; padding: 6px 10px; cursor: pointer; text-align: center;
-    white-space: nowrap; color: #0D1B2A; transition: color .3s ease, opacity .3s ease;
-  }
-  .era-label .name {
-    display: block; font-family: var(--font-display); font-weight: 600;
-    font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #0D1B2A;
-  }
-  .era-label .years {
-    display: block; font-family: var(--font-display); font-size: 12px; font-weight: 500;
-    color: #5B7494; margin-top: 4px; letter-spacing: .04em;
-  }
-  .era-label .place {
-    display: block; font-family: var(--font-display); font-size: 11px; font-weight: 500;
-    color: #7D99B8; margin-top: 2px; letter-spacing: .06em;
-  }
-  .era-label:hover .name { color: #F4621F; }
-  .journey.visible.open .era-label { opacity: .45; }
-  .journey.open .era-label.active { opacity: 1; }
-  .journey.open .era-label.active .name { color: #F4621F; }
-
-
-  /* ---------- mobile rail ---------- */
-  .journey-m { position: relative; padding-left: 4px; }
-  .journey-m .era-label { opacity: 1; position: static; transform: none; transition: opacity .3s ease, color .3s ease; }
-  .journey-m::before {
-    content: ''; position: absolute; left: 9px; top: 12px; bottom: 12px; width: 2px;
-    background: #0D1B2A; opacity: .25;
-  }
-  .rail-row {
-    position: static; transform: none; display: grid; grid-template-columns: 12px 1fr;
-    column-gap: 18px; text-align: left; width: 100%; padding: 12px 0;
-  }
-  .rail-row .dot { width: 12px; height: 12px; border-radius: 50%; background: #0D1B2A; align-self: center; grid-row: span 2; transition: background .3s; }
-  .rail-row[data-era="ie"] .dot { background: #F4621F; }
-  .rail-row .years { margin-top: 0; margin-bottom: 3px; color: #F4621F; font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
-  .rail-row .name { font-size: 14px; letter-spacing: .06em; }
-  .journey-m.open .rail-row { opacity: .45; }
-  .journey-m.open .rail-row.active { opacity: 1; }
-  .journey-m.open .rail-row.active .name { color: #F4621F; }
-  .journey-m.open .rail-row.active .dot { background: #F4621F; }
-
-  /* ---------- drawer ---------- */
-  .drawer {
-    display: grid; grid-template-rows: 0fr;
-    transition: grid-template-rows .55s cubic-bezier(.4,0,.2,1);
-  }
-  .drawer.open { grid-template-rows: 1fr; }
-  .drawer-inner { overflow: hidden; position: relative; min-height: 0; }
-  .stem {
-    position: absolute; top: 0; width: 1px; height: 40px; background: #F4621F;
-    left: var(--x, 50%); opacity: 0; transition: left .5s cubic-bezier(.4,0,.2,1), opacity .3s;
-  }
-  .drawer.open .stem { opacity: 1; animation: stemIn .45s cubic-bezier(.4,0,.2,1) both; }
-  @keyframes stemIn { from { height: 0; } to { height: 40px; } }
-  @media (max-width: 767px) { .stem { display: none; } }
-
-  .panel { display: none; padding: 48px 0 56px; opacity: 0; transform: translateY(10px); }
-  .panel.active { display: block; animation: panelIn .5s ease .15s forwards; }
-  @keyframes panelIn { to { opacity: 1; transform: translateY(0); } }
-
-  .eyebrow {
-    display: block; font-family: var(--font-display); font-size: .75rem; font-weight: 700;
-    letter-spacing: .2em; text-transform: uppercase; color: #F4621F; margin-bottom: .6rem;
-  }
-  .big {
-    font-family: var(--font-display); font-weight: 900; color: #0D1B2A; line-height: 1;
-    font-size: clamp(2rem,4vw,3rem); margin-bottom: .5rem;
-  }
-  .big-long { font-size: clamp(1.6rem,2.6vw,2.15rem); line-height: 1.05; }
-  .mid {
-    font-family: var(--font-display); font-weight: 900; color: #0D1B2A; line-height: 1;
-    font-size: clamp(1.8rem,3vw,2.4rem); margin-bottom: .75rem;
-  }
-  .roles { display: grid; grid-template-columns: 3.2rem auto 1fr; column-gap: 18px; row-gap: 9px; align-items: baseline; font-family: var(--font-display); font-size: .875rem; }
-  .roles .yr { color: #F4621F; font-weight: 700; font-size: .8rem; letter-spacing: .04em; }
-  .roles .org { color: #0D1B2A; font-weight: 600; }
-  .roles .role { color: #3D5470; }
-  .roles-top { padding-bottom: 28px; margin-bottom: 32px; border-bottom: 1px solid #DDD6CC; }
-  .rule { width: 42px; height: 3px; background: #F4621F; border-radius: 2px; margin-bottom: 1rem; }
-</style>
-
-<script>
-  const journey = document.getElementById('journey')!;
-  const journeyM = document.getElementById('journey-m')!;
-  const drawer = document.getElementById('journey-drawer')!;
-  const stem = document.getElementById('journey-stem')!;
-  const stemX: Record<string,string> = { osu: '15.5%', baird: '41.3%', ie: '57.5%', bat: '76.5%', ny: '92%' };
-  let current: string | null = null;
-
-  function setActive(era: string | null) {
-    current = era;
-    document.querySelectorAll('[data-era]').forEach(el => el.classList.toggle('active', el.getAttribute('data-era') === era));
-    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === era));
-    [journey, journeyM, drawer].forEach(el => el.classList.toggle('open', !!era));
-    if (era) stem.style.setProperty('--x', stemX[era]);
-    if (era && window.innerWidth < 640) setTimeout(() => drawer.scrollIntoView({ behavior: 'smooth', block: 'start' }), 600);
-  }
-
-  document.querySelectorAll('.era, .era-label, .strand').forEach(el => {
-    el.addEventListener('click', () => {
-      const era = el.getAttribute('data-era')!;
-      setActive(current === era ? null : era);
-    });
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') setActive(null); });
-
-  // draw the line when it scrolls into view
-  new IntersectionObserver((entries, obs) => {
-    entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      journey.classList.add('visible');
-      const ride = document.getElementById('journey-ride') as any;
-      try { ride?.beginElement(); } catch (_) {}
-      setTimeout(() => journey.classList.add('arrived'), 2000);
-      obs.disconnect();
-    });
-  }, { threshold: 0.4 }).observe(journey);
-</script>
