@@ -244,7 +244,7 @@ body.ind .org-only{display:none}
 .hero-copy{display:grid;gap:34px;max-width:620px;padding-block:64px}
 .hero-copy h1{font-size:clamp(48px,6.4cqi,88px);line-height:1.02}
 .hero-copy h1 em{font-style:normal;color:var(--acc-lift)}
-.hero-copy .lede{color:color-mix(in srgb,var(--ink) 84%,transparent);font-weight:300;font-size:20px;max-width:40ch}
+.hero-copy .lede{color:color-mix(in srgb,var(--ink) 84%,transparent);font-weight:300;font-size:22px;max-width:40ch}
 .acts{display:flex;flex-wrap:wrap;gap:18px 36px;align-items:center}
 .ulink{font-weight:700;text-decoration:none;border-bottom:2px solid var(--acc-lift);padding-bottom:6px;cursor:pointer}
 .play{display:inline-flex;align-items:center;gap:12px;font-weight:500;color:color-mix(in srgb,var(--ink) 82%,transparent);cursor:pointer}
@@ -411,3 +411,4 @@ body.ind .org-only{display:none}
 
 /* Even line lengths for every subheadline (2026-09-23) */
 .lede,.aboutc p,.hero-copy .lede{text-wrap:balance}
+@container (max-width:720px){.hero-copy .lede{font-size:18.5px}}
