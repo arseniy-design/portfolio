@@ -408,3 +408,6 @@ body.ind .org-only{display:none}
 .tile h3{min-height:2.3em;line-height:1.15}
 .tiles.three h3{font-size:22px}
 .door .btn[aria-pressed="true"]{outline:none}
+
+/* Even line lengths for every subheadline (2026-09-23) */
+.lede,.aboutc p,.hero-copy .lede{text-wrap:balance}
