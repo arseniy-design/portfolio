@@ -169,20 +169,11 @@ form .btn{justify-self:start;margin-top:6px}
 .tiles.three .ph svg{width:46%;transition:transform .5s}
 .tiles.three .tile:hover .ph svg{transform:translateY(-6px)}
 .tiles.three h3{font-size:22px}
-/* steps: icons and names only */
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--ink);position:relative}
-.steps li{display:grid;justify-items:center;gap:14px;padding-bottom:18px;position:relative;cursor:default}
-.steps .nm{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.02em}
-.steps li.key .nm{color:var(--acc)}
-.steps svg{width:48px;display:block}
-.steps .tip{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:170px;text-align:center;font-size:14px;color:var(--mute);opacity:0;transition:opacity .2s;pointer-events:none}
-.steps li:hover .tip,.steps li:focus-within .tip,.steps li.open .tip{opacity:1}
-.steps button{all:unset;display:grid;justify-items:center;gap:14px;cursor:pointer}
-.steps-note{margin:64px 0 0;font-size:14px;color:var(--mute);text-align:center}
+.tiles.trio{grid-template-columns:repeat(3,1fr);gap:28px}
 /* detail sheet */
 .scrim{position:fixed;inset:0;background:rgba(17,18,20,.45);z-index:60;display:grid;place-items:center;padding:16px}
 .sheet{background:var(--paper);border-radius:20px;max-width:560px;width:100%;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
-.sheet .ph{aspect-ratio:16/8;background:var(--soft);display:grid;place-items:center;overflow:hidden}
+.sheet .ph{aspect-ratio:16/5;background:var(--soft);display:grid;place-items:center;overflow:hidden}
 .sheet .ph img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
 .sheet .ph svg{width:90px}
 .sheet .in{padding:28px 30px 30px;display:grid;gap:14px}
@@ -190,15 +181,27 @@ form .btn{justify-self:start;margin-top:6px}
 .sheet p{margin:0;color:var(--mute);font-size:17px}
 .sheet .proof{color:var(--ink);font-size:15px;padding-left:14px;border-left:2px solid var(--acc)}
 .sheet .row{display:flex;gap:12px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.jr{display:grid;gap:12px;padding-top:16px;border-top:1px solid var(--hair)}
+.jr-lead{font-size:13px!important;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)!important}
+.jr-row{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.jr-row button{all:unset;box-sizing:border-box;width:100%;display:grid;justify-items:center;gap:6px;padding:8px 0 6px;border-radius:10px;cursor:pointer;opacity:.45;transition:opacity .2s,background .2s}
+.jr-row button:hover,.jr-row button[aria-pressed="true"]{opacity:1}
+.jr-row button[aria-pressed="true"]{background:var(--soft)}
+.jr-row button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.jr-row svg{width:26px;display:block}
+.jr-row span{font-size:11.5px;font-weight:700;color:var(--ink)}
+.jr-row .key span{color:var(--acc)}
+.jr-read{font-size:15px!important;color:var(--ink)!important;min-height:2.9em}
+.jr-read span{color:var(--mute);margin-right:4px}
+@media (max-width:560px){.jr-row span{display:none}.jr-row svg{width:22px}}
 .x{background:none;border:0;font-weight:600;color:var(--mute);cursor:pointer;padding:10px}
 @container (max-width:720px){
   .tiles,.tiles.three{grid-template-columns:1fr;gap:28px}
   .tiles.three{grid-template-columns:1fr 1fr;gap:18px}
   .tiles.three h3{font-size:18px}
+  .tiles.trio{grid-template-columns:1fr;gap:28px}
+  .tiles.trio .ph{aspect-ratio:16/10}
   .tile h3{font-size:22px}
-  .steps{grid-template-columns:repeat(4,1fr);row-gap:28px;border-bottom:0}
-  .steps .tip{display:none}
-  .steps-note{margin-top:28px}
   .sec{padding-block:80px 0}
 }
 
@@ -407,6 +410,7 @@ body.ind .org-only{display:none}
 .tile .tt{display:block}
 .tile h3{min-height:2.3em;line-height:1.15}
 .tiles.three h3{font-size:22px}
+@container (max-width:720px){.tiles.trio h3{min-height:0}}
 .door .btn[aria-pressed="true"]{outline:none}
 
 /* Even line lengths for every subheadline (2026-09-23) */

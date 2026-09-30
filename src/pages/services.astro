@@ -5,9 +5,11 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import '../styles/site.css';
-import { ART, ICONS, STEPS, ORG, IND, px } from '../data/site';
+import { ART, ICONS, STEPS, STEP_WHEN, ORG, IND, px } from '../data/site';
 
 const FORM = 'https://formspree.io/f/mgonnqob';
+// The seven steps live inside the AI offer's sheet, one line shown at a time.
+const JOURNEY = STEPS.map(([n, l], i) => ({ n, l, w: STEP_WHEN[i], svg: px(ICONS[i], 12, 10) }));
 
 const LOGOS = [
   ['ie-university.png', 'IE University'], ['santander.png', 'Santander'], ['pif-mono.png', 'PIF'], ['nissan.png', 'Nissan'],
@@ -18,7 +20,7 @@ const LOGOS = [
 ---
 <Layout
   title="Services · Arseniy Goldberg"
-  description="AI that moves the number. Implementing and measuring AI for finance and tech teams, building products and programs, speaking. One to one work on AI, career, personal brand and money."
+  description="AI that moves the number. Putting AI to work for finance teams and measuring what it is worth, building products and programs, speaking. One to one work on AI, career and money."
 >
   <div class="site">
     <Nav current="services" tone="light" cta="#talk" />
@@ -29,8 +31,8 @@ const LOGOS = [
       <p class="lede" style="text-align:center">I help teams put AI to work and prove what it is worth. And I help people use it for their own work and money.</p>
       <p class="ask" style="margin-top:14px">Who are you looking for help for?</p>
       <div class="doors">
-        <div class="door"><button type="button" class="btn" id="pick-org" data-pick="organization" aria-pressed="true">My team or company</button><small>Implement AI · Measure AI · Build · Speak</small></div>
-        <div class="door"><button type="button" class="btn ghost" id="pick-ind" data-pick="individual" aria-pressed="false">Just me</button><small>1:1 AI · Career · Personal brand · Money</small></div>
+        <div class="door"><button type="button" class="btn" id="pick-org" data-pick="organization" aria-pressed="true">My team or company</button><small>AI · Build · Speak</small></div>
+        <div class="door"><button type="button" class="btn ghost" id="pick-ind" data-pick="individual" aria-pressed="false">Just me</button><small>1:1 AI · Career · Money</small></div>
       </div>
     </section>
 
@@ -44,28 +46,18 @@ const LOGOS = [
 
     <div id="organization" data-side="organization">
       <section class="wrap sec">
-        <div class="sec-head"><span class="label">For your team or company</span><h2 style="margin-top:14px">Work with me<br /><span>on the problem you have.</span></h2></div>
-        <div class="tiles three">
+        <div class="sec-head"><span class="label">For your team or company</span><h2 style="margin-top:14px">Work with me<br /><span>on your team’s problems.</span></h2></div>
+        <div class="tiles three trio">
           {ORG.map((o: any) => (
             <button type="button" class="tile" data-open={`org:${o.k}`}>
               <div class="ph art"><Fragment set:html={ART[o.k]} /><span class="tag" set:html={o.tag} /></div>
               <span class="who2">{o.who}</span>
-              <div class="tt"><h3>{o.t}</h3></div>
+              <div class="tt"><h3 set:html={o.tt || o.t} /></div>
               <span class="more" style="justify-self:start">Work with me on this</span>
             </button>
           ))}
         </div>
         <p class="switch">Here for yourself? <a data-pick-link="individual">See one to one work</a></p>
-      </section>
-
-      <section class="wrap sec">
-        <div class="sec-head"><span class="label">How we work together</span><h2 style="margin-top:14px">People first.<br /><span>The build comes fifth.</span></h2></div>
-        <ol class="steps">
-          {STEPS.map(([n, l], i) => (
-            <li class={i === 4 ? 'key' : ''}><button type="button" aria-label={`${n}: ${l}`}><span class="nm">{n}</span><Fragment set:html={px(ICONS[i], 12, 10)} /></button><span class="tip">{l}</span></li>
-          ))}
-        </ol>
-        <p class="steps-note">Hover or tap a step to read it.</p>
       </section>
 
       <section class="band">
@@ -79,7 +71,7 @@ const LOGOS = [
     <div id="individual" data-side="individual" hidden>
       <section class="wrap sec">
         <div class="sec-head"><span class="label">For you</span><h2 style="margin-top:14px">Work with me<br /><span>one to one.</span></h2></div>
-        <div class="tiles three">
+        <div class="tiles three trio">
           {IND.map((o: any) => (
             <button type="button" class="tile" data-open={`ind:${o.k}`}>
               <div class="ph art"><Fragment set:html={ART[o.art]} /></div>
@@ -126,7 +118,7 @@ const LOGOS = [
   <div class="scrim" id="scrim" hidden></div>
 </Layout>
 
-<script define:vars={{ ORG, IND, ART, FORM }}>
+<script define:vars={{ ORG, IND, ART, FORM, JOURNEY }}>
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -149,20 +141,22 @@ const LOGOS = [
   function open(id) {
     const [g, k] = id.split(':');
     const o = (g === 'org' ? ORG : IND).find((x) => x.k === k);
+    const jr = o.journey ? `<div class="jr"><p class="jr-lead">We start with your pain points. The build comes fifth.</p><ol class="jr-row">${JOURNEY.map((j, i) => `<li><button type="button" data-step="${i}" class="${i === 4 ? 'key' : ''}" aria-pressed="${i === 0}" aria-label="${esc(j.n)}">${j.svg}<span>${esc(j.n)}</span></button></li>`).join('')}</ol><p class="jr-read" aria-live="polite"></p></div>` : '';
     const tl = o.tl ? `<div class="tl"><span class="label">${esc(o.plan)}</span><ol>${o.tl.map(([w, t]) => `<li><b>${esc(w)}</b><span>${esc(t)}</span></li>`).join('')}</ol></div>` : '';
-    scrim.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(o.t)}"><div class="ph art">${ART[o.art || o.k]}</div><div class="in"><span class="label">${esc(o.who)}</span><h3>${esc(o.t)}</h3><p>${esc(o.line)}</p><p class="proof">${esc(o.proof)}</p>${tl}<div class="row"><a class="btn" href="#talk" id="sheet-go">Start here</a><button type="button" class="x" id="sheet-x">Close</button></div></div></div>`;
+    scrim.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(o.t)}"><div class="ph art">${ART[o.art || o.k]}</div><div class="in"><span class="label">${esc(o.who)}</span><h3>${esc(o.t)}</h3><p>${esc(o.line)}</p><p class="proof">${esc(o.proof)}</p>${jr}${tl}<div class="row"><a class="btn" href="#talk" id="sheet-go">Start here</a><button type="button" class="x" id="sheet-x">Close</button></div></div></div>`;
     scrim.hidden = false;
     $('sheet-go').addEventListener('click', () => { $('sv-engage').value = o.t; $('sv-echo-text').textContent = o.t; $('sv-echo').hidden = false; scrim.hidden = true; });
+    const read = scrim.querySelector('.jr-read');
+    const show = (i) => {
+      scrim.querySelectorAll('[data-step]').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.step === i)));
+      read.innerHTML = `<b>${esc(JOURNEY[i].n)}</b> <span>${esc(JOURNEY[i].w)}</span> ${esc(JOURNEY[i].l)}`;
+    };
+    if (read) { show(0); scrim.querySelectorAll('[data-step]').forEach((b) => b.addEventListener('click', () => show(+b.dataset.step))); }
     $('sheet-go').focus();
   }
   document.querySelectorAll('[data-open]').forEach((t) => t.addEventListener('click', () => open(t.dataset.open)));
   scrim.addEventListener('click', (e) => { if (e.target === scrim || e.target.id === 'sheet-x') scrim.hidden = true; });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') scrim.hidden = true; });
-
-  // Steps: tap to show the line on touch screens.
-  document.querySelectorAll('.steps li').forEach((li) => li.addEventListener('click', () => {
-    document.querySelectorAll('.steps li').forEach((l) => l.classList.toggle('open', l === li && !l.classList.contains('open')));
-  }));
 
   // Form: Formspree, stays on the page.
   const form = $('sv-form');
