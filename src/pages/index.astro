@@ -5,6 +5,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
+import ThreadFilm from '../components/ThreadFilm.astro';
 import '../styles/site.css';
 import PIECES from '../data/writing.json';
 import { ART, JOURNEY, QUOTES } from '../data/site';
@@ -20,7 +21,7 @@ const BUILT = [
   { name: 'The War Room',              meta: 'Simulation · English and Arabic',       shot: '/shots/warroom.webp',         href: 'https://claude.ai/public/artifacts/b3f7ebf5-4457-4860-9436-ecd6483d46d5', ext: true },
   { name: 'Writing',                   meta: '64 pieces · since 2020',                shot: '/shots/writing.webp',         href: '/writing' },
   { name: 'Courses in a chat',         meta: 'Three WhatsApp courses · Rebundle',     art: 'chat',                         href: '/work#chat' },
-  { name: 'The Teaching Stack',        meta: '3 domains · 300+ sessions',             art: 'stack',                        href: '/work' },
+  { name: 'The Teaching Stack',        meta: '3 domains · 500+ sessions',             art: 'stack',                        href: '/work' },
 ];
 
 const LOGOS = [
@@ -60,6 +61,7 @@ const ext = { target: '_blank', rel: 'noopener' };
 
     <section class="journeyband"><div class="wrap">
       <div class="sec-head"><h2>Fifteen years.<br /><span>One line.</span></h2></div>
+      <ThreadFilm />
       <div class="jline">
         {JOURNEY.map((j, i) => (
           <button type="button" class="jstop" data-journey={i}><small>{j.y}</small><b>{j.t}</b><span class="n">{j.n}</span></button>

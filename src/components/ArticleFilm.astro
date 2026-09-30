@@ -1,0 +1,26 @@
+---
+// "Which one are you?" film, 2026-09-30, inside the IE Insights article.
+// Placed under the heading "The Five Financial Archetypes", after the reader has the setup (the 300,000-year-old brain).
+// It illustrates the section instead of letting readers skip to it, so it carries no jump links.
+// Silent loop; plays while on screen.
+// Source project: ~/entry-video/archetypes (HyperFrames). Re-export there, then replace public/entry/which-one-are-you.*
+---
+<figure class="afilm" aria-label="Film: the five financial archetypes, each with its one move">
+  <video class="autoloop" muted loop playsinline preload="metadata" poster="/entry/which-one-are-you.jpg" width="1920" height="1080">
+    <source src="/entry/which-one-are-you.mp4" type="video/mp4" />
+  </video>
+</figure>
+
+<script>
+  // Play only while on screen. Visitors who ask for reduced motion get the still and a play button.
+  document.querySelectorAll<HTMLVideoElement>('video.autoloop').forEach((v) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; return; }
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.5 }).observe(v);
+  });
+</script>
+
+<style>
+  /* Breaks out of the 720px text column to 1040px, centred on it, without a transform. */
+  .afilm { width: min(1040px, calc(100vw - 32px)); margin: 0.5rem 0 2.6rem calc(50% - min(520px, calc(50vw - 16px))); }
+  .afilm video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 6px; background: #1E1F22; }
+</style>

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import ART from '../../data/ie-insights.json';
+import ArticleFilm from '../../components/ArticleFilm.astro';
 
 export const prerender = true;
 
@@ -17,6 +18,8 @@ const longDate = new Date(ART.date + 'T12:00:00Z').toLocaleDateString('en-GB', {
 
 let numI = 0, stepI = 0, archI = 0;
 const archetypes = blocks.filter((b) => b.k === 'arch').length;
+// Stable anchors for each archetype, in article order (linkable from posts and the homepage).
+const ARCH_IDS = ['paralyzed-saver', 'panic-seller', 'fomo-buyer', 'expert-with-blind-spots', 'overconfident-researcher'];
 
 const jsonld = {
   '@context': 'https://schema.org',
@@ -58,13 +61,14 @@ const jsonld = {
 
       <div class="col body">
         {blocks.map((b) => {
+          if (b.k === 'h' && b.t === 'The Five Financial Archetypes') return <><h2>{b.t}</h2><ArticleFilm /></>;
           if (b.k === 'h') return <h2>{b.t}</h2>;
           if (b.k === 'li') return <p class="bullet">{b.t}</p>;
           if (b.k === 'num') { numI++; return <p class="num"><i>{numI}</i>{b.t}</p>; }
           if (b.k === 'arch') {
             archI++;
             return (
-              <section class="arch">
+              <section class="arch" id={ARCH_IDS[archI - 1]}>
                 <span class="arch-n">{String(archI).padStart(2, '0')} <i>/ {String(archetypes).padStart(2, '0')}</i></span>
                 <p><b>{b.n}</b> {b.t}</p>
               </section>
@@ -90,6 +94,15 @@ const jsonld = {
         </p>
         <a href="/writing" class="more">More writing <span aria-hidden="true">→</span></a>
       </footer>
+
+      <!-- So a reader who finishes has somewhere to go besides the menu. -->
+      <aside class="col next">
+        <p class="next-q">Which one did you recognize?</p>
+        <div class="next-links">
+          <a href="/services#individual">Work on your own money with me <span aria-hidden="true">→</span></a>
+          <a href="/">See who wrote this <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
     </article>
   </div>
 </Layout>
@@ -127,7 +140,8 @@ const jsonld = {
 
   /* The five archetypes are the memorable spine of the piece, so they get to be
      objects on the page rather than five more paragraphs. */
-  .arch { border-left:2px solid #0D1B2A; padding:0.1rem 0 0.1rem 1.6rem; margin:2.4rem 0; }
+  .arch { border-left:2px solid #0D1B2A; padding:0.1rem 0 0.1rem 1.6rem; margin:2.4rem 0; scroll-margin-top:110px; }
+  .arch:target { border-left-color:#A8322D; }
   .arch-n { font-family:var(--font-display); font-size:0.7rem; font-weight:600;
     letter-spacing:0.14em; color:#A8322D; font-variant-numeric:tabular-nums; }
   .arch-n i { font-style:normal; color:#9AAEC4; }
@@ -148,6 +162,12 @@ const jsonld = {
     display:flex; flex-wrap:wrap; gap:1rem 2rem; align-items:baseline;
     justify-content:space-between; }
   .src-note p { font-size:0.88rem; color:#5B7494; margin:0; }
+  .next { margin-top:3.5rem; background:#1E1F22; color:#F4F3F0; border-radius:6px; padding:2rem clamp(1.25rem,4vw,2.25rem); display:grid; gap:1.1rem; max-width:720px; }
+  .next-q { margin:0; font-family:var(--font-display); font-weight:800; font-size:clamp(1.4rem,3vw,1.9rem); letter-spacing:-0.025em; line-height:1.1; }
+  .next-links { display:flex; flex-wrap:wrap; gap:0.8rem 2rem; }
+  .next-links a { font-family:var(--font-display); font-weight:700; color:#F4F3F0; text-decoration:none; border-bottom:2px solid #E5484D; padding-bottom:4px; }
+  .next-links a:hover { color:#E5484D; }
+
   .src-note a { color:#0D1B2A; border-bottom:1px solid #C6BCAE; }
   .src-note a:hover { color:#A8322D; border-bottom-color:#A8322D; }
   .more { font-family:var(--font-display); font-size:0.85rem; font-weight:600;

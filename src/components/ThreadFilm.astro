@@ -1,0 +1,29 @@
+---
+// "One thread" film, 2026-09-30. Sits in the homepage timeline section between "Fifteen years. One line."
+// and the five clickable stops: the heading makes the promise, the film shows the line moving, the stops hold the detail.
+// Light version on purpose, so its white ground is the section's own white.
+// Source project: ~/entry-video/one-thread (HyperFrames). Re-export there, then replace public/entry/one-thread.*
+---
+<div class="jfilm">
+  <video class="autoloop" muted loop playsinline preload="metadata" poster="/entry/one-thread.jpg" width="1920" height="1080" aria-label="One red line runs from finance through AI to teaching: five years at Robert W. Baird and Founding Partner at Flow; Academic Director of AI-Powered Finance at IE Business School; 18 courses and five teaching excellence awards.">
+    <source src="/entry/one-thread.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<script>
+  // Play only while on screen. Visitors who ask for reduced motion get the still and a play button.
+  document.querySelectorAll<HTMLVideoElement>('.jfilm video.autoloop').forEach((v) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; return; }
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.5 }).observe(v);
+  });
+</script>
+
+<style>
+  .jfilm { margin: 8px 0 64px; }
+  /* Feather the edges so the encoded white melts into the page white instead of drawing a box. */
+  .jfilm video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+    mask-composite: intersect; }
+</style>
