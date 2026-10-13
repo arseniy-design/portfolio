@@ -183,7 +183,7 @@ form .btn{justify-self:start;margin-top:6px}
 .sheet .row{display:flex;gap:12px;align-items:center;margin-top:8px;flex-wrap:wrap}
 .jr{display:grid;gap:12px;padding-top:16px;border-top:1px solid var(--hair)}
 .jr-lead{font-size:13px!important;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)!important}
-.jr-row{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.jr-row{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
 .jr-row button{all:unset;box-sizing:border-box;width:100%;display:grid;justify-items:center;gap:6px;padding:8px 0 6px;border-radius:10px;cursor:pointer;opacity:.45;transition:opacity .2s,background .2s}
 .jr-row button:hover,.jr-row button[aria-pressed="true"]{opacity:1}
 .jr-row button[aria-pressed="true"]{background:var(--soft)}

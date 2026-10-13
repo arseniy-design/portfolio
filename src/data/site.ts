@@ -12,8 +12,10 @@ export const ICONS: string[][] = [
  ['............','.........oo.','.........oo.','......nn.oo.','......nn.oo.','...nn.nn.oo.','...nn.nn.oo.','nn.nn.nn.oo.','nn.nn.nn.oo.','kkkkkkkkkkkk'],
 ];
 
-export const STEPS: [string,string][] = [['Inspire','Show everyone what AI can do today.'],['Educate','Hands on the tools, on their own files.'],['Map','We meet you where you are, measure it, then split the work between people and AI.'],['Rebuild','Fix the process before automating it.'],['Build','Build the tool for the new process.'],['Implement','Put it in the team’s hands.'],['Track','Measure the number until it moves.']];
-export const STEP_WHEN = ['Week 1','Week 2','Weeks 3 to 4','Month 2','Month 2','Month 3','60 days later'];
+// The team sprint, 3 to 6 weeks (2026-10-12). STEP_ICON picks each stage's icon from ICONS.
+export const STEPS: [string,string][] = [['Where you stand','A few questions on your team, your work and the AI tools your company allows.'],['Learn in Claude','Your team builds the mental model on practice data. Nothing leaves the company.'],['Build in your tools','They build the tool themselves, in the AI your company already approved.'],['Measure','Hours saved, against where you started.']];
+export const STEP_WHEN = ['Before we start','Weeks 1 to 2','Weeks 2 to 5','Final week'];
+export const STEP_ICON = [2, 1, 4, 6];
 
 export const ART: Record<string,string> = {
  tech:`<svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="1.75" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"><path d="M40 132h160"/><rect x="70" y="36" width="36" height="96"/><rect x="134" y="84" width="36" height="48"/><path class="a" d="M118 36v48M113 36h10M113 84h10" /><text class="a t" x="126" y="64">gap</text><text class="t" x="88" y="148" text-anchor="middle">You think</text><text class="t" x="152" y="148" text-anchor="middle">Verified</text></svg>`,
@@ -29,15 +31,15 @@ export const ART: Record<string,string> = {
 };
 
 export const ORG = [
- {k:'fin',who:'For finance teams',t:'Build AI with a clear ROI',img:'/pif-training.jpg',tag:'<i>5 hours</i> a week saved per person',line:'I take your team from the first session to a working tool, and put a money figure on what it is worth.',proof:'PIF and Kyowa Kirin: 5 hours a week saved per person. Before that, five years at Baird in a $1.6B practice.',journey:1},
- {k:'build',who:'For product teams',t:'Turn an idea into a product',img:'innovation-stage',tag:'<i>6,000+</i> users',line:'Products, programs and courses, built and handed to your team.',proof:'Five products at Rebundle. 6,000+ users.'},
- {k:'speak',who:'For events',t:'Book a talk for your event',img:'baku-stage',tag:'<i>70+</i> institutions',line:'Talks on finance, AI and how people decide.',proof:'Five teaching awards. 70+ institutions.'},
+ {k:'fin',who:'For your team',t:'Get your team building with AI',img:'/pif-training.jpg',tag:'<i>3 to 6</i> weeks',line:'Your team learns in Claude, then builds in the tools your company already uses, and leaves with a working result in 3 to 6 weeks.',proof:'Get back 5 hours a week per person, like my clients did.',journey:1},
+ {k:'build',who:'For product teams',t:'Turn an idea into a product',img:'innovation-stage',tag:'<i>6,000+</i> users',line:'Products, programs and courses, built and handed to your team.',proof:'Launch something people use. My last five products reached 6,000+ users.'},
+ {k:'speak',who:'For events',t:'Book a talk for your event',img:'baku-stage',tag:'<i>70+</i> institutions',line:'Talks on finance, AI and how people decide.',proof:'Send your audience home thinking differently about money, AI, and how they decide.'},
 ];
 
 export const IND = [
- {k:'ai',who:'1:1 AI',t:'Set up AI for your work',art:'ai',line:'On your own laptop, with your own files.',proof:'38 students, 38 live sites shipped in my IE New York course.'},
- {k:'career',who:'Career',t:'Land your next move',art:'career',line:'Your CV, LinkedIn and site telling one story. Then we plan the move together.',proof:'“In two weeks, through just two Zoom meetings, Arseniy helped me reframe my CV and career story. I was noticed immediately by the first company I applied to.” Slobodan Marković, OneTrust'},
- {k:'money',who:'Personal finance',t:'Understand your own money',art:'money',line:'Learn to manage your own money. Education only, no investment advice.',proof:'Five years in private wealth at Baird. 42 free lessons.'},
+ {k:'ai',who:'1:1 AI',t:'Set up AI for your work',art:'ai',line:'On your own laptop, with your own files.',proof:'Ship your first live site, like all 38 students in my last course.'},
+ {k:'career',who:'Career',t:'Land your next move',art:'career',line:'Your CV, LinkedIn and site telling one story. Then we plan the move together.',proof:'Reframe your story in two weeks, then make the move.'},
+ {k:'money',who:'Personal finance',t:'Understand your own money',art:'money',line:'Learn to manage your own money. Education only, no investment advice.',proof:'Know where your money goes and what to do next.'},
 ];
 
 export const JOURNEY = [

@@ -5,11 +5,11 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import '../styles/site.css';
-import { ART, ICONS, STEPS, STEP_WHEN, ORG, IND, px } from '../data/site';
+import { ART, ICONS, STEPS, STEP_WHEN, STEP_ICON, ORG, IND, px } from '../data/site';
 
 const FORM = 'https://formspree.io/f/mgonnqob';
-// The seven steps live inside the AI offer's sheet, one line shown at a time.
-const JOURNEY = STEPS.map(([n, l], i) => ({ n, l, w: STEP_WHEN[i], svg: px(ICONS[i], 12, 10) }));
+// The four sprint stages live inside the team offer's sheet, one line shown at a time.
+const JOURNEY = STEPS.map(([n, l], i) => ({ n, l, w: STEP_WHEN[i], svg: px(ICONS[STEP_ICON[i]], 12, 10) }));
 
 const LOGOS = [
   ['ie-university.png', 'IE University'], ['santander.png', 'Santander'], ['pif-mono.png', 'PIF'], ['nissan.png', 'Nissan'],
@@ -20,15 +20,15 @@ const LOGOS = [
 ---
 <Layout
   title="Services · Arseniy Goldberg"
-  description="AI that moves the number. Putting AI to work for finance teams and measuring what it is worth, building products and programs, speaking. One to one work on AI, career and money."
+  description="The gap is smaller than you think. Teams learn AI by building with it, in 3 to 6 weeks. Products and programs, talks, and one to one work on AI, career and money."
 >
   <div class="site">
     <Nav current="services" tone="light" cta="#talk" />
 
     <section class="wrap gate" id="top">
       <div class="who"><img src="/hero-figure.webp" alt="" />Arseniy Goldberg · Founding Partner, Flow · Academic Director, IE Business School</div>
-      <h1>AI that moves<br />the number.</h1>
-      <p class="lede" style="text-align:center">I help teams put AI to work and prove what it is worth. And I help people use it for their own work and money.</p>
+      <h1>The gap is smaller<br />than you think.</h1>
+      <p class="lede" style="text-align:center">The 1% of knowledge workers have already built the mental model for the new age of work. I help everyone else fill that gap.</p>
       <p class="ask" style="margin-top:14px">Who are you looking for help for?</p>
       <div class="doors">
         <div class="door"><button type="button" class="btn" id="pick-org" data-pick="organization" aria-pressed="true">My team or company</button><small>AI · Build · Speak</small></div>
@@ -141,7 +141,7 @@ const LOGOS = [
   function open(id) {
     const [g, k] = id.split(':');
     const o = (g === 'org' ? ORG : IND).find((x) => x.k === k);
-    const jr = o.journey ? `<div class="jr"><p class="jr-lead">We start with your pain points. The build comes fifth.</p><ol class="jr-row">${JOURNEY.map((j, i) => `<li><button type="button" data-step="${i}" class="${i === 4 ? 'key' : ''}" aria-pressed="${i === 0}" aria-label="${esc(j.n)}">${j.svg}<span>${esc(j.n)}</span></button></li>`).join('')}</ol><p class="jr-read" aria-live="polite"></p></div>` : '';
+    const jr = o.journey ? `<div class="jr"><p class="jr-lead">They learn as they build.</p><ol class="jr-row">${JOURNEY.map((j, i) => `<li><button type="button" data-step="${i}" class="${i === 2 ? 'key' : ''}" aria-pressed="${i === 0}" aria-label="${esc(j.n)}">${j.svg}<span>${esc(j.n)}</span></button></li>`).join('')}</ol><p class="jr-read" aria-live="polite"></p></div>` : '';
     const tl = o.tl ? `<div class="tl"><span class="label">${esc(o.plan)}</span><ol>${o.tl.map(([w, t]) => `<li><b>${esc(w)}</b><span>${esc(t)}</span></li>`).join('')}</ol></div>` : '';
     scrim.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(o.t)}"><div class="ph art">${ART[o.art || o.k]}</div><div class="in"><span class="label">${esc(o.who)}</span><h3>${esc(o.t)}</h3><p>${esc(o.line)}</p><p class="proof">${esc(o.proof)}</p>${jr}${tl}<div class="row"><a class="btn" href="#talk" id="sheet-go">Start here</a><button type="button" class="x" id="sheet-x">Close</button></div></div></div>`;
     scrim.hidden = false;
