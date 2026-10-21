@@ -1085,3 +1085,69 @@ section {
 
 
 }
+/* Service Steps - numbered 1-2-3, same shape in every card */
+.service-steps {
+    list-style: none;
+    counter-reset: step;
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+}
+
+.service-steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 7px 0 7px 36px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--dark-gray);
+}
+
+.service-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(8, 145, 178, 0.1);
+    color: var(--primary-teal);
+    font-size: 12.5px;
+    font-weight: var(--font-weight-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-steps li strong {
+    color: var(--primary-dark-blue);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* About - single column now that the stats block is gone */
+.about-content--single {
+    grid-template-columns: 1fr;
+    max-width: 760px;
+}
+
+/* Card label - "Start here" vs "The build uncovers" */
+.service-label {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary-teal);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.service-card[data-step="1"] .service-label {
+    color: var(--white);
+    background: var(--primary-teal);
+    padding: 4px 10px;
+    border-radius: 999px;
+}

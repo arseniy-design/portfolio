@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Hero Rotating Words
     const heroRotate = document.getElementById('heroRotate');
     if (heroRotate) {
-        const words = ['clarity.', 'momentum.', 'leverage.', 'systems that last.'];
+        const words = ['AI that gets used.', 'the mental model.', 'proof it pays.'];
         let currentIndex = 0;
 
         // Create initial word
