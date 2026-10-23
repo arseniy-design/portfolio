@@ -296,11 +296,16 @@ section {
 
 .section-header--left {
     text-align: left;
-    max-width: 700px;
 }
 
-.section-header--left p {
+.section-header.section-header--left p {
     margin: 0;
+}
+
+@media (min-width: 1024px) {
+    .section-header--left h2 {
+        white-space: nowrap;
+    }
 }
 
 /* Section Tag */
