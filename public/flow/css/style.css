@@ -302,9 +302,10 @@ section {
     margin: 0;
 }
 
-@media (min-width: 1024px) {
-    .section-header--left h2 {
+@media (min-width: 769px) {
+    .section-header.section-header--left h2 {
         white-space: nowrap;
+        font-size: min(42px, calc((100vw - 60px) / 23));
     }
 }
 
